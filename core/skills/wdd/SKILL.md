@@ -1,11 +1,6 @@
 ---
 name: wdd
-description: |
-  design-only framework that recursively decomposes a destination into a Waypoint tree to lock in milestones.
-
-  Use in the following situations:
-  - When design and milestone planning is needed before implementation
-  - When "roadmap", "milestone", "Waypoint", or "WDD" is mentioned
+description: design-only framework that recursively decomposes a destination into a Waypoint tree to lock in milestones. Use when design and milestone planning is needed before implementation, or when "roadmap", "milestone", "Waypoint", or "WDD" is mentioned
 ---
 
 ## Role
@@ -177,19 +172,20 @@ Lists tasks in dependency order for human readability. Each item includes a stat
 
 **Status definitions:**
 - `TODO` — not yet started
-- `IN_PROGRESS` — currently being worked on
+- `DOING` — currently being worked on
+- `REVIEW` - in Pull Request
 - `DONE` — complete (skipped when passing context to AI)
 
 ```
 ## Execution Order
 
-1. [W-ID]: [name] (~[N] LOC) | TODO
+1. [W-ID]: [name] (~[N] LOC) | [TODO]
    [scope, 1 line]
 
-2. [W-ID]: [name] (~[N] LOC) | IN_PROGRESS
+2. [W-ID]: [name] (~[N] LOC) | [DOING]
    [scope, 1 line]
 
-3. [W-ID]: [name] (~[N] LOC) | DONE
+3. [W-ID]: [name] (~[N] LOC) | [DONE]
    [scope, 1 line]
 
 ...
@@ -198,9 +194,6 @@ Total [N] items | Total estimated LOC: ~[N]
 Sum check: leaf total [N] LOC vs W0 estimate [N] LOC → deviation [N]%
 ```
 
-## No Context Leak
-
-Each Waypoint is an independent PR unit. Dependencies are expressed only through Mermaid edges.
 
 ## Checklist
 
