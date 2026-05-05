@@ -3,7 +3,6 @@ name: wdd
 description: design-only framework that recursively decomposes a destination into a Waypoint tree to lock in milestones. Use when design and milestone planning is needed before implementation, or when "roadmap", "milestone", "Waypoint", or "WDD" is mentioned
 ---
 
-## Role
 
 When given a destination, design a Waypoint tree and confirm it with the user.
 **Do not implement.** The only deliverable is the confirmed Waypoint tree.
@@ -39,13 +38,13 @@ graph TD
   W0_EST --> EVAL_NODE{Evaluate Node}
   %% Phase 2: Recursive Engine (The Core Loop)
   subgraph Step_2 [Step 2: Recursive Decomposition Engine]
-    EVAL_NODE -- "Intermediate: >5% W0 OR >500 LOC" --> PROPOSE[Propose 2-4 Strategy Candidates]
+    EVAL_NODE -- "Intermediate: >1000 LOC" --> PROPOSE[Propose 2-4 Strategy Candidates]
     PROPOSE --> USER_INPUT[/User Selection/]
     USER_INPUT --> DECOMP[Decompose into Child Waypoints]
     DECOMP --> EVAL_NODE
   end
   %% Phase 3: Completion Logic
-  EVAL_NODE -- "Leaf: <=5% W0 AND <=500 LOC" --> TREE_CHECK{Are all nodes Leafs?}
+  EVAL_NODE -- "Leaf: <=1000 LOC" --> TREE_CHECK{Are all nodes Leafs?}
   TREE_CHECK -- "No (Pending Branches)" --> EVAL_NODE
   TREE_CHECK -- "Yes (Tree Locked)" --> GEN_ARTIFACTS[Generate Final Deliverables]
   %% Phase 4: Standardized Output
@@ -64,11 +63,11 @@ graph TD
 Upon receiving a destination, **before any decomposition**, estimate the total expected LOC.
 
 ```
-W0 total estimate: ~[N] LOC
+W0 total estimate: ~{N} LOC
   → Rationale: [1–2 lines based on similar projects or feature list]
 ```
 
-This number becomes the budget that governs all decomposition.
+This number becomes the budget that governs overall planning and sizing.
 
 ### Step 2 — Decompose vs. confirm
 
@@ -76,20 +75,27 @@ Every Waypoint is either an **intermediate node (to be decomposed)** or a **conf
 
 **Intermediate node:** No LOC size limit. It will be decomposed in the next step, so any size is fine.
 
-**Leaf confirmation criteria:** Stop decomposing only when **both** conditions are met.
+**Leaf confirmation criteria:** Stop decomposing only when the condition below is met.
 
 | Condition | Threshold |
 |-----------|-----------|
-| **Relative** | ≤ **5% of W0 total estimated LOC** |
-| **Absolute cap** | ≤ **500 LOC** |
+| **Absolute cap** | ≤ **1000 LOC** |
 
-If either condition is exceeded, **decomposition is required**.
+If the condition is exceeded, **decomposition is required**.
 
-> **Example** (W0 ~10,000 LOC project, 5% = 500 LOC)
+> **Example** (W0 ~10,000 LOC project)
 > - W1: ~3,000 LOC → intermediate node, must decompose ✓ (size irrelevant)
-> - W1-A: ~800 LOC → intermediate node, must decompose ✓
-> - W1-A1: ~400 LOC → leaf confirmed (≤ 500 LOC ✓)
-> - W1-A2: ~600 LOC → must decompose (> 500 LOC ✗)
+> - W1-A: ~1,800 LOC → intermediate node, must decompose ✓
+> - W1-A1: ~700 LOC → leaf confirmed (≤ 1000 LOC ✓)
+> - W1-A2: ~1,100 LOC → still too large, must decompose again ✗
+> - W1-A2a: ~500 LOC → leaf confirmed (2nd-level decomposition result) ✓
+> - W1-A2b: ~600 LOC → leaf confirmed (2nd-level decomposition result) ✓
+> - W1-B: ~900 LOC → leaf confirmed directly at the first decomposition level ✓
+>
+> This shows the expected behavior:
+> - Some children become leaves immediately.
+> - Some children remain intermediate nodes and require another decomposition pass.
+> - Decomposition continues until every leaf is ≤ 1000 LOC.
 
 ## Decomposition Candidate Format
 
@@ -133,14 +139,14 @@ After all Waypoints are confirmed, output all three together.
 
 ```mermaid
 graph TD
-  W0["Destination"]
-  W1["W1\nName\n~250 LOC"] --> W0
-  W2["W2\nName\n~200 LOC"] --> W0
-  W1a["W1a\nName\n~150 LOC"] --> W1
-  W1b["W1b\nName\n~180 LOC"] --> W1
+	W0["[W0] {Destination}"]
+	W1["[W1] {Name} ~250 LOC"] --> W0
+	W2["[W2] {Name} ~200 LOC"] --> W0
+	W1a["[W1a] {Name} ~150 LOC"] --> W1
+	W1b["[W1b] {Name} ~180 LOC"] --> W1
 ```
 
-- Node: `[ID]\n[name]\n~[N] LOC`
+- Node: `[<ID>].{name} ~{N} LOC`
 - Edges: dependency direction
 - No styles or colors
 
@@ -156,11 +162,11 @@ Rules:
 
 ```mermaid
 graph LR
-  W1["W1\nAuth"] --> W1a["W1a\nLogin"]
-  W1["W1\nAuth"] --> W1b["W1b\nToken"]
-  W1a --> W2["W2\nDashboard"]
+  W1["[W1] Auth"] --> W1a["[W1a] Login"]
+  W1["[W1] Auth"] --> W1b["[W1b] Token"]
+  W1a --> W2["[W2] Dashboard"]
   W1b --> W2
-  W3["W3\nSettings"] --> W2
+  W3["[W3] Settings"] --> W2
 ```
 
 - Nodes in the same column = can start simultaneously
@@ -179,19 +185,19 @@ Lists tasks in dependency order for human readability. Each item includes a stat
 ```
 ## Execution Order
 
-1. [W-ID]: [name] (~[N] LOC) | [TODO]
+1. [W-ID]: {name} (~{N} LOC) | [TODO]
    [scope, 1 line]
 
-2. [W-ID]: [name] (~[N] LOC) | [DOING]
+2. [W-ID]: {name} (~{N} LOC) | [DOING]
    [scope, 1 line]
 
-3. [W-ID]: [name] (~[N] LOC) | [DONE]
+3. [W-ID]: {name} (~{N} LOC) | [DONE]
    [scope, 1 line]
 
 ...
 
-Total [N] items | Total estimated LOC: ~[N]
-Sum check: leaf total [N] LOC vs W0 estimate [N] LOC → deviation [N]%
+Total {N} items | Total estimated LOC: ~{N}
+Sum check: leaf total {N} LOC vs W0 estimate {N} LOC → deviation {N}%
 ```
 
 
@@ -200,7 +206,7 @@ Sum check: leaf total [N] LOC vs W0 estimate [N] LOC → deviation [N]%
 Verify before finalizing the Waypoint tree.
 
 - [ ] Was W0 total LOC estimated first?
-- [ ] Is each leaf Waypoint ≤ `W0 × 5%` and ≤ 500 LOC?
+- [ ] Is each leaf Waypoint ≤ 1000 LOC?
 - [ ] Is the leaf sum within ±20% of the W0 estimate?
 - [ ] Does each Waypoint's LOC reflect technical difficulty and operational environment?
 - [ ] Is every Waypoint separable as an independent PR unit?
