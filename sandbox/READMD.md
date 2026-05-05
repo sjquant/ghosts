@@ -1,4 +1,12 @@
-# Sandbox Skills
+# Sandbox
+
+## Agents
+
+Selected agents from [oh-my-codex](https://github.com/Yeachan-Heo/oh-my-codex):
+
+- [code-reviewer](agents/code-reviewer.md)
+
+## Skills
 
 Selected skills from [mattpocock/skills](https://github.com/mattpocock/skills/tree/main/skills/engineering):
 
