@@ -1,6 +1,7 @@
 ---
 name: wdd
 description: design-only framework that recursively decomposes a destination into a Waypoint tree to lock in milestones. Use when design and milestone planning is needed before implementation, or when "roadmap", "milestone", "Waypoint", or "WDD" is mentioned
+disable-model-invocation: true
 ---
 
 

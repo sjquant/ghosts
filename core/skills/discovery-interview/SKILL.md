@@ -1,6 +1,7 @@
 ---
 name: discovery-interview
 description: Requirements-first discovery workflow that turns vague ideas into clear product specs. Use when the user has a vague product or feature idea and wants to clarify requirements, scope, user journeys, priorities, edge cases, or a product spec.
+disable-model-invocation: true
 ---
 
 ## Role

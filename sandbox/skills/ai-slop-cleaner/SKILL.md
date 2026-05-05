@@ -1,21 +1,12 @@
 ---
 name: ai-slop-cleaner
 description: Clean AI-generated code slop with a regression-safe, deletion-first workflow and optional reviewer-only mode
-level: 3
+disable-model-invocation: true
 ---
 
 # AI Slop Cleaner
 
-Use this skill to clean AI-generated code slop without drifting scope or changing intended behavior. In OMC, this is the bounded cleanup workflow for code that works but feels bloated, repetitive, weakly tested, or over-abstracted.
-
-## When to Use
-
-Use this skill when:
-- the user explicitly says `deslop`, `anti-slop`, or `AI slop`
-- the request is to clean up or refactor code that feels noisy, repetitive, or overly abstract
-- follow-up implementation left duplicate logic, dead code, wrapper layers, boundary leaks, or weak regression coverage
-- the user wants a reviewer-only anti-slop pass via `--review`
-- the goal is simplification and cleanup, not new feature delivery
+Use this skill to clean AI-generated code slop without drifting scope or changing intended behavior. This is a bounded cleanup workflow for code that works but feels bloated, repetitive, weakly tested, or over-abstracted.
 
 ## When Not to Use
 
@@ -25,7 +16,7 @@ Do not use this skill when:
 - the request is a generic refactor with no simplification or anti-slop intent
 - behavior is too unclear to protect with tests or a concrete verification plan
 
-## OMC Execution Posture
+## Execution Posture
 
 - Preserve behavior unless the user explicitly asks for behavior changes.
 - Lock behavior with focused regression tests first whenever practical.
@@ -41,19 +32,8 @@ Do not use this skill when:
 
 This skill can be bounded to an explicit file list or changed-file scope when the caller already knows the safe cleanup surface.
 
-- Good fit: `oh-my-claudecode:ai-slop-cleaner skills/ralph/SKILL.md skills/ai-slop-cleaner/SKILL.md`
-- Good fit: a Ralph session handing off only the files changed in that session
-- Preserve the same regression-safe workflow even when the scope is a short file list
-- Do not silently expand a changed-file scope into broader cleanup work unless the user explicitly asks for it
-
-## Ralph Integration
-
-Ralph can invoke this skill as a bounded post-review cleanup pass.
-
-- In that workflow, the cleaner runs in standard mode (not `--review`)
-- The cleanup scope is the Ralph session's changed files only
-- After the cleanup pass, Ralph re-runs regression verification before completion
-- `--review` remains the reviewer-only follow-up mode, not the default Ralph integration path
+- Preserve the same regression-safe workflow even when the scope is a short file list.
+- Do not silently expand a changed-file scope into broader cleanup work unless the user explicitly asks for it.
 
 ## Review Mode (`--review`)
 
@@ -117,17 +97,6 @@ In review mode:
 
 ## Usage
 
-- `/oh-my-claudecode:ai-slop-cleaner <target>`
-- `/oh-my-claudecode:ai-slop-cleaner <target> --review`
-- `/oh-my-claudecode:ai-slop-cleaner <file-a> <file-b> <file-c>`
-- From Ralph: run the cleaner on the Ralph session's changed files only, then return to Ralph for post-cleanup regression verification
-
-## Good Fits
-
-**Good:** `deslop this module: too many wrappers, duplicate helpers, and dead code`
-
-**Good:** `cleanup the AI slop in src/auth and tighten boundaries without changing behavior`
-
-**Bad:** `refactor auth to support SSO`
-
-**Bad:** `clean up formatting`
+- `ai-slop-cleaner <target>`
+- `ai-slop-cleaner <target> --review`
+- `ai-slop-cleaner <file-a> <file-b> <file-c>`
