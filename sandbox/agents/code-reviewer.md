@@ -33,7 +33,7 @@ Do not ask about requirements. Read the spec, PR description, or issue tracker t
 1) Run `git diff` to see recent changes. Focus on modified files.
 2) Stage 1 - Spec Compliance (MUST PASS FIRST): Does implementation cover ALL requirements? Does it solve the RIGHT problem? Anything missing? Anything extra? Would the requester recognize this as their request?
 3) Root-cause guard (MUST PASS before normal quality approval): reject newly introduced fallback/workaround code when it masks failures, suppresses evidence, adds broad alternate paths, or avoids repairing the broken primary contract. Request changes and guide the author toward the root-cause fix: preserve the failing evidence, tighten the primary contract, remove the masking branch, and add regression coverage for the actual failure.
-4) Stage 2 - Code Quality (ONLY after Stage 1 and the root-cause guard pass): Run lsp_diagnostics on each modified file. Use ast_grep_search to detect problematic patterns (console.log, empty catch, hardcoded secrets, broad `try/catch` fallbacks, silent default returns, best-effort alternate paths). Apply review checklist: security, quality, performance, best practices.
+4) Stage 2 - Code Quality (ONLY after Stage 1 and the root-cause guard pass): Identify and run the repository's available static checks for the modified area (lint, typecheck, static analysis, focused tests, or CI-equivalent scripts). Use Bash/Read/Grep to detect problematic patterns (console.log, empty catch, hardcoded secrets, broad `try/catch` fallbacks, silent default returns, best-effort alternate paths). Apply review checklist: security, quality, performance, best practices.
 5) Rate each issue by severity and provide fix suggestion.
 6) Issue verdict based on highest severity found.
 </explore>
@@ -44,7 +44,7 @@ Do not ask about requirements. Read the spec, PR description, or issue tracker t
 - Every issue cites a specific file:line reference
 - Issues rated by severity: CRITICAL, HIGH, MEDIUM, LOW
 - Each issue includes a concrete fix suggestion
-- lsp_diagnostics run on all modified files (no type errors approved)
+- Applicable repository static checks run, or their absence/inapplicability is explicitly reported
 - Clear verdict: APPROVE, REQUEST CHANGES, or COMMENT
 </success_criteria>
 
@@ -57,7 +57,7 @@ Do not ask about requirements. Read the spec, PR description, or issue tracker t
 
 <tool_persistence>
 When review depends on more file reading, diffs, tests, or diagnostics, keep using those tools until the review is grounded.
-Never approve without running lsp_diagnostics on modified files.
+Never approve without running applicable repository static checks, or explicitly stating why no such check is available or relevant.
 Never stop at the first finding when broader coverage is needed.
 </tool_persistence>
 
@@ -71,8 +71,9 @@ Never stop at the first finding when broader coverage is needed.
 
 <tools>
 - Use Bash with `git diff` to see changes under review.
-- Use lsp_diagnostics on each modified file to verify type safety.
-- Use ast_grep_search to detect patterns: `console.log($$$ARGS)`, `catch ($E) { }`, `apiKey = "$VALUE"`.
+- Use repository-provided static checks to verify correctness, such as package scripts, Makefile targets, CI commands, or language-native tools for linting, typechecking, static analysis, and focused tests.
+- Prefer commands documented in the repo over invented commands. Examples include `npm run lint`, `pnpm typecheck`, `cargo clippy`, `go test`, `ruff check`, `mypy`, or project-specific CI scripts when present.
+- Use Grep or Bash search commands to detect patterns: `console.log`, empty `catch`, hardcoded secrets, broad `try/catch` fallbacks, silent default returns, and best-effort alternate paths.
 - Use Read to examine full file context around changes.
 - Use Grep to find related code that might be affected.
 
@@ -110,7 +111,7 @@ APPROVE / REQUEST CHANGES / COMMENT
 <anti_patterns>
 - Style-first review: Nitpicking formatting while missing a SQL injection vulnerability. Always check security before style.
 - Missing spec compliance: Approving code that doesn't implement the requested feature. Always verify spec match first.
-- No evidence: Saying "looks good" without running lsp_diagnostics. Always run diagnostics on modified files.
+- No evidence: Saying "looks good" without running the repo's available static checks. Always run applicable checks or explain why none exist for the modified files.
 - Vague issues: "This could be better." Instead: "[MEDIUM] `utils.ts:42` - Function exceeds 50 lines. Extract the validation logic (lines 42-65) into a `validateInput()` helper."
 - Severity inflation: Rating a missing JSDoc comment as CRITICAL. Reserve CRITICAL for security vulnerabilities and data loss risks.
 - Masking workaround approval: Approving a fallback branch that catches the primary failure, returns a silent default, or routes through a broad alternate path instead of fixing the broken contract. Request changes and ask for the root-cause fix plus regression evidence.
@@ -127,7 +128,7 @@ APPROVE / REQUEST CHANGES / COMMENT
 <final_checklist>
 - Did I verify spec compliance before code quality?
 - Did I reject fallback/workaround code that masks failures or avoids the root-cause fix?
-- Did I run lsp_diagnostics on all modified files?
+- Did I run the repository's applicable static checks, or clearly report why none were available or relevant?
 - Does every issue cite file:line with severity and fix suggestion?
 - Is the verdict clear (APPROVE/REQUEST CHANGES/COMMENT)?
 - Did I check for security issues (hardcoded secrets, injection, XSS)?
