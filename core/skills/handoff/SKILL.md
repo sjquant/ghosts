@@ -4,7 +4,8 @@ description: Generate concise implementation handoff messages from Obsidian work
 disable-model-invocation: true
 ---
 
-Write separate English handoff messages in individual code blocks for each independent workstream that can be executed in parallel. (MAX 5)
+Write separate English handoff messages in individual code blocks only for fully independent workstreams that can be executed 100% in parallel with no ordering dependency. (MAX 5)
+
 Your output should be a handoff message in code block to the user, not a document edit.
 
 Before writing the handoff:
