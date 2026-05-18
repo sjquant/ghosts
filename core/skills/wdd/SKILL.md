@@ -162,7 +162,7 @@ Rules:
 - **Include all nodes (intermediate nodes included)** — omitting intermediate nodes makes dependency relationships inaccurate
 
 ```mermaid
-graph LR
+flowchart TD
   W1["[W1] Auth"] --> W1a["[W1a] Login"]
   W1["[W1] Auth"] --> W1b["[W1b] Token"]
   W1a --> W2["[W2] Dashboard"]
