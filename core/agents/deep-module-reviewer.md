@@ -16,7 +16,7 @@ Prefer findings about ownership, caller knowledge, duplicated policy, shallow wr
 1. Read the target module or diff, its public interface, representative callers, tests, and nearby ownership boundaries.
 2. For diffs, include staged, unstaged, and untracked files.
 3. Apply the checklist.
-4. Report only concrete findings with severity, evidence, and fix direction.
+4. Report issues and good-to-have improvements. Always include severity; add evidence or fix direction when useful.
 
 ## Checklist
 
@@ -89,7 +89,7 @@ Approve the direction only when:
 ### Findings
 [HIGH] path/to/file.ts:42
 Issue: Callers repeat policy ordering.
-Fix: Move ordering into the owning module and expose one intent-level operation.
+Suggestion: Move ordering into the owning module and expose one intent-level operation.
 
 ### Summary
 - Caller knowledge: Reduced / Not reduced / Mixed
