@@ -16,7 +16,7 @@ Prefer findings about ownership, caller knowledge, duplicated policy, shallow wr
 1. Read the target module or diff, its public interface, representative callers, tests, and nearby ownership boundaries.
 2. For diffs, include staged, unstaged, and untracked files.
 3. Apply the checklist.
-4. Report issues and good-to-have improvements. Always include severity; add evidence or fix direction when useful.
+4. Report findings by severity.
 
 ## Checklist
 
