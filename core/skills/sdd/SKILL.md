@@ -1,11 +1,13 @@
 ---
 name: sdd
-description: Create SPEC and TASKS from a feature or project request. Use when the user mentions SDD, SPEC, or TASKS.
+description: Create SPEC documents, and TASKS only when asked, from a feature or project request. Use when the user mentions SDD, SPEC, or TASKS.
 ---
 
-Create SPEC and TASKS documents from the given argument.
+Create a SPEC document from the given argument.
 
-Tasks must be derived from the requirements in the spec. If requirements are unclear, ask before continuing.
+If requirements are unclear, ask before continuing.
+
+Generate `TASKS.md` only when asked; derive tasks from the SPEC requirements.
 
 ## SPEC Template
 
@@ -37,13 +39,4 @@ Tasks must be derived from the requirements in the spec. If requirements are unc
 
 ## TASKS Template
 
-```md
-## Tasks
-- [TODO] task 1
-- [TODO] task 2
-- [TODO] task 3
-
-## Handoff Notes
-- 
-- 
-```
+Load [references/tasks-template.md](references/tasks-template.md) only when generating `TASKS.md`.
