@@ -13,7 +13,8 @@ Before writing the handoff:
 - Look for relevant workbench notes under "<WORKBENCH_PATH>".
 - Read the relevant notes if they exist.
 - If there is a task-tracking note, identify the latest merged/completed implementation task that should now be marked as DONE (edit is allowed here).
-- If an update is needed, do it by local file editing after resolving the vault path.
+- If this session added useful context or gotchas, update the relevant Obsidian note first.
+- If any Obsidian update is needed, do it by local file editing after resolving the vault path.
 - If all tracked tasks are already complete, do not create handoff messages; instead state that all tasks are complete and ask whether the user wants suggestions for follow-up work.
 
 Use these commands:
@@ -36,5 +37,3 @@ Include:
 
 ## Constraints
 - do not mention branch or worktree details
-- do not edit SPEC unless requirements changed
-- Update the SPEC only if the requirements have changed during the process.
