@@ -4,38 +4,58 @@ description: Extract 1-3 reusable gotchas from the current session. Use when the
 disable-model-invocation: true
 ---
 
-From this session, extract 1-3 gotchas that would help us move faster next time. No gotchas are acceptable.
+Extract 1-3 reusable gotchas from this session. No gotchas is acceptable.
+
+Core test: would remembering this prevent likely rework, rediscovery, or verification gaps in a future session?
+
+Prefer high time-cost lessons over code-specific nits. Call out assistant-side execution mistakes.
+
+## Method
+
+1. Review the session for mistakes, slowdowns, repeated confusion, and skipped checks.
+2. Keep only issues likely to recur.
+3. Prefer the smallest durable lesson over a long narrative.
+4. If multiple tools or paths were used for the same task, name the default path for next time.
+5. If the lesson needs standardization, propose one concrete follow-up.
+
+## Selection
 
 Prioritize:
-1. tooling command mistakes or rediscovery costs
-2. verification flow gaps
-3. process mistakes that caused rework
 
-Include agent/CLI/browser invocation confusion if it happened.
-Prefer the highest time-cost mistakes, not just code/design issues.
-Call out assistant-side execution mistakes too.
+1. Tooling command mistakes or rediscovery costs.
+2. Verification flow gaps.
+3. Process mistakes that caused rework.
+4. Agent, CLI, browser, or invocation confusion.
 
-## Format:
+Skip:
 
-1. **Problem**: ...
-   **Next Time**: ...
-2.  **Problem**: ...
-   **Next Time**: ...
+- One-off issues that were fully resolved.
+- Pure implementation details unlikely to recur.
+- Lessons that only restate obvious best practices.
 
-## Rules:
-- Use max 1-3 lines per gotcha.
-- Only include unresolved issues or pitfalls likely to recur.
-- Skip one-off issues that were fully fixed in this session.
-- Focus on things that would save time in a future session.
-- When multiple tools/paths were used for the same task, say which path should become the default next time.
-- If the issue suggests standardization, explicitly say so and propose one concrete follow-up such as: add a runbook, document the preferred CLI path, or update the verification checklist.
+## Output
 
-## Examples
+```markdown
+## Gotchas
 
-### Good example:
-1. **Problem**: We changed implementation details before agreeing on the intended UX, so review comments and docs were correct for the code but wrong for the product.
-    **Next Time:** Lock the user-facing contract first, then align implementation, tests, and docs to that contract.
+**Total:** X
 
-### Bad example:
-1. **Problem**: src/foo.ts used the wrong helper.
-    **Next Time**: Use bar() instead.
+[TOOLING] Short title
+Problem: What slowed us down or caused confusion.
+Next time: Concrete default, check, or follow-up.
+
+[VERIFICATION] Short title
+Problem: What check was missing, late, or noisy.
+Next time: Exact check or verification order to use.
+```
+
+Use categories only when useful: `TOOLING`, `VERIFICATION`, `PROCESS`, `CONTEXT`.
+Keep each gotcha to 2 lines after the title.
+
+If there are no gotchas, output:
+
+```markdown
+## Gotchas
+
+No reusable gotchas from this session.
+```
