@@ -4,36 +4,40 @@ description: Generate concise implementation handoff messages from Obsidian work
 disable-model-invocation: true
 ---
 
-Write separate English handoff messages in individual code blocks only for fully independent workstreams that can be executed 100% in parallel with no ordering dependency. (MAX 5)
+Write separate English handoff messages in code blocks only for fully independent workstreams that can run 100% in parallel with no ordering dependency. Maximum: 5.
 
-Your output should be a handoff message in code block to the user, not a document edit.
+Output handoff messages to the user; do not edit a document for the handoff itself.
 
-Before writing the handoff:
-- Use Obsidian in vault "<VAULT_NAME>".
-- Look for relevant workbench notes under "<WORKBENCH_PATH>".
-- Read the relevant notes if they exist.
-- If there is a task-tracking note, identify the latest merged/completed implementation task that should now be marked as DONE (edit is allowed here).
-- If this session added useful context or gotchas, update the relevant Obsidian note first.
-- If any Obsidian update is needed, do it by local file editing after resolving the vault path.
-- If all tracked tasks are already complete, do not create handoff messages; instead state that all tasks are complete and ask whether the user wants suggestions for follow-up work.
+## Before Writing
 
-Use these commands:
-- `obsidian vault=<VAULT_NAME> vault info=path`
-- `obsidian vault=<VAULT_NAME> files folder="<WORKBENCH_PATH>"`
-- `obsidian vault=<VAULT_NAME> read path="<FILE_PATH>"`
-- `obsidian --help`
+Use Obsidian in vault `<VAULT_NAME>`:
 
-## Handoff
-Keep it short and practical.
-Include:
+- Resolve the vault path: `obsidian vault=<VAULT_NAME> vault info=path`
+- List workbench notes: `obsidian vault=<VAULT_NAME> files folder="<WORKBENCH_PATH>"`
+- Read relevant notes: `obsidian vault=<VAULT_NAME> read path="<FILE_PATH>"`
+- Use `obsidian --help` as needed.
+
+Then:
+
+1. Read relevant workbench notes under `<WORKBENCH_PATH>` if they exist.
+2. If there is a task tracker, identify the latest merged/completed implementation task that should be marked `DONE`; this edit is allowed.
+3. If this session added useful context or gotchas, update the relevant Obsidian note first.
+4. Make required Obsidian updates by local file editing after resolving the vault path.
+5. If all tracked tasks are complete, do not create handoff messages; state that all tasks are complete and ask whether the user wants follow-up suggestions.
+
+## Handoff Content
+
+Keep each handoff short and practical. Include:
+
 - completed work
 - next task
 - where to start
 - done criteria
-- the exact Obsidian commands the next AI should run first
-- the exact repo commands the next AI should run first
-- say that it must sync the base branch with the latest remote state
-- say it must sync the base branch and mark each target task as [DOING] in the task tracker before implementation
+- exact Obsidian commands the next AI should run first
+- exact repo commands the next AI should run first
+- instruction to sync the base branch with the latest remote state
+- instruction to sync the base branch and mark each target task as `[DOING]` in the task tracker before implementation
 
 ## Constraints
-- do not mention branch or worktree details
+
+- Do not mention branch or worktree details.

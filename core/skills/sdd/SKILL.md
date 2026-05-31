@@ -4,11 +4,9 @@ description: Create SPEC documents, and TASKS only when asked, from a feature or
 disable-model-invocation: true
 ---
 
-Create a SPEC document from the given argument.
+Create a SPEC document from the user's request. If requirements are unclear, ask before continuing.
 
-If requirements are unclear, ask before continuing.
-
-Generate `TASKS.md` only when asked; derive tasks from the SPEC requirements.
+Generate `TASKS.md` only when asked, and derive it from the SPEC requirements. Load [references/tasks-template.md](references/tasks-template.md) only when generating `TASKS.md`.
 
 ## SPEC Template
 
@@ -37,7 +35,3 @@ Generate `TASKS.md` only when asked; derive tasks from the SPEC requirements.
 ## Constraints
 - 
 ```
-
-## TASKS Template
-
-Load [references/tasks-template.md](references/tasks-template.md) only when generating `TASKS.md`.
