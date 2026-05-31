@@ -1,20 +1,14 @@
 ---
 name: interview
-description: Interview the user one question at a time until intent, scope, constraints, and success criteria are clear, then produce a concise execution-ready brief for confirmation.
+description: Interview the user one question at a time until intent, scope, constraints, and success criteria are clear, then produce an execution-ready brief for confirmation.
 disable-model-invocation: true
 ---
 
-## Role
-
-This skill clarifies what the user actually wants before planning or implementation.
-
-Use it when the user asks for an interview, asks to clarify a vague request before execution, or wants an execution-ready brief before work begins.
-
-Do not plan, implement, create tasks, write specs, or edit files during the interview.
+Clarify the user's real goal before planning or implementation. Do not plan, implement, create tasks, write specs, or edit files during the interview.
 
 ## Opening
 
-Start with exactly:
+Start with:
 
 - `HYPOTHESIS:` one sentence describing what you think the user actually wants.
 - `CONFIDENCE:` 0-100%, with a short reason if below 70%.
@@ -32,21 +26,21 @@ Wait for the user's answer before asking the next question.
 
 ## Interview Priorities
 
-Clarify these in order:
+Clarify, in order:
 
 1. Intent: why the user wants this.
-2. Outcome: what end state the user actually wants.
-3. User or audience: who benefits or uses it.
-4. Scope: how far the change should go.
-5. Non-goals: what must stay out of scope.
-6. Constraints: technical, business, time, cost, UX, compatibility, privacy, and security.
-7. Success criteria: how the user will know it worked.
-8. Decision boundaries: what the agent may decide and what requires confirmation.
+2. Outcome: desired end state.
+3. User / audience: who benefits or uses it.
+4. Scope: how far the work should go.
+5. Non-goals: what stays out.
+6. Constraints: technical, business, time, cost, UX, compatibility, privacy, security.
+7. Success criteria: observable proof it worked.
+8. Decision boundaries: what the agent may decide vs. what requires confirmation.
 9. Existing context: codebase, product, users, docs, dependencies, and prior decisions.
 
 For coding tasks, ask implementation-detail questions only after intent, outcome, scope, non-goals, and constraints are clear.
 
-If an answer depends on facts available in the codebase or documents, inspect those facts instead of asking the user. Ask the user only for judgment, tradeoffs, priorities, business logic, or preferences.
+If facts are available in the codebase or documents, inspect them instead of asking. Ask the user only for judgment, tradeoffs, priorities, business logic, or preferences.
 
 ## Question Rules
 
@@ -54,7 +48,7 @@ If an answer depends on facts available in the codebase or documents, inspect th
 - After each answer, update the hypothesis and confidence.
 - Do not batch questions.
 - Do not accept vague words as final answers, including `scalable`, `robust`, `clean`, `modern`, `best practice`, `production-ready`, `intuitive`, and `enterprise-grade`.
-- When the user gives vague wording, ask what it means concretely in this situation.
+- For vague wording, ask what it means concretely in this situation.
 
 ## Pressure Test
 
@@ -70,7 +64,7 @@ Use one of these forms:
 
 ## Stop Condition
 
-Stop interviewing only when all of these are true:
+Stop only when all are true:
 
 - You can predict the user's reaction to the next 2 to 3 likely questions.
 - Intent, outcome, scope, constraints, success criteria, non-goals, and decision boundaries are explicit.
@@ -81,7 +75,7 @@ If confidence is still low after several rounds, say what foundational piece is 
 
 ## Final Brief
 
-When ready, produce this brief and ask for explicit confirmation:
+When ready, ask for explicit confirmation with:
 
 ```md
 # Confirmed Intent Brief
@@ -103,10 +97,3 @@ Confirm / refine / reject?
 ```
 
 Do not treat `whatever you think`, `sounds good`, or `sure` as strong confirmation. If confirmation is vague, ask what the user would refine before moving on.
-
-## Related Skills
-
-- Use `discovery-interview` after confirmation when the user wants a deeper product requirements workflow.
-- Use `sdd` after confirmation when the user asks for a SPEC or TASKS document.
-- Use `handoff` after confirmation when the clarified work needs to be packaged for another agent or future session.
-- Use `gotchas` after confirmation when the clarified work is about capturing lessons, pitfalls, or operating constraints.
