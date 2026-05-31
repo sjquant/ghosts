@@ -1,5 +1,5 @@
 ---
-name: prompt-rewriter
+name: rewrite
 description: Rewrite prompts to maximize signal-to-noise while preserving behavior-changing information.
 disable-model-invocation: true
 ---
