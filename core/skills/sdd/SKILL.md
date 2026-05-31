@@ -1,6 +1,7 @@
 ---
 name: sdd
 description: Create SPEC documents, and TASKS only when asked, from a feature or project request. Use when the user mentions SDD, SPEC, or TASKS.
+disable-model-invocation: true
 ---
 
 Create a SPEC document from the given argument.
