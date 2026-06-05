@@ -64,5 +64,3 @@ Return one valid JSON object only. Do not wrap it in Markdown.
   }
 }
 ```
-
-If there are no findings, return `"findings": []` and include the checks run or why checks were not applicable.

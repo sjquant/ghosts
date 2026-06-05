@@ -48,5 +48,3 @@ Return one valid JSON object only. Do not wrap it in Markdown.
   ]
 }
 ```
-
-If there are no findings, return `"findings": []`.

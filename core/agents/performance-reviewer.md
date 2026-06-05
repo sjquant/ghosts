@@ -66,5 +66,3 @@ Return one valid JSON object only. Do not wrap it in Markdown.
   }
 }
 ```
-
-If there are no findings, return `"findings": []` and list any profiling checks run or why they were not applicable.
