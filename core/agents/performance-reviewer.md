@@ -50,6 +50,7 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 {
   "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
   "overall": "FAST | ACCEPTABLE | NEEDS OPTIMIZATION | SLOW",
+  "summary": "One concise sentence about the performance judgment.",
   "findings": [
     {
       "severity": "CRITICAL | HIGH | MEDIUM | LOW",
@@ -66,3 +67,5 @@ Return one valid JSON object only. Do not wrap it in Markdown.
   }
 }
 ```
+
+If there are no findings, say so directly and include the summary.
