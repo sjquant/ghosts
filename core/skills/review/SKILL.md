@@ -1,12 +1,12 @@
 ---
 name: review
-description: Review code, branches, PRs, diffs, or proposed changes. Use for read-only review, not implementation or autofix.
+description: Read-only review for code, branches, PRs, diffs, or proposed changes.
 disable-model-invocation: true
 ---
 
-Review for actionable defects introduced or materially worsened by the change. Do not modify code, push commits, or hide reviewer results.
+Review actionable defects introduced or materially worsened by the change. Do not modify code, push commits, or hide reviewer results.
 
-## Reviewer Routing
+## Routing
 
 Use every reviewer whose trigger matches. Exclude lockfiles, generated files, vendored code, formatting-only diffs, and documentation-only diffs from LOC, file-count, and directory-count triggers unless they affect behavior or policy.
 
@@ -14,22 +14,22 @@ Use every reviewer whose trigger matches. Exclude lockfiles, generated files, ve
 - `test-reviewer`: use when source behavior changes, tests are added/changed/deleted/skipped, or non-excluded source code changes are `>= 50` LOC. When coverage tools exist, use them inside the review.
 - `architecture-reviewer`: use when public interfaces, module boundaries, ownership, dependency direction, state ownership, or cross-layer calls change; also use when changed code spans `>= 3` directories or `>= 150` LOC.
 - `performance-reviewer`: use when a known hot path changes, unbounded loops or large-collection work changes, repeated I/O/serialization/parsing is added, caching/resource lifetime changes under load, or async/background work changes concurrency, backpressure, or retry behavior; also use when changed code in a likely hot path is `>= 80` LOC.
-- `slop-reviewer`: use when non-excluded changed code is `>= 100` LOC, non-excluded changed files are `>= 5`, or the diff adds wrappers, duplicated logic, broad cleanup, generated-looking code, or unclear abstractions.
+- `slop-reviewer`: use when non-excluded changed code is `>= 100` LOC, non-excluded changed files are `>= 5`, or the diff adds wrappers, duplication, broad cleanup, generated-looking code, or unclear abstractions.
 
-Add an explicit consistency, concurrency, repo-rule, migration, or release-safety check when the diff includes that risk and no installed reviewer covers it.
+Add consistency, concurrency, repo-rule, migration, or release-safety checks when relevant and not covered by installed reviewers.
 
-## Finding Standard
+## Findings
 
-Report a finding only when all are true:
+Report only findings with:
 
 - Exact changed or adjacent `path:line` exists.
-- The issue is introduced or materially worsened by the change.
-- Evidence shows a concrete failure path, leak, regression, or maintainability risk.
-- The suggested fix is local and proportionate.
+- Change causality.
+- Concrete failure path, leak, regression, or maintainability risk.
+- Local, proportionate suggested fix.
 
-Suppress style-only comments, generic framework advice, pre-existing unrelated issues, duplicate findings, and issues already guaranteed by lint/typecheck/CI unless release-critical.
+Suppress style-only comments, generic advice, pre-existing unrelated issues, duplicates, and issues already guaranteed by lint/typecheck/CI unless release-critical.
 
-Normalize findings to:
+Use this schema:
 
 ```json
 {
@@ -53,7 +53,7 @@ Show every received reviewer result after deduplication. If a reviewer finding i
 
 ## Output
 
-Use the user's language and keep enum values in English.
+Use the user's language. Keep enum values in English.
 
 ```markdown
 ## Findings
@@ -82,7 +82,3 @@ Use the user's language and keep enum values in English.
 ```
 
 If there are no findings, say so directly and list the highest-risk areas checked. Do not invent issues to fill the template.
-
-## Re-review
-
-For updated reviews, check prior findings first, verify fixes, look for new regressions, and keep still-relevant prior findings visible.
