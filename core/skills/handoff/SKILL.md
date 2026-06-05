@@ -41,3 +41,4 @@ Keep each handoff short and practical. Include:
 ## Constraints
 
 - Do not mention branch or worktree details.
+- Do not repeat commands from `AGENTS.md` or `CLAUDE.md` in handoff messages.

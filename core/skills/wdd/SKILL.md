@@ -26,10 +26,11 @@ W0 total estimate: ~{N} LOC
   -> Rationale: [1-2 lines based on similar projects or feature list]
 ```
 
-2. For each decomposable Waypoint, propose candidates and let the user select.
-3. Decompose the selected candidate into child Waypoints.
-4. Repeat until every branch ends in confirmed leaves.
-5. Output the final Mermaid tree, parallel execution graph, and execution order list together.
+2. For each decomposable Waypoint, define the upper-layer interface first so child Waypoints and integration-test boundaries follow the same contract.
+3. Propose candidates and let the user select.
+4. Decompose the selected candidate into child Waypoints.
+5. Repeat until every branch ends in confirmed leaves.
+6. Output the final Mermaid tree, parallel execution graph, and execution order list together.
 
 ## Decomposition Candidate Format
 

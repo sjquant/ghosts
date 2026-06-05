@@ -31,21 +31,23 @@ Approve the cleanup only when:
 
 ## Output
 
-```markdown
-## Slop Review
+Return one valid JSON object only. Do not wrap it in Markdown.
 
-**Verdict:** APPROVE / REQUEST CHANGES / COMMENT
-**Judgment:** Clean / Sloppy / Mixed
-
-### Findings
-[HIGH] path/to/file.ts:42
-Issue: Cleanup leaves duplicate policy in two callers.
-Suggestion: Move the policy into the owning module and verify the public behavior.
-
-### Summary
-- Behavior safety: Preserved / Risky / Unclear
-- Complexity: Reduced / Not reduced / Mixed
-- Verification: Strong / Weak / Missing
+```json
+{
+  "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
+  "judgment": "Clean | Sloppy | Mixed",
+  "summary": "One concise sentence about the cleanup judgment.",
+  "findings": [
+    {
+      "severity": "HIGH | MEDIUM | LOW",
+      "path": "path/to/file.ts",
+      "line": 42,
+      "issue": "Cleanup leaves duplicate policy in two callers.",
+      "suggestion": "Move the policy into the owning module and verify the public behavior."
+    }
+  ]
+}
 ```
 
 If there are no findings, say so directly and include the summary.
