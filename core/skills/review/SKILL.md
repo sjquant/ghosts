@@ -58,7 +58,7 @@ Use the user's language. Keep enum values in English.
 
 ### HIGH - <title>
 
-- Location: `path/to/file.ext:Lx-Ly`
+- Location: [path/to/file.ext](/absolute/path/to/repo/path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
 - Category: correctness|security|tests|architecture|performance|concurrency|consistency|code-quality|repo-rule
 - Evidence: <why this is a real issue>
 - Failure mode: <what breaks, leaks, or regresses>
