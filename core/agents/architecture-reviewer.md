@@ -38,7 +38,6 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 
 ```json
 {
-  "reviewer": "architecture-reviewer",
   "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
   "judgment": "Deep | Shallow | Mixed",
   "findings": [
@@ -49,14 +48,8 @@ Return one valid JSON object only. Do not wrap it in Markdown.
       "issue": "Callers repeat policy ordering.",
       "suggestion": "Move ordering into the owning module and expose one intent-level operation."
     }
-  ],
-  "summary": {
-    "caller_knowledge": "Reduced | Not reduced | Mixed",
-    "knowledge_ownership": "Clear | Unclear | Mixed",
-    "abstraction_depth": "Deep | Shallow | Mixed",
-    "tests": "Public behavior | Internal coupling | Mixed"
-  }
+  ]
 }
 ```
 
-If there are no findings, return `"findings": []` and include the summary.
+If there are no findings, return `"findings": []`.

@@ -35,7 +35,6 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 
 ```json
 {
-  "reviewer": "slop-reviewer",
   "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
   "judgment": "Clean | Sloppy | Mixed",
   "findings": [
@@ -46,13 +45,8 @@ Return one valid JSON object only. Do not wrap it in Markdown.
       "issue": "Cleanup leaves duplicate policy in two callers.",
       "suggestion": "Move the policy into the owning module and verify the public behavior."
     }
-  ],
-  "summary": {
-    "behavior_safety": "Preserved | Risky | Unclear",
-    "complexity": "Reduced | Not reduced | Mixed",
-    "verification": "Strong | Weak | Missing"
-  }
+  ]
 }
 ```
 
-If there are no findings, return `"findings": []` and include the summary.
+If there are no findings, return `"findings": []`.

@@ -48,17 +48,8 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 
 ```json
 {
-  "reviewer": "performance-reviewer",
   "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
   "overall": "FAST | ACCEPTABLE | NEEDS OPTIMIZATION | SLOW",
-  "files_reviewed": 3,
-  "total_issues": 1,
-  "issues_by_severity": {
-    "CRITICAL": 0,
-    "HIGH": 1,
-    "MEDIUM": 0,
-    "LOW": 0
-  },
   "findings": [
     {
       "severity": "CRITICAL | HIGH | MEDIUM | LOW",
@@ -66,32 +57,14 @@ Return one valid JSON object only. Do not wrap it in Markdown.
       "line": 42,
       "issue": "Nested loop does Array.includes() over the same user list, making the hot path O(n^2).",
       "impact": "About 100ms at n=100 and about 10s at n=1000.",
-      "fix": "Build a Set once and use O(1) lookup, reducing the path to O(n)."
+      "recommendation": "Build a Set once and use O(1) lookup, reducing the path to O(n)."
     }
   ],
-  "optimization_opportunities": [
-    {
-      "path": "path/to/file.ts",
-      "line": 108,
-      "current": "Current approach.",
-      "recommended": "Recommended approach.",
-      "expected_improvement": "Estimate."
-    }
-  ],
-  "profiling_recommendations": [
-    {
-      "benchmark": "Benchmark target.",
-      "tool": "Profiling tool.",
-      "metric": "Metric to watch.",
-      "stop_condition": "Stop condition."
-    }
-  ],
-  "profiling_checks": ["command or check name"],
-  "profiling_not_applicable_reason": null,
-  "acceptable_performance": [
-    "Area where current performance is acceptable and should not be optimized."
-  ]
+  "profiling": {
+    "checks_run": ["command or check name"],
+    "not_applicable_reason": null
+  }
 }
 ```
 
-If there are no findings, return `"findings": []`, `"total_issues": 0`, include acceptable-performance notes, and list any profiling checks run or why they were not applicable.
+If there are no findings, return `"findings": []` and list any profiling checks run or why they were not applicable.

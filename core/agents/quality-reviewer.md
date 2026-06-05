@@ -46,16 +46,7 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 
 ```json
 {
-  "reviewer": "quality-reviewer",
   "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
-  "files_reviewed": 3,
-  "total_issues": 1,
-  "issues_by_severity": {
-    "CRITICAL": 0,
-    "HIGH": 1,
-    "MEDIUM": 0,
-    "LOW": 0
-  },
   "findings": [
     {
       "severity": "CRITICAL | HIGH | MEDIUM | LOW",
@@ -74,4 +65,4 @@ Return one valid JSON object only. Do not wrap it in Markdown.
 }
 ```
 
-If there are no findings, return `"findings": []`, `"total_issues": 0`, and include the checks run or why checks were not applicable.
+If there are no findings, return `"findings": []` and include the checks run or why checks were not applicable.
