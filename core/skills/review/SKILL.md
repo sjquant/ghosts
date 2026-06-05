@@ -47,8 +47,6 @@ Use this schema:
 
 ## Synthesis
 
-Verify reviewer findings before presenting them. Reject or downgrade findings without exact location, change causality, concrete evidence, or proportionate fix.
-
 Show every received reviewer result after deduplication. If a reviewer finding is rejected or downgraded, include it under `Rejected/Adjusted` with the reason instead of silently omitting it.
 
 ## Output
