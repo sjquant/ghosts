@@ -44,37 +44,54 @@ Request changes when:
 
 ## Output
 
-```markdown
-## Performance Review
+Return one valid JSON object only. Do not wrap it in Markdown.
 
-**Verdict:** APPROVE / REQUEST CHANGES / COMMENT
-**Overall:** FAST / ACCEPTABLE / NEEDS OPTIMIZATION / SLOW
-**Files Reviewed:** X
-**Total Issues:** Y
-
-### By Severity
-- CRITICAL: X
-- HIGH: Y
-- MEDIUM: Z
-- LOW: W
-
-### Critical Hotspots
-[HIGH] path/to/file.ts:42
-Issue: Nested loop does `Array.includes()` over the same user list, making the hot path `O(n^2)`.
-Impact: About 100ms at n=100 and about 10s at n=1000.
-Fix: Build a `Set` once and use `O(1)` lookup, reducing the path to `O(n)`.
-
-### Optimization Opportunities
-- path/to/file.ts:108 - Current approach -> recommended approach - Expected improvement: estimate.
-
-### Profiling Recommendations
-- Benchmark:
-- Tool:
-- Metric:
-- Stop condition:
-
-### Acceptable Performance
-- Area where current performance is acceptable and should not be optimized.
+```json
+{
+  "reviewer": "performance-reviewer",
+  "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
+  "overall": "FAST | ACCEPTABLE | NEEDS OPTIMIZATION | SLOW",
+  "files_reviewed": 3,
+  "total_issues": 1,
+  "issues_by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "findings": [
+    {
+      "severity": "CRITICAL | HIGH | MEDIUM | LOW",
+      "path": "path/to/file.ts",
+      "line": 42,
+      "issue": "Nested loop does Array.includes() over the same user list, making the hot path O(n^2).",
+      "impact": "About 100ms at n=100 and about 10s at n=1000.",
+      "fix": "Build a Set once and use O(1) lookup, reducing the path to O(n)."
+    }
+  ],
+  "optimization_opportunities": [
+    {
+      "path": "path/to/file.ts",
+      "line": 108,
+      "current": "Current approach.",
+      "recommended": "Recommended approach.",
+      "expected_improvement": "Estimate."
+    }
+  ],
+  "profiling_recommendations": [
+    {
+      "benchmark": "Benchmark target.",
+      "tool": "Profiling tool.",
+      "metric": "Metric to watch.",
+      "stop_condition": "Stop condition."
+    }
+  ],
+  "profiling_checks": ["command or check name"],
+  "profiling_not_applicable_reason": null,
+  "acceptable_performance": [
+    "Area where current performance is acceptable and should not be optimized."
+  ]
+}
 ```
 
-If there are no findings, say so directly, include acceptable-performance notes, and list any profiling checks run or why they were not applicable.
+If there are no findings, return `"findings": []`, `"total_issues": 0`, include acceptable-performance notes, and list any profiling checks run or why they were not applicable.

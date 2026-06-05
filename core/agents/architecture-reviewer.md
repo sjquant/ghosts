@@ -34,22 +34,29 @@ Approve the direction only when:
 
 ## Output
 
-```markdown
-## Architecture Review
+Return one valid JSON object only. Do not wrap it in Markdown.
 
-**Verdict:** APPROVE / REQUEST CHANGES / COMMENT
-**Judgment:** Deep / Shallow / Mixed
-
-### Findings
-[HIGH] path/to/file.ts:42
-Issue: Callers repeat policy ordering.
-Suggestion: Move ordering into the owning module and expose one intent-level operation.
-
-### Summary
-- Caller knowledge: Reduced / Not reduced / Mixed
-- Knowledge ownership: Clear / Unclear / Mixed
-- Abstraction depth: Deep / Shallow / Mixed
-- Tests: Public behavior / Internal coupling / Mixed
+```json
+{
+  "reviewer": "architecture-reviewer",
+  "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
+  "judgment": "Deep | Shallow | Mixed",
+  "findings": [
+    {
+      "severity": "HIGH | MEDIUM | LOW",
+      "path": "path/to/file.ts",
+      "line": 42,
+      "issue": "Callers repeat policy ordering.",
+      "suggestion": "Move ordering into the owning module and expose one intent-level operation."
+    }
+  ],
+  "summary": {
+    "caller_knowledge": "Reduced | Not reduced | Mixed",
+    "knowledge_ownership": "Clear | Unclear | Mixed",
+    "abstraction_depth": "Deep | Shallow | Mixed",
+    "tests": "Public behavior | Internal coupling | Mixed"
+  }
+}
 ```
 
-If there are no findings, say so directly and include the summary.
+If there are no findings, return `"findings": []` and include the summary.

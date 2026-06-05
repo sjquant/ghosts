@@ -42,28 +42,36 @@ Request changes when:
 
 ## Output
 
-```markdown
-## Quality Review
+Return one valid JSON object only. Do not wrap it in Markdown.
 
-**Verdict:** APPROVE / REQUEST CHANGES / COMMENT
-**Files Reviewed:** X
-**Total Issues:** Y
-
-### By Severity
-- CRITICAL: X
-- HIGH: Y
-- MEDIUM: Z
-- LOW: W
-
-### Findings
-[HIGH] path/to/file.ts:42
-Issue: A fallback catches the primary failure and returns a silent default.
-Fix: Remove the masking branch, fix the primary contract, and add regression coverage for the failure.
-
-### Verification
-- Spec compliance:
-- Checks run:
-- Security review:
+```json
+{
+  "reviewer": "quality-reviewer",
+  "verdict": "APPROVE | REQUEST CHANGES | COMMENT",
+  "files_reviewed": 3,
+  "total_issues": 1,
+  "issues_by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 1,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "findings": [
+    {
+      "severity": "CRITICAL | HIGH | MEDIUM | LOW",
+      "path": "path/to/file.ts",
+      "line": 42,
+      "issue": "A fallback catches the primary failure and returns a silent default.",
+      "fix": "Remove the masking branch, fix the primary contract, and add regression coverage for the failure."
+    }
+  ],
+  "verification": {
+    "spec_compliance": "Satisfied | Failed | Unclear",
+    "checks_run": ["command or check name"],
+    "checks_not_applicable_reason": null,
+    "security_review": "Passed | Failed | Not applicable"
+  }
+}
 ```
 
-If there are no findings, say so directly and include the checks run or why checks were not applicable.
+If there are no findings, return `"findings": []`, `"total_issues": 0`, and include the checks run or why checks were not applicable.
