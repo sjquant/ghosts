@@ -33,8 +33,10 @@ Keep each handoff short and practical. Include:
 - next task
 - where to start
 - done criteria
-- only task-specific first commands that are not already documented in `AGENTS.md` or `CLAUDE.md`
-- instruction to mark each target task as `[DOING]` in the task tracker before implementation
+- exact Obsidian commands the next AI should run first
+- exact repo commands the next AI should run first
+- instruction to sync the base branch with the latest remote state
+- instruction to sync the base branch and mark each target task as `[DOING]` in the task tracker before implementation
 
 ## Constraints
 
