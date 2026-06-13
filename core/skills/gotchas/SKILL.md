@@ -1,45 +1,56 @@
 ---
 name: gotchas
-description: Extract 1-3 reusable gotchas from the current session. Use when the user wants concise lessons about tooling mistakes, verification gaps, or process issues to avoid next time.
+description: Decide whether a completed task produced reusable mistake-prevention rules.
 disable-model-invocation: true
 ---
 
-Extract 1-3 reusable gotchas from this session. No gotchas is acceptable.
+Decide whether a completed task produced reusable mistake-prevention rules.
 
-Core question: would remembering this prevent likely rework, rediscovery, or verification gaps in a future session?
+Do not write reflections, summarize the task, or store anything.
 
-## Selection
+Default output: `NO_RULE`.
 
-Review mistakes, slowdowns, repeated confusion, skipped checks, and assistant-side execution errors. Keep only recurring, high time-cost lessons.
+Create a rule only for a recurring lesson that would prevent future rework, rediscovery, or verification gaps, such as:
+- user correction,
+- repeated work or stuck state,
+- non-obvious tool/API/file-format behavior,
+- risky assumption,
+- hidden constraint.
 
-Prioritize:
+Skip one-off facts, temporary context, vague advice, obvious task requirements, duplicate rules, and lessons without a clear future trigger.
 
-1. Tooling command mistakes or rediscovery costs.
-2. Verification flow gaps.
-3. Process mistakes that caused rework.
-4. Agent, CLI, browser, or invocation confusion.
+Output at most 3 rules. Each rule must be short, concrete, and reusable.
 
-Skip one-off issues, fully resolved problems, code-specific nits, and obvious best practices. If a lesson needs standardization, propose one concrete follow-up. If multiple tools or paths were used for the same task, name the default path for next time.
-
-## Output
-
+Format:
 ```markdown
-## Gotchas
-
-**Total:** X
-
-[TOOLING] Short title
-Problem: What slowed us down or caused confusion.
-Next time: Concrete default, check, or follow-up.
+RULE: When [specific trigger], do [specific action], avoid [specific failure].
+SCOPE: [core|domain|tool|user]
+REASON: [one short sentence]
 ```
 
-Use categories only when useful: `TOOLING`, `VERIFICATION`, `PROCESS`, `CONTEXT`.
-Keep each gotcha to the title plus `Problem` and `Next time`.
+Scopes:
+- `core`: general agent behavior.
+- `domain`: repo, project, or domain behavior.
+- `tool`: tool, API, command, or file-format behavior.
+- `user`: stable user preference or correction.
 
-If there are no gotchas, output:
+Prefer `NO_RULE` when unsure.
 
+Examples:
 ```markdown
-## Gotchas
+RULE: When editing an existing file, inspect its current structure and formatting before making changes, avoid unintended destructive edits.
+SCOPE: tool
+REASON: File editing requires a reusable workflow.
 
-No reusable gotchas from this session.
+RULE: When modifying this repo, run the required test command before marking code changes complete, avoid returning unverified edits.
+SCOPE: domain
+REASON: Repo-wide agent behavior.
+
+RULE: When the user corrects terminology, use the corrected term consistently in the remaining task, avoid reverting to the old wording.
+SCOPE: user
+REASON: User-specific repeated preference.
+
+RULE: When a command may delete or overwrite important files, require explicit approval before execution, avoid irreversible destructive changes.
+SCOPE: tool
+REASON: Needs enforcement rather than guidance.
 ```
