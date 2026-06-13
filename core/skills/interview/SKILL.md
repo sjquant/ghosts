@@ -44,6 +44,7 @@ If facts are available in the codebase or documents, inspect them instead of ask
 
 ## Question Rules
 
+- If an ask tool is available, use it for each interview question.
 - Ask exactly one question at a time.
 - After each answer, update the hypothesis and confidence.
 - Do not batch questions.
