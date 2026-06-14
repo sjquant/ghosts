@@ -10,14 +10,13 @@ Plan to production standards: account for error handling, edge cases, security, 
 
 ## Context Grounding
 
-Before estimating or decomposing, identify the destination context from the user's prompt and any provided or discoverable project artifacts. A Waypoint tree must preserve enough context for a later AI or human to understand what each Waypoint is, why it exists, and which source requirement or artifact it traces back to.
+Before estimating W0, identify the context anchors that justify the destination and each Waypoint.
 
-- Prefer concrete source anchors: requirement IDs, section headings, issue/PR links, roadmap notes, design docs, code modules, CLI commands, schemas, artifact names, or explicit user-request phrases.
-- Do not require a formal requirements document. If only the user request exists, use `user request` as the source anchor.
-- Do not invent requirement IDs or source documents. If a source relationship is inferred, label it as `inferred from ...`.
-- If the destination is ambiguous after inspecting available context, ask a targeted clarification before decomposing.
-- If a Waypoint introduces work that is not directly traceable to a source anchor, mark it as an `assumption` and state why it is needed for production viability.
-- Keep source anchors concise; they are navigation aids, not copied requirements.
+- Source anchors can be requirement IDs, section headings, issues, PRs, roadmap notes, design docs, code modules, CLI commands, schemas, artifacts, or user-request phrases.
+- If no external anchor exists, use `user request`.
+- Do not invent anchors. Label inferred links as `inferred from ...`.
+- If W0 is ambiguous after context inspection, ask before decomposing.
+- Mark unanchored production-critical work as `assumption` with a short reason.
 
 ## Core Model
 
@@ -30,12 +29,11 @@ There is no decomposition depth limit. Keep decomposing until every leaf is `<= 
 
 ## Workflow
 
-1. Summarize the context anchors that will guide decomposition:
+1. List context anchors:
 
 ```text
 Context anchors:
-  - [anchor]: [what it contributes to W0]
-  - [anchor]: [what it constrains or clarifies]
+  - [anchor]: [contribution or constraint]
 ```
 
 2. Estimate total W0 size before decomposition:
@@ -46,11 +44,11 @@ W0 total estimate: ~{N} LOC
 ```
 
 3. For each decomposable Waypoint, define the upper-layer interface first so child Waypoints and integration-test boundaries follow the same contract.
-4. For each proposed child Waypoint, include its source anchors and whether any part is an assumption.
+4. Add source anchors to every proposed child Waypoint.
 5. Propose candidates and let the user select.
 6. Decompose the selected candidate into child Waypoints.
 7. Repeat until every branch ends in confirmed leaves.
-8. Output the final context map, Mermaid tree, parallel execution graph, and execution order list together.
+8. Output the final context map, Mermaid tree, parallel execution graph, and execution order list.
 
 ## Decomposition Candidate Format
 
@@ -94,7 +92,7 @@ After all Waypoints are confirmed, output all four sections.
 
 ### 0. Context Map
 
-List the source anchors used to create the tree, then map every leaf Waypoint to the anchors that justify it.
+Map source anchors to Waypoints.
 
 ```markdown
 ## Context Map
@@ -106,8 +104,8 @@ Waypoint trace:
 - [W-ID]: [source anchors] - [why this Waypoint exists]
 ```
 
-- Include every leaf Waypoint exactly once.
-- Include intermediate Waypoints only when they clarify a major boundary.
+- Include every leaf Waypoint once.
+- Include intermediate Waypoints only for major boundaries.
 - Use `user request` when no external source exists.
 - Use `assumption` only for production-critical work that is not directly specified.
 
