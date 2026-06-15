@@ -30,7 +30,7 @@ W0 total estimate: ~{N} LOC
 3. Propose candidates and let the user select.
 4. Decompose the selected candidate into child Waypoints.
 5. Repeat until every branch ends in confirmed leaves.
-6. Output the final Mermaid tree, parallel execution graph, and execution order list together.
+6. Output the final Mermaid tree, parallel execution graph, and execution order list.
 
 ## Decomposition Candidate Format
 
@@ -112,6 +112,7 @@ List tasks in dependency order for human readability. Each item includes one sta
 
 1. [W-ID]: {name} (~{N} LOC) | [TODO]
    [scope, 1 line]
+   Source: [label](path-or-url) - [short description, optional; omit if no useful source exists]
 
 Total {N} items | Total estimated LOC: ~{N}
 Sum check: leaf total {N} LOC vs W0 estimate {N} LOC -> deviation {N}%
@@ -125,3 +126,4 @@ Sum check: leaf total {N} LOC vs W0 estimate {N} LOC -> deviation {N}%
 - Each Waypoint's LOC reflects technical difficulty and operating environment.
 - Every Waypoint is separable as an independent PR unit.
 - Decomposition candidates differ by implementation direction.
+- Execution order source links use Markdown link format and short descriptions when useful.
