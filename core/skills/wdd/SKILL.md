@@ -8,16 +8,6 @@ Given a destination, design and confirm a recursive Waypoint tree. Do not implem
 
 Plan to production standards: account for error handling, edge cases, security, performance, maintainability, external uncertainty, stack difficulty, and domain logic. Do not use toy-project estimates.
 
-## Context Grounding
-
-Before estimating W0, identify the context anchors that justify the destination and each Waypoint.
-
-- Source anchors can be requirement IDs, section headings, issues, PRs, roadmap notes, design docs, code modules, CLI commands, schemas, artifacts, or user-request phrases.
-- If no external anchor exists, use `user request`.
-- Do not invent anchors. Label inferred links as `inferred from ...`.
-- If W0 is ambiguous after context inspection, ask before decomposing.
-- Mark unanchored production-critical work as `assumption` with a short reason.
-
 ## Core Model
 
 A Waypoint is a decision unit. `W0` is the destination. Every Waypoint is either:
@@ -29,26 +19,18 @@ There is no decomposition depth limit. Keep decomposing until every leaf is `<= 
 
 ## Workflow
 
-1. List context anchors:
-
-```text
-Context anchors:
-  - [anchor]: [contribution or constraint]
-```
-
-2. Estimate total W0 size before decomposition:
+1. Estimate total W0 size before decomposition:
 
 ```text
 W0 total estimate: ~{N} LOC
   -> Rationale: [1-2 lines based on similar projects or feature list]
 ```
 
-3. For each decomposable Waypoint, define the upper-layer interface first so child Waypoints and integration-test boundaries follow the same contract.
-4. Add source anchors to every proposed child Waypoint.
-5. Propose candidates and let the user select.
-6. Decompose the selected candidate into child Waypoints.
-7. Repeat until every branch ends in confirmed leaves.
-8. Output the final context map, Mermaid tree, parallel execution graph, and execution order list.
+2. For each decomposable Waypoint, define the upper-layer interface first so child Waypoints and integration-test boundaries follow the same contract.
+3. Propose candidates and let the user select.
+4. Decompose the selected candidate into child Waypoints.
+5. Repeat until every branch ends in confirmed leaves.
+6. Output the final Mermaid tree, parallel execution graph, and execution order list.
 
 ## Decomposition Candidate Format
 
@@ -66,9 +48,7 @@ Use 2 candidates for a clear yes/no split, 3 for strategy/technology/priority ax
 
 Waypoints:
   - [W-ID]-A1: [name] ~[N] LOC - [role, 1 line]
-    Source: [requirement/doc/code/user-request anchors]
   - [W-ID]-A2: [name] ~[N] LOC - [role, 1 line]
-    Source: [requirement/doc/code/user-request anchors]
 
 **Candidate B - [direction name]**
 
@@ -77,9 +57,7 @@ Waypoints:
 
 Waypoints:
   - [W-ID]-B1: [name] ~[N] LOC - [role, 1 line]
-    Source: [requirement/doc/code/user-request anchors]
   - [W-ID]-B2: [name] ~[N] LOC - [role, 1 line]
-    Source: [requirement/doc/code/user-request anchors]
 
 Recommendation: A / B - [reason, 1 line]
 ```
@@ -88,26 +66,7 @@ Candidates must differ by implementation direction, not just size splits.
 
 ## Final Output
 
-After all Waypoints are confirmed, output all four sections.
-
-### 0. Context Map
-
-Map source anchors to Waypoints.
-
-```markdown
-## Context Map
-
-Sources:
-- [anchor]: [short description]
-
-Waypoint trace:
-- [W-ID]: [source anchors] - [why this Waypoint exists]
-```
-
-- Include every leaf Waypoint once.
-- Include intermediate Waypoints only for major boundaries.
-- Use `user request` when no external source exists.
-- Use `assumption` only for production-critical work that is not directly specified.
+After all Waypoints are confirmed, output all three sections.
 
 ### 1. Mermaid Tree
 
@@ -153,7 +112,7 @@ List tasks in dependency order for human readability. Each item includes one sta
 
 1. [W-ID]: {name} (~{N} LOC) | [TODO]
    [scope, 1 line]
-   Source: [source anchors]
+   Source: [label](path-or-url) - [short description, optional; omit if no useful source exists]
 
 Total {N} items | Total estimated LOC: ~{N}
 Sum check: leaf total {N} LOC vs W0 estimate {N} LOC -> deviation {N}%
@@ -167,5 +126,4 @@ Sum check: leaf total {N} LOC vs W0 estimate {N} LOC -> deviation {N}%
 - Each Waypoint's LOC reflects technical difficulty and operating environment.
 - Every Waypoint is separable as an independent PR unit.
 - Decomposition candidates differ by implementation direction.
-- Context anchors were identified before decomposition.
-- Every leaf Waypoint maps to at least one source anchor or explicit production assumption.
+- Execution order source links use Markdown link format and short descriptions when useful.
