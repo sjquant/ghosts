@@ -18,6 +18,10 @@ Use every reviewer whose trigger matches. Exclude lockfiles, generated files, ve
 
 Spawn a bounded general subagent for consistency, concurrency, repo-rule, migration, or release-safety risks when no installed reviewer covers that risk.
 
+## Main Agent Review
+
+While subagents are collecting results, inspect the changed code directly for simplification points. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, or indirect expressions that can be collapsed without changing caller-visible behavior.
+
 ## Synthesis
 
 Show every received reviewer result after deduplication. Adjust severities as needed and apply the final severity directly to each finding.
