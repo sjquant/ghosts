@@ -20,7 +20,7 @@ Spawn a bounded general subagent for consistency, concurrency, repo-rule, migrat
 
 ## Synthesis
 
-Show every received reviewer result after deduplication. If a reviewer finding is adjusted or downgraded, include it under `Adjusted` with the reason.
+Show every received reviewer result after deduplication. Adjust severities as needed and apply the final severity directly to each finding.
 
 ## Output
 
@@ -53,10 +53,6 @@ Use these severity values:
 ## Reviewer Results
 
 - `<reviewer>`: <received result summary or findings>
-
-## Adjusted
-
-- <adjusted or downgraded reviewer findings and reasons. Omit if empty.>
 ```
 
 If there are no findings, say so directly and list the highest-risk areas checked. Do not invent issues to fill the template.
