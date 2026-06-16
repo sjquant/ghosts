@@ -18,33 +18,6 @@ Use every reviewer whose trigger matches. Exclude lockfiles, generated files, ve
 
 Spawn a bounded general subagent for consistency, concurrency, repo-rule, migration, or release-safety risks when no installed reviewer covers that risk.
 
-## Findings
-
-Report only findings with:
-
-- Exact changed or adjacent `path:line` exists.
-- Change causality.
-- Concrete failure path, leak, regression, or maintainability risk.
-- Local, proportionate suggested fix.
-
-Suppress style-only comments, generic advice, pre-existing unrelated issues, duplicates, and issues already guaranteed by lint/typecheck/CI unless release-critical.
-
-Use this schema:
-
-```json
-{
-  "severity": "CRITICAL | HIGH | MEDIUM | LOW",
-  "title": "Short risk title",
-  "file": "path/from/repo/root",
-  "line_start": 1,
-  "line_end": 1,
-  "category": "correctness | security | tests | architecture | performance | concurrency | consistency | code-quality | repo-rule",
-  "evidence": "Why this is a real issue.",
-  "failure_mode": "What breaks, leaks, or regresses.",
-  "suggested_fix": "Minimal fix direction."
-}
-```
-
 ## Synthesis
 
 Show every received reviewer result after deduplication. If a reviewer finding is rejected or downgraded, include it under `Rejected/Adjusted` with the reason instead of silently omitting it.
@@ -53,10 +26,17 @@ Show every received reviewer result after deduplication. If a reviewer finding i
 
 Use the user's language. Keep enum values in English.
 
+Use these severity values:
+
+- `P0`: Release-blocking issue. Security incident, data loss, or whole-service outage risk.
+- `P1`: Major regression that must be fixed. Core workflow breakage or broad user impact.
+- `P2`: Standard actionable bug. Conditional functional failure, misleading UX, or missing validation.
+- `P3`: Low-priority issue. Small accessibility, maintainability, quality, or edge-case risk.
+
 ```markdown
 ## Findings
 
-### HIGH - <title>
+### P1 - <title>
 
 - Location: [path/to/file.ext](/absolute/path/to/repo/path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
 - Category: correctness|security|tests|architecture|performance|concurrency|consistency|code-quality|repo-rule
