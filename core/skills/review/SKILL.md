@@ -20,7 +20,7 @@ Spawn a bounded general subagent for consistency, concurrency, repo-rule, migrat
 
 ## Main Agent Review
 
-While subagents are collecting results, inspect the changed code directly for simplification points. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, or indirect expressions that can be collapsed without changing caller-visible behavior.
+While subagents are collecting results, inspect the changed code directly for simplification points. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, indirect expressions, or verbose phrasing that can be made concise without changing caller-visible behavior.
 
 ## Synthesis
 
@@ -57,6 +57,12 @@ Use these severity values:
 ## Reviewer Results
 
 - `<reviewer>`: <received result summary or findings>
+
+## Simplification Points
+
+- `<path/to/file.ext:Lx>`: <concise simplification opportunity, or `None found`>
 ```
+
+Always include `## Simplification Points`. Use `None found` when the direct review found no concise simplification opportunities.
 
 If there are no findings, say so directly and list the highest-risk areas checked. Do not invent issues to fill the template.
