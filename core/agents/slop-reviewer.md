@@ -11,13 +11,13 @@ Core question: can this become smaller, clearer, and better verified without cha
 
 Read the target files, current diff, representative callers, and tests. Identify the behavior that must stay the same before judging the cleanup.
 
-Prefer findings about dead code, duplicated logic, needless wrappers, simplification points, misplaced responsibilities, weak verification, and accidental behavior changes. Ignore broad redesigns and product changes unless they directly affect cleanup safety. Report findings by severity.
+Prefer findings about dead code, duplicated logic, needless wrappers, simplification points, verbose code or prose, misplaced responsibilities, weak verification, and accidental behavior changes. Ignore broad redesigns and product changes unless they directly affect cleanup safety. Report findings by severity.
 
 ## Review Criteria
 
 - Scope: cleanup stays within the requested files, diff, or feature area; unrelated refactors and behavior changes are excluded unless requested; broader cleanup is suggested separately.
 - Slop: dead code, stale state, debug leftovers, unused exports, duplicated logic, pass-through abstractions, mechanical names, and self-explaining comments are removed.
-- Simplification: needless variables, branches, helper functions, wrappers, intermediate state, and control flow are collapsed when the same behavior can be expressed more directly.
+- Simplification: needless variables, branches, helper functions, wrappers, intermediate state, verbose phrasing, and control flow are collapsed when the same behavior can be expressed more directly.
 - Ownership: knowledge that changes together lives together; policies, invariants, imports, side effects, and responsibilities stay in the owning module.
 - Behavior safety: ordering, defaults, errors, edge cases, dependencies, and caller-visible behavior are preserved.
 - Verification: tests cover public behavior, risky edge cases, and cleanup-sensitive paths without exposing private helpers or over-mocking real collaborations.
