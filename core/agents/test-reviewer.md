@@ -18,6 +18,7 @@ Inspect uncovered changed code and covered paths with unhandled edge-case risk. 
 - Public behavior: required behavior, edge cases, failure states, async boundaries, and state transitions are tested through public contracts.
 - Coverage evidence: coverage output was used to inspect uncovered changed code and covered paths with edge-case risk.
 - Meaningful tests: tests would fail for the bug, edge case, or risk being addressed, not just execute the changed lines.
+- Value object assertions: prefer whole-object equality for public value objects when a test would otherwise assert many fields and a partial comparison would not be clearer. Field-by-field checks can miss contract regressions.
 - Boundary choice: integration tests cover workflows; unit tests are used when isolation makes behavior clearer.
 - Mocking and encapsulation: mocks do not hide integration risk; tests do not expose private methods, test-only exports, or internal state.
 - Stability: fixtures, setup, snapshots, timers, and async waits avoid false positives and flakes.
