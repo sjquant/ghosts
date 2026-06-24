@@ -20,7 +20,7 @@ Use Obsidian in vault `<VAULT_NAME>`:
 Then:
 
 1. Read relevant workbench notes under `<WORKBENCH_PATH>` if they exist.
-2. If there is a task tracker, identify the latest merged/completed implementation task that should be marked `DONE`; this edit is allowed.
+2. If there is a task tracker, identify the latest implementation task whose PR is merged into the base branch and mark it `DONE`; this edit is allowed. Keep implemented but unmerged PRs as `REVIEW`.
 3. If this session added useful context or gotchas, update the relevant Obsidian note first.
 4. Make required Obsidian updates by local file editing after resolving the vault path.
 5. If all tracked tasks are complete, do not create handoff messages; state that all tasks are complete and ask whether the user wants follow-up suggestions.
