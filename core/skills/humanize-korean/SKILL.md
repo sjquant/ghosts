@@ -39,6 +39,16 @@ disable-model-invocation: true
    산출물을 저장하는 방식이면 `_workspace/{YYYY-MM-DD-NNN}/final.md`에 쓰고
    응답은 짧게 유지한다.
 
+## 참조 자료
+
+- [references/quick-rules.md](references/quick-rules.md): 빠른 탐지와 윤문에 쓰는 S1/S2 핵심 룰.
+- [references/ai-tell-taxonomy.md](references/ai-tell-taxonomy.md): 10대 분류와 세부 패턴의 SSOT.
+- [references/rewriting-playbook.md](references/rewriting-playbook.md): 탐지 결과를 실제 문장 수정으로 옮기는 처방집.
+- [references/scholarship.md](references/scholarship.md): 한국어 번역투와 후편집 관련 학술 근거.
+- [references/metrics.py](references/metrics.py), [references/metrics_v2.py](references/metrics_v2.py): 표준 라이브러리 기반 정량 지표 계산기.
+- [references/baseline.json](references/baseline.json), [references/baseline_v2.json](references/baseline_v2.json): 정량 지표 baseline.
+- [references/web-service-spec.md](references/web-service-spec.md): 웹 서비스 확장 시에만 참고하는 옵션 스펙.
+
 ## 출력
 
 기본 응답:
