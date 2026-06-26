@@ -1,18 +1,18 @@
 ---
 name: gotchas
-description: Decide whether the full conversation produced reusable mistake-prevention rules.
+description: Find reusable mistake-prevention rules from the full conversation.
 disable-model-invocation: true
 ---
 
-Decide whether the full conversation produced generally reusable mistake-prevention rules.
+Find generally reusable mistake-prevention rules from the full conversation.
 
 Do not write reflections, summarize the task, or store anything.
 
 Default output: `NO_RULE`.
 
-Review the whole conversation, not only the final request or most recent fix.
-Prefer the earliest reusable cause over the latest symptom. Do not overweight
-the last turn unless it contains the actual recurring lesson.
+Use the full conversation, not just the final request or latest fix. Prefer the
+earliest reusable cause to the latest symptom; use the last turn only when it
+contains the lesson.
 
 Create a rule only for a generally recurring lesson that would prevent future rework, rediscovery, or verification gaps, such as:
 - correction that reveals a reusable workflow issue,
