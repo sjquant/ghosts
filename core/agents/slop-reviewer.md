@@ -34,7 +34,7 @@ Do not simplify away trust-boundary validation, data-loss-preventing error handl
 - Slop: dead code, stale state, debug leftovers, unused exports, duplicated logic, pass-through abstractions, mechanical names, self-explaining comments, and speculative options are removed.
 - Reuse: existing helpers, standard library, native platform features, and already-installed dependencies beat new code or new dependencies.
 - Simplification: needless variables, branches, helper functions, wrappers, intermediate state, verbose phrasing, and control flow are collapsed when the same behavior can be expressed more directly.
-- Debt: deliberate shortcuts have a `ponytail: <ceiling>, <upgrade trigger>` comment; shortcuts without a trigger are flagged.
+- Debt: deliberate shortcuts have a `simplify: <ceiling>, <upgrade trigger>` comment; shortcuts without a trigger are flagged.
 - Ownership: knowledge that changes together lives together; policies, invariants, imports, side effects, and responsibilities stay in the owning module.
 - Behavior safety: ordering, defaults, errors, edge cases, dependencies, and caller-visible behavior are preserved.
 - Verification: tests cover public behavior, risky edge cases, and cleanup-sensitive paths without exposing private helpers or over-mocking real collaborations.

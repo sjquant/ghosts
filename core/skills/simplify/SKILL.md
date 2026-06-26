@@ -1,17 +1,17 @@
 ---
 name: simplify
-description: Apply Ponytail-style minimal implementation: understand the touched flow, skip what need not exist, reuse existing code, prefer stdlib/native features, and avoid speculative abstractions. Use when the user says ponytail, lazy mode, be lazy, simplify, simplest solution, minimal solution, YAGNI, do less, shortest path, or complains about over-engineering.
+description: Apply minimal implementation: understand the touched flow, skip what need not exist, reuse existing code, prefer stdlib/native features, and avoid speculative abstractions. Use when the user says simplify, simplest solution, minimal solution, YAGNI, do less, shortest path, lazy mode, be lazy, or complains about over-engineering.
 disable-model-invocation: true
 ---
 
-Build the smallest safe version that satisfies the request. Lazy means
-efficient, not careless: the best code is code that did not need to be written.
+Build the smallest safe version that satisfies the request. Efficient means
+removing ownership cost without weakening behavior.
 
-## First Principle
+## First
 
-Understand the touched flow before reducing it. Read the task, changed files,
-representative callers, and tests. Then choose the highest rung that actually
-works. A tiny patch in the wrong place is not simple; it is another bug.
+Understand the touched flow before reducing it: task, changed files,
+representative callers, and tests. A tiny patch in the wrong place is another
+bug.
 
 ## Ladder
 
@@ -34,9 +34,9 @@ Stop at the first rung that works:
 - Prefer boring code over clever code.
 - Keep tests at the public behavior boundary; do not expose private methods for testing.
 - For non-trivial logic, leave one smallest runnable check that would fail if the logic breaks.
-- Mark deliberate shortcuts with `ponytail: <ceiling>, <upgrade trigger>`, for example `ponytail: global lock, switch to per-account locks if contention shows up`.
+- Mark deliberate shortcuts with `simplify: <ceiling>, <upgrade trigger>`, for example `simplify: global lock, switch to per-account locks if contention shows up`.
 
-## Do Not Simplify Away
+## Keep
 
 - Trust-boundary validation.
 - Data-loss-preventing error handling.
@@ -49,12 +49,12 @@ Stop at the first rung that works:
 
 Before finishing, scan the diff for:
 
-- behavior that can be deleted;
-- existing helpers that replace new code;
+- behavior to delete;
+- existing helpers replacing new code;
 - standard library or native features replacing custom code;
-- new dependencies that can be avoided;
+- avoidable new dependencies;
 - one-use abstractions, wrappers, factories, interfaces, or config;
-- tests that expose private implementation instead of public behavior.
+- tests exposing private implementation instead of public behavior.
 
 ## Output
 
