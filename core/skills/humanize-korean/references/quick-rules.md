@@ -1,131 +1,130 @@
-# Quick Rules - Korean Humanizing Fast Path
+# 빠른 규칙 - 한국어 AI 티 제거
 
-Use these rules to detect and locally rewrite Korean AI-tell patterns. Every
-edit must be span-grounded and meaning-preserving.
+한국어 AI 티 패턴을 탐지하고 국소적으로 윤문할 때 쓰는 룰북이다. 모든 수정은
+탐지 구간에 근거해야 하며 의미를 바꾸면 안 된다.
 
-## Do-NOT
+## 보존 대상
 
-Never detect or rewrite:
+다음은 탐지하거나 윤문하지 않는다:
 
-- proper nouns, product names, model names, institution names;
-- numbers, dates, units, math, chemistry, statistics, and legal clauses;
-- direct quotations inside Korean or English quotation marks;
-- standard technical abbreviations such as LLM, GPU, API, MCP, SQL, HTTP.
+- 고유명사, 제품명, 모델명, 기관명.
+- 수치, 날짜, 단위, 수학, 화학, 통계 표기, 법률 조항.
+- 한국어 또는 영어 따옴표 안의 직접 인용.
+- LLM, GPU, API, MCP, SQL, HTTP 같은 표준 기술 약어.
 
-## Over-Polish Guard
+## 과윤문 가드
 
-- Change rate above 30%: warn and re-check for over-editing.
-- Change rate above 50%: stop, rollback, and report.
+- 변경률 30% 초과: 과윤문 가능성을 경고하고 재점검한다.
+- 변경률 50% 초과: 중단, 롤백, 보고한다.
 
-## A. Translationese
+## A. 번역투
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| A-1 | `~에 대해(서)` | S1 | Use a direct object: `X에 대해 논의` -> `X를 논의`. |
-| A-2 | overused `~를 통해/통하여` | S1 | Vary with `~로`, `~해서`, `~함으로써`. |
-| A-3 | `~에 있어(서)` | S1 | Use `~에서`, `~을 볼 때`, or direct phrasing. |
-| A-4 | repeated `~라는 점에서` | S2 | Use `~서`, `~라는 이유로`, or delete. |
-| A-5 | `~와 관련하여/관련된` | S2 | Use `~에`, `~의`, or a direct object. |
-| A-6 | overused `~에 기반하여/바탕으로` | S2 | Use `~로`, `~을 보고`, `~를 근거로`. |
-| A-7 | light-verb literalism: `가지고 있다`, `회의를 가지다` | S1 | Restore the verb or adjective: `회의를 했다`, `경쟁력이 강하다`. |
-| A-8 | double passive `~되어진다` | S1 | Use active or single passive: `판단된다`, `판단한다`. |
-| A-9 | passive `~에 의해` | S2 | Put the actor in subject position: `AI가 만든`. |
-| A-10 | overused `~할 수 있다` | S2 | State directly when the claim is definite. |
-| A-11 | overused purpose clause `~을 위해` | S2 | Use `~려고`, `~위한`, or a direct clause. |
-| A-15 | abstract subject plus general-purpose verb or causative/cognitive verb | S2 | Restore a concrete subject or split as `~에 따르면 ~이다`, `~때문에`. |
-| A-16 | translated pronouns `그/그녀/그것/그들` repeated in a paragraph | S1 | Delete 50%+ where Korean allows zero pronoun; otherwise use a noun or title. |
-| A-18 | long left-branching modifier before a noun | S2 | Split the sentence or use a follow-up clause. |
-| A-19 | double particles `~에서의/~에로의/~으로의/~에의/~으로부터의` | S2 | Expand into a clause. Do not flag simple `~의`. |
+| A-1 | `~에 대해(서)` | S1 | 목적격 조사로 직결한다: `X에 대해 논의` -> `X를 논의`. |
+| A-2 | `~를 통해/통하여` 남발 | S1 | `~로`, `~해서`, `~함으로써`로 분산한다. |
+| A-3 | `~에 있어(서)` | S1 | `~에서`, `~을 볼 때`, 직접 서술로 바꾼다. |
+| A-4 | `~라는 점에서` 반복 | S2 | `~서`, `~라는 이유로`로 바꾸거나 삭제한다. |
+| A-5 | `~와 관련하여/관련된` | S2 | `~에`, `~의`, 목적격 조사로 줄인다. |
+| A-6 | `~에 기반하여/바탕으로` 남발 | S2 | `~로`, `~을 보고`, `~를 근거로`로 바꾼다. |
+| A-7 | light verb 직역: `가지고 있다`, `회의를 가지다` | S1 | 동사나 형용사로 환원한다: `회의를 했다`, `경쟁력이 강하다`. |
+| A-8 | 이중 피동 `~되어진다` | S1 | 능동 또는 단일 피동으로 바꾼다: `판단된다`, `판단한다`. |
+| A-9 | `~에 의해` 피동 | S2 | 행위자를 주어로 올린다: `AI가 만든`. |
+| A-10 | `~할 수 있다` 남발 | S2 | 확정 가능한 문장은 단언형으로 쓴다. |
+| A-11 | 목적절 `~을 위해` 남발 | S2 | `~려고`, `~위한`, 직접 절로 바꾼다. |
+| A-15 | 추상 주어 + 만능 동사/사역·인지 동사 | S2 | 구체 주어로 환원하거나 `~에 따르면 ~이다`, `~때문에`로 분리한다. |
+| A-16 | 단락 안 `그/그녀/그것/그들` 반복 | S1 | 한국어에서 생략 가능한 대명사는 50% 이상 지우고, 필요한 곳은 명사나 호칭으로 바꾼다. |
+| A-18 | 명사 앞 긴 좌향 수식 | S2 | 문장을 나누거나 뒤 문장으로 풀어 쓴다. |
+| A-19 | 이중 조사 `~에서의/~에로의/~으로의/~에의/~으로부터의` | S2 | 절로 풀어 쓴다. 단순 `~의`는 탐지하지 않는다. |
 
-## B. Excess English
+## B. 영어 과다
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| B-1 | Korean term plus English in parentheses every time | S2 | Keep English only on first occurrence unless the term is technical. |
-| B-2 | English word left as-is despite a natural Korean equivalent | S2 | Translate when it does not damage domain meaning; preserve standard terms. |
+| B-1 | 한글 용어 뒤 괄호 영어를 매번 병기 | S2 | 전문 용어가 아니면 첫 등장만 영어를 남긴다. |
+| B-2 | 자연스러운 한국어 대응어가 있는데 영어를 그대로 둠 | S2 | 분야 의미를 해치지 않을 때만 한국어로 옮기고, 표준 용어는 보존한다. |
 
-## C. Structural AI Patterns
+## C. 구조적 AI 패턴
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| C-5 | excessive emoji | S1 | Delete in columns, reports, and formal writing. |
-| C-7 | formulaic `먼저/반면/결국` three-part flow | S2 | Reduce connectors or absorb them into prose. |
-| C-8 | repeated `A인가, B인가` parallel questions | S2 | Keep one if useful; turn the rest into statements. |
-| C-9 | numeric parenthetical indexing `(1)`, `(2)`, `(3)` | S2 | Convert to prose or simple line breaks. |
-| C-10 | repeated colon subtitles `X: Y` | S1 | Shorten headings or convert to plain headings. |
-| C-11 | comma right after connective endings such as `-고,`, `-며,`, `-지만,` | S1 | Remove the comma unless syntax demands it. |
+| C-5 | 이모지 남발 | S1 | 칼럼, 리포트, 공적 문서에서는 삭제한다. |
+| C-7 | `먼저/반면/결국`식 3단 공식 | S2 | 접속사를 줄이거나 산문 흐름에 녹인다. |
+| C-8 | `A인가, B인가` 대구 질문 반복 | S2 | 필요한 하나만 남기고 나머지는 평서문으로 바꾼다. |
+| C-9 | 숫자 괄호 인덱싱 `(1)`, `(2)`, `(3)` | S2 | 산문이나 단순 줄바꿈으로 바꾼다. |
+| C-10 | 콜론 부제 `X: Y` 반복 | S1 | 헤딩을 짧게 하거나 평서형 헤딩으로 바꾼다. |
+| C-11 | `-고,`, `-며,`, `-지만,`처럼 연결어미 바로 뒤 쉼표 | S1 | 문법상 꼭 필요하지 않으면 쉼표를 제거한다. |
 
-## D. Signature Phrases
+## D. AI 관용구
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| D-1 | conclusion pivots: `결론적으로`, `따라서`, `이를 통해`, `그러므로`, `요약하면`, `정리하면` | S1 | If repeated more than three times, delete most and vary one or two. |
-| D-2 | `시사하는 바가 크다`, `주목할 만하다` | S1 | Delete or replace with the concrete conclusion already in the text. |
-| D-3 | `본질적으로`, `핵심적으로` | S1 | Delete unless needed for contrast. |
-| D-4 | hype words repeated: `파격적`, `압도적`, `강력한`, `획기적`, `치명적` | S1 | Delete or replace with concrete facts already present. |
-| D-5 | personified abstraction: `기술이 묻는다`, `시대가 부른다` | S1 | Restore a person, institution, or plain subject. |
-| D-6 | formulaic ending: `~할 때다`, `~해야 한다`, `지금이야말로` | S1 | Close with a plain statement when possible. |
-| D-7 | repeated conversion formula `X에서 Y로` | S2 | Keep one, rewrite the rest as ordinary description. |
+| D-1 | 결산 피벗: `결론적으로`, `따라서`, `이를 통해`, `그러므로`, `요약하면`, `정리하면` | S1 | 3회 초과 시 대부분 삭제하고 1-2개만 변주한다. |
+| D-2 | `시사하는 바가 크다`, `주목할 만하다` | S1 | 삭제하거나 원문에 이미 있는 구체 결론으로 바꾼다. |
+| D-3 | `본질적으로`, `핵심적으로` | S1 | 대비에 꼭 필요하지 않으면 삭제한다. |
+| D-4 | hype 어휘 반복: `파격적`, `압도적`, `강력한`, `획기적`, `치명적` | S1 | 삭제하거나 원문에 있는 구체 사실로 대체한다. |
+| D-5 | 의인화된 추상 주어: `기술이 묻는다`, `시대가 부른다` | S1 | 사람, 기관, 평범한 주어로 되돌린다. |
+| D-6 | 공식 결말: `~할 때다`, `~해야 한다`, `지금이야말로` | S1 | 가능하면 평서형으로 닫는다. |
+| D-7 | `X에서 Y로` 변환 공식 반복 | S2 | 하나만 남기고 나머지는 일반 서술로 바꾼다. |
 
-## E. Rhythm And Endings
+## E. 리듬과 종결
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| E-1 | sentence lengths too uniform | S2 | Add one short sentence or allow one longer sentence per affected paragraph. |
-| E-2 | four or more consecutive `~다` endings; automatic `~고 있다` mapping | S2 | Vary tense and endings; simplify `~고 있다` to simple tense when valid. |
-| E-7 | inconsistent speech level in dialogue or spoken text | S2 | Keep one speech level within the paragraph or speaker turn. |
+| E-1 | 문장 길이가 지나치게 균일함 | S2 | 문단마다 짧은 문장 하나를 넣거나 긴 문장 하나를 허용한다. |
+| E-2 | `~다` 종결 4회 이상 연속, `~고 있다` 자동 매핑 | S2 | 시제와 종결을 섞고, 가능한 곳은 `~고 있다`를 단순 시제로 바꾼다. |
+| E-7 | 대화/구어에서 청자 경어법 불일치 | S2 | 한 문단 또는 화자 발화 안에서는 한 말높임을 유지한다. |
 
-## F. Excess Modifiers And Nominalization
+## F. 과도한 수식과 명사화
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| F-4 | accumulated Sino-Korean or English nominalization: `-성`, `-적`, `-화`, `-tion`, `-ment`, `-ness`, `-ity` | S2 | Restore verbs or adjectives where the meaning stays intact. |
-| F-5 | abstract `~적 N` chains | S2 | Use noun+noun or expand into a concrete clause. |
+| F-4 | 한자어/영어 명사화 누적: `-성`, `-적`, `-화`, `-tion`, `-ment`, `-ness`, `-ity` | S2 | 의미가 유지되는 범위에서 동사나 형용사로 환원한다. |
+| F-5 | 추상 `~적 N` 체인 | S2 | 명사+명사로 줄이거나 구체 절로 풀어 쓴다. |
 
-## G. Hedging
+## G. 완곡 표현
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| G-1 | overused `~것이다/~할 것이다` | S2 | Use present or definite form when the sentence permits. |
-| G-2 | overused `~로 보인다/~인 듯하다` | S2 | State directly where evidence is already given. |
-| G-3 | safety-balance lexicon: `양쪽 모두`, `두 가지 모두`, `장점도 있지만`, `신중하게`, `균형` | S2 | If repeated more than four times, replace one or two with the writer's actual stance. |
+| G-1 | `~것이다/~할 것이다` 남발 | S2 | 문장이 허용하면 현재형이나 확정형으로 바꾼다. |
+| G-2 | `~로 보인다/~인 듯하다` 남발 | S2 | 근거가 이미 있으면 직접 말한다. |
+| G-3 | 안전 균형 어휘: `양쪽 모두`, `두 가지 모두`, `장점도 있지만`, `신중하게`, `균형` | S2 | 4회 초과 시 1-2개는 글의 실제 입장으로 바꾼다. |
 
-## H. Connectors
+## H. 접속사
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| H-1 | sentence-initial connectors `또한`, `따라서`, `즉`, `나아가`, `아울러`, `게다가`, `더욱이` five or more times | S1 | Delete most; let sentence order carry flow. |
-| H-3 | meta-entry phrases: `이는`, `이 점에서`, `이 관점에서`, `이 말은` | S1 | Absorb into the sentence or delete. |
-| H-4 | overused `즉` | S2 | Keep at most one unless the text is technical explanation. |
+| H-1 | 문두 접속사 `또한`, `따라서`, `즉`, `나아가`, `아울러`, `게다가`, `더욱이` 5회 이상 | S1 | 대부분 삭제하고 문장 순서가 흐름을 잡게 한다. |
+| H-3 | 메타 진입구: `이는`, `이 점에서`, `이 관점에서`, `이 말은` | S1 | 문장 안에 녹이거나 삭제한다. |
+| H-4 | `즉` 남발 | S2 | 기술 설명문이 아니면 최대 1회만 남긴다. |
 
-## I. Bound Nouns And Formal Nouns
+## I. 형식명사와 의존명사
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| I-1 | ending `~인 것이다/~한 것이다` | S1 | Use plain ending. |
-| I-2 | `X은 ~라는 점에 있다` | S2 | Write `X는 ~다`. |
-| I-3 | ending `~다는 뜻이다/~다는 의미다` | S2 | Fold the meaning into the sentence. |
-| I-4 | repeated recommendation ending `~해야 한다/~합니다` | S2 | Vary with plain statements when genre permits. |
+| I-1 | `~인 것이다/~한 것이다` 결말 | S1 | 평서형 종결로 바꾼다. |
+| I-2 | `X은 ~라는 점에 있다` | S2 | `X는 ~다`로 쓴다. |
+| I-3 | `~다는 뜻이다/~다는 의미다` 결말 | S2 | 의미를 문장 안에 녹인다. |
+| I-4 | 권고형 결말 `~해야 한다/~합니다` 반복 | S2 | 장르가 허용하면 평서문과 섞는다. |
 
-## J. Visual Decoration
+## J. 시각 장식
 
-| ID | Pattern | Severity | Fix |
+| ID | 패턴 | 심각도 | 처방 |
 |---|---|---:|---|
-| J-1 | excessive Markdown bold emphasis | S2 | Remove from body text in columns and reports. |
-| J-2 | emphasis quotes five or more times | S1 | Keep only real quotes or one essential special usage. |
-| J-3 | bullet lists in columns or reports | S2 | Integrate into prose unless list structure is necessary. |
+| J-1 | 마크다운 볼드 강조 남발 | S2 | 칼럼과 리포트 본문에서는 제거한다. |
+| J-2 | 강조 따옴표 5회 이상 | S1 | 실제 인용이나 꼭 필요한 특수 용례만 남긴다. |
+| J-3 | 칼럼/리포트의 불릿 리스트 | S2 | 목록 구조가 꼭 필요하지 않으면 산문으로 통합한다. |
 
-## Self-Check
+## 자체검증
 
-After rewriting, check:
+윤문 뒤 다음을 확인한다:
 
-1. Proper nouns, numbers, dates, direct quotes, and technical abbreviations are
-   unchanged.
-2. Change rate is <= 30%; never > 50%.
-3. Genre did not drift.
-4. Register did not drift.
-5. Remaining S1 patterns are zero.
-6. No new metaphor, flourish, claim, citation, or example was added.
+1. 고유명사, 수치, 날짜, 직접 인용, 기술 약어가 바뀌지 않았다.
+2. 변경률이 30% 이하이며, 50%를 넘지 않는다.
+3. 장르가 이탈하지 않았다.
+4. 문체 격식이 이탈하지 않았다.
+5. S1 패턴 잔존이 0건이다.
+6. 새 비유, 수사, 주장, 인용, 예시를 추가하지 않았다.
 
-If any check fails, rollback that local edit and retry once. If it still fails,
-leave the text unchanged and report the failed check.
+검증 실패 시 해당 국소 수정을 롤백하고 한 번만 다시 시도한다. 그래도 실패하면
+그 구간은 원문대로 두고 실패 항목을 보고한다.
