@@ -3,9 +3,7 @@ name: simplify
 description: >
   Apply minimal implementation: understand the touched flow, skip what need not
   exist, reuse existing code, prefer stdlib/native features, and avoid
-  speculative abstractions. Use when the user says simplify, simplest solution,
-  minimal solution, YAGNI, do less, shortest path, lazy mode, be lazy, or
-  complains about over-engineering.
+  speculative abstractions.
 disable-model-invocation: true
 ---
 
