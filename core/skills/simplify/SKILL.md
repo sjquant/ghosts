@@ -1,7 +1,7 @@
 ---
 name: simplify
 description: >
-  Apply minimal implementation: understand the touched flow, skip what need not
+  Apply minimal implementation; understand the touched flow, skip what need not
   exist, reuse existing code, prefer stdlib/native features, and avoid
   speculative abstractions.
 disable-model-invocation: true
