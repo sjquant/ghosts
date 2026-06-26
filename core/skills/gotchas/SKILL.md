@@ -1,14 +1,18 @@
 ---
 name: gotchas
-description: Decide whether a completed task produced reusable mistake-prevention rules.
+description: Decide whether the full conversation produced reusable mistake-prevention rules.
 disable-model-invocation: true
 ---
 
-Decide whether a completed task produced generally reusable mistake-prevention rules.
+Decide whether the full conversation produced generally reusable mistake-prevention rules.
 
 Do not write reflections, summarize the task, or store anything.
 
 Default output: `NO_RULE`.
+
+Review the whole conversation, not only the final request or most recent fix.
+Prefer the earliest reusable cause over the latest symptom. Do not overweight
+the last turn unless it contains the actual recurring lesson.
 
 Create a rule only for a generally recurring lesson that would prevent future rework, rediscovery, or verification gaps, such as:
 - correction that reveals a reusable workflow issue,
