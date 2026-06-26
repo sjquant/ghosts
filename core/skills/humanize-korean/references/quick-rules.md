@@ -1,4 +1,4 @@
-# Quick Rules — Monolith Fast Path 전용 (v2.0)
+# Quick Rules — Monolith Fast Path 전용
 
 `humanize-monolith` 에이전트가 한 콜에서 탐지·윤문·자체검증을 끝내기 위해 사용하는 슬림 룰북. 본진 `ai-tell-taxonomy.md`(590줄)에서 S1·S2 핵심 패턴만 추려 처방과 함께 한 줄로 압축했다.
 
@@ -129,5 +129,3 @@
 - **B**: S1 잔존 0, S2 잔존 4 이하, 자체검증 5항 이상 통과
 - **C**: S1 잔존 1~2 또는 자체검증 4항 이하 통과 — 사용자에게 strict 모드 권고
 - **D**: S1 잔존 3+ 또는 변경률 50% 초과 — 작업 중단 권고
-
-> v2.0 신규/보강은 A-7·A-15·A-16·A-18·A-19·E-2·E-7·F-4 **8건 (A-17 hold)**. 학술 인용 전문은 `references/scholarship.md`. post-editese 3축 metric은 본 룰북 미반영(metric only 트랙). A-17 무정물·추상명사 '-들'은 학술 anchor(전영철 2007·곽은주·진실로 2011) 강하나 외부 회차(2026-05-07 위키 6편)에서 양성 0건 — NMT 원본 출력 회차 후 v2.1에서 동일 ID로 재평가.
