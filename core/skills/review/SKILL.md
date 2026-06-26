@@ -20,7 +20,7 @@ Spawn a bounded general subagent for consistency, concurrency, repo-rule, migrat
 
 ## Main Agent Review
 
-While subagents are collecting results, inspect the changed code directly for simplification points. First ask whether the new behavior needs to exist. Then prefer, in order: existing codebase helpers, standard library, native platform features, already-installed dependencies, one-line expressions, and finally the smallest safe implementation. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, indirect expressions, verbose phrasing, new dependencies, speculative config, single-implementation interfaces, or abstractions with one caller.
+While subagents are collecting results, inspect the changed code directly for simplification points. Understand the touched flow first; a small patch in the wrong place is still a bug. Then ask whether the new behavior needs to exist. Prefer, in order: existing codebase helpers, standard library, native platform features, already-installed dependencies, one-line expressions, and finally the smallest safe implementation. For bug fixes, check sibling callers and prefer the shared root-cause fix. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, indirect expressions, verbose phrasing, new dependencies, speculative config, single-implementation interfaces, abstractions with one caller, and shortcuts missing a `ponytail:` upgrade trigger.
 
 ## Synthesis
 
