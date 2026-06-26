@@ -14,13 +14,13 @@ Use every reviewer whose trigger matches. Exclude lockfiles, generated files, ve
 - `test-reviewer`: use when source behavior changes, tests are added/changed/deleted/skipped, or non-excluded source code changes are `>= 200` LOC.
 - `architecture-reviewer`: use when public interfaces, module boundaries, ownership, dependency direction, state ownership, or cross-layer calls change; also use when changed code spans `>= 3` directories or `>= 200` LOC.
 - `performance-reviewer`: use when a known hot path changes, unbounded loops or large-collection work changes, repeated I/O/serialization/parsing is added, caching/resource lifetime changes under load, or async/background work changes concurrency, backpressure, or retry behavior; also use when changed code in a likely hot path is `>= 80` LOC.
-- `slop-reviewer`: use when non-excluded changed code is `>= 200` LOC, non-excluded changed files are `>= 5`, or the diff adds wrappers, duplication, broad cleanup, generated-looking code, or unclear abstractions.
+- `slop-reviewer`: use when non-excluded changed code is `>= 120` LOC, non-excluded changed files are `>= 4`, or the diff adds wrappers, duplication, broad cleanup, generated-looking code, unclear abstractions, new dependencies, factories, adapters, config knobs, or helper layers.
 
 Spawn a bounded general subagent for consistency, concurrency, repo-rule, migration, or release-safety risks when no installed reviewer covers that risk.
 
 ## Main Agent Review
 
-While subagents are collecting results, inspect the changed code directly for simplification points. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, indirect expressions, or verbose phrasing that can be made concise without changing caller-visible behavior.
+While subagents are collecting results, inspect the changed code directly for simplification points. Understand the touched flow first; a small patch in the wrong place is still a bug. Then ask whether the new behavior needs to exist. Prefer, in order: existing codebase helpers, standard library, native platform features, already-installed dependencies, one-line expressions, and finally the smallest safe implementation. For bug fixes, check sibling callers and prefer the shared root-cause fix. Look for needless variables, branches, helper functions, wrappers, intermediate state, duplicated control flow, indirect expressions, verbose phrasing, new dependencies, speculative config, single-implementation interfaces, abstractions with one caller, and shortcuts missing a `simplify:` upgrade trigger.
 
 ## Synthesis
 
@@ -60,7 +60,8 @@ Use these severity values:
 
 ## Simplification Points
 
-- `<path/to/file.ext:Lx>`: <concise simplification opportunity, or `None found`>
+- `<path/to/file.ext:Lx>`: `<delete|stdlib|native|yagni|shrink>` <what to cut and what replaces it, or `None found`>
+- `net: -<N> lines possible` when any simplification points exist
 ```
 
 Always include `## Simplification Points`. Use `None found` when the direct review found no concise simplification opportunities.
