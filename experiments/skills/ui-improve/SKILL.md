@@ -32,6 +32,8 @@ If no source exists, ask whether to:
 - preserve the current look with nearby edits
 - extract lightweight implementation notes and reusable components first
 
+Use `templates/DESIGN.md` only when extracting a full design contract is chosen or explicitly requested.
+
 ## Scope
 
 Classify the improvement goal before editing:
@@ -61,6 +63,7 @@ Reference files included:
 - `references/perfection/performance-audit.md`
 - `references/visual-qa/README.md`
 - `references/visual-qa/browser-capture.md`
+- `templates/DESIGN.md`
 
 ## QA
 

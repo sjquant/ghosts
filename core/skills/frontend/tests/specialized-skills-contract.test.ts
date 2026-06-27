@@ -93,23 +93,26 @@ describe("specialized UI skill contracts", () => {
     expect(combinedText).toContain("Evidence must record");
   });
 
-  it("includes references and scripts in each experimental skill", async () => {
+  it("includes references scripts and templates in each experimental skill", async () => {
     // given
     const expectedPaths = [
       new URL("references/design/_INDEX.md", greenfieldRoot),
       new URL("references/ui-ux-db/palettes.csv", greenfieldRoot),
       new URL("scripts/search-uiux-db.mjs", greenfieldRoot),
       new URL("scripts/capture-browser.mjs", greenfieldRoot),
+      new URL("templates/DESIGN.md", greenfieldRoot),
       new URL("package.json", greenfieldRoot),
       new URL("references/design/image-to-code-skill.md", designToCodeRoot),
       new URL("references/visual-qa/reference-fidelity.md", designToCodeRoot),
       new URL("scripts/capture-browser.mjs", designToCodeRoot),
       new URL("scripts/visual-diff.mjs", designToCodeRoot),
+      new URL("templates/DESIGN.md", designToCodeRoot),
       new URL("package.json", designToCodeRoot),
       new URL("references/design-ops/critique.md", improveRoot),
       new URL("references/perfection/performance-audit.md", improveRoot),
       new URL("references/visual-qa/browser-capture.md", improveRoot),
       new URL("scripts/capture-browser.mjs", improveRoot),
+      new URL("templates/DESIGN.md", improveRoot),
       new URL("package.json", improveRoot),
     ];
 

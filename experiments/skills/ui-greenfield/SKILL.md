@@ -25,6 +25,8 @@ Design source priority:
 
 If no source exists, create lightweight implementation notes before UI code.
 
+Use `templates/DESIGN.md` only when a full design contract is useful or explicitly requested.
+
 ## References
 
 When using references:
@@ -60,6 +62,7 @@ Reference files included:
 - `references/ui-ux-db/palettes.csv`
 - `references/ui-ux-db/font-pairings.csv`
 - `references/ui-ux-db/ux-guidelines.csv`
+- `templates/DESIGN.md`
 
 ## Implementation
 

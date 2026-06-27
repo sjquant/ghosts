@@ -36,6 +36,8 @@ Create or update `DESIGN.md` only when:
 - deviations from the reference must be recorded
 - the user explicitly asks for it
 
+Use `templates/DESIGN.md` when creating a new `DESIGN.md`.
+
 ## Reference
 
 - Create a reference packet when useful.
@@ -49,6 +51,7 @@ Reference files included:
 - `references/visual-qa/README.md`
 - `references/visual-qa/browser-capture.md`
 - `references/visual-qa/reference-fidelity.md`
+- `templates/DESIGN.md`
 
 Extract implementation facts:
 
