@@ -28,7 +28,14 @@ _ENDING_COMMA_RE = re.compile(r"(?:고|며|지만|면서|아서|어서)\s*,")
 _ENDING_BOUNDARY_RE = re.compile(r"(?:고|며|지만|면서|아서|어서)(?=[\s,\.!?、。]|$)")
 _ENDING_FINAL_RE = re.compile(r"([가-힣]{1,3})[\.!?。]?\s*$")
 
-_CONCLUSION_PIVOTS = ("결론적으로", "따라서", "이를 통해", "그러므로", "요약하면", "정리하면")
+_CONCLUSION_PIVOTS = (
+    "결론적으로",
+    "따라서",
+    "이를 통해",
+    "그러므로",
+    "요약하면",
+    "정리하면",
+)
 _SAFE_BALANCES = ("양쪽 모두", "두 가지 모두", "장점도 있지만", "신중하게", "균형")
 _HANJA_SUFFIXES = ("성", "적", "화", "도", "력", "감", "원")
 _DECLARATIVE_ENDINGS = ("한다", "된다", "이다")
@@ -214,7 +221,9 @@ def hanja_nominalizer_density(text: str) -> float:
     tokens = stripped_eojeols(text)
     if not tokens:
         return 0.0
-    hits = sum(1 for token in tokens if len(token) >= 2 and token[-1] in _HANJA_SUFFIXES)
+    hits = sum(
+        1 for token in tokens if len(token) >= 2 and token[-1] in _HANJA_SUFFIXES
+    )
     return hits / len(tokens)
 
 
@@ -232,8 +241,28 @@ def lexical_density(text: str) -> float:
     if not tokens:
         return 0.0
 
-    content_endings = ("한다", "된다", "이다", "했다", "였다", "었다", "답다", "스럽다", "롭다")
-    stopwords = {"그리고", "그러나", "하지만", "또한", "또는", "혹은", "즉", "이는", "따라서"}
+    content_endings = (
+        "한다",
+        "된다",
+        "이다",
+        "했다",
+        "였다",
+        "었다",
+        "답다",
+        "스럽다",
+        "롭다",
+    )
+    stopwords = {
+        "그리고",
+        "그러나",
+        "하지만",
+        "또한",
+        "또는",
+        "혹은",
+        "즉",
+        "이는",
+        "따라서",
+    }
     hits = 0
     for token in tokens:
         if len(token) < 2 or token in stopwords:
@@ -329,9 +358,9 @@ def inanimate_subject_rate(text: str) -> float:
         if not tokens:
             continue
         head = trim_subject_marker(tokens[0])
-        if (head in subjects or (len(head) >= 2 and head[-1] in _HANJA_SUFFIXES)) and any(
-            any(verb in token for verb in verbs) for token in tokens[1:]
-        ):
+        if (
+            head in subjects or (len(head) >= 2 and head[-1] in _HANJA_SUFFIXES)
+        ) and any(any(verb in token for verb in verbs) for token in tokens[1:]):
             hits += 1
     return hits / len(sentences)
 
@@ -395,22 +424,36 @@ def progressive_aspect_rate(text: str) -> float:
     sentences = split_sentences(text)
     if not sentences:
         return 0.0
-    return sum(len(_PROGRESSIVE_RE.findall(sentence)) for sentence in sentences) / len(sentences)
+    return sum(len(_PROGRESSIVE_RE.findall(sentence)) for sentence in sentences) / len(
+        sentences
+    )
 
 
-def interference_index(text: str, metrics: dict[str, float | int] | None = None) -> dict[str, Any]:
+def interference_index(
+    text: str, metrics: dict[str, float | int] | None = None
+) -> dict[str, Any]:
     """Return weighted post-editese interference components."""
     current_metrics = metrics or compute_all(text)["metrics"]
     chars = max(len(text), 1)
     components = {
         "T1_inanimate_subject_rate": float(current_metrics["inanimate_subject_rate"]),
-        "T2a_by_passive_per_1k": float(current_metrics["by_passive_count"]) / chars * 1000,
-        "T2b_double_passive_per_1k": float(current_metrics["double_passive_count"]) / chars * 1000,
+        "T2a_by_passive_per_1k": float(current_metrics["by_passive_count"])
+        / chars
+        * 1000,
+        "T2b_double_passive_per_1k": float(current_metrics["double_passive_count"])
+        / chars
+        * 1000,
         "T3_pronoun_density": float(current_metrics["pronoun_density"]),
         "T4_deul_overuse_rate": float(current_metrics["deul_overuse_rate"]),
-        "T5_nested_clause_count": float(current_metrics["relative_clause_nesting_count"]),
-        "T6_have_make_per_1k": float(current_metrics["have_make_literal_count"]) / chars * 1000,
-        "T7_double_particle_per_1k": float(current_metrics["double_particle_count"]) / chars * 1000,
+        "T5_nested_clause_count": float(
+            current_metrics["relative_clause_nesting_count"]
+        ),
+        "T6_have_make_per_1k": float(current_metrics["have_make_literal_count"])
+        / chars
+        * 1000,
+        "T7_double_particle_per_1k": float(current_metrics["double_particle_count"])
+        / chars
+        * 1000,
         "T8b_progressive_rate": float(current_metrics["progressive_aspect_rate"]),
     }
     weights = {
@@ -424,11 +467,15 @@ def interference_index(text: str, metrics: dict[str, float | int] | None = None)
         "T7_double_particle_per_1k": 0.5,
         "T8b_progressive_rate": 1.0,
     }
-    total = sum(min(1.0, max(0.0, components[key] * weights[key])) for key in components)
+    total = sum(
+        min(1.0, max(0.0, components[key] * weights[key])) for key in components
+    )
     return {"components": components, "weighted_total": total}
 
 
-def classify_risk(metrics: dict[str, float | int], interference: dict[str, Any]) -> tuple[str, int]:
+def classify_risk(
+    metrics: dict[str, float | int], interference: dict[str, Any]
+) -> tuple[str, int]:
     """Classify metric output into a coarse low/medium/high risk band."""
     score = 0
     if metrics["ending_comma_rate"] > 0.35:
@@ -484,7 +531,11 @@ def split_paragraphs(text: str) -> list[str]:
     stripped = text.strip()
     if not stripped:
         return []
-    return [paragraph.strip() for paragraph in _PARAGRAPH_SPLIT_RE.split(stripped) if paragraph.strip()]
+    return [
+        paragraph.strip()
+        for paragraph in _PARAGRAPH_SPLIT_RE.split(stripped)
+        if paragraph.strip()
+    ]
 
 
 def eojeols(text: str) -> list[str]:
@@ -494,7 +545,11 @@ def eojeols(text: str) -> list[str]:
 
 def stripped_eojeols(text: str) -> list[str]:
     """Return eojeols with surrounding punctuation removed."""
-    return [token for token in (_PUNCT_STRIP_RE.sub("", raw) for raw in eojeols(text)) if token]
+    return [
+        token
+        for token in (_PUNCT_STRIP_RE.sub("", raw) for raw in eojeols(text))
+        if token
+    ]
 
 
 def last_eojeol(sentence: str) -> str:
