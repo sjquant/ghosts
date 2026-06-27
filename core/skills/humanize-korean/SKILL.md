@@ -1,8 +1,6 @@
 ---
 name: humanize-korean
-description: >
-  한국어 글의 번역투, 기계적 구조, AI 관용구, 균일한 리듬, 접속사 남발,
-  장식적 서식을 줄이고 의미, 사실, 장르, 문체 격식은 보존한다.
+description: 한국어 글의 번역투, 기계적 구조, AI 관용구, 균일한 리듬, 접속사 남발, 장식적 서식을 줄이고 의미, 사실, 장르, 문체 격식은 보존한다.
 disable-model-invocation: true
 ---
 
