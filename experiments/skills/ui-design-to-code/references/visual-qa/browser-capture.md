@@ -14,9 +14,9 @@ Use the project's browser tooling. If none exists, use Playwright or another ava
 ## Suggested naming
 
 ```text
-.evidence/frontend/<slug>/reference-mobile.png
-.evidence/frontend/<slug>/actual-mobile.png
-.evidence/frontend/<slug>/actual-tablet.png
-.evidence/frontend/<slug>/actual-desktop.png
-.evidence/frontend/<slug>/qa-report.md
+/tmp/frontend-evidence/<slug>/reference-mobile.png
+/tmp/frontend-evidence/<slug>/actual-mobile.png
+/tmp/frontend-evidence/<slug>/actual-tablet.png
+/tmp/frontend-evidence/<slug>/actual-desktop.png
+/tmp/frontend-evidence/<slug>/qa-report.md
 ```

@@ -2,6 +2,7 @@ import { describe, expect, it } from "bun:test";
 
 const refPath = new URL("../references/visual-qa/reference-fidelity.md", import.meta.url);
 const qaPath = new URL("../references/visual-qa/README.md", import.meta.url);
+const browserCapturePath = new URL("../references/visual-qa/browser-capture.md", import.meta.url);
 
 describe("visual QA contract", () => {
   it("checks both visual match and implementation quality", async () => {
@@ -33,5 +34,17 @@ describe("visual QA contract", () => {
     expect(text).toContain("1280px desktop");
     expect(text).toContain("hover");
     expect(text).toContain("error");
+  });
+
+  it("uses tmp for browser evidence paths", async () => {
+    // given
+    const text = await Bun.file(browserCapturePath).text();
+
+    // when
+    const usesTmpEvidence = text.includes("/tmp/frontend-evidence");
+
+    // then
+    expect(usesTmpEvidence).toBe(true);
+    expect(text).not.toContain(".evidence");
   });
 });

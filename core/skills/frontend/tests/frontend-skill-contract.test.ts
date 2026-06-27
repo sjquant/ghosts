@@ -31,17 +31,18 @@ describe("frontend skill contract", () => {
     expect(text).toContain("ui-greenfield");
   });
 
-  it("routes existing UI changes to ui-improve", async () => {
+  it("routes existing UI redesign to ui-redesign", async () => {
     // given
     const text = await Bun.file(skillPath).text();
 
     // when
-    const hasImproveRoute = text.includes("ui-improve");
+    const hasRedesignRoute = text.includes("ui-redesign");
 
     // then
-    expect(hasImproveRoute).toBe(true);
-    expect(text).toContain("Existing UI change");
-    expect(text).toContain("ui-improve");
+    expect(hasRedesignRoute).toBe(true);
+    expect(text).toContain("Existing UI redesign");
+    expect(text).toContain("designer's perspective");
+    expect(text).toContain("ui-redesign");
   });
 
   it("does not make DESIGN.md mandatory for all workflows", async () => {

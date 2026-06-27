@@ -1,6 +1,6 @@
 ---
 name: frontend
-description: "Umbrella router for frontend, web UI, UX, visual design, styling, redesign, React setup, design QA, performance, accessibility, screenshots, Figma exports, generated mockups, and any visible UI change. Routes by work mode to ui-design-to-code, ui-greenfield, or ui-improve when available. Keeps fallback references, scripts, and browser QA gates for standalone use."
+description: "Umbrella router for frontend, web UI, UX, visual design, styling, redesign, React setup, design QA, performance, accessibility, screenshots, Figma exports, generated mockups, and any visible UI change. Routes by work mode to ui-design-to-code, ui-greenfield, or ui-redesign when available. Keeps fallback references, scripts, and browser QA gates for standalone use."
 disable-model-invocation: true
 ---
 
@@ -12,7 +12,7 @@ Use this as the umbrella router. Prefer a specialized skill when available; othe
 
 1. Concrete visual reference, Figma, screenshot, mockup, source capture, annotated packet, or designer spec exists -> `ui-design-to-code`.
 2. New UI with no concrete visual reference -> `ui-greenfield`.
-3. Existing UI change -> `ui-improve`.
+3. Existing UI redesign from a designer's perspective -> `ui-redesign`.
 
 State the selected route and loaded references in one sentence before implementation.
 
@@ -44,7 +44,7 @@ For implementation fallback work, load design and perfection together.
 
 Use this only when specialized skills are unavailable:
 
-1. Identify the work mode: design-to-code, greenfield, or improve.
+1. Identify the work mode: design-to-code, greenfield, or redesign.
 2. Identify the authoritative design source.
 3. Read the smallest reference set that covers the work.
 4. Create lightweight implementation notes when no source exists.
@@ -69,7 +69,7 @@ Use this only when specialized skills are unavailable:
 | "Premium SaaS hero like Stripe" | `design/README.md` + `design/taste-premium.md` + `design/brand-stripe.md` + `perfection/README.md` |
 | "Linear-style product page" | `design/README.md` + `design/taste-minimal.md` + `design/brand-linear.md` + `perfection/README.md` |
 | "Developer tool, dark, code-first" | `design/README.md` + `design/taste-premium.md` + `design/brand-supabase.md` or `brand-vercel.md` + `perfection/README.md` |
-| "Improve this existing dashboard" | `ui-improve` or `design/README.md` + existing design source + `perfection/README.md` |
+| "Redesign this existing dashboard" | `ui-redesign` or `design/README.md` + existing design source + `perfection/README.md` |
 | "Build this screenshot / Figma / mock exactly" | `ui-design-to-code` or `design/README.md` + `design/image-to-code-skill.md` + `visual-qa/reference-fidelity.md` + `perfection/README.md` |
 | "Audit my site" / "make this faster" | `perfection/README.md` + browser evidence |
 | "Find a palette / font pairing" | `ui-ux-db/README.md` |
