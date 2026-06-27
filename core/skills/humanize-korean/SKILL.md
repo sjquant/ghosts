@@ -34,6 +34,7 @@ disable-model-invocation: true
 - [references/quick-rules.md](references/quick-rules.md): 빠른 탐지와 윤문 규칙.
 - [references/ai-tell-taxonomy.md](references/ai-tell-taxonomy.md): 전체 패턴 분류.
 - [references/rewriting-playbook.md](references/rewriting-playbook.md): 패턴별 문장 수정 처방.
+- [references/metrics.py](references/metrics.py): 쉼표, 반복 어휘, 번역투 신호를 계산하는 단일 Python 보조 도구.
 
 ## 출력
 
