@@ -36,13 +36,10 @@ disable-model-invocation: true
 - [references/rewriting-playbook.md](references/rewriting-playbook.md): 패턴별 문장 수정 처방.
 - [references/metrics.py](references/metrics.py): 쉼표, 반복 어휘, 번역투 신호를 계산하는 단일 Python 보조 도구.
 
-`metrics.py`는 표준 라이브러리만 쓰므로 Python으로 실행한다. 수정한 뒤에는 로컬 설치 대신 `uvx`로 정리와 검증을 실행한다:
+`metrics.py` 실행 예:
 
 ```bash
 python references/metrics.py --input input.txt --genre essay
-uvx ruff format references/metrics.py
-uvx ruff check references/metrics.py
-uvx ty check references/metrics.py
 ```
 
 ## 출력
