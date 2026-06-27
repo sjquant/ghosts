@@ -53,6 +53,10 @@ describe("specialized UI skill contracts", () => {
 
     // then
     expect(hasDesignerPerspective).toBe(true);
+    expect(text).toContain("visual direction");
+    expect(text).toContain("Select exactly one Layer A");
+    expect(text).toContain("Select exactly one Layer B");
+    expect(text).toContain("surface material");
     expect(text).toContain("Do not perform unrelated redesign");
     expect(text).toContain("Redesign goal identified");
     expect(text).toContain("Changed breakpoints checked");
@@ -109,6 +113,9 @@ describe("specialized UI skill contracts", () => {
       new URL("templates/DESIGN.md", designToCodeRoot),
       new URL("package.json", designToCodeRoot),
       new URL("references/design-ops/critique.md", redesignRoot),
+      new URL("references/design/_INDEX.md", redesignRoot),
+      new URL("references/design/taste-premium.md", redesignRoot),
+      new URL("references/design/brand-linear.md", redesignRoot),
       new URL("references/perfection/performance-audit.md", redesignRoot),
       new URL("references/visual-qa/browser-capture.md", redesignRoot),
       new URL("scripts/capture-browser.mjs", redesignRoot),
