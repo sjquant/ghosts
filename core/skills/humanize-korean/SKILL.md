@@ -34,10 +34,12 @@ disable-model-invocation: true
 
 [references/metrics.py](references/metrics.py)는 쉼표, 반복 어휘, 번역투 신호를 계산한다. 긴 글이거나 감으로 판단하기 애매할 때만 사용한다.
 
-스킬 디렉터리 기준 `metrics.py` 실행 예:
+스킬 디렉터리 기준 `metrics.py` 사용법은 `--help`로 확인한다. 파일 또는 원문 문자열을 입력할 수 있다.
 
 ```bash
+python references/metrics.py --help
 python references/metrics.py --input input.txt --genre essay
+python references/metrics.py --text $'첫 문장입니다.\n둘째 문장입니다.' --genre essay
 ```
 
 ## 출력

@@ -6,6 +6,7 @@ comma habits, repeated AI phrases, translationese, and post-editese signals.
 
 CLI:
     python metrics.py --input input.txt --genre essay
+    python metrics.py --text $'첫 문장입니다.\n둘째 문장입니다.' --genre essay
 """
 
 from __future__ import annotations
@@ -109,14 +110,14 @@ _HAVE_MAKE_LITERAL_TOKENS = (
 
 def _main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Humanize Korean metric runner")
-    parser.add_argument("--input", required=True, help="Input text file path")
+    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group.add_argument("--input", help="Input text file path")
+    input_group.add_argument("--text", help="Raw input text; newlines are allowed")
     parser.add_argument("--genre", default="essay", help="essay/report/blog/formal")
     parser.add_argument("--output", default=None, help="Optional JSON output path")
     args = parser.parse_args(argv)
 
-    with open(args.input, "r", encoding="utf-8") as input_file:
-        text = input_file.read()
-
+    text = read_cli_text(args)
     result = compute_all(text, genre=args.genre)
 
     if args.output:
@@ -125,6 +126,15 @@ def _main(argv: Sequence[str] | None = None) -> int:
 
     print(result["risk_band"])
     return 0
+
+
+def read_cli_text(args: argparse.Namespace) -> str:
+    """Return text from either a file path or a raw CLI argument."""
+    if args.text is not None:
+        return args.text
+
+    with open(args.input, "r", encoding="utf-8") as input_file:
+        return input_file.read()
 
 
 def compute_all(text: str, genre: str = "essay") -> dict[str, Any]:
