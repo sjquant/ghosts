@@ -1,8 +1,8 @@
 import { describe, expect, it } from "bun:test";
 
-const greenfieldPath = new URL("../../ui-greenfield/SKILL.md", import.meta.url);
-const designToCodePath = new URL("../../ui-design-to-code/SKILL.md", import.meta.url);
-const improvePath = new URL("../../ui-improve/SKILL.md", import.meta.url);
+const greenfieldPath = new URL("../../../../experimenets/skills/ui-greenfield/SKILL.md", import.meta.url);
+const designToCodePath = new URL("../../../../experimenets/skills/ui-design-to-code/SKILL.md", import.meta.url);
+const improvePath = new URL("../../../../experimenets/skills/ui-improve/SKILL.md", import.meta.url);
 
 describe("specialized UI skill contracts", () => {
   it("keeps ui-greenfield focused on new UI from scratch", async () => {
@@ -71,5 +71,21 @@ describe("specialized UI skill contracts", () => {
     expect(combinedText).toContain("repo tokens");
     expect(combinedText).toContain("Existing `DESIGN.md`");
     expect(combinedText).toContain("lightweight implementation notes");
+  });
+
+  it("keeps experimental skills self-contained", async () => {
+    // given
+    const greenfield = await Bun.file(greenfieldPath).text();
+    const designToCode = await Bun.file(designToCodePath).text();
+    const improve = await Bun.file(improvePath).text();
+
+    // when
+    const combinedText = [greenfield, designToCode, improve].join("\n");
+
+    // then
+    expect(combinedText).not.toContain("core/skills/frontend");
+    expect(combinedText).not.toContain("frontend/references");
+    expect(combinedText).not.toContain("frontend/scripts");
+    expect(combinedText).toContain("Evidence must record");
   });
 });

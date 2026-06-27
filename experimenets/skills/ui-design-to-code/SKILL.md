@@ -60,8 +60,27 @@ Extract implementation facts:
 
 - Prefer reusable tokens, components, and primitives over one-off screenshot matching.
 - Capture the actual browser UI at matching viewport/state combinations.
-- Run reference-fidelity QA with `../frontend/references/visual-qa/reference-fidelity.md`.
-- Use `../frontend/scripts/capture-browser.mjs` and `../frontend/scripts/visual-diff.mjs` when the project lacks equivalent tools.
+- Run reference-fidelity QA.
+- Use the project's browser and visual-diff tooling first; if none exists, use available browser automation and pixel comparison tools.
+
+Reference-fidelity QA checks:
+
+- pixel/layout fidelity
+- copy and hierarchy fidelity
+- responsive behavior
+- interaction states
+- accessibility
+- component extensibility
+- no screenshot-as-background shortcut
+- flatness/material quality
+
+Evidence must record:
+
+- reference packet path, when created
+- actual screenshot paths
+- viewport sizes
+- states captured
+- command or tool used
 
 ## Completion Gate
 

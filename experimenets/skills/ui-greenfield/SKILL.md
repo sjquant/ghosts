@@ -29,11 +29,10 @@ If no source exists, create lightweight implementation notes before UI code.
 
 When using references:
 
-1. Read `../frontend/references/design/_INDEX.md`.
-2. Shortlist 2-3 plausible Layer B visual/design-system directions.
-3. Select exactly one Layer A style/execution reference.
-4. Select exactly one Layer B brand/design-system reference.
-5. Extract concrete decisions:
+1. Shortlist 2-3 plausible Layer B visual/design-system directions.
+2. Select exactly one Layer A style/execution reference.
+3. Select exactly one Layer B brand/design-system reference.
+4. Extract concrete decisions:
 
 - color tokens or palette
 - typography
@@ -45,12 +44,34 @@ When using references:
 
 Do not copy logos, trademarked assets, brand-specific copy, or private data from references.
 
+Layer A options:
+
+- `taste-default`: operational, neutral, utility-first UI.
+- `taste-premium`: premium, glossy, startup-grade, brand-grade UI.
+- `taste-minimal`: editorial, quiet, precise, restrained UI.
+- `taste-experimental`: cinematic, high-variance, scroll-driven UI.
+
+Layer B options:
+
+- `brand-linear`: precise productivity UI.
+- `brand-stripe`: polished SaaS/fintech UI.
+- `brand-supabase`: dark developer-tool UI.
+- `brand-vercel`: monochrome platform UI.
+
 ## Implementation
 
 - Build or identify reusable primitives before product screens.
 - Avoid generic flat UI output.
-- Use `../frontend/scripts/search-uiux-db.mjs` when palette, font pairing, layout, chart, or UX heuristic lookup helps.
-- Use `../frontend/scripts/capture-browser.mjs` when the project lacks a screenshot tool.
+- If palette, font pairing, layout, chart, or UX heuristic lookup helps, inspect local design references or project examples before inventing values.
+- Capture browser evidence with the project's tooling; if none exists, use an available browser automation tool.
+
+Evidence must record:
+
+- route/page
+- viewport size
+- state captured
+- screenshot path
+- command or tool used
 
 ## Completion Gate
 

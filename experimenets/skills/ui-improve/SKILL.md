@@ -54,7 +54,16 @@ Rules:
 
 - Capture before/after browser evidence when useful.
 - Use the project's browser tooling first.
-- Use `../frontend/scripts/capture-browser.mjs` when the project lacks a capture tool.
+- If the project lacks a capture tool, use available browser automation.
+
+Evidence must record:
+
+- route/page
+- viewport size
+- state captured
+- screenshot path
+- command or tool used
+- before/after paths when useful
 
 ## Completion Gate
 
