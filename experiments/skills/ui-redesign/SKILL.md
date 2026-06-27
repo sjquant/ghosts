@@ -62,6 +62,24 @@ When the existing source lacks enough visual direction:
 - interaction states
 - motion rules
 
+## Structure
+
+This is not CSS-only. Change HTML/DOM structure when needed for:
+
+- visual hierarchy
+- semantic structure
+- accessibility
+- responsive ordering
+- component anatomy
+- interaction states
+
+Constraints:
+
+- Do not change markup only for styling convenience.
+- Preserve behavior, data flow, routes, forms, and event handlers.
+- Prefer existing components and tokens before adding structure.
+- Record structural changes in notes or `DESIGN.md` when they affect the design contract.
+
 Rules:
 
 - Do not perform unrelated redesign.
@@ -116,6 +134,7 @@ Evidence must record:
 - [ ] Visual direction, hierarchy, and material decisions identified when changed.
 - [ ] No unrelated redesign.
 - [ ] No unrecorded one-off styling.
+- [ ] HTML/semantic structure checked.
 - [ ] Changed breakpoints checked.
 - [ ] Changed states checked.
 - [ ] Accessibility checks relevant to scope completed.

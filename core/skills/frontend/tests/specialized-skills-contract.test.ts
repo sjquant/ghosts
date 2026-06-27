@@ -57,6 +57,12 @@ describe("specialized UI skill contracts", () => {
     expect(text).toContain("Select exactly one Layer A");
     expect(text).toContain("Select exactly one Layer B");
     expect(text).toContain("surface material");
+    expect(text).toContain("This is not CSS-only");
+    expect(text).toContain("visual hierarchy");
+    expect(text).toContain("semantic structure");
+    expect(text).toContain("Do not change markup only for styling convenience");
+    expect(text).toContain("Preserve behavior, data flow, routes, forms, and event handlers");
+    expect(text).toContain("HTML/semantic structure checked");
     expect(text).toContain("Do not perform unrelated redesign");
     expect(text).toContain("Redesign goal identified");
     expect(text).toContain("Changed breakpoints checked");
