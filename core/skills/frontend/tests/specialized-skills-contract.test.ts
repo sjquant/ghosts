@@ -3,10 +3,10 @@ import { describe, expect, it } from "bun:test";
 
 const greenfieldRoot = new URL("../../../../experiments/skills/ui-greenfield/", import.meta.url);
 const designToCodeRoot = new URL("../../../../experiments/skills/ui-design-to-code/", import.meta.url);
-const improveRoot = new URL("../../../../experiments/skills/ui-improve/", import.meta.url);
+const redesignRoot = new URL("../../../../experiments/skills/ui-redesign/", import.meta.url);
 const greenfieldPath = new URL("SKILL.md", greenfieldRoot);
 const designToCodePath = new URL("SKILL.md", designToCodeRoot);
-const improvePath = new URL("SKILL.md", improveRoot);
+const redesignPath = new URL("SKILL.md", redesignRoot);
 
 describe("specialized UI skill contracts", () => {
   it("keeps ui-greenfield focused on new UI from scratch", async () => {
@@ -44,17 +44,21 @@ describe("specialized UI skill contracts", () => {
     expect(text).toContain("Actual browser captures exist");
   });
 
-  it("keeps ui-improve focused on existing UI changes", async () => {
+  it("keeps ui-redesign focused on designer-led existing UI redesign", async () => {
     // given
-    const text = await Bun.file(improvePath).text();
+    const text = await Bun.file(redesignPath).text();
 
     // when
-    const hasExistingSourceRule = text.includes("First identify the existing source");
+    const hasDesignerPerspective = text.includes("designer's perspective");
 
     // then
-    expect(hasExistingSourceRule).toBe(true);
+    expect(hasDesignerPerspective).toBe(true);
+    expect(text).toContain("visual direction");
+    expect(text).toContain("Select exactly one Layer A");
+    expect(text).toContain("Select exactly one Layer B");
+    expect(text).toContain("surface material");
     expect(text).toContain("Do not perform unrelated redesign");
-    expect(text).toContain("Improvement goal identified");
+    expect(text).toContain("Redesign goal identified");
     expect(text).toContain("Changed breakpoints checked");
     expect(text).toContain("Changed states checked");
     expect(text).toContain("Browser evidence recorded");
@@ -65,10 +69,10 @@ describe("specialized UI skill contracts", () => {
     // given
     const greenfield = await Bun.file(greenfieldPath).text();
     const designToCode = await Bun.file(designToCodePath).text();
-    const improve = await Bun.file(improvePath).text();
+    const redesign = await Bun.file(redesignPath).text();
 
     // when
-    const combinedText = [greenfield, designToCode, improve].join("\n");
+    const combinedText = [greenfield, designToCode, redesign].join("\n");
 
     // then
     expect(combinedText).toContain("Figma design system");
@@ -81,10 +85,10 @@ describe("specialized UI skill contracts", () => {
     // given
     const greenfield = await Bun.file(greenfieldPath).text();
     const designToCode = await Bun.file(designToCodePath).text();
-    const improve = await Bun.file(improvePath).text();
+    const redesign = await Bun.file(redesignPath).text();
 
     // when
-    const combinedText = [greenfield, designToCode, improve].join("\n");
+    const combinedText = [greenfield, designToCode, redesign].join("\n");
 
     // then
     expect(combinedText).not.toContain("core/skills/frontend");
@@ -108,12 +112,15 @@ describe("specialized UI skill contracts", () => {
       new URL("scripts/visual-diff.mjs", designToCodeRoot),
       new URL("templates/DESIGN.md", designToCodeRoot),
       new URL("package.json", designToCodeRoot),
-      new URL("references/design-ops/critique.md", improveRoot),
-      new URL("references/perfection/performance-audit.md", improveRoot),
-      new URL("references/visual-qa/browser-capture.md", improveRoot),
-      new URL("scripts/capture-browser.mjs", improveRoot),
-      new URL("templates/DESIGN.md", improveRoot),
-      new URL("package.json", improveRoot),
+      new URL("references/design-ops/critique.md", redesignRoot),
+      new URL("references/design/_INDEX.md", redesignRoot),
+      new URL("references/design/taste-premium.md", redesignRoot),
+      new URL("references/design/brand-linear.md", redesignRoot),
+      new URL("references/perfection/performance-audit.md", redesignRoot),
+      new URL("references/visual-qa/browser-capture.md", redesignRoot),
+      new URL("scripts/capture-browser.mjs", redesignRoot),
+      new URL("templates/DESIGN.md", redesignRoot),
+      new URL("package.json", redesignRoot),
     ];
 
     // when

@@ -1,20 +1,19 @@
 ---
-name: ui-improve
-description: "Experimental frontend skill for existing UI changes: visual polish, redesign, UX flow, accessibility, performance, responsive fixes, state completeness, and visible component cleanup. Respects the existing design source and requires browser QA evidence."
+name: ui-redesign
+description: "Experimental frontend skill for redesigning existing UI from a designer's perspective: visual direction, hierarchy, UX flow, accessibility, responsive behavior, state completeness, and visible component cleanup. Respects the existing design source and requires browser QA evidence."
 ---
 
-# UI Improve
+# UI Redesign
 
-Use for existing UI changes:
+Use for designer-led redesign of existing UI:
 
 - visual polish
 - redesign
 - UX flow improvements
 - accessibility fixes
-- performance improvements
 - responsive fixes
 - state completeness
-- component cleanup tied to visible UI
+- design-system cleanup tied to visible UI
 
 ## Source
 
@@ -36,15 +35,32 @@ Use `templates/DESIGN.md` only when extracting a full design contract is chosen 
 
 ## Scope
 
-Classify the improvement goal before editing:
+Classify the redesign goal before editing:
 
 - visual polish
+- visual direction
+- hierarchy
 - UX flow
 - accessibility
-- performance
 - responsive behavior
 - interaction states
-- implementation cleanup
+- design-system cleanup
+
+When the existing source lacks enough visual direction:
+
+1. Read `references/design/_INDEX.md`.
+2. Shortlist 2-3 plausible Layer B visual/design-system directions.
+3. Select exactly one Layer A style/execution reference from `references/design/taste-*.md`.
+4. Select exactly one Layer B brand/design-system reference from `references/design/brand-*.md`.
+5. Extract only the decisions needed for this redesign:
+
+- color palette or token changes
+- typography and hierarchy
+- spacing rhythm
+- surface material, depth, radius, and shadow
+- component anatomy
+- interaction states
+- motion rules
 
 Rules:
 
@@ -54,6 +70,15 @@ Rules:
 
 Reference files included:
 
+- `references/design/_INDEX.md`
+- `references/design/taste-default.md`
+- `references/design/taste-premium.md`
+- `references/design/taste-minimal.md`
+- `references/design/taste-experimental.md`
+- `references/design/brand-linear.md`
+- `references/design/brand-stripe.md`
+- `references/design/brand-supabase.md`
+- `references/design/brand-vercel.md`
 - `references/design-ops/README.md`
 - `references/design-ops/accessibility.md`
 - `references/design-ops/critique.md`
@@ -87,12 +112,13 @@ Evidence must record:
 ## Completion Gate
 
 - [ ] Existing design source respected or extraction decision made.
-- [ ] Improvement goal identified.
+- [ ] Redesign goal identified.
+- [ ] Visual direction, hierarchy, and material decisions identified when changed.
 - [ ] No unrelated redesign.
 - [ ] No unrecorded one-off styling.
 - [ ] Changed breakpoints checked.
 - [ ] Changed states checked.
 - [ ] Accessibility checks relevant to scope completed.
-- [ ] Performance checks relevant to scope completed.
+- [ ] Perceived performance checks relevant to scope completed.
 - [ ] Browser evidence recorded.
 - [ ] Before/after evidence recorded when useful.
