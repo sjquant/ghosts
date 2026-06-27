@@ -1,25 +1,33 @@
 ---
 name: frontend
-description: "Use for frontend, web UI, UX, visual design, styling, redesign, React setup, design QA, performance, accessibility, screenshots, Figma exports, generated mockups, and any change to visible UI. Routes design, perfection, visual-qa, ui-ux-db, and design-ops references. Requires DESIGN.md before UI code, browser evidence before completion, and reference-fidelity QA when a concrete visual reference exists."
+description: "Umbrella router for frontend, web UI, UX, visual design, styling, redesign, React setup, design QA, performance, accessibility, screenshots, Figma exports, generated mockups, and any visible UI change. Routes by work mode to ui-design-to-code, ui-greenfield, or ui-improve when available. Keeps fallback references, scripts, and browser QA gates for standalone use."
+disable-model-invocation: true
 ---
 
 # Frontend
 
-Route frontend work to the smallest reference set that covers the request. State the loaded references in one sentence before implementation.
+Use this as the umbrella router. Prefer a specialized skill when available; otherwise use the fallback references and scripts below.
 
-## Completion Standard
+## Routing Priority
 
-A UI is complete only when it:
+1. Concrete visual reference, Figma, screenshot, mockup, source capture, annotated packet, or designer spec exists -> `ui-design-to-code`.
+2. New UI with no concrete visual reference -> `ui-greenfield`.
+3. Existing UI change -> `ui-improve`.
 
-- follows `DESIGN.md`
-- runs in a real browser
-- passes responsive and state QA
-- preserves accessibility and performance
-- avoids generic flat output
+State the selected route and loaded references in one sentence before implementation.
 
-Correct-but-flat is a failure.
+## Design Source
 
-## Route Before UI Work
+Use the most authoritative available source:
+
+1. Figma design system, variables, components, or tokens.
+2. Existing repo tokens, components, theme, or shared CSS.
+3. Existing `DESIGN.md`.
+4. Newly created lightweight implementation notes.
+
+`DESIGN.md` is one possible design contract, not the default source of truth.
+
+## Fallback References
 
 | Request involves | Read |
 |---|---|
@@ -30,22 +38,23 @@ Correct-but-flat is a failure.
 | Personas, cognitive accessibility, design critique, design debt, handoff, synthetic user testing | `references/design-ops/README.md` |
 | React project setup or React UI work | `references/design/react-dev-tooling-skill.md` |
 
-For implementation work, load design and perfection together.
+For implementation fallback work, load design and perfection together.
 
-## Design Workflow
+## Fallback Workflow
 
-Choose one branch before editing UI code:
+Use this only when specialized skills are unavailable:
 
-1. **Concrete visual reference:** screenshot, generated mockup, Figma export, overview, source-site capture, or annotated packet. Treat it as the visual contract. Load `references/design/image-to-code-skill.md`, relevant design/perfection files, and `references/visual-qa/reference-fidelity.md`. Extract tokens, geometry, copy, spacing, states, and responsive intent into `DESIGN.md`. QA actual captures against the reference and implementation quality.
-2. **Greenfield or fresh setup:** no concrete reference. Use `references/design/_INDEX.md` to shortlist 2-3 Layer B references. Load exactly one Layer A style reference and one Layer B brand/design-system reference. Extract tokens, layout grammar, component anatomy, states, motion, and taste decisions into `DESIGN.md`. Do not copy logos, trademarked assets, or brand-specific copy.
-3. **Existing project with `DESIGN.md` or components:** read and follow the existing system. Update it only when the request needs a new token, primitive, state, motion rule, accessibility rule, accepted debt, or reference-fidelity requirement.
-4. **Existing UI with no design system:** ask whether to preserve the current look with nearby edits or extract `DESIGN.md` and reusable components first.
+1. Identify the work mode: design-to-code, greenfield, or improve.
+2. Identify the authoritative design source.
+3. Read the smallest reference set that covers the work.
+4. Create lightweight implementation notes when no source exists.
+5. Build or identify reusable primitives before product screens.
+6. Verify in a real browser before completion.
 
-## Shared axioms
+## Shared Fallback Rules
 
-- `DESIGN.md` exists before new components.
-- Every color, font size, spacing value, radius, shadow, material, and motion rule traces to `DESIGN.md` or the existing system.
-- A concrete reference must match pixels, copy, component structure, and responsive intent unless the user accepts a deviation.
+- Every color, font size, spacing value, radius, shadow, material, and motion rule traces to the selected design source or implementation notes.
+- Concrete references must match pixels, copy, component structure, and responsive intent unless the user accepts a deviation.
 - References are source material, not mood labels.
 - Do not weaken UX, hide content, simplify interactions, or flatten material to improve scores.
 - Use SVG icon sets or real assets, not emojis as icons.
@@ -56,12 +65,12 @@ Choose one branch before editing UI code:
 
 | Request | Load |
 |---|---|
-| "Build a landing page" with no direction | `design/README.md` + `design/_INDEX.md` shortlist -> one Layer A + one Layer B + `perfection/README.md` |
+| "Build a landing page" with no direction | `ui-greenfield` or `design/README.md` + `design/_INDEX.md` shortlist -> one Layer A + one Layer B + `perfection/README.md` |
 | "Premium SaaS hero like Stripe" | `design/README.md` + `design/taste-premium.md` + `design/brand-stripe.md` + `perfection/README.md` |
 | "Linear-style product page" | `design/README.md` + `design/taste-minimal.md` + `design/brand-linear.md` + `perfection/README.md` |
 | "Developer tool, dark, code-first" | `design/README.md` + `design/taste-premium.md` + `design/brand-supabase.md` or `brand-vercel.md` + `perfection/README.md` |
-| "Improve this existing dashboard" | `design/README.md` + existing `DESIGN.md` or stop for extraction decision + `perfection/README.md` |
-| "Build this screenshot / Figma / mock exactly" | `design/README.md` + `design/image-to-code-skill.md` + `visual-qa/reference-fidelity.md` + `perfection/README.md` |
+| "Improve this existing dashboard" | `ui-improve` or `design/README.md` + existing design source + `perfection/README.md` |
+| "Build this screenshot / Figma / mock exactly" | `ui-design-to-code` or `design/README.md` + `design/image-to-code-skill.md` + `visual-qa/reference-fidelity.md` + `perfection/README.md` |
 | "Audit my site" / "make this faster" | `perfection/README.md` + browser evidence |
 | "Find a palette / font pairing" | `ui-ux-db/README.md` |
 | "Add personas/accessibility/debt/handoff" | `design-ops/README.md` + `design/README.md` |
@@ -70,17 +79,16 @@ Choose one branch before editing UI code:
 
 Do not report completion until all applicable items are true:
 
-- [ ] Correct branch selected before UI code.
+- [ ] Work mode selected before UI code.
 - [ ] Required references loaded.
-- [ ] `DESIGN.md` created or updated.
-- [ ] Tokens trace to references or existing system.
+- [ ] Design source or lightweight implementation notes identified.
+- [ ] Tokens/source styles identified.
 - [ ] Component primitives defined before product screens.
 - [ ] Required states implemented.
 - [ ] Real browser QA run after the final edit.
 - [ ] Mobile/tablet/desktop captures exist or a limitation is explicitly stated.
 - [ ] Reference-fidelity QA run if concrete reference exists.
 - [ ] No screenshot-as-background shortcut.
-- [ ] No generic-default drift.
-- [ ] No flat expressive surface.
+- [ ] No generic flat output.
 - [ ] Performance/accessibility not sacrificed.
 - [ ] Evidence paths are recorded.

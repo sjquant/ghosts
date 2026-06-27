@@ -36,7 +36,7 @@ Also capture applicable states:
 
 ## Visual QA asks
 
-1. Does it match `DESIGN.md`?
+1. Does it match the selected design source or implementation notes?
 2. Does it match the reference packet if one exists?
 3. Are all states implemented?
 4. Does the layout respond correctly?

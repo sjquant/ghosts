@@ -12,4 +12,4 @@ node scripts/search-uiux-db.mjs "wellness palette"
 
 ## Rule
 
-This is a lookup tool, not the design source of truth. Use results to help write `DESIGN.md`; do not bypass the design reference workflow.
+This is a lookup tool, not the design source of truth. Use results to update the selected design source or implementation notes; do not bypass the design reference workflow.

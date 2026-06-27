@@ -29,7 +29,7 @@ Before writing evidence to disk or passing it to reviewers:
 1. Create a reference packet directory.
 2. Save reference images and overview/annotation text there.
 3. Enumerate pages, states, scroll positions, and viewport sizes.
-4. Extract exact facts into `DESIGN.md`:
+4. Extract exact facts into the selected design source or lightweight implementation notes:
    - color tokens
    - typography
    - layout geometry
@@ -64,5 +64,5 @@ Only acceptable when documented:
 - user explicitly requested deviation
 - accessibility requires a change
 - responsive breakpoint requires extrapolation
-- reference is incomplete and `DESIGN.md` records the assumption
+- reference is incomplete and the selected design source or implementation notes record the assumption
 - legal/trademark/privacy issue requires replacement

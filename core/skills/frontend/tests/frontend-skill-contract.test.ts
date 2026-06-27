@@ -3,46 +3,60 @@ import { describe, expect, it } from "bun:test";
 const skillPath = new URL("../SKILL.md", import.meta.url);
 
 describe("frontend skill contract", () => {
-  it("requires concrete visual references to become a visual contract", async () => {
+  it("routes concrete visual references to ui-design-to-code", async () => {
     // given
     const text = await Bun.file(skillPath).text();
 
     // when
-    const hasContractLanguage = text.includes("Concrete visual reference");
+    const hasDesignToCodeRoute = text.includes("ui-design-to-code");
 
     // then
-    expect(hasContractLanguage).toBe(true);
+    expect(hasDesignToCodeRoute).toBe(true);
     expect(text).toContain("Concrete visual reference");
-    expect(text).toContain("reference-fidelity");
-    expect(text).toContain("DESIGN.md");
-    expect(text).toContain("visual contract");
+    expect(text).toContain("Figma");
+    expect(text).toContain("designer spec");
+    expect(text).toContain("ui-design-to-code");
   });
 
-  it("requires greenfield work to load references before UI code", async () => {
+  it("routes new UI work to ui-greenfield", async () => {
     // given
     const text = await Bun.file(skillPath).text();
 
     // when
-    const hasGreenfieldRoute = text.includes("Greenfield");
+    const hasGreenfieldRoute = text.includes("ui-greenfield");
 
     // then
     expect(hasGreenfieldRoute).toBe(true);
-    expect(text).toContain("Greenfield");
-    expect(text).toContain("_INDEX.md");
-    expect(text).toContain("Layer A");
-    expect(text).toContain("Layer B");
+    expect(text).toContain("New UI with no concrete visual reference");
+    expect(text).toContain("ui-greenfield");
   });
 
-  it("defines flatness as a failure", async () => {
+  it("routes existing UI changes to ui-improve", async () => {
     // given
     const text = await Bun.file(skillPath).text();
 
     // when
-    const hasFlatnessGate = text.includes("Correct-but-flat is a failure");
+    const hasImproveRoute = text.includes("ui-improve");
 
     // then
-    expect(hasFlatnessGate).toBe(true);
-    expect(text).toContain("Correct-but-flat is a failure");
-    expect(text).toContain("flatten");
+    expect(hasImproveRoute).toBe(true);
+    expect(text).toContain("Existing UI change");
+    expect(text).toContain("ui-improve");
+  });
+
+  it("does not make DESIGN.md mandatory for all workflows", async () => {
+    // given
+    const text = await Bun.file(skillPath).text();
+
+    // when
+    const treatsDesignMdAsOptionalSource = text.includes("one possible design contract");
+
+    // then
+    expect(treatsDesignMdAsOptionalSource).toBe(true);
+    expect(text).toContain("Figma design system");
+    expect(text).toContain("Existing repo tokens");
+    expect(text).toContain("lightweight implementation notes");
+    expect(text).not.toContain("Requires DESIGN.md before UI code");
+    expect(text).not.toContain("DESIGN.md exists before new components");
   });
 });

@@ -1,6 +1,6 @@
 # Design Debt
 
-Record accepted debt in `DESIGN.md`.
+Record accepted debt in the selected design source or implementation notes.
 
 | Debt | Reason accepted | Risk | Follow-up |
 |---|---|---|---|

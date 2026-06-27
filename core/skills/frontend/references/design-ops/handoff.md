@@ -3,7 +3,7 @@
 A frontend handoff must include:
 
 - references loaded
-- `DESIGN.md` path
+- design source or implementation notes path
 - implementation files
 - screenshots/evidence
 - states tested

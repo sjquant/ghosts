@@ -1,6 +1,6 @@
 # Design Reference Router
 
-Route UI work to the minimum design references needed, then convert them into `DESIGN.md` before implementation.
+Route UI work to the minimum design references needed, then convert them into the selected design source, existing implementation system, or lightweight implementation notes.
 
 ## Standard
 
@@ -50,7 +50,7 @@ If there is no concrete visual reference:
 2. Decide ambition: operational or expressive.
 3. Shortlist 2-3 Layer B references.
 4. Pick exactly one Layer A and one Layer B.
-5. Extract their actual design decisions into `DESIGN.md`.
+5. Extract their actual design decisions into the selected design source or lightweight implementation notes.
 6. Define reusable primitives and states before product screens.
 
 ### 3. Existing system
@@ -59,7 +59,7 @@ If `DESIGN.md`, tokens, components, or a design system exists, read it first. Up
 
 ### 4. Existing UI without a design system
 
-Stop and ask: preserve the current look with copy-nearby edits, or extract a real `DESIGN.md` and reusable primitives first? Do not silently choose.
+Stop and ask: preserve the current look with copy-nearby edits, or extract lightweight implementation notes and reusable primitives first? Do not silently choose.
 
 ## Ambition routing
 
@@ -76,7 +76,9 @@ Do not let an expressive brief fall through to the safe default.
 
 ## DESIGN.md Requirements
 
-Before UI code, `DESIGN.md` must name:
+Use `DESIGN.md` when the repo already uses it, the design is ambiguous, responsive/state behavior must be documented, deviations must be recorded, or the user asks for it.
+
+When used, `DESIGN.md` must name:
 
 - visual intent
 - references loaded
@@ -106,8 +108,8 @@ For expressive briefs, verify:
 
 ## Design QA checklist
 
-- [ ] `DESIGN.md` exists.
-- [ ] All visual values trace to `DESIGN.md`.
+- [ ] Design source or implementation notes exist.
+- [ ] All visual values trace to the selected source.
 - [ ] Fonts actually load.
 - [ ] Color ramp is used, not a single tint.
 - [ ] Required states are implemented.

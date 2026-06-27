@@ -12,4 +12,4 @@ Check:
 - color-independent signals
 - sufficient contrast
 
-Accessibility constraints must appear in `DESIGN.md` if they affect implementation.
+Accessibility constraints must appear in the selected design source or implementation notes if they affect implementation.

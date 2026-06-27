@@ -14,4 +14,4 @@
 
 ## Rule
 
-Accessibility changes can override visual fidelity when necessary, but document the deviation in `DESIGN.md`.
+Accessibility changes can override visual fidelity when necessary, but document the deviation in the selected design source or implementation notes.

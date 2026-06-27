@@ -1,8 +1,10 @@
 # Design System Architecture
 
-`DESIGN.md` is the implementation contract. UI code may not introduce visual values outside `DESIGN.md` or the existing design system.
+`DESIGN.md` can be an implementation contract. Prefer the most authoritative available design source: Figma system, repo tokens/components/theme/shared CSS, existing `DESIGN.md`, or lightweight implementation notes.
 
 ## Required sections
+
+When `DESIGN.md` is used, include:
 
 1. Intent
 2. References loaded
@@ -30,7 +32,7 @@ Token or name every:
 - z-index/layering
 - breakpoint behavior
 
-No orphan hex values or magic pixel values. Add needed values to `DESIGN.md` first.
+No orphan hex values or magic pixel values. Add needed values to the selected source or implementation notes first.
 
 ## Component primitive rules
 
@@ -61,7 +63,7 @@ Allowed:
 - local composition
 - content-specific layout
 - screen-specific imagery
-- documented one-off when `DESIGN.md` records accepted debt
+- documented one-off when the selected source records accepted debt
 
 Not allowed:
 
