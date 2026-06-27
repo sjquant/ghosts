@@ -1,11 +1,11 @@
 ---
 name: ui-improve
-description: "Experimental frontend skill for improving existing UI: visual polish, redesign, UX flow, accessibility, performance, responsive fixes, state completeness, and component cleanup tied to visible UI. Respects the existing design source and requires browser QA evidence."
+description: "Experimental frontend skill for existing UI changes: visual polish, redesign, UX flow, accessibility, performance, responsive fixes, state completeness, and visible component cleanup. Respects the existing design source and requires browser QA evidence."
 ---
 
 # UI Improve
 
-Use for improving existing UI:
+Use for existing UI changes:
 
 - visual polish
 - redesign
@@ -16,7 +16,7 @@ Use for improving existing UI:
 - state completeness
 - component cleanup tied to visible UI
 
-## Existing Design Source
+## Source
 
 First identify the existing source:
 
@@ -27,7 +27,7 @@ First identify the existing source:
 
 Follow an existing source before introducing new visual decisions.
 
-If no design source exists, ask whether to:
+If no source exists, ask whether to:
 
 - preserve the current look with nearby edits
 - extract lightweight implementation notes and reusable components first
@@ -50,7 +50,7 @@ Rules:
 - Extend tokens, components, states, motion rules, accessibility rules, or accepted debt only when required.
 - Do not introduce ad-hoc one-off styling unless scoped, necessary, and recorded as debt.
 
-## Evidence
+## QA
 
 - Capture before/after browser evidence when useful.
 - Use the project's browser tooling first.

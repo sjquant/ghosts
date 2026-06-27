@@ -1,11 +1,11 @@
 ---
 name: ui-design-to-code
-description: "Experimental frontend skill for implementing concrete design references in code, including Figma, screenshots, generated mockups, source-site captures, annotated packets, and designer specs. Treats the reference as the implementation contract and requires reference-fidelity browser QA."
+description: "Experimental frontend skill for implementing concrete visual references in code: Figma, screenshots, generated mockups, source captures, annotated packets, and designer specs. Treats the reference as the implementation contract and requires reference-fidelity browser QA."
 ---
 
 # UI Design To Code
 
-Use when implementing a concrete design reference in code:
+Use when implementing a concrete visual reference:
 
 - Figma
 - screenshots
@@ -16,16 +16,16 @@ Use when implementing a concrete design reference in code:
 
 Treat the visual reference as the implementation contract, not inspiration.
 
-## Source Of Truth
+## Source
 
-Use the most authoritative available source:
+Source priority:
 
 1. Figma design system, variables, components, or tokens.
 2. Existing repo tokens, components, theme, or shared CSS.
 3. Existing `DESIGN.md`.
 4. Newly created lightweight implementation notes.
 
-If the repo has existing implementation primitives, map the reference design to them before adding new ones.
+Map the reference to existing implementation primitives before adding new ones.
 
 Create or update `DESIGN.md` only when:
 
@@ -36,7 +36,7 @@ Create or update `DESIGN.md` only when:
 - deviations from the reference must be recorded
 - the user explicitly asks for it
 
-## Reference Handling
+## Reference
 
 - Create a reference packet when useful.
 - Redact private data before saving or sharing reference material.
@@ -56,7 +56,7 @@ Extract implementation facts:
 - interaction states
 - responsive intent
 
-## Implementation And QA
+## Implementation
 
 - Prefer reusable tokens, components, and primitives over one-off screenshot matching.
 - Capture the actual browser UI at matching viewport/state combinations.
