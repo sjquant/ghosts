@@ -1,0 +1,11 @@
+{
+  "name": "ui-improve-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node scripts/capture-browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "latest"
+  }
+}

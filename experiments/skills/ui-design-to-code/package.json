@@ -1,0 +1,14 @@
+{
+  "name": "ui-design-to-code-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "node scripts/capture-browser.mjs",
+    "diff": "node scripts/visual-diff.mjs"
+  },
+  "devDependencies": {
+    "pixelmatch": "latest",
+    "playwright": "latest",
+    "pngjs": "latest"
+  }
+}

@@ -1,8 +1,12 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "bun:test";
 
-const greenfieldPath = new URL("../../../../experimenets/skills/ui-greenfield/SKILL.md", import.meta.url);
-const designToCodePath = new URL("../../../../experimenets/skills/ui-design-to-code/SKILL.md", import.meta.url);
-const improvePath = new URL("../../../../experimenets/skills/ui-improve/SKILL.md", import.meta.url);
+const greenfieldRoot = new URL("../../../../experiments/skills/ui-greenfield/", import.meta.url);
+const designToCodeRoot = new URL("../../../../experiments/skills/ui-design-to-code/", import.meta.url);
+const improveRoot = new URL("../../../../experiments/skills/ui-improve/", import.meta.url);
+const greenfieldPath = new URL("SKILL.md", greenfieldRoot);
+const designToCodePath = new URL("SKILL.md", designToCodeRoot);
+const improvePath = new URL("SKILL.md", improveRoot);
 
 describe("specialized UI skill contracts", () => {
   it("keeps ui-greenfield focused on new UI from scratch", async () => {
@@ -87,5 +91,32 @@ describe("specialized UI skill contracts", () => {
     expect(combinedText).not.toContain("frontend/references");
     expect(combinedText).not.toContain("frontend/scripts");
     expect(combinedText).toContain("Evidence must record");
+  });
+
+  it("includes references and scripts in each experimental skill", async () => {
+    // given
+    const expectedPaths = [
+      new URL("references/design/_INDEX.md", greenfieldRoot),
+      new URL("references/ui-ux-db/palettes.csv", greenfieldRoot),
+      new URL("scripts/search-uiux-db.mjs", greenfieldRoot),
+      new URL("scripts/capture-browser.mjs", greenfieldRoot),
+      new URL("package.json", greenfieldRoot),
+      new URL("references/design/image-to-code-skill.md", designToCodeRoot),
+      new URL("references/visual-qa/reference-fidelity.md", designToCodeRoot),
+      new URL("scripts/capture-browser.mjs", designToCodeRoot),
+      new URL("scripts/visual-diff.mjs", designToCodeRoot),
+      new URL("package.json", designToCodeRoot),
+      new URL("references/design-ops/critique.md", improveRoot),
+      new URL("references/perfection/performance-audit.md", improveRoot),
+      new URL("references/visual-qa/browser-capture.md", improveRoot),
+      new URL("scripts/capture-browser.mjs", improveRoot),
+      new URL("package.json", improveRoot),
+    ];
+
+    // when
+    const missingPaths = expectedPaths.filter((path) => !existsSync(path));
+
+    // then
+    expect(missingPaths).toEqual([]);
   });
 });

@@ -50,11 +50,27 @@ Rules:
 - Extend tokens, components, states, motion rules, accessibility rules, or accepted debt only when required.
 - Do not introduce ad-hoc one-off styling unless scoped, necessary, and recorded as debt.
 
+Reference files included:
+
+- `references/design-ops/README.md`
+- `references/design-ops/accessibility.md`
+- `references/design-ops/critique.md`
+- `references/design-ops/design-debt.md`
+- `references/perfection/README.md`
+- `references/perfection/accessibility-audit.md`
+- `references/perfection/performance-audit.md`
+- `references/visual-qa/README.md`
+- `references/visual-qa/browser-capture.md`
+
 ## QA
 
 - Capture before/after browser evidence when useful.
 - Use the project's browser tooling first.
-- If the project lacks a capture tool, use available browser automation.
+- If the project lacks a capture tool, use `scripts/capture-browser.mjs`.
+
+Scripts included:
+
+- `scripts/capture-browser.mjs`
 
 Evidence must record:
 
