@@ -1,0 +1,19 @@
+# Design Ops Ruleset
+
+Use when the work needs personas, cognitive accessibility, critique, design debt, handoff, synthetic user testing, or design planning.
+
+This ruleset does not replace the selected design source, visual QA, or implementation gates.
+
+## Use for
+
+- design brief generation
+- persona constraints
+- accessibility constraints
+- critique pass
+- design debt tracking
+- handoff notes
+- synthetic user testing
+
+## Output
+
+Distill useful decisions into the selected design source or implementation notes before code uses them.

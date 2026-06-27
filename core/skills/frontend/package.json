@@ -1,0 +1,16 @@
+{
+  "name": "reference-driven-frontend-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "bun test tests",
+    "search": "node scripts/search-uiux-db.mjs",
+    "capture": "node scripts/capture-browser.mjs",
+    "diff": "node scripts/visual-diff.mjs"
+  },
+  "devDependencies": {
+    "pixelmatch": "latest",
+    "playwright": "latest",
+    "pngjs": "latest"
+  }
+}

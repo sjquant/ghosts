@@ -1,0 +1,12 @@
+{
+  "name": "ui-greenfield-skill",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "search": "node scripts/search-uiux-db.mjs",
+    "capture": "node scripts/capture-browser.mjs"
+  },
+  "devDependencies": {
+    "playwright": "latest"
+  }
+}
