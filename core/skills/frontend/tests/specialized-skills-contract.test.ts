@@ -135,4 +135,27 @@ describe("specialized UI skill contracts", () => {
     // then
     expect(missingPaths).toEqual([]);
   });
+
+  it("requires responsive spacing alignment and report layout QA", async () => {
+    // given
+    const greenfield = await Bun.file(greenfieldPath).text();
+    const designToCode = await Bun.file(designToCodePath).text();
+    const redesign = await Bun.file(redesignPath).text();
+
+    // when
+    const skills = [greenfield, designToCode, redesign];
+
+    // then
+    for (const text of skills) {
+      expect(text).toContain("desktop and mobile screenshots");
+      expect(text).toContain("hidden horizontal overflow");
+      expect(text).toContain("real content density");
+      expect(text).toContain("wrapper, card, and table borders");
+      expect(text).toContain("double outlines");
+      expect(text).toContain("cramped nested surfaces");
+      expect(text).toContain("do not squeeze multiple wide tables into columns");
+      expect(text).toContain("Desktop and mobile spacing screenshots checked");
+      expect(text).toContain("Alignment and overflow regressions checked");
+    }
+  });
 });

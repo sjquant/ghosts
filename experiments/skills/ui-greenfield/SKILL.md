@@ -71,6 +71,25 @@ Reference files included:
 - Use `scripts/search-uiux-db.mjs` when palette, font pairing, layout, chart, or UX heuristic lookup helps.
 - Capture browser evidence with the project's tooling; if none exists, use `scripts/capture-browser.mjs`.
 
+## Spacing And Alignment QA
+
+When changing responsive spacing, capture and inspect desktop and mobile screenshots before completion.
+
+Check:
+
+- spacing rhythm at desktop and mobile widths
+- visible alignment across neighboring sections and repeated components
+- hidden horizontal overflow, clipping, and accidental scroll
+- real content density, not only empty or idealized states
+
+For report layouts:
+
+- inspect wrapper, card, and table borders together
+- avoid double outlines
+- avoid cramped nested surfaces
+- check real desktop and mobile content density
+- do not squeeze multiple wide tables into columns
+
 Scripts included:
 
 - `scripts/search-uiux-db.mjs`
@@ -90,6 +109,8 @@ Evidence must record:
 - [ ] Tokens/source styles identified.
 - [ ] Primitives or existing components identified.
 - [ ] Mobile/tablet/desktop QA completed.
+- [ ] Desktop and mobile spacing screenshots checked.
+- [ ] Alignment and overflow regressions checked.
 - [ ] Relevant interaction states checked.
 - [ ] Accessibility checks completed.
 - [ ] Browser screenshot evidence recorded.
