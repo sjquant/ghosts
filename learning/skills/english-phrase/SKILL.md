@@ -29,7 +29,7 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 ## Output Format
 
 ```markdown
-### **가장 자연스러운 표현**
+## ✅ 가장 자연스러운 표현
 
 **"[English Phrase]"**
 [짧은 한국어 설명]
@@ -37,14 +37,14 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 **"[English Phrase]"**
 [짧은 한국어 설명]
 
-### **상황별로 이렇게 말해요**
+## 💬 상황별로 이렇게 말해요
 
-#### **[짧은 한국어 문맥]**
+### **[짧은 한국어 문맥]**
 
 **"[English Phrase]"**
 [짧은 한국어 설명]
 
-#### **[짧은 한국어 문맥]**
+### **[짧은 한국어 문맥]**
 
 **"[English Phrase]"**
 [짧은 한국어 설명]
@@ -52,9 +52,9 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 **"[English Phrase]"**
 [짧은 한국어 설명; 의미 차이가 있을 때만 추가]
 
-### **대화 예시**
+## 🎭 대화 예시
 
-#### **상황 1: [문맥 설명]**
+### **상황 1: [문맥 설명]**
 
 > **Mina:** [English line with **bolded key phrase**]
 > ([Korean translation])
@@ -74,7 +74,7 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 > **Joon:** [English closing response]
 > ([Korean translation])
 
-#### **상황 2: [다른 문맥 설명]**
+### **상황 2: [다른 문맥 설명]**
 
 > **Alex:** [English line with **bolded key phrase**]
 > ([Korean translation])
