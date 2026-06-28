@@ -73,6 +73,23 @@ Extract implementation facts:
 - Run reference-fidelity QA.
 - Use the project's browser and visual-diff tooling first; if none exists, use `scripts/capture-browser.mjs` and `scripts/visual-diff.mjs`.
 
+## Responsive Spacing QA
+
+If responsive spacing changes, inspect desktop and mobile screenshots before completion.
+
+Check:
+
+- spacing fidelity at desktop and mobile widths
+- visible alignment against the reference and neighboring components
+- hidden overflow, clipping, and accidental scroll
+- real content density, not empty or idealized states
+
+For report spacing/layouts:
+
+- inspect wrapper, card, and table borders together
+- avoid double outlines and cramped nested surfaces
+- do not squeeze multiple wide tables into columns
+
 Scripts included:
 
 - `scripts/capture-browser.mjs`
@@ -105,6 +122,8 @@ Evidence must record:
 - [ ] Pixel/layout fidelity checked.
 - [ ] Responsive behavior checked.
 - [ ] Responsive extrapolation documented when needed.
+- [ ] Desktop and mobile spacing screenshots checked.
+- [ ] Alignment, overflow, and report density checked.
 - [ ] Interaction states checked.
 - [ ] Accessibility checks completed.
 - [ ] No screenshot-as-background shortcut.

@@ -114,6 +114,23 @@ Reference files included:
 - Use the project's browser tooling first.
 - If the project lacks a capture tool, use `scripts/capture-browser.mjs`.
 
+## Responsive Spacing QA
+
+If responsive spacing changes, inspect desktop and mobile screenshots before completion.
+
+Check:
+
+- spacing rhythm at desktop and mobile widths
+- visible alignment across wrappers, content edges, cards, tables, and actions
+- hidden overflow, clipping, and accidental scroll
+- real content density, not empty or idealized states
+
+For report spacing/layouts:
+
+- inspect wrapper, card, and table borders together
+- avoid double outlines and cramped nested surfaces
+- do not squeeze multiple wide tables into columns
+
 Scripts included:
 
 - `scripts/capture-browser.mjs`
@@ -136,6 +153,8 @@ Evidence must record:
 - [ ] No unrecorded one-off styling.
 - [ ] HTML/semantic structure checked.
 - [ ] Changed breakpoints checked.
+- [ ] Desktop and mobile spacing screenshots checked.
+- [ ] Alignment, overflow, and report density checked.
 - [ ] Changed states checked.
 - [ ] Accessibility checks relevant to scope completed.
 - [ ] Perceived performance checks relevant to scope completed.
