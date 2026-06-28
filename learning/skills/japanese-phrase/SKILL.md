@@ -26,7 +26,7 @@ $ARGUMENTS
   - Short Korean nuance/usage explanation.
   - `단어/표현` bullets.
 - Format `단어/표현` as short bullets, not slash-separated inline lists.
-- Each `단어/표현` bullet should explain one word, particle, ending, or fixed expression.
+- Each `단어/표현` bullet should explain one word, particle, ending, or fixed expression and include its `읽기/발음 참고`.
 - Avoid repeating the same word/grammar explanation across sections.
 - Treat Korean-style pronunciation as a learning aid, not exact pronunciation.
 - Mention long vowels, small っ, and ん only when useful; avoid lengthy repeated pronunciation notes.
@@ -61,8 +61,8 @@ $ARGUMENTS
 [짧은 한국어 설명]
 
 단어/표현:
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
 
 **「[Japanese Phrase]」**
 읽기: [ひらがな]
@@ -72,8 +72,8 @@ $ARGUMENTS
 [짧은 한국어 설명]
 
 단어/표현:
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
 
 ## 💬 상황별로 이렇게 말해요
 
@@ -87,8 +87,8 @@ $ARGUMENTS
 [짧은 한국어 설명]
 
 단어/표현:
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
 
 ### **[짧은 한국어 문맥]**
 
@@ -100,8 +100,8 @@ $ARGUMENTS
 [짧은 한국어 설명]
 
 단어/표현:
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
-- [단어/조사/어미/고정 표현 하나]: [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
+- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [짧은 한국어 풀이]
 
 ## 🎭 대화 예시
 
