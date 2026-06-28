@@ -8,7 +8,7 @@ Create a Korean-language learning guide that translates one everyday Korean phra
 
 ## Input
 
-- One Korean phrase.
+$ARGUMENTS
 
 ## Requirements
 
