@@ -1,5 +1,5 @@
 ---
-name: korean-english-phrase-guide
+name: english-phrase
 description: Create Korean-language learning guides for translating everyday Korean phrases into natural English by context.
 disable-model-invocation: true
 ---
