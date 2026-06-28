@@ -4,7 +4,7 @@ description: Create Korean-language learning guides for translating everyday Kor
 disable-model-invocation: true
 ---
 
-Create a learning guide for one everyday Korean phrase, written for Korean learners of English.
+Create a Korean-language learning guide that translates one everyday Korean phrase into natural spoken English.
 
 ## Input
 
@@ -12,20 +12,19 @@ Create a learning guide for one everyday Korean phrase, written for Korean learn
 
 ## Requirements
 
-1. Explain the phrase's core meaning, formality level, and common usage contexts.
-2. Write all headers and explanations in Korean.
-3. Keep English translation candidates and English dialogue lines in English.
-4. 실제 회화에서 자주 쓰이는 표현을 직역보다 우선한다.
-5. Avoid listing grammar variants that mean nearly the same thing; choose expressions with distinct usage differences.
-6. Start with 1-2 broadly useful English translations.
-7. Add situation-specific translations under at least two short, conversational Korean context headings.
-8. Use 1 expression per context by default; add a second only when it has a meaningfully different use.
-9. For every English phrase, explain in Korean its nuance, feeling, and appropriate usage in a short paragraph.
-10. Keep the main Korean section headers, but use readable spacing and avoid deep nested bullets or workbook-style formatting.
-11. End with at least two realistic dialogue scenarios.
-12. Each dialogue must use natural speaker names, include at least 6 English lines, alternate naturally in an A-B-A-B-A-B pattern, and include context, response, follow-up, and a small resolution.
-13. Each English dialogue line must include a Korean translation.
-14. Key phrases must exactly match phrases introduced earlier and be bolded.
+- Write all headers and explanations in Korean. Keep English phrases and English dialogue lines in English.
+- Explain the Korean phrase's core meaning, formality level, and common usage contexts.
+- Prioritize expressions commonly used in real spoken English over literal translations.
+- Avoid near-duplicate grammar variants; choose phrases with distinct usage differences.
+- Use readable spacing and short paragraph-style Korean explanations instead of deep nested bullets.
+
+## Sections
+
+1. `가장 자연스러운 표현`: give 1-2 broadly useful English translations.
+2. `상황별로 이렇게 말해요`: use at least two short, conversational Korean context headings. Give 1 English phrase per context by default; add a second only when the usage is meaningfully different.
+3. `대화 예시`: include at least two realistic scenarios. Each scenario must use natural speaker names, include at least 6 English lines, alternate in an A-B-A-B-A-B pattern, and include context, response, follow-up, and a small resolution.
+
+For every English phrase, add a short Korean paragraph explaining nuance, feeling, and appropriate usage. In dialogues, every English line needs a Korean translation. Bolded key phrases must exactly match phrases introduced earlier.
 
 ## Output Format
 
