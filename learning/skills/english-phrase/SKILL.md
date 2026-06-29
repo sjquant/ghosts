@@ -26,6 +26,12 @@ $ARGUMENTS
 
 For every English phrase, add a short Korean paragraph explaining nuance, feeling, and appropriate usage. In dialogues, every English line needs a Korean translation. Bolded key phrases must exactly match phrases introduced earlier.
 
+Dialogue examples must preserve conversational flow:
+- Use at least one bolded key phrase per scenario.
+- Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
+- For `Since you brought it up,`, the other speaker must have introduced the topic first.
+- After the key phrase, continue with a response, clarification, decision, or resolution.
+
 ## Output Format
 
 ```markdown
@@ -62,7 +68,7 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 > **Joon:** [English response]
 > ([Korean translation])
 >
-> **Mina:** [English follow-up with **bolded key phrase**]
+> **Mina:** [English follow-up or decision; use **bolded key phrase** only with a new trigger]
 > ([Korean translation])
 >
 > **Joon:** [English response]
@@ -82,7 +88,7 @@ For every English phrase, add a short Korean paragraph explaining nuance, feelin
 > **Taylor:** [English response]
 > ([Korean translation])
 >
-> **Alex:** [English follow-up with **bolded key phrase**]
+> **Alex:** [English follow-up or clarification; use **bolded key phrase** only with a new trigger]
 > ([Korean translation])
 >
 > **Taylor:** [English response]
