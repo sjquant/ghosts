@@ -26,12 +26,11 @@ $ARGUMENTS
 
 For every English phrase, add a short Korean paragraph explaining nuance, feeling, and appropriate usage. In dialogues, every English line needs a Korean translation. Bolded key phrases must exactly match phrases introduced earlier.
 
-Dialogue examples should sound like one continuous conversation, not isolated sentence drills:
-- Include at least one bolded key phrase per scenario, but do not force the same connector twice in one scenario.
-- Use a second bolded key phrase only when the later turn has a genuinely new conversational trigger.
-- Make the trigger clear in the immediately preceding line or shared context. For phrases like `Since you brought it up,`, the other speaker must actually have brought up that topic first.
-- Avoid starting multiple turns with the same transition phrase in the same dialogue.
-- Prefer a natural follow-up, clarification, or decision after the key phrase instead of repeating the target expression.
+Dialogue examples must preserve conversational flow:
+- Use at least one bolded key phrase per scenario.
+- Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
+- For `Since you brought it up,`, the other speaker must have introduced the topic first.
+- After the key phrase, continue with a response, clarification, decision, or resolution.
 
 ## Output Format
 
@@ -69,7 +68,7 @@ Dialogue examples should sound like one continuous conversation, not isolated se
 > **Joon:** [English response]
 > ([Korean translation])
 >
-> **Mina:** [English follow-up or decision; include **bolded key phrase** only if naturally triggered again]
+> **Mina:** [English follow-up or decision; use **bolded key phrase** only with a new trigger]
 > ([Korean translation])
 >
 > **Joon:** [English response]
@@ -89,7 +88,7 @@ Dialogue examples should sound like one continuous conversation, not isolated se
 > **Taylor:** [English response]
 > ([Korean translation])
 >
-> **Alex:** [English follow-up or clarification; include **bolded key phrase** only if naturally triggered again]
+> **Alex:** [English follow-up or clarification; use **bolded key phrase** only with a new trigger]
 > ([Korean translation])
 >
 > **Taylor:** [English response]

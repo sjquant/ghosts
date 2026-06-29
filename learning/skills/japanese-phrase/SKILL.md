@@ -47,12 +47,10 @@ $ARGUMENTS
   - Good: `宿題、**やることは全部やったよ**。`
   - Bad: `宿題、 **やることは全部やったよ** 。`
 - Bold only the introduced phrase, excluding punctuation unless punctuation is part of the phrase.
-- Dialogue examples should sound like one continuous conversation, not isolated sentence drills:
-  - Include at least one bolded key phrase per scenario, but do not force the same connector twice in one scenario.
-  - Use a second bolded key phrase only when the later turn has a genuinely new conversational trigger.
-  - Make the trigger clear in the immediately preceding line or shared context.
-  - Avoid starting multiple turns with the same transition phrase in the same dialogue.
-  - Prefer a natural follow-up, clarification, or decision after the key phrase instead of repeating the target expression.
+- Dialogue examples must preserve conversational flow:
+  - Use at least one bolded key phrase per scenario.
+  - Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
+  - After the key phrase, continue with a response, clarification, decision, or resolution.
 
 ## Output Format
 
@@ -121,7 +119,7 @@ $ARGUMENTS
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Mina:** [Japanese follow-up or decision; include **bolded key phrase** only if naturally triggered again]
+> **Mina:** [Japanese follow-up or decision; use **bolded key phrase** only with a new trigger]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
@@ -147,7 +145,7 @@ $ARGUMENTS
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Yuna:** [Japanese follow-up or clarification; include **bolded key phrase** only if naturally triggered again]
+> **Yuna:** [Japanese follow-up or clarification; use **bolded key phrase** only with a new trigger]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
