@@ -1,0 +1,10 @@
+{
+  "refs": [
+    {
+      "target": "skills",
+      "name": "insane-search",
+      "source": "fivetaku/insane-search",
+      "ref": "2714e72"
+    }
+  ]
+}
