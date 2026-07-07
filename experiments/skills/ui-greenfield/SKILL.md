@@ -1,6 +1,7 @@
 ---
 name: ui-greenfield
 description: "Experimental frontend skill for new UI work without a concrete visual reference: apps, pages, landing pages, flows, and component systems. Uses the most authoritative available design source or lightweight implementation notes. Requires browser QA evidence."
+disable-model-invocation: true
 ---
 
 # UI Greenfield

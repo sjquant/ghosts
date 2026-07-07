@@ -1,6 +1,7 @@
 ---
 name: ui-design-to-code
 description: "Experimental frontend skill for implementing concrete visual references in code: Figma, screenshots, generated mockups, source captures, annotated packets, and designer specs. Treats the reference as the implementation contract and requires reference-fidelity browser QA."
+disable-model-invocation: true
 ---
 
 # UI Design To Code

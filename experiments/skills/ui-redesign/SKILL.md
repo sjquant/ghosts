@@ -1,6 +1,7 @@
 ---
 name: ui-redesign
 description: "Experimental frontend skill for redesigning existing UI from a designer's perspective: visual direction, hierarchy, UX flow, accessibility, responsive behavior, state completeness, and visible component cleanup. Respects the existing design source and requires browser QA evidence."
+disable-model-invocation: true
 ---
 
 # UI Redesign
