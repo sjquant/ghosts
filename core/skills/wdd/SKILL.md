@@ -105,7 +105,7 @@ List tasks in dependency order for human readability. Each item includes one sta
 - `TODO`: not yet started
 - `DOING`: currently being worked on
 - `REVIEW`: in pull request
-- `DONE`: complete; skip when passing context to AI
+- `DONE`: PR merged into the origin base branch (`origin/main`); skip when passing context to AI
 
 ```markdown
 ## Execution Order
