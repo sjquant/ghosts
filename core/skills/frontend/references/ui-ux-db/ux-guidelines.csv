@@ -1,7 +1,0 @@
-name,keywords,guideline
-Primary CTA,landing conversion,One primary CTA per hero; secondary action must be visually subordinate.
-Empty State,dashboard empty,Explain why it is empty and provide the next action.
-Error State,form validation,Errors must be visible, specific, and tied to the field or action.
-Loading State,async data,Use skeletons for content layout and spinners only for short indeterminate waits.
-Keyboard Focus,accessibility,Every interactive element needs a visible focus state.
-Responsive Tables,dashboard mobile,On mobile, prioritize key columns or convert rows into cards.
