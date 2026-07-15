@@ -5,6 +5,18 @@ Reusable agent skills and reviewers.
 Default bias: delete needless layers, reuse what exists, and keep the smallest
 safe instruction that preserves the behavior.
 
+## Bundles
+
+- `engineering/`: implementation, planning, review, and collaboration skills
+  with their reviewers.
+- `design/`: UI design and implementation skills.
+- `language/`: language-learning skills.
+- `writing/`: writing, rewriting, and change-explanation skills.
+- `tools/skills/`: directly maintained tool-integration skills, including
+  `vibe-notion`.
+- `registry/`: external skill references that are not maintained in this
+  repository.
+
 ## Attribution
 
 `writing/skills/humanize-korean`의 reference corpus는
