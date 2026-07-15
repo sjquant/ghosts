@@ -1,0 +1,31 @@
+{
+  "refs": [
+    {
+      "target": "skills",
+      "name": "insane-search",
+      "source": "fivetaku/insane-search",
+      "ref": "2714e72",
+      "disable-model-invocation": true
+    },
+    {
+      "target": "skills",
+      "name": "obsidian-cli",
+      "source": "kepano/obsidian-skills"
+    },
+    {
+      "target": "skills",
+      "name": "context7-cli",
+      "source": "upstash/context7"
+    },
+    {
+      "target": "skills",
+      "name": "agent-browser",
+      "source": "vercel-labs/agent-browser"
+    },
+    {
+      "target": "skills",
+      "name": "sentry-cli",
+      "source": "getsentry/cli"
+    }
+  ]
+}
