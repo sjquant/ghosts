@@ -6,12 +6,6 @@
       "source": "fivetaku/insane-search",
       "ref": "2714e72",
       "disable-model-invocation": true
-    },
-    {
-      "target": "skills",
-      "name": "vibe-notion",
-      "source": "devxoul/vibe-notion",
-      "ref": "89c6643"
     }
   ]
 }
