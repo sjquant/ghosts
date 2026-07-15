@@ -7,7 +7,7 @@ safe instruction that preserves the behavior.
 
 ## Attribution
 
-`core/skills/humanize-korean`의 reference corpus는
+`writing/skills/humanize-korean`의 reference corpus는
 [`epoko77-ai/im-not-ai`](https://github.com/epoko77-ai/im-not-ai)의
 `.claude/skills/humanize-korean/references`를 기반으로 포함했습니다.
 가져온 기준 commit은 `14aeb52d13e737beb4e999cb7cb92275d0969689`이며,
