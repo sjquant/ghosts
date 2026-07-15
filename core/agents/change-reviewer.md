@@ -17,6 +17,7 @@ Report only actionable findings with concrete `path:line` evidence, severity, an
 - Correctness and compatibility: defaults, ordering, errors, edge cases, state, asynchronous behavior, and public callers remain valid.
 - Security: trust boundaries validate inputs and preserve permissions, sensitive data, and safe error output.
 - Ownership: policies, invariants, formats, ordering, and exceptions live in the module that owns them; callers do not assemble implementation sequences or duplicate policy.
+- Cohesion and dependencies: each module has one clear purpose, and behavior that changes for the same reason stays together. Depend on stable abstractions or lower-level utilities; avoid circular dependencies and dependencies that make callers own unrelated policy.
 - Interfaces: public operations express intent, and abstractions hide meaningful complexity rather than passing through one implementation.
 - Simplicity: remove dead code, duplication, needless wrappers, speculative options, and new dependencies when existing code, the standard library, or a direct expression preserves behavior.
 - Verification: risky behavior has appropriate caller-visible validation without exposing private implementation.
