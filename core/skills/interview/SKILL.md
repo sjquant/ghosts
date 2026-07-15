@@ -1,100 +1,42 @@
 ---
 name: interview
-description: Interview the user one question at a time until intent, scope, constraints, and success criteria are clear, then produce an execution-ready brief for confirmation.
+description: Clarify only the material uncertainty in a request, then provide a concise execution-ready brief.
 disable-model-invocation: true
 ---
 
-Clarify the user's real goal before planning or implementation. Do not plan, implement, create tasks, write specs, or edit files during the interview.
+Clarify the user's real goal only when a missing fact, preference, or decision would materially change the work. Inspect available context before asking. Do not plan, implement, create tasks, write specs, or edit files during the interview.
 
-## Opening
+## Decide Whether to Ask
 
-Start with:
+Do not interview when the request, available context, and normal in-scope assumptions are sufficient to proceed. State the assumption and continue.
 
-- `HYPOTHESIS:` one sentence describing what you think the user actually wants.
-- `CONFIDENCE:` 0-100%, with a short reason if below 70%.
+Ask when the missing information affects the outcome, scope, user-facing behavior, safety, cost, or an external action. Ask for the smallest missing decision; do not collect background that will not change the work.
 
-Then ask exactly one focused question.
+## Questions
 
-Every question must include the current guess:
+Ask one focused question at a time unless the available ask tool supports a compact set of independent choices. Include a brief current assumption only when it helps the user answer.
 
-```text
-Q: <one focused question>
-GUESS: <your best guess and why you think that>
-```
-
-Wait for the user's answer before asking the next question.
-
-## Interview Priorities
-
-Clarify, in order:
-
-1. Intent: why the user wants this.
-2. Outcome: desired end state.
-3. User / audience: who benefits or uses it.
-4. Scope: how far the work should go.
-5. Non-goals: what stays out.
-6. Constraints: technical, business, time, cost, UX, compatibility, privacy, security.
-7. Success criteria: observable proof it worked.
-8. Decision boundaries: what the agent may decide vs. what requires confirmation.
-9. Existing context: codebase, product, users, docs, dependencies, and prior decisions.
-
-For coding tasks, ask implementation-detail questions only after intent, outcome, scope, non-goals, and constraints are clear.
-
-If facts are available in the codebase or documents, inspect them instead of asking. Ask the user only for judgment, tradeoffs, priorities, business logic, or preferences.
-
-## Question Rules
-
-- If an ask tool is available, use it for each interview question.
-- Ask exactly one question at a time.
-- After each answer, update the hypothesis and confidence.
-- Do not batch questions.
-- Do not accept vague words as final answers, including `scalable`, `robust`, `clean`, `modern`, `best practice`, `production-ready`, `intuitive`, and `enterprise-grade`.
-- For vague wording, ask what it means concretely in this situation.
-
-## Pressure Test
-
-Ask at least one pressure-test question before ending the interview.
-
-Use one of these forms:
-
-- Example: "Can you give a concrete example or counterexample?"
-- Assumption: "What assumption would make this wrong?"
-- Tradeoff: "If we cannot have both A and B, which one wins?"
-- Boundary: "What should we explicitly not do in the first pass?"
-- Real want: "If you did not have to justify this to anyone, what would you actually want?"
+Use a pressure-test question only when a consequential tradeoff, safety risk, or ambiguous requirement remains. If a vague term has an observable interpretation from context, use it; otherwise ask for the minimum useful clarification.
 
 ## Stop Condition
 
-Stop only when all are true:
+Stop when the remaining uncertainty would not materially change the work. Do not require a confidence score, a fixed number of questions, a pressure test, or explicit confirmation by default.
 
-- You can predict the user's reaction to the next 2 to 3 likely questions.
-- Intent, outcome, scope, constraints, success criteria, non-goals, and decision boundaries are explicit.
-- At least one pressure-test question has been asked.
-- Another question would only polish wording and would not materially change the work.
-
-If confidence is still low after several rounds, say what foundational piece is missing and ask one reframing question.
+If uncertainty remains, name the assumption and ask for confirmation only when proceeding could produce an unwanted or costly result.
 
 ## Final Brief
 
-When ready, ask for explicit confirmation with:
+Summarize only the decisions needed to execute:
 
 ```md
-# Confirmed Intent Brief
+# Execution Brief
 
 - Outcome:
-- User / audience:
-- Why now:
 - Success criteria:
 - Scope:
 - Non-goals:
 - Constraints:
-- Decision boundaries:
-  - You may decide:
-  - Ask me before deciding:
 - Key assumptions:
-- Open questions, if any:
-
-Confirm / refine / reject?
 ```
 
-Do not treat `whatever you think`, `sounds good`, or `sure` as strong confirmation. If confirmation is vague, ask what the user would refine before moving on.
+Proceed when the brief is sufficient. Request confirmation only for an unresolved material decision.
