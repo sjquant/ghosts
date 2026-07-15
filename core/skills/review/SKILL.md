@@ -10,11 +10,9 @@ Review actionable defects introduced or materially worsened by the change. Do no
 
 Choose the smallest available reviewer set that covers the material risks. Exclude lockfiles, generated files, vendored code, formatting-only diffs, and documentation-only diffs from LOC, file-count, and directory-count triggers unless they affect behavior or policy.
 
-- `quality-reviewer`: prefer for non-trivial behavior, security/auth/data, migrations, config, or API-contract changes.
-- `test-reviewer`: add when changed behavior, tests, or risk leaves a concrete public-contract coverage question.
-- `architecture-reviewer`: add when interfaces, module boundaries, ownership, dependency direction, or cross-layer calls materially change.
-- `performance-reviewer`: add when a likely hot path, large-collection work, repeated I/O, caching/resource lifetime, or asynchronous throughput changes.
-- `slop-reviewer`: add when the diff introduces meaningful duplication, wrappers, new dependencies, unclear abstractions, or broad cleanup.
+- `change-reviewer`: use by default for non-trivial behavior, security/auth/data, migrations, configuration, API contracts, module boundaries, or unnecessary complexity.
+- `test-reviewer`: add only when changed behavior, tests, or risk leaves a concrete public-contract coverage question.
+- `performance-reviewer`: add only when a likely hot path, large-collection work, repeated I/O, caching/resource lifetime, or asynchronous throughput changes.
 
 Use a general reviewer only when an uncovered material risk remains and delegation is available and proportionate. Otherwise inspect that risk directly. Parallelize independent reviews only when capacity is available; synthesize all results before reporting.
 
