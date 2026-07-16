@@ -63,6 +63,4 @@ Use these severity values:
 - `None found` when no concrete behavior-preserving simplification exists
 ```
 
-Always include `## Simplification Points`. Write `None found` when there is no concrete behavior-preserving simplification; do not omit the section or invent a point.
-
 If there are no findings, say so directly and list the highest-risk areas checked. Do not invent issues to fill the template.
