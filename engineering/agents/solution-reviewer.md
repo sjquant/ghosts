@@ -19,6 +19,7 @@ Identify at most two materially different, feasible alternatives. Do not report 
 - Existing capabilities: reuse an established repository or platform boundary when it already owns the behavior.
 - Ownership and cohesion: behavior that changes together lives together under one clear responsibility.
 - Coupling: dependencies, caller knowledge, temporal ordering, and cross-layer coordination remain minimal.
+- Extension-point contracts: prefer a shared boundary over a non-obvious prerequisite that every sibling extension must repeat. Otherwise require an explicit registration-point contract.
 - Complexity: compare implementation size, state, failure modes, migration cost, and operational burden.
 - Evolution: consider whether the next likely requirement fits naturally or forces broad edits.
 - Reversibility: distinguish inexpensive local choices from decisions that need a spike before becoming costly to undo.
