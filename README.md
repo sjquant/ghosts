@@ -5,6 +5,16 @@ Reusable agent skills and reviewers.
 Default bias: delete needless layers, reuse what exists, and keep the smallest
 safe instruction that preserves the behavior.
 
+## Install
+
+Install all skills globally for your agent:
+
+```sh
+npx @solaqua/skul@latest add --global --agent codex sjquant/ghosts --all
+```
+
+Replace `codex` with the name of the agent you use, if different.
+
 ## Bundles
 
 - `engineering/`: implementation, planning, review, and collaboration skills
