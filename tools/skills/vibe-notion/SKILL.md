@@ -45,8 +45,7 @@ Use the Obsidian note
 [`memory/vibe-notion/MEMORY.md`](obsidian://open?vault=brain&file=memory%2Fvibe-notion%2FMEMORY.md)
 in vault `brain` as persistent memory.
 
-Treat this note as a reusable lookup index, not an activity log. Discovering or
-creating a resource is not by itself a reason to retain it.
+Use it as a reusable lookup index, not an activity log.
 
 At the start of each Notion task, run:
 
@@ -54,27 +53,19 @@ At the start of each Notion task, run:
 obsidian vault=brain read path="memory/vibe-notion/MEMORY.md"
 ```
 
-If the note does not exist, proceed without memory. Create it only once there
-is useful information to retain.
+If the note does not exist, proceed without it. Create or update it only for:
 
-Classify information before writing it:
+- **Stable index:** workspace and database IDs, aliases, schema or hierarchy,
+  reusable conventions, and durable user preferences.
+- **Recurring context:** a project, hub, parent page, or view explicitly marked
+  ongoing or reused in a later independent task. Retain it only when future use
+  is likely and rediscovery is expensive or ambiguous.
 
-- **Durable index:** workspace and database IDs, stable aliases, schema or
-  hierarchy facts, reusable conventions, and durable user preferences. Retain
-  these until they become stale or inaccessible.
-- **Recurring context:** a project, hub, parent page, or view that the user says
-  is ongoing, or that is used in at least two separate tasks. Record why it is
-  retained, when it was last verified, and the condition for removing it.
-- **Transient context:** individual tasks and pages, generated children, search
-  results, temporary views, block IDs, and resources used only by the current
-  request. Keep these in the current conversation only.
+An explicit request to remember something, use it by default, or treat it as
+ongoing qualifies it for storage. Creation or discovery alone does not.
 
-Persist an entry only when it is likely to help a future independent task and
-is either expensive or ambiguous to rediscover. Explicit requests such as
-"remember this", "use this by default", or "this is ongoing" override the
-reuse threshold. Do not persist an entry merely because a mutation created it.
-Promote transient context to recurring context only after explicit confirmation
-or reuse in a later task.
+Do not store individual tasks or pages, generated children, search results,
+temporary views, block IDs, or anything used only by the current request.
 
 Keep the note in this structure:
 
@@ -94,10 +85,9 @@ Keep the note in this structure:
   - Remove when: `<completion or invalidation condition>`
 ```
 
-Store IDs and short labels only—never credentials, full page content, or
-nonpersistent block IDs. When using a recurring entry, update its verification
-date. Remove it when its removal condition is met or the resource becomes stale
-or inaccessible. Do not append a task history section.
+Store IDs and short labels only—never credentials or page content. Update a
+recurring entry's verification date when used. Remove it when its removal
+condition is met or it becomes stale or inaccessible. Never add task history.
 
 ## Workflow
 
