@@ -45,6 +45,9 @@ Use the Obsidian note
 [`memory/vibe-notion/MEMORY.md`](obsidian://open?vault=brain&file=memory%2Fvibe-notion%2FMEMORY.md)
 in vault `brain` as persistent memory.
 
+Treat this note as a reusable lookup index, not an activity log. Discovering or
+creating a resource is not by itself a reason to retain it.
+
 At the start of each Notion task, run:
 
 ```sh
@@ -52,13 +55,49 @@ obsidian vault=brain read path="memory/vibe-notion/MEMORY.md"
 ```
 
 If the note does not exist, proceed without memory. Create it only once there
-is useful information to retain. Update it after discovering or receiving a
-workspace, page, database, collection, user, or view ID; aliases; hierarchy;
-or a durable user preference. Remove an ID if it becomes stale or inaccessible.
+is useful information to retain.
 
-Keep the note concise and structured by workspace, pages, databases, aliases,
-and notes. Store IDs and short labels only—never credentials, full page
-content, or nonpersistent block IDs.
+Classify information before writing it:
+
+- **Durable index:** workspace and database IDs, stable aliases, schema or
+  hierarchy facts, reusable conventions, and durable user preferences. Retain
+  these until they become stale or inaccessible.
+- **Recurring context:** a project, hub, parent page, or view that the user says
+  is ongoing, or that is used in at least two separate tasks. Record why it is
+  retained, when it was last verified, and the condition for removing it.
+- **Transient context:** individual tasks and pages, generated children, search
+  results, temporary views, block IDs, and resources used only by the current
+  request. Keep these in the current conversation only.
+
+Persist an entry only when it is likely to help a future independent task and
+is either expensive or ambiguous to rediscover. Explicit requests such as
+"remember this", "use this by default", or "this is ongoing" override the
+reuse threshold. Do not persist an entry merely because a mutation created it.
+Promote transient context to recurring context only after explicit confirmation
+or reuse in a later task.
+
+Keep the note in this structure:
+
+```markdown
+## Stable Index
+
+### Workspaces
+### Databases
+### Aliases
+### Conventions
+
+## Recurring Context
+
+- `<id>` — `<short label>`
+  - Why retained: `<ongoing use>`
+  - Last verified: `YYYY-MM-DD`
+  - Remove when: `<completion or invalidation condition>`
+```
+
+Store IDs and short labels only—never credentials, full page content, or
+nonpersistent block IDs. When using a recurring entry, update its verification
+date. Remove it when its removal condition is met or the resource becomes stale
+or inaccessible. Do not append a task history section.
 
 ## Workflow
 
@@ -70,7 +109,9 @@ content, or nonpersistent block IDs.
    content blocks are unnecessary, and use `--backlinks` for reverse relation
    lookups.
 4. Verify the resulting page, properties, blocks, rows, or view configuration.
-5. Update the Obsidian memory note when the result adds reusable context.
+5. Update the Obsidian memory note only when the result meets the retention
+   criteria above. Prune a relevant entry when the task proves it stale or its
+   removal condition has been met.
 
 Pass `--workspace-id` when listing, searching, creating at the workspace root,
 or when the target cannot resolve its workspace. Targeted operations usually
