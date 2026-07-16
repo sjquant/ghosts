@@ -22,7 +22,7 @@ Inspect the changed code directly, including the touched flow and the highest-ri
 
 ## Synthesis
 
-Show every received reviewer result after deduplication. Adjust severities as needed and apply the final severity directly to each finding.
+Report every distinct issue raised by every reviewer after deduplication. Do not silently omit an issue based on perceived importance, confidence, or comment worthiness. Promote supported issues to `Findings`; if a reviewer is wrong, preserve the issue in `Reviewer Results` and explain the technical reason for rejecting it. Adjust severities as needed and apply the final severity directly to each finding.
 
 ## Output
 
@@ -54,9 +54,15 @@ Use these severity values:
 
 ## Reviewer Results
 
-- `<reviewer>`: <received result summary or findings>
+- `<reviewer>`: <every distinct raised issue and its disposition>
+
+## Simplification Points
+
+- `<path/to/file.ext:Lx>`: `<delete|stdlib|native|yagni|shrink>` <what to cut and what replaces it>
+- `net: -<N> lines possible` when simplification points exist
+- `None found` when no concrete behavior-preserving simplification exists
 ```
 
-Include `## Simplification Points` when the review identifies a concrete behavior-preserving simplification. Omit the section when none exists.
+Always include `## Simplification Points`. Write `None found` when there is no concrete behavior-preserving simplification; do not omit the section or invent a point.
 
 If there are no findings, say so directly and list the highest-risk areas checked. Do not invent issues to fill the template.
