@@ -45,20 +45,49 @@ Use the Obsidian note
 [`memory/vibe-notion/MEMORY.md`](obsidian://open?vault=brain&file=memory%2Fvibe-notion%2FMEMORY.md)
 in vault `brain` as persistent memory.
 
+Use it as a reusable lookup index, not an activity log.
+
 At the start of each Notion task, run:
 
 ```sh
 obsidian vault=brain read path="memory/vibe-notion/MEMORY.md"
 ```
 
-If the note does not exist, proceed without memory. Create it only once there
-is useful information to retain. Update it after discovering or receiving a
-workspace, page, database, collection, user, or view ID; aliases; hierarchy;
-or a durable user preference. Remove an ID if it becomes stale or inaccessible.
+If the note does not exist, proceed without it. Create or update it only for:
 
-Keep the note concise and structured by workspace, pages, databases, aliases,
-and notes. Store IDs and short labels only—never credentials, full page
-content, or nonpersistent block IDs.
+- **Stable index:** workspace and database IDs, aliases, schema or hierarchy,
+  reusable conventions, and durable user preferences.
+- **Recurring context:** a project, hub, parent page, or view explicitly marked
+  ongoing or reused in a later independent task. Retain it only when future use
+  is likely and rediscovery is expensive or ambiguous.
+
+An explicit request to remember something, use it by default, or treat it as
+ongoing qualifies it for storage. Creation or discovery alone does not.
+
+Do not store individual tasks or pages, generated children, search results,
+temporary views, block IDs, or anything used only by the current request.
+
+Keep the note in this structure:
+
+```markdown
+## Stable Index
+
+### Workspaces
+### Databases
+### Aliases
+### Conventions
+
+## Recurring Context
+
+- `<id>` — `<short label>`
+  - Why retained: `<ongoing use>`
+  - Last verified: `YYYY-MM-DD`
+  - Remove when: `<completion or invalidation condition>`
+```
+
+Store IDs and short labels only—never credentials or page content. Update a
+recurring entry's verification date when used. Remove it when its removal
+condition is met or it becomes stale or inaccessible. Never add task history.
 
 ## Workflow
 
@@ -70,7 +99,9 @@ content, or nonpersistent block IDs.
    content blocks are unnecessary, and use `--backlinks` for reverse relation
    lookups.
 4. Verify the resulting page, properties, blocks, rows, or view configuration.
-5. Update the Obsidian memory note when the result adds reusable context.
+5. Update the Obsidian memory note only when the result meets the retention
+   criteria above. Prune a relevant entry when the task proves it stale or its
+   removal condition has been met.
 
 Pass `--workspace-id` when listing, searching, creating at the workspace root,
 or when the target cannot resolve its workspace. Targeted operations usually
