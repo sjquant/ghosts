@@ -8,10 +8,10 @@ Review actionable defects introduced or materially worsened by the change. Do no
 
 ## Routing
 
-Choose the smallest available reviewer set that covers the material risks. Exclude lockfiles, generated files, vendored code, formatting-only diffs, and documentation-only diffs from LOC, file-count, and directory-count triggers unless they affect behavior or policy.
+Use every reviewer whose trigger matches the material risks. Exclude lockfiles, generated files, vendored code, formatting-only diffs, and documentation-only diffs unless they affect behavior or policy.
 
-- `change-reviewer`: use by default for non-trivial behavior, security/auth/data, migrations, configuration, API contracts, module boundaries, or unnecessary complexity.
-- `test-reviewer`: add only when changed behavior, tests, or risk leaves a concrete public-contract coverage question.
+- `change-reviewer`: use for non-trivial behavior, security/auth/data, migrations, configuration, API contracts, module boundaries, dependency direction, ownership, or unnecessary complexity.
+- `test-reviewer`: use when source behavior changes, tests change, or the change leaves a concrete public-contract coverage question.
 - `performance-reviewer`: add only when a likely hot path, large-collection work, repeated I/O, caching/resource lifetime, or asynchronous throughput changes.
 
 Use a general reviewer only when an uncovered material risk remains and delegation is available and proportionate. Otherwise inspect that risk directly. Parallelize independent reviews only when capacity is available; synthesize all results before reporting.
