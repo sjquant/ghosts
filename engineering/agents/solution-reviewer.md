@@ -19,7 +19,7 @@ Identify at most two materially different, feasible alternatives. Do not report 
 - Existing capabilities: reuse an established repository or platform boundary when it already owns the behavior.
 - Ownership and cohesion: behavior that changes together lives together under one clear responsibility.
 - Coupling: dependencies, caller knowledge, temporal ordering, and cross-layer coordination remain minimal.
-- Lifecycle boundaries: connection, request, and job setup/teardown prerequisites are owned by a common entry boundary instead of copied as hidden first steps across sibling handlers. When a shared boundary is infeasible, verify that the registration site makes the lifecycle and each handler's required preparation explicit.
+- Extension-point contracts: non-obvious prerequisites, ordering, state, or cleanup rules for sibling handlers, plugins, commands, jobs, routes, and callbacks are owned by a common boundary instead of copied as hidden steps. When shared enforcement is infeasible, verify that the registration or extension point makes the contract, rationale, and required action explicit.
 - Complexity: compare implementation size, state, failure modes, migration cost, and operational burden.
 - Evolution: consider whether the next likely requirement fits naturally or forces broad edits.
 - Reversibility: distinguish inexpensive local choices from decisions that need a spike before becoming costly to undo.

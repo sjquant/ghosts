@@ -10,8 +10,8 @@ Review actionable defects introduced or materially worsened by the change. Do no
 
 Use every reviewer whose trigger matches the material risks. Exclude lockfiles, generated files, vendored code, formatting-only diffs, and documentation-only diffs unless they affect behavior or policy.
 
-- `change-reviewer`: use for non-trivial behavior, security/auth/data, migrations, configuration, API contracts, module boundaries, dependency direction, ownership, or unnecessary complexity.
-- `solution-reviewer`: use when the change introduces an abstraction, dependency, schema, cache, fallback, state owner, lifecycle/initialization ordering, cross-layer interaction, or other structural choice with plausible alternatives or meaningful reversal cost.
+- `change-reviewer`: use for non-trivial behavior, security/auth/data, migrations, configuration, API or extension-point contracts, module boundaries, dependency direction, ownership, or unnecessary complexity.
+- `solution-reviewer`: use when the change introduces an abstraction, dependency, schema, cache, fallback, state owner, extension-point contract, lifecycle/initialization ordering, cross-layer interaction, or other structural choice with plausible alternatives or meaningful reversal cost.
 - `test-reviewer`: use when source behavior changes, tests change, or the change leaves a concrete public-contract coverage question.
 - `performance-reviewer`: add only when a likely hot path, large-collection work, repeated I/O, caching/resource lifetime, or asynchronous throughput changes.
 
