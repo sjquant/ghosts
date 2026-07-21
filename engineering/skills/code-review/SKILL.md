@@ -17,9 +17,17 @@ Review the requested code change without modifying the worktree, committing, or 
    - `Any other risks, missing tests, or design concerns? Please report everything you notice.`
 
    Keep the prompts independent so agents can notice different things. Include the user's request and relevant context in every pass. If delegation is unavailable, perform the same broad passes yourself and say so in the output.
-4. Independently inspect the highest-risk behavior and verify agent claims against the code. Agent output is evidence to investigate, not a reason to pre-filter results.
-5. Run applicable repository checks, tests, or build commands when they are available. Report failures and limitations; do not silently treat an unverified change as verified.
-6. Synthesize every response after all passes finish. Deduplicate semantically identical points, but do not summarize away, rank away, or silently omit a distinct concern.
+4. When a design-oriented pass would benefit from a shared concept, use one short optional lens question. For example:
+
+   - `Any improvements based on deep modules?`
+   - `Any improvements based on information hiding?`
+   - `Any issues caused by temporal coupling?`
+   - `Any unnecessary complexity or abstraction?`
+
+   These are prompts for discovery, not mandatory criteria. Use only the lenses relevant to the change, do not require an issue for every lens, and do not let them narrow the rest of the review.
+5. Independently inspect the highest-risk behavior and verify agent claims against the code. Agent output is evidence to investigate, not a reason to pre-filter results.
+6. Run applicable repository checks, tests, or build commands when they are available. Report failures and limitations; do not silently treat an unverified change as verified.
+7. Synthesize every response after all passes finish. Deduplicate semantically identical points, but do not summarize away, rank away, or silently omit a distinct concern.
 
 ## Result handling
 
