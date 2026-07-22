@@ -27,7 +27,10 @@ $ARGUMENTS
 For every English phrase, add a short Korean paragraph explaining nuance, feeling, and appropriate usage. In dialogues, every English line needs a Korean translation. Bolded key phrases must exactly match phrases introduced earlier.
 
 Dialogue examples must preserve conversational flow:
+- Replace `[이름 A]` and `[이름 B]` in the template with natural speaker names of your choice. Keep the A/B-to-name mapping consistent within each scenario.
 - Use at least one bolded key phrase per scenario.
+- The key phrase does not have to appear in the first line. Place it wherever it fits naturally after the preceding context or trigger has been established.
+- Do not reserve a particular turn for the key phrase; choose the most natural position among the six lines.
 - Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
 - For `Since you brought it up,`, the other speaker must have introduced the topic first.
 - After the key phrase, continue with a response, clarification, decision, or resolution.
@@ -62,41 +65,41 @@ Dialogue examples must preserve conversational flow:
 
 ### **상황 1: [문맥 설명]**
 
-> **Mina:** [English line with **bolded key phrase**]
+> **[이름 A]:** [English opening line]
 > ([Korean translation])
 >
-> **Joon:** [English response]
+> **[이름 B]:** [English response or context-setting line]
 > ([Korean translation])
 >
-> **Mina:** [English follow-up or decision; use **bolded key phrase** only with a new trigger]
+> **[이름 A 또는 이름 B]:** [English line that continues the conversation]
 > ([Korean translation])
 >
-> **Joon:** [English response]
+> **[이름 A 또는 이름 B]:** [English response]
 > ([Korean translation])
 >
-> **Mina:** [English follow-up]
+> **[이름 A 또는 이름 B]:** [English follow-up]
 > ([Korean translation])
 >
-> **Joon:** [English closing response]
+> **[이름 A 또는 이름 B]:** [English closing response]
 > ([Korean translation])
 
 ### **상황 2: [다른 문맥 설명]**
 
-> **Alex:** [English line with **bolded key phrase**]
+> **[이름 A]:** [English opening line]
 > ([Korean translation])
 >
-> **Taylor:** [English response]
+> **[이름 B]:** [English response or context-setting line]
 > ([Korean translation])
 >
-> **Alex:** [English follow-up or clarification; use **bolded key phrase** only with a new trigger]
+> **[이름 A 또는 이름 B]:** [English follow-up or clarification]
 > ([Korean translation])
 >
-> **Taylor:** [English response]
+> **[이름 A 또는 이름 B]:** [English response]
 > ([Korean translation])
 >
-> **Alex:** [English follow-up]
+> **[이름 A 또는 이름 B]:** [English follow-up]
 > ([Korean translation])
 >
-> **Taylor:** [English closing response]
+> **[이름 A 또는 이름 B]:** [English closing response]
 > ([Korean translation])
 ```
