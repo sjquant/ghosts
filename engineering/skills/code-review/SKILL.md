@@ -4,39 +4,37 @@ description: Broad, read-only code review using general agents and complete resu
 disable-model-invocation: true
 ---
 
-Review the change without modifying, committing, or pushing. Use general-purpose agents only; do not assign them roles or add ad hoc instructions.
+Review the change read-only. Use general agents; give them the change context and questions only—no roles, review commands, or extra prompts.
 
-Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. Treat the questions below as a question bank, not a mandatory checklist. The main agent must consider every question; mark irrelevant ones `N/A — <brief reason>` and do not delegate them. For applicable questions, pass each exactly once across one, two, or three subagents, splitting them according to change size and complexity. Give each subagent the relevant context and only its assigned questions—do not prefix them with a review command or add instructions. If subagents are unavailable, use the main agent only.
+Consider every question below. Mark irrelevant questions `N/A — <reason>`. The main agent answers each applicable question. Assign applicable questions once across one, two, or three agents without overlap.
 
 - `Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?`
 - `Any design or API issues when viewed from outside-in, deep-module, and dependency-direction perspectives, including hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
 - `Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?`
 - `Any test-quality issues, including poor readability, excessive mocking, missing failure cases, or weaknesses that mutation testing might expose?`
 
-Verify the responses against the code and run relevant checks. Collect every distinct point from every agent. Deduplicate only; remove a point only when it is demonstrably false, duplicated, contradicted by the code or user's settled decision, or otherwise clearly not an issue. Keep uncertain, low-priority, design, performance, test, and simplification points as findings. Record every question, including `N/A` decisions, and every point with its disposition in `Reviewer Results`.
+Collect every response. Deduplicate only. Remove only clearly false, duplicate, or contradicted points; keep all other findings and record every response and disposition.
 
-Write in the user's language. Use repository-relative paths only; never report absolute filesystem paths. Use `P0` for release-blocking risk, `P1` for major regression, `P2` for actionable bug, and `P3` for low-priority issue or improvement.
+Write in the user's language. Use repository-relative paths only. `P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
 
 ```markdown
 ## Findings
 
 ### P1 - <title>
 
-- Location: [path/to/file.ext](path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
+- Location: [path/to/file.ext](path/to/file.ext:Lx)
 - Kind: bug|performance|security|design|test|simplification|other
 - Evidence: <why this matters>
-- Impact: <what breaks, regresses, costs, or remains unverified>
-- Suggested fix or next check: <smallest useful action>
+- Impact / fix: <impact and smallest useful action>
 
 ## Review Summary
 
-- Reviewed files: `<n>`
 - Agents used: `<n>`
 - Verdict: `no blocking findings|findings require attention|manual review still required`
 
 ## Reviewer Results
 
-- `<agent>`: <every point and its disposition: `merged into Finding P#`, `preserved as Finding P#`, or `removed: <reason>`>
+- `<agent>`: <every response and its disposition>
 ```
 
-If there are no findings, say so, list the highest-risk areas checked, and still include the complete reviewer audit trail.
+If there are no findings, say so and retain the complete `Reviewer Results`.
