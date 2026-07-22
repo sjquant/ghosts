@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Review the change without modifying, committing, or pushing. Use general-purpose agents only; do not create role-specific reviewers or ad hoc prompts.
 
-Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. Ask the following questions exactly once across one, two, or three agents, splitting them according to change size and complexity. Give each agent only its assigned questions. If agents are unavailable, ask them yourself.
+Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. The main agent must answer all eight questions below. If subagents are available, ask the same questions exactly once across one, two, or three subagents, splitting them according to change size and complexity. Give each subagent only its assigned questions. If subagents are unavailable, review with the main agent only.
 
 - `Any potential bugs or edge cases?`
 - `Any performance bottlenecks?`
