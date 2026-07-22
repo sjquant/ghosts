@@ -8,14 +8,10 @@ Review the change without modifying, committing, or pushing. Use general-purpose
 
 Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. Treat the questions below as a question bank, not a mandatory checklist. The main agent must consider every question; mark irrelevant ones `N/A — <brief reason>` and do not delegate them. For applicable questions, ask each exactly once across one, two, or three subagents, splitting them according to change size and complexity. Give each subagent only its assigned questions. If subagents are unavailable, review with the main agent only.
 
-- `Any potential bugs or edge cases?`
-- `Any performance bottlenecks?`
-- `Any security issues?`
-- `Any opportunities to simplify the code using utilities, standard libraries, or existing abstractions?`
-- `Any structural improvements from deep-module and dependency-direction perspectives?`
-- `Any unclear or misleading names?`
-- `Any test readability issues, missing failure cases, or weaknesses that mutation testing would reveal?`
-- `Any other design improvements?`
+- `Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?`
+- `Any design or API issues when viewed from outside-in, deep-module, and dependency-direction perspectives, including hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
+- `Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?`
+- `Any test-quality issues, including poor readability, excessive mocking, missing failure cases, or weaknesses that mutation testing might expose?`
 
 Verify the responses against the code and run relevant checks. Collect every distinct point from every agent. Deduplicate only; remove a point only when it is demonstrably false, duplicated, contradicted by the code or user's settled decision, or otherwise clearly not an issue. Keep uncertain, low-priority, design, performance, test, and simplification points as findings. Record every question, including `N/A` decisions, and every point with its disposition in `Reviewer Results`.
 
