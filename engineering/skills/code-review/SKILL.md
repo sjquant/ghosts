@@ -4,9 +4,9 @@ description: Broad, read-only code review using general agents and complete resu
 disable-model-invocation: true
 ---
 
-Review the change without modifying, committing, or pushing. Use general-purpose agents only; do not create role-specific reviewers or ad hoc prompts.
+Review the change without modifying, committing, or pushing. Use general-purpose agents only; do not assign them roles or add ad hoc instructions.
 
-Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. Treat the questions below as a question bank, not a mandatory checklist. The main agent must consider every question; mark irrelevant ones `N/A — <brief reason>` and do not delegate them. For applicable questions, ask each exactly once across one, two, or three subagents, splitting them according to change size and complexity. Give each subagent only its assigned questions. If subagents are unavailable, review with the main agent only.
+Read the request, diff, relevant callers, public boundaries, tests, and repository instructions. Treat the questions below as a question bank, not a mandatory checklist. The main agent must consider every question; mark irrelevant ones `N/A — <brief reason>` and do not delegate them. For applicable questions, pass each exactly once across one, two, or three subagents, splitting them according to change size and complexity. Give each subagent the relevant context and only its assigned questions—do not prefix them with a review command or add instructions. If subagents are unavailable, use the main agent only.
 
 - `Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?`
 - `Any design or API issues when viewed from outside-in, deep-module, and dependency-direction perspectives, including hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
