@@ -4,30 +4,27 @@ description: Broad, read-only code review using general agents and complete resu
 disable-model-invocation: true
 ---
 
-Review the requested code change without modifying the worktree, committing, or pushing. This skill deliberately keeps the review prompts short: use general-purpose agents, collect what they notice, and let synthesis—not a detailed routing rubric—do the work.
+Review the requested code change without modifying the worktree, committing, or pushing. Use general-purpose agents and one fixed set of review questions; do not create role-specific reviewers or add ad hoc prompts.
 
 ## Review approach
 
 1. Establish the review scope from the user's request, repository instructions, and the actual diff. Read the changed code, its relevant callers, public boundaries, and tests. Inspect enough surrounding code to verify each concern; do not review only the patch in isolation.
-2. If general-agent delegation is available, run several independent review passes with the same change context. Do not route work to named or role-specific reviewers from `engineering/agents/`, and do not require any particular agent file.
-3. Ask open questions rather than supplying a long checklist. Use prompts such as:
+2. If subagent delegation is available, use one, two, or three general-purpose subagents according to the size and complexity of the change. Do not route work to named or role-specific reviewers from `engineering/agents/`, and do not require any particular agent file.
+3. Assign the fixed question set below across the chosen subagents without overlap. A small change may give all questions to one subagent; a medium change may split them across two; a large or complex change may split them across three. Every question must be asked exactly once across the subagents. Give each subagent the relevant change context and only its assigned questions. Do not add explanatory, role-specific, or miscellaneous prompts.
 
-   - `Any bugs? Please report every concern with concrete file and line evidence.`
-   - `Any performance improvement points? Please report every concern, including low-confidence ones, with evidence.`
-   - `Any other risks, missing tests, or design concerns? Please report everything you notice.`
+   - `Any potential bugs or edge cases?`
+   - `Any performance bottlenecks?`
+   - `Any security issues?`
+   - `Any opportunities to simplify the code using utilities, standard libraries, or existing abstractions?`
+   - `Any structural improvements from deep-module and dependency-direction perspectives?`
+   - `Any unclear or misleading names?`
+   - `Any test readability issues, missing failure cases, or weaknesses that mutation testing would reveal?`
+   - `Any other design improvements?`
 
-   Keep the prompts independent so agents can notice different things. Include the user's request and relevant context in every pass. If delegation is unavailable, perform the same broad passes yourself and say so in the output.
-4. When a design-oriented pass would benefit from a shared concept, use one short optional lens question. For example:
-
-   - `Any improvements based on deep modules?`
-   - `Any improvements based on information hiding?`
-   - `Any issues caused by temporal coupling?`
-   - `Any unnecessary complexity or abstraction?`
-
-   These are prompts for discovery, not mandatory criteria. Use only the lenses relevant to the change, do not require an issue for every lens, and do not let them narrow the rest of the review.
-5. Independently inspect the highest-risk behavior and verify agent claims against the code. Agent output is evidence to investigate, not a reason to pre-filter results.
-6. Run applicable repository checks, tests, or build commands when they are available. Report failures and limitations; do not silently treat an unverified change as verified.
-7. Synthesize every response after all passes finish. Deduplicate semantically identical points, but do not summarize away, rank away, or silently omit a distinct concern.
+   If delegation is unavailable, ask the same fixed question set yourself and say so in the output.
+4. Independently inspect the highest-risk behavior and verify subagent claims against the code. Agent output is evidence to investigate, not a reason to pre-filter results.
+5. Run applicable repository checks, tests, or build commands when they are available. Report failures and limitations; do not silently treat an unverified change as verified.
+6. Synthesize every response after all questions finish. Deduplicate semantically identical points, but do not summarize away, rank away, or silently omit a distinct concern.
 
 ## Result handling
 
@@ -47,6 +44,7 @@ Use repository and user context to adjust severity. Do not invent issues to fill
 ## Output
 
 Write in the user's language. Keep severity enum values in English:
+Use repository-relative paths in every location. Never report absolute filesystem paths.
 
 - `P0`: Release-blocking security incident, data loss, or whole-service outage risk.
 - `P1`: Major regression with broad user or workflow impact.
@@ -60,7 +58,7 @@ Return this structure:
 
 ### P1 - <title>
 
-- Location: [path/to/file.ext](/relative/path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
+- Location: [path/to/file.ext](path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
 - Kind: bug|performance|design|test-gap|simplification|other
 - Category: correctness|security|tests|architecture|performance|concurrency|consistency|code-quality|repo-rule
 - Evidence: <why this is a real, plausible, or useful review point>
