@@ -28,6 +28,7 @@ Report every distinct issue and design alternative raised by every reviewer afte
 ## Output
 
 Use the user's language. Keep enum values in English.
+Use repository-relative paths in every location. Never report absolute filesystem paths.
 
 Use these severity values:
 
@@ -41,7 +42,7 @@ Use these severity values:
 
 ### P1 - <title>
 
-- Location: [path/to/file.ext](/absolute/path/to/repo/path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
+- Location: [path/to/file.ext](path/to/file.ext:Lx) `path/to/file.ext:Lx-Ly`
 - Category: correctness|security|tests|architecture|performance|concurrency|consistency|code-quality|repo-rule
 - Evidence: <why this is a real issue>
 - Failure mode: <what breaks, leaks, or regresses>
