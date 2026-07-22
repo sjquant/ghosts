@@ -1,5 +1,5 @@
 ---
-name: interview
+name: socratic-interview
 description: Conduct a Socratic interview to resolve only material uncertainty, then provide a concise execution brief.
 disable-model-invocation: true
 ---
