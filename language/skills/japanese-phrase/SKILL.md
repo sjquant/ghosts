@@ -34,7 +34,7 @@ $ARGUMENTS
 - Do not add a separate long vocabulary section unless it adds non-repeated value.
 - Dialogue examples must include:
   - At least 2 realistic scenarios.
-  - Natural speaker names.
+  - Replace `[이름 A]` and `[이름 B]` in the template with natural speaker names of your choice. Keep the A/B-to-name mapping consistent within each scenario.
   - At least 6 Japanese lines per scenario.
   - Natural A-B-A-B-A-B turn flow.
   - Context, response, follow-up, and small resolution.
@@ -49,6 +49,8 @@ $ARGUMENTS
 - Bold only the introduced phrase, excluding punctuation unless punctuation is part of the phrase.
 - Dialogue examples must preserve conversational flow:
   - Use at least one bolded key phrase per scenario.
+  - The key phrase does not have to appear in the first line. Place it wherever it fits naturally after the preceding context or trigger has been established.
+  - Do not reserve a particular turn for the key phrase; choose the most natural position among the six lines.
   - Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
   - After the key phrase, continue with a response, clarification, decision, or resolution.
 
@@ -111,53 +113,53 @@ $ARGUMENTS
 
 ### **상황 1: [문맥 설명]**
 
-> **Mina:** [Japanese line with **bolded key phrase**]
+> **[이름 A]:** [Japanese opening line]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Ren:** [Japanese response]
+> **[이름 B]:** [Japanese response or context-setting line]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Mina:** [Japanese follow-up or decision; use **bolded key phrase** only with a new trigger]
+> **[이름 A 또는 이름 B]:** [Japanese line that continues the conversation]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Ren:** [Japanese response]
+> **[이름 A 또는 이름 B]:** [Japanese response]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Mina:** [Japanese follow-up]
+> **[이름 A 또는 이름 B]:** [Japanese follow-up]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Ren:** [Japanese closing response]
+> **[이름 A 또는 이름 B]:** [Japanese closing response]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 
 ### **상황 2: [다른 문맥 설명]**
 
-> **Yuna:** [Japanese line with **bolded key phrase**]
+> **[이름 A]:** [Japanese opening line]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Haru:** [Japanese response]
+> **[이름 B]:** [Japanese response or context-setting line]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Yuna:** [Japanese follow-up or clarification; use **bolded key phrase** only with a new trigger]
+> **[이름 A 또는 이름 B]:** [Japanese follow-up or clarification]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Haru:** [Japanese response]
+> **[이름 A 또는 이름 B]:** [Japanese response]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Yuna:** [Japanese follow-up]
+> **[이름 A 또는 이름 B]:** [Japanese follow-up]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 >
-> **Haru:** [Japanese closing response]
+> **[이름 A 또는 이름 B]:** [Japanese closing response]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 ```
