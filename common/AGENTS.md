@@ -5,7 +5,7 @@
 
 ## PR
 - Before updating a pull request, check its current title and body.
-- Use `.github/pull_request_template.md` when present. Otherwise, structure the PR body with `## Why` and `## Changes` in markdown format.
+- Use `.github/pull_request_template.md` when present. Otherwise, structure the PR body with `## Why` and `## Changes` with bullet points.
 	- Under `## Why`, explain the problem and its impact in 1–2 sentences.
 	- Under `## Changes`, summarize the chosen solution direction and key behavioral changes.
 - Keep the PR body concise and easy to understand. Do not enumerate every changed file, code modification, or implementation detail unless it is essential for review.
