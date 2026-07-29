@@ -4,6 +4,7 @@
 - Prefer **outside-in, black-box integration tests** through public interfaces. Do not expose private members solely for testing.
 
 ## PR
+- Use gh pr edit --body-file - <<'EOF' as the default PR body path
 - Before updating a pull request, check its current title and body.
 - Use `.github/pull_request_template.md` when present. Otherwise, structure the PR body with `## Why` and `## Changes` with bullet points.
 	- Under `## Why`, explain the problem and its impact in 1–2 sentences.
