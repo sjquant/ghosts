@@ -11,7 +11,7 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 - `Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?`
 - `Any design or API issues when viewed from outside-in, deep-module, and dependency-direction perspectives, including hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
 - `Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?`
-- `Any test-quality issues, including poor readability, excessive mocking, missing failure cases, or weaknesses that mutation testing might expose?`
+- `Any test smells—such as brittle or implementation-coupled tests, over-mocking, unclear intent, missing negative-path coverage, or surviving mutants?`
 
 Collect every response. Deduplicate only. Remove only clearly false, duplicate, or contradicted points; keep all other findings and record every response and disposition.
 
