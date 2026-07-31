@@ -1,7 +1,8 @@
 ## Coding
 - Follow the **Stepdown Rule**.
 - Write tests as **behavioral specifications** using descriptive `it(...)` titles and **Given–When–Then** sections.
-- Prefer **outside-in, black-box integration tests** through public interfaces. Do not expose private members solely for testing.
+- Avoid brittle or implementation-coupled tests, over-mocking. Prefer **outside-in, integration tests** through public interfaces.
+- Do not expose private members solely for testing.
 
 ## PR
 - Use gh pr edit --body-file - <<'EOF' as the default PR body path
