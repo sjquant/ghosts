@@ -173,10 +173,6 @@ with evidence and the smallest useful repair.
 Choose a domain probe when needed:
 
 ```text
-Any security issues?
-```
-
-```text
 Would a motivated beginner understand this?
 ```
 
