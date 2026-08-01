@@ -33,14 +33,18 @@ Understand what the user is really trying to learn, the relevant scope,
 audience, freshness, and risk. Decide for yourself which angles and evidence
 are needed; do not force a fixed decomposition or search plan.
 
+For prediction or decision questions, identify what must be true for the
+outcome. Follow material upstream drivers, dependencies, and counterforces;
+do not research only the target or pages that mention it.
+
 ### 2. Gather evidence
 
 Choose the most useful search angles and source types yourself. Search broadly
-enough to find important leads, follow promising ones, and read important
-sources beyond snippets. Prefer the most authoritative source for each claim,
-especially primary or first-party sources; use secondary sources for context
-and weaker sources mainly as leads or examples. Add a date boundary when
-freshness matters.
+enough to find important leads, follow material leads and unresolved
+dependencies, and read important sources beyond snippets. Prefer the most
+authoritative source for each claim, especially primary or first-party sources;
+use secondary sources for context and weaker sources mainly as leads or
+examples. Add a date boundary when freshness matters.
 
 Retain enough source provenance to support and qualify the answer.
 
@@ -57,25 +61,28 @@ Track only claims that materially affect the answer, their supporting evidence,
 important contradictions, and unresolved uncertainty. Prefer direct citations
 near those claims. For contested or high-risk claims, look for an authoritative
 source, independent corroboration where useful, and evidence that could weaken
-the claim.
+the claim. For prediction or decision questions, separate observed facts,
+inferences, and forecasts. Numerical targets or ranges require a stated basis.
 
 When sources disagree, explain differences in scope, method, date, or
 definition. Do not average disagreement into false certainty.
 
 ### 4. Explain
 
-Explain at the user's level, using a mental model, example,
-limitation, or practical implication only when useful. Put references near the
-claims they support and define necessary domain terms on first use.
+Choose the output shape that fits the user's goal. Decision or prediction
+answers should make the thesis, drivers, counterevidence, triggers, and
+uncertainty clear. Learning answers should be problem-first when useful;
+comparisons should surface criteria and tradeoffs; briefings should stay
+compact. Explain at the user's level and define necessary domain terms on first
+use.
 
 ### 5. Review and repair
 
-Review the draft with one open-ended probe:
+Before finalizing, run one open-ended pressure-test:
 
 ```text
-Any material issues?
-Return only findings that would change trust, safety, or usefulness,
-with evidence and the smallest useful repair.
+Any material issue that could change the conclusion, evidence, or usefulness?
+If yes, repair and re-check it. Keep this process internal.
 ```
 
 Repair the identified gap rather than rewriting everything. Re-run only the
