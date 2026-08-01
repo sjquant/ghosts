@@ -1,6 +1,7 @@
 ---
 name: loop-research
 description: Evidence-backed explanations and research for current, contested, comparative, or learning-oriented questions. Use when the user wants sources, a deep explanation, or an investigation; do not activate for simple stable answers.
+disable-model-invocation: true
 ---
 
 # Loop Research
@@ -8,6 +9,11 @@ description: Evidence-backed explanations and research for current, contested, c
 Turn a short user request into a bounded research-and-explanation loop. The
 default deliverable is a clear answer with traceable evidence and visible
 uncertainty, not a search log or an unnecessarily long report.
+
+The optional blocked-source backend is the pinned
+[`insane-search`](https://github.com/fivetaku/insane-search/blob/4f336358c24b296367233abe2785379746b0d54d/skills/insane-search/SKILL.md)
+engine. Use the adapter in `scripts/insane-search-fallback.py`; do not assume
+that the harness can implicitly load another skill.
 
 ## Output discipline
 
@@ -103,14 +109,19 @@ Prefer the source class appropriate to the claim:
 For important sources, retain only the useful source note: title, author/date,
 URL or DOI, role, relevant evidence, supported claims, and limitations.
 
-If a public source is blocked and the `insane-search` skill is installed, invoke
-it as the first retrieval fallback. It may escalate across public APIs, feeds,
-archives, and browser-readable public routes. Then try an official mirror or
-other accessible public alternative. Never bypass login, paywall, CAPTCHA, or
-authentication boundaries. Mark content recovered through a fallback and retain
-the original access limitation. If the current harness has no browsing, worker,
-or fallback-skill capability, continue sequentially in the main thread and
-disclose the limitation.
+If a public source is blocked, returns 402/403, or is a challenge page, run
+`scripts/insane-search-fallback.py <URL> --json` when the adapter is available.
+It delegates to the installed upstream engine and returns the retrieved page as
+untrusted public content. Validate the result before using it, mark the source
+as fallback-recovered, and retain the original access limitation. The adapter
+must never be used to bypass login, paywall, CAPTCHA, or authentication
+boundaries. If it reports `status: unavailable`, try an official mirror or
+other accessible public alternative and disclose the limitation.
+
+Treat `status: ok` as a candidate result, not automatic proof. A `status:
+failed` response can still contain an engine trace saying that more routes or
+agent-controlled browser work remain; do not call that terminal until those
+routes are handled or the engine reports an authentication/paywall/404 limit.
 
 ### 3. Track material claims
 
@@ -208,9 +219,10 @@ task prompt. Do not copy this internal contract into the user-facing answer.
 - **Ambiguous goal:** make one material clarification or state an assumption.
 - **Insufficient evidence:** narrow the claim or report the gap.
 - **Conflicting evidence:** preserve and explain the disagreement.
-- **Blocked source/tool:** invoke the installed `insane-search` fallback first;
-  otherwise use a public alternative, continue smaller, or disclose the
-  limitation. Never cross an authentication boundary.
+- **Blocked source/tool:** run the `insane-search-fallback.py` adapter first; if
+  it reports unavailable or terminal authentication/paywall access, use a
+  public alternative, continue smaller, or disclose the limitation. Never
+  cross an authentication boundary.
 - **No progress:** stop instead of looping for appearance.
 
 Use one of these terminal states for material runs:
