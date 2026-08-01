@@ -8,6 +8,13 @@
     },
     {
       "target": "skills",
+      "name": "insane-research-main",
+      "source": "fivetaku/gptaku-plugins-codex",
+      "ref": "35ca9910e71689c5c23c9a41bf0ca081132be4a6",
+      "disable-model-invocation": true
+    },
+    {
+      "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills"
     },
