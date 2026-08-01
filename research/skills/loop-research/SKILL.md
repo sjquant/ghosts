@@ -35,24 +35,21 @@ assumption and proceed.
 
 ### 1. Define the task
 
-Identify the core question, user goal, audience, scope or time boundary,
-desired output, and risk or freshness requirements. Create two to five research
-axes only when the topic needs them; each axis needs a distinct question and a
-clear completion signal.
+Understand what the user is really trying to learn, the relevant scope,
+audience, freshness, and risk. Decide for yourself which angles and evidence
+are needed; do not force a fixed decomposition or search plan.
 
 ### 2. Gather evidence
 
-Search broadly enough to map the topic, then follow high-value leads. Read
-important sources beyond snippets and add the current date or date range when
+Choose the most useful search angles and source types yourself. Search broadly
+enough to find important leads, follow promising ones, and read important
+sources beyond snippets. Prefer the most authoritative source for each claim,
+especially primary or first-party sources; use secondary sources for context
+and weaker sources mainly as leads or examples. Add a date boundary when
 freshness matters.
 
-Prefer primary sources for material claims: papers, standards, laws, filings,
-datasets, official documentation, and first-party statements. Use peer-reviewed
-research and authoritative institutions next, reputable analysis for context,
-and commentary or social sources mainly as leads or examples.
-
-For important sources, retain only a compact note: title, date, URL or DOI,
-role, useful evidence, supported claims, and limitations.
+Keep only the source details needed to support the answer: title, author or
+organization, date, direct URL or DOI, useful evidence, and limitations.
 
 If a public source is blocked, returns 402/403, or is a challenge page, run:
 
@@ -71,22 +68,19 @@ or authentication boundary.
 ### 3. Verify material claims
 
 Track only claims that materially affect the answer, their supporting evidence,
-important contradictions, and unresolved uncertainty. For high-risk claims,
-seek a primary or first-party source, independent corroboration where useful,
-and evidence that could weaken the claim. A single authoritative source may be
-enough for a law, standard, filing, or other first-party fact when its scope is
-clear.
+important contradictions, and unresolved uncertainty. Prefer direct citations
+near those claims. For contested or high-risk claims, look for an authoritative
+source, independent corroboration where useful, and evidence that could weaken
+the claim.
 
 When sources disagree, explain differences in scope, method, date, or
 definition. Do not average disagreement into false certainty.
 
 ### 4. Explain
 
-Answer first. Use the smallest useful structure: a mental model or direct
-answer, an intuitive-to-precise explanation, an example when useful,
-limitations or counterexamples, practical implications, and references near
-the claims they support. Match vocabulary and depth to the user; define domain
-terms on first use.
+Answer first. Explain at the user's level, using a mental model, example,
+limitation, or practical implication only when useful. Put references near the
+claims they support and define necessary domain terms on first use.
 
 ### 5. Review and repair
 
@@ -98,9 +92,9 @@ Return only findings that would change trust, safety, or usefulness,
 with evidence and the smallest useful repair.
 ```
 
-Use only relevant checks for model coherence, source agreement,
-counter-evidence, risks or edge cases, and teachability. Classify a finding
-only after one appears; do not paste a complete rubric into every prompt.
+Choose the review angle yourself. Look for anything that would materially
+change trust, safety, or usefulness; do not paste a complete rubric into every
+prompt.
 
 Repair the identified gap rather than rewriting everything. Re-run only the
 relevant search or check when evidence is missing, a credible contradiction
