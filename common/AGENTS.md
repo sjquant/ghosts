@@ -1,5 +1,5 @@
 ## Coding
-- Follow the **Stepdown Rule**.
+- Organize code in a **top-down** order.
 - Write tests as **behavioral specifications** using descriptive `it(...)` titles and **Given–When–Then** sections.
 - Avoid brittle or implementation-coupled tests, over-mocking. Prefer **outside-in, integration tests** through public interfaces.
 - Do not expose private members solely for testing.
