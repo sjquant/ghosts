@@ -61,31 +61,28 @@ Track only claims that materially affect the answer, their supporting evidence,
 important contradictions, and unresolved uncertainty. Prefer direct citations
 near those claims. For contested or high-risk claims, look for an authoritative
 source, independent corroboration where useful, and evidence that could weaken
-the claim. Separate observed facts, inferences, and forecasts. Do not give
-numerical targets or ranges without a stated basis.
+the claim. For prediction or decision questions, separate observed facts,
+inferences, and forecasts. Numerical targets or ranges require a stated basis.
 
 When sources disagree, explain differences in scope, method, date, or
 definition. Do not average disagreement into false certainty.
 
 ### 4. Explain
 
-Choose the output shape that fits the user's goal. For decision or prediction
-questions, use conclusion, drivers, evidence, counterforces, scenarios or
-triggers, and uncertainty. For learning, prefer problem-first explanation,
-mental model, example, misconception, and practice. For comparison, use
-criteria, evidence, tradeoffs, and a verdict. For a briefing, keep the answer,
-key facts, caveats, and references compact. Explain at the user's level and
-define necessary domain terms on first use.
+Choose the output shape that fits the user's goal. Decision or prediction
+answers should make the thesis, drivers, counterevidence, triggers, and
+uncertainty clear. Learning answers should be problem-first when useful;
+comparisons should surface criteria and tradeoffs; briefings should stay
+compact. Explain at the user's level and define necessary domain terms on first
+use.
 
 ### 5. Review and repair
 
-Draft internally, then run one open-ended pressure-test:
+Before finalizing, run one open-ended pressure-test:
 
 ```text
-Any material issue that would change the conclusion, evidence, or usefulness?
-What important driver, dependency, or counterforce could change the conclusion?
-If yes, repair the smallest material issue and re-check it. Keep this process
-internal.
+Any material issue that could change the conclusion, evidence, or usefulness?
+If yes, repair and re-check it. Keep this process internal.
 ```
 
 Repair the identified gap rather than rewriting everything. Re-run only the
