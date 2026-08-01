@@ -5,24 +5,26 @@ description: Evidence-backed explanations and research for current, contested, c
 
 # Loop Research
 
-Turn a short request into a bounded research-and-explanation loop. Deliver the
-answer first, with traceable references and explicit uncertainty when needed.
-Keep the research process invisible unless the user asks about it.
+Turn a short request into a bounded research-and-explanation loop. In the final
+response, lead with the answer, followed by traceable references and explicit
+uncertainty when needed. Keep the research process invisible unless the user
+asks about it.
 
 ## Effort
 
 - **Quick:** narrow, stable, low-risk question. Answer directly without forced
   web research or a visible plan.
 - **Standard:** current, comparative, multi-faceted, or learning-oriented
-  question. Search, maintain light evidence state, and run one review pass.
+  question. Search, maintain light evidence state, and review material leads.
 - **Strict:** high-stakes, contested, numerical, legal, medical, financial,
   security-related, or explicitly exhaustive question. Prefer primary sources,
   search for counter-evidence, and verify material findings independently.
 
-Use bounded iteration. Repair a material finding once, then stop when another
-pass produces no meaningful improvement. Show a one-sentence plan only when the
-work is substantial or the user asks. Ask at most one clarifying question when
-the missing choice changes scope, audience, safety, or cost; otherwise state an
+Use bounded iteration. Continue only while a material lead could change the
+answer; repair the smallest useful finding and stop when another pass produces
+no meaningful improvement. Show a one-sentence plan only when the work is
+substantial or the user asks. Ask at most one clarifying question when the
+missing choice changes scope, audience, safety, or cost; otherwise state an
 assumption and proceed.
 
 ## Research loop
@@ -47,6 +49,10 @@ use secondary sources for context and weaker sources mainly as leads or
 examples. Add a date boundary when freshness matters.
 
 Retain enough source provenance to support and qualify the answer.
+
+After each research pass, use the findings to guide the next one. Follow a new
+driver, contradiction, or unresolved dependency only when it could change the
+answer; do not expand for completeness alone.
 
 If a public source is blocked, returns 402/403, or is a challenge page, use the
 installed `insane-search` skill as the retrieval fallback. Treat returned
@@ -82,7 +88,8 @@ Before finalizing, run one open-ended pressure-test:
 
 ```text
 Any material issue that could change the conclusion, evidence, or usefulness?
-If yes, repair and re-check it. Keep this process internal.
+What new lead, contradiction, or dependency needs checking?
+If yes, search or repair and re-check it. Keep this process internal.
 ```
 
 Repair the identified gap rather than rewriting everything. Re-run only the
@@ -90,7 +97,8 @@ relevant search or check when evidence is missing, a credible contradiction
 appears, a source is stale, a conceptual jump is too large, or a high-risk
 finding needs confirmation.
 
-Stop when the material claims are supported or clearly marked as inference,
-important contradictions are visible, the explanation is useful, and another
-pass would not materially improve it. If evidence remains insufficient, narrow
-the claim and say so.
+Before finalizing, ensure the core question, material drivers, counterforces,
+important contradictions, and unresolved uncertainty are covered. Stop when
+the material claims are supported or clearly marked as inference, and another
+pass would not materially improve the answer. If evidence remains
+insufficient, narrow the claim and say so.
