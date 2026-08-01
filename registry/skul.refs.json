@@ -2,13 +2,6 @@
   "refs": [
     {
       "target": "skills",
-      "name": "insane-search",
-      "source": "fivetaku/insane-search",
-      "ref": "4f336358c24b296367233abe2785379746b0d54d",
-      "disable-model-invocation": true
-    },
-    {
-      "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills"
     },
