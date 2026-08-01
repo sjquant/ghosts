@@ -21,6 +21,7 @@ Replace `codex` with the name of the agent you use, if different.
   with their reviewers.
 - `design/`: UI design and implementation skills.
 - `language/`: language-learning skills.
+- `research/`: bounded, evidence-grounded research and explanation skills.
 - `writing/`: writing, rewriting, and change-explanation skills.
 - `tools/skills/`: directly maintained tool-integration skills, including
   `vibe-notion`.
