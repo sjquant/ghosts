@@ -103,10 +103,14 @@ Prefer the source class appropriate to the claim:
 For important sources, retain only the useful source note: title, author/date,
 URL or DOI, role, relevant evidence, supported claims, and limitations.
 
-If a public source is blocked, use an accessible public alternative. Never bypass
-login, paywall, CAPTCHA, or authentication boundaries. If the current harness
-has no browsing or worker capability, continue sequentially in the main thread
-and disclose the limitation.
+If a public source is blocked and the `insane-search` skill is installed, invoke
+it as the first retrieval fallback. It may escalate across public APIs, feeds,
+archives, and browser-readable public routes. Then try an official mirror or
+other accessible public alternative. Never bypass login, paywall, CAPTCHA, or
+authentication boundaries. Mark content recovered through a fallback and retain
+the original access limitation. If the current harness has no browsing, worker,
+or fallback-skill capability, continue sequentially in the main thread and
+disclose the limitation.
 
 ### 3. Track material claims
 
@@ -204,8 +208,9 @@ task prompt. Do not copy this internal contract into the user-facing answer.
 - **Ambiguous goal:** make one material clarification or state an assumption.
 - **Insufficient evidence:** narrow the claim or report the gap.
 - **Conflicting evidence:** preserve and explain the disagreement.
-- **Blocked source/tool:** use a public alternative, continue smaller, or disclose
-  the limitation.
+- **Blocked source/tool:** invoke the installed `insane-search` fallback first;
+  otherwise use a public alternative, continue smaller, or disclose the
+  limitation. Never cross an authentication boundary.
 - **No progress:** stop instead of looping for appearance.
 
 Use one of these terminal states for material runs:
