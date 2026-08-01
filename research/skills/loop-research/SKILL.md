@@ -68,8 +68,8 @@ Track only claims that materially affect the answer, their supporting evidence,
 important contradictions, and unresolved uncertainty. Prefer direct citations
 near those claims. For contested or high-risk claims, look for an authoritative
 source, independent corroboration where useful, and evidence that could weaken
-the claim. For prediction or decision questions, separate observed facts,
-inferences, and forecasts. Numerical targets or ranges require a stated basis.
+the claim. Separate observed facts, inferences, and forecasts. Do not give
+numerical targets or ranges without a stated basis.
 
 When sources disagree, explain differences in scope, method, date, or
 definition. Do not average disagreement into false certainty.
@@ -77,22 +77,28 @@ definition. Do not average disagreement into false certainty.
 ### 4. Explain
 
 Choose the depth and structure that fit the user's goal and stakes. For current,
-uncertain, or consequential questions, prefer a structured research memo over a
-short briefing: conclusion, current evidence, sustaining and weakening
-drivers, counterforces, observable triggers, uncertainty, and references as
-relevant. Do not confuse a short user question with a request for a short
-answer. For learning, use a problem-first explanation when useful; for
-comparisons, surface criteria and tradeoffs. Explain at the user's level and
+uncertain, or consequential questions, do not return a conclusion-only briefing
+unless the user explicitly asks for brevity. Produce a concise research memo
+covering the judgment, current facts, sustaining or weakening drivers,
+counterforces, observable triggers, uncertainty, and references. For each
+material driver, show evidence, implication, and limitation. Use evidence
+coverage—not word count—as the depth floor. Shape the memo to the goal: for
+decision or prediction questions, include scenarios or triggers; for learning,
+prefer a problem-first explanation with a mental model, example, misconception,
+and practice; for comparisons, use criteria, evidence, tradeoffs, and a
+verdict. Keep a briefing compact when that is the user's goal. Explain at the
+user's level and
 define necessary domain terms on first use.
 
 ### 5. Review and repair
 
-Before finalizing, run one open-ended pressure-test:
+Draft internally, then run one open-ended pressure-test:
 
 ```text
-Any material issue—including an overlooked driver or contradiction—that could
-change the answer?
-If yes, search or repair and re-check it. Keep this process internal.
+Any material issue—including an overlooked driver, dependency, or contradiction—
+that could change the conclusion, evidence, or usefulness?
+If yes, search or repair the smallest material issue and re-check it. Keep this
+process internal.
 ```
 
 Re-run only the relevant search or check when evidence is missing, a credible
