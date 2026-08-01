@@ -9,6 +9,13 @@ Turn a short user request into a bounded research-and-explanation loop. The
 default deliverable is a clear answer with traceable evidence and visible
 uncertainty, not a search log or an unnecessarily long report.
 
+## Output discipline
+
+Start with the answer. Keep the orchestration invisible by default. Do not
+mention internal lenses, effort levels, workers, ledgers, loop phases, or
+terminal states unless the user asks how the answer was produced or the process
+limitation materially affects how it should be used.
+
 ## Loop contract
 
 - **Trigger:** an evidence-backed explanation, investigation, comparison,
@@ -35,19 +42,20 @@ Do not equate more sources or more iterations with better research.
 
 Default caps: two repair passes, five expansion waves, and stop after two
 successive passes produce no material finding. An explicit exhaustive request
-may raise effort only within a named budget and depth limit.
+may raise effort only within a named budget and depth limit. Treat these modes
+as internal routing decisions; do not announce them in a normal answer.
 
 Ask at most one clarifying question when a missing choice materially changes
 scope, audience, safety, or cost. Otherwise state an assumption and proceed.
 Never expose hidden chain-of-thought; expose only the question, coverage, and
 verification status.
 
-## Semantic anchors
+## Internal review lenses
 
-Use a few high-signal terms of art as protocol handles. Do not paste a complete
-rubric into every prompt.
+Select only the relevant internal review lenses. Do not paste a complete rubric
+into every prompt, and do not repeat the lens names in the final answer.
 
-| Anchor | Activate |
+| Lens | Activate |
 |---|---|
 | `mental model` | Map entities, relationships, and causal structure before details. |
 | `source triangulation` | Compare independent sources and record disagreement. |
@@ -57,7 +65,7 @@ rubric into every prompt.
 
 Use ordinary phase instructions for examples, primary-source preference,
 counterexamples, and diminishing returns; they are not separate mandatory
-review categories.
+review categories. These names are internal handles, not user-facing labels.
 
 ## Protocol
 
@@ -75,7 +83,9 @@ Risk and freshness:
 ```
 
 Create two to five research axes only when the topic needs them. Each axis needs
-a distinct question and an observable completion signal.
+a distinct question and an observable completion signal. Show a plan only when
+the work is substantial, the user requests one, or strict review makes the
+coverage materially useful; otherwise proceed silently.
 
 ### 2. Gather evidence
 
@@ -100,7 +110,7 @@ and disclose the limitation.
 
 ### 3. Track material claims
 
-Use a working claim ledger for claims that materially affect the answer:
+Use a working evidence note for claims that materially affect the answer:
 
 ```text
 claim | type | risk | supporting sources | contradicting sources
@@ -108,7 +118,8 @@ counter-search | status: supported / partial / refuted / unresolved
 ```
 
 This is a reasoning aid unless a deterministic checker is actually available;
-do not claim that a prompt-only ledger mechanically proves correctness.
+do not claim that a prompt-only note mechanically proves correctness. Keep the
+note internal and expose only the resulting citations and uncertainty.
 
 For high-risk claims, seek a primary or first-party source where one exists,
 independent corroboration where appropriate, and an explicit counter-search. A
@@ -136,7 +147,7 @@ they carry more signal than a vague paraphrase, and define them on first use.
 ### 5. Review open-endedly, then classify
 
 The first review pass is discovery, not checklist compliance. Use one short
-high-signal probe:
+open-ended probe:
 
 ```text
 Any material issues?
@@ -170,22 +181,23 @@ important contradictions are visible, the explanation has a coherent model and
 useful example, and the latest review found no material issue. Otherwise continue
 within the caps or finish with uncertainty.
 
-## Compact worker contract
+## Compact internal task contract
 
-Use workers only for independent axes or review lenses, and only when the current
-harness exposes them. Keep synthesis and claim state owned by one coordinator.
+Use workers only for independent questions or review passes, and only when the
+current harness exposes them. Keep synthesis and evidence state owned by one
+coordinator.
 
 ```text
 TASK: [one imperative sentence]
 GOAL: [user-relevant outcome]
-LENS: [one to three semantic anchors]
+LENS: [one to three internal lenses]
 EVIDENCE: [source territory or artifact]
 DONE WHEN: [observable completion condition]
 RETURN: [small result, leads, and uncertainty]
 ```
 
 Do not inject the whole policy, every failure mode, or a long checklist into a
-worker prompt.
+task prompt. Do not copy this internal contract into the user-facing answer.
 
 ## Recovery and terminal states
 
