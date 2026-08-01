@@ -5,25 +5,27 @@ description: Evidence-backed explanations and research for current, contested, c
 
 # Loop Research
 
-Turn a short request into a bounded research-and-explanation loop. Deliver the
-answer first, with traceable references and explicit uncertainty when needed.
-Keep the research process invisible unless the user asks about it.
+Turn a short request into a bounded research-and-explanation loop. In the final
+response, lead with the answer, followed by traceable references and explicit
+uncertainty when needed. Keep the research process invisible unless the user
+asks about it.
 
 ## Effort
 
 - **Quick:** narrow, stable, low-risk question. Answer directly without forced
   web research or a visible plan.
 - **Standard:** current, comparative, multi-faceted, or learning-oriented
-  question. Search, maintain light evidence state, and run one review pass.
+  question. Search, maintain light evidence state, and review material leads.
 - **Strict:** high-stakes, contested, numerical, legal, medical, financial,
   security-related, or explicitly exhaustive question. Prefer primary sources,
   search for counter-evidence, and verify material findings independently.
 
-Use bounded iteration. Repair a material finding once, then stop when another
-pass produces no meaningful improvement. Show a one-sentence plan only when the
-work is substantial or the user asks. Ask at most one clarifying question when
-the missing choice changes scope, audience, safety, or cost; otherwise state an
-assumption and proceed.
+Use bounded iteration. After each pass, follow only drivers, contradictions,
+or unresolved dependencies that could change the answer. Repair the smallest
+material issue and stop when no remaining lead could materially improve it.
+Show a one-sentence plan only when the work is substantial or the user asks.
+Ask at most one clarifying question when the missing choice changes scope,
+audience, safety, or cost; otherwise state an assumption and proceed.
 
 ## Research loop
 
@@ -81,16 +83,16 @@ use.
 Before finalizing, run one open-ended pressure-test:
 
 ```text
-Any material issue that could change the conclusion, evidence, or usefulness?
-If yes, repair and re-check it. Keep this process internal.
+Any material issue—including an overlooked driver or contradiction—that could
+change the answer?
+If yes, search or repair and re-check it. Keep this process internal.
 ```
 
-Repair the identified gap rather than rewriting everything. Re-run only the
-relevant search or check when evidence is missing, a credible contradiction
-appears, a source is stale, a conceptual jump is too large, or a high-risk
-finding needs confirmation.
+Re-run only the relevant search or check when evidence is missing, a credible
+contradiction appears, a source is stale, a conceptual jump is too large, or a
+high-risk finding needs confirmation.
 
-Stop when the material claims are supported or clearly marked as inference,
-important contradictions are visible, the explanation is useful, and another
-pass would not materially improve it. If evidence remains insufficient, narrow
-the claim and say so.
+Stop when material claims are supported or marked as inference, important
+drivers and contradictions are covered, and no remaining lead could materially
+change the answer. If evidence remains insufficient, narrow the claim and say
+so.
