@@ -86,9 +86,9 @@ coverage—not word count—as the depth floor. Shape the memo to the goal: for
 decision or prediction questions, include scenarios or triggers; for learning,
 prefer a problem-first explanation with a mental model, example, misconception,
 and practice; for comparisons, use criteria, evidence, tradeoffs, and a
-verdict. Keep a briefing compact when that is the user's goal. Explain at the
-user's level and
-define necessary domain terms on first use.
+verdict. Keep a briefing compact when that is the user's goal. Do not confuse
+a short user question with a request for a short answer. Explain at the user's
+level and define necessary domain terms on first use.
 
 ### 5. Review and repair
 
