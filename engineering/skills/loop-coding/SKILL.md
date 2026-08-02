@@ -1,6 +1,7 @@
 ---
 name: loop-coding
 description: Approval-gated coding loop for building, changing, fixing, or refactoring code.
+disable-model-invocation: true
 ---
 
 Before doing any work, create a task-specific checklist at
