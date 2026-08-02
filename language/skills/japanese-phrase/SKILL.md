@@ -31,7 +31,10 @@ $ARGUMENTS
   - Explain particles and sentence endings by their function in this phrase, not only by a Korean gloss. Mention omitted subjects only when they affect the meaning.
 - Format `단어/문법` as short bullets, not slash-separated inline lists. Each bullet should cover one word, particle, ending, or fixed expression and include its `읽기/발음 참고`.
 - Include only the components needed to understand the phrase, usually 3-5 bullets. If understanding the phrase requires more, include those essential components rather than leaving them unexplained. Avoid repeating a word or grammar explanation across phrase sections; when it has already been explained, state only the new nuance.
-- Do not add separate vocabulary or grammar explanations for ordinary dialogue lines; explain only the introduced key phrases.
+- After each dialogue scenario, add `대화 속 단어/문법` with 3-5 useful words, particles, endings, or fixed expressions that actually appear in that dialogue.
+  - Prioritize expressions needed to follow the conversation and items a beginner is likely to ask about; do not explain every word in every line.
+  - Include `읽기/발음 참고` and a concise Korean explanation. For conjugated forms, explain the base form and the change when useful.
+  - Do not repeat a detailed explanation already given for the scenario's key phrase; explain its new dialogue nuance only when there is one.
 - Treat Korean-style pronunciation as a learning aid, not exact pronunciation.
 - Mention long vowels, small っ, and ん only when useful; avoid lengthy repeated pronunciation notes.
 - Use readable spacing and paragraph-style explanations; avoid workbook-like formatting and deep nesting.
@@ -136,6 +139,11 @@ $ARGUMENTS
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
 
+대화 속 단어/문법:
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
+
 ### **상황 2: [다른 문맥 설명]**
 
 > **[이름 A]:** [Japanese opening line]
@@ -161,4 +169,9 @@ $ARGUMENTS
 > **[이름 A 또는 이름 B]:** [Japanese closing response]
 > 읽기/발음: [ひらがな] / [한국어식 근사 발음]
 > ([Korean translation])
+
+대화 속 단어/문법:
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
+- [대화에 나온 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 자세한 풀이]
 ```
