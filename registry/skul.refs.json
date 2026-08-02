@@ -8,13 +8,6 @@
     },
     {
       "target": "skills",
-      "name": "insane-research-main",
-      "source": "fivetaku/insane-research",
-      "ref": "68f7e59168a9c9b0a586bd4122cb7a229e119d9c",
-      "disable-model-invocation": true
-    },
-    {
-      "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills"
     },
