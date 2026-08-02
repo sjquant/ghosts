@@ -18,18 +18,24 @@ user has already approved a specific plan. Do not implement from a bare request.
 After approval, implement the plan and run the relevant checks. Then review and
 repair the change by asking yourself these questions one at a time:
 
-- Any correctness, operational, or security issues?
-- Any design or API issues?
-- Any test issues?
-- Any unintended side effects from the fixes?
-- Any bloats, slops, or smells?
+- Any correctness or operational risks, including bugs, edge cases, race
+  conditions, resource leaks, performance bottlenecks, scalability concerns, or
+  security issues?
+- Any design or API issues when viewed from outside-in, deep-module, and
+  dependency-direction perspectives, including hidden obligations, awkward
+  call sites, leaky abstractions, or circular dependencies?
+- Any opportunities to simplify or clarify the code through better naming,
+  standard libraries, utilities, or existing abstractions?
+- Any test smells—such as brittle or implementation-coupled tests,
+  over-mocking, unclear intent, missing negative-path coverage, or surviving
+  mutants?
 
 Whenever the answer is yes, make the smallest useful fix, run the relevant
 checks again, and continue the questions from the beginning if the fix could
-introduce another issue. Keep this loop internal; do not make the user prompt
-each review pass. Stop when the answers are no, the relevant checks pass, and
-the diff remains within the approved scope. If the scope or design must change
-materially, stop and present a revised plan for approval.
+introduce another issue or side effect. Keep this loop internal; do not make
+the user prompt each review pass. Stop when the answers are no, the relevant
+checks pass, and the diff remains within the approved scope. If the scope or
+design must change materially, stop and present a revised plan for approval.
 
 Keep the final response concise: summarize what changed, the checks run, and
 any remaining uncertainty.
