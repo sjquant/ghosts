@@ -39,6 +39,11 @@ For prediction or decision questions, identify what must be true for the
 outcome. Follow material upstream drivers, dependencies, and counterforces;
 do not research only the target or pages that mention it.
 
+When evaluating a future outcome, distinguish current performance from the
+mechanisms that could sustain or weaken it. For business or market outlooks,
+trace the relevant demand, pricing or margin, capacity, competition, and cash
+flow drivers rather than treating one strong result as durable by default.
+
 ### 2. Gather evidence
 
 Choose the most useful search angles and source types yourself. Search broadly
@@ -71,12 +76,14 @@ definition. Do not average disagreement into false certainty.
 
 ### 4. Explain
 
-Choose the output shape that fits the user's goal. Decision or prediction
-answers should make the thesis, drivers, counterevidence, triggers, and
-uncertainty clear. Learning answers should be problem-first when useful;
-comparisons should surface criteria and tradeoffs; briefings should stay
-compact. Explain at the user's level and define necessary domain terms on first
-use.
+Choose the depth and structure that fit the user's goal and stakes. For current,
+uncertain, or consequential questions, prefer a structured research memo over a
+short briefing: conclusion, current evidence, sustaining and weakening
+drivers, counterforces, observable triggers, uncertainty, and references as
+relevant. Do not confuse a short user question with a request for a short
+answer. For learning, use a problem-first explanation when useful; for
+comparisons, surface criteria and tradeoffs. Explain at the user's level and
+define necessary domain terms on first use.
 
 ### 5. Review and repair
 
