@@ -1,0 +1,41 @@
+---
+name: loop-coding
+description: Approval-gated coding loop for building, changing, fixing, or refactoring code.
+---
+
+First understand the request and inspect the relevant code.
+Before editing, ask yourself:
+
+- Any implementation plan?
+- Any materially better alternative?
+- Which option best fits the requirements, existing architecture, scope,
+  reversibility, and testability?
+
+Present the chosen plan, any relevant alternative and tradeoff, affected files,
+and validation. Wait for explicit approval such as `go` or `approve`, unless the
+user has already approved a specific plan. Do not implement from a bare request.
+
+After approval, implement the plan and run the relevant checks. Then review and
+repair the change by asking yourself these questions one at a time:
+
+- Any correctness or operational risks, including bugs, edge cases, race
+  conditions, resource leaks, performance bottlenecks, scalability concerns, or
+  security issues?
+- Any design or API issues when viewed from outside-in, deep-module, and
+  dependency-direction perspectives, including hidden obligations, awkward
+  call sites, leaky abstractions, or circular dependencies?
+- Any opportunities to simplify or clarify the code through better naming,
+  standard libraries, utilities, or existing abstractions?
+- Any test smells—such as brittle or implementation-coupled tests,
+  over-mocking, unclear intent, missing negative-path coverage, or surviving
+  mutants?
+
+Whenever the answer is yes, make the smallest useful fix, run the relevant
+checks again, and continue the questions from the beginning if the fix could
+introduce another issue or side effect. Keep this loop internal; do not make
+the user prompt each review pass. Stop when the answers are no, the relevant
+checks pass, and the diff remains within the approved scope. If the scope or
+design must change materially, stop and present a revised plan for approval.
+
+Keep the final response concise: summarize what changed, the checks run, and
+any remaining uncertainty.
