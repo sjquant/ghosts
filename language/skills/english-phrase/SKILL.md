@@ -20,7 +20,7 @@ $ARGUMENTS
 
 ## Sections
 
-1. `가장 자연스러운 표현`: give 1 broadly useful English translation; add a second only when its usage is meaningfully different.
+1. `상황별로 이렇게 말해요`: use 2 short, conversational Korean context headings by default; add a third only when it represents a meaningfully different use. Give 1 English phrase per context.
 2. `대화 예시`: include at least two realistic scenarios. Each scenario must use natural speaker names, include at least 6 English lines, alternate in an A-B-A-B-A-B pattern, and include context, response, follow-up, and a small resolution.
 
 For every English phrase, add a short Korean paragraph explaining nuance, feeling, and appropriate usage. In dialogues, every English line needs a Korean translation. Bolded key phrases must exactly match phrases introduced earlier.
@@ -37,10 +37,22 @@ Dialogue examples must preserve conversational flow:
 ## Output Format
 
 ```markdown
-## ✅ 가장 자연스러운 표현
+## 💬 상황별로 이렇게 말해요
+
+### **[짧은 한국어 문맥]**
 
 **"[English Phrase]"**
 [짧은 한국어 설명]
+
+### **[짧은 한국어 문맥]**
+
+**"[English Phrase]"**
+[짧은 한국어 설명]
+
+**"[English Phrase]"** <!-- 의미 차이가 있을 때만 추가 -->
+[짧은 한국어 설명]
+
+### **[짧은 한국어 문맥]** <!-- 세 번째로 의미가 확실히 다른 쓰임이 있을 때만 추가 -->
 
 **"[English Phrase]"**
 [짧은 한국어 설명]

@@ -17,7 +17,7 @@ $ARGUMENTS
 - Prefer common real-life Japanese expressions over literal translations.
 - Choose expressions with distinct usage differences; avoid near-duplicate variants.
 - Keep phrase sections light:
-  - `가장 자연스러운 표현`: 1 primary expression by default; add a second only when its meaning or nuance is genuinely different.
+  - `상황별로 이렇게 말해요`: use 2 short Korean context headings by default; add a third only when it represents a meaningfully different use. Give 1 expression per context.
 - For every introduced Japanese phrase, include:
   - `읽기`: hiragana reading.
   - `발음 참고`: Korean-style approximate pronunciation.
@@ -61,7 +61,9 @@ $ARGUMENTS
 ## Output Format
 
 ```markdown
-## ✅ 가장 자연스러운 표현
+## 💬 상황별로 이렇게 말해요
+
+### **[짧은 한국어 문맥]**
 
 **「[Japanese Phrase]」**
 읽기: [ひらがな]
@@ -70,13 +72,15 @@ $ARGUMENTS
 
 [짧은 한국어 설명]
 
-문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 전체 뜻을 짧게 연결]
+문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 이 상황에서의 의미를 짧게 설명]
 
 단어/문법:
 - [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
 - [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
 
-**「[Japanese Phrase]」** <!-- 두 번째 표현이 실제로 필요할 때만 -->
+### **[짧은 한국어 문맥]**
+
+**「[Japanese Phrase]」**
 읽기: [ひらがな]
 발음 참고: [한국어식 근사 발음]
 공손도: [반말/정중체/격식체/메시지체]
@@ -86,8 +90,23 @@ $ARGUMENTS
 문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 앞 표현과 다른 점을 짧게 설명]
 
 단어/문법:
-- [새로 배울 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-- [새로 배울 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
+- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
+- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
+
+### **[짧은 한국어 문맥]** <!-- 세 번째로 의미가 확실히 다른 쓰임이 있을 때만 추가 -->
+
+**「[Japanese Phrase]」**
+읽기: [ひらがな]
+발음 참고: [한국어식 근사 발음]
+공손도: [반말/정중체/격식체/메시지체]
+
+[짧은 한국어 설명]
+
+문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 앞 표현과 다른 점을 짧게 설명]
+
+단어/문법:
+- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
+- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
 
 ## 🎭 대화 예시
 
