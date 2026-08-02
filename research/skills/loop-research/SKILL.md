@@ -10,6 +10,32 @@ response, lead with the answer, followed by traceable references and explicit
 uncertainty when needed. Keep the research process invisible unless the user
 asks about it.
 
+Before doing any research, create a task-specific checklist at
+`/tmp/loop-research-<safe-task-slug>.md`, replacing the placeholder with a
+unique short slug or timestamp. Keep it updated after every completed item; do
+not mark future items in advance. Use `[x]` only after the item is actually
+complete and `[-]` only with a reason. Do not move to the next required item
+while the current one is unchecked. Add new material leads or unresolved
+dependencies to the checklist as they appear, and process them before
+finishing. For Quick effort, mark inapplicable research steps `[-]` with a
+reason rather than forcing unnecessary work. Keep the checklist internal unless
+the user asks to see it. Record a short outcome beside each item. When a new
+material lead or repair appears, reset any affected verification, explanation,
+or finalization item to `[ ]` and process it before finishing.
+
+Use a checklist with at least these items:
+
+```text
+- [ ] Define the real question, scope, audience, freshness, and risk
+- [ ] Choose effort and research angles
+- [ ] Gather relevant evidence
+- [ ] Verify material claims and contradictions
+- [ ] Explain with the appropriate structure
+- [ ] Any material issue that could change the answer?
+- [ ] Repair and re-check any material issue
+- [ ] Finalize references, uncertainty, and unresolved items
+```
+
 ## Effort
 
 - **Quick:** narrow, stable, low-risk question. Answer directly without forced
