@@ -7,8 +7,7 @@ description: Evidence-backed explanations and research for current, contested, c
 
 Turn a short request into a bounded research-and-explanation loop. In the final
 response, lead with the answer, followed by traceable references and explicit
-uncertainty when needed. Use the checklist as the execution state and show its
-current state and concise outcomes when useful or requested.
+uncertainty when needed. Use the checklist as the execution state.
 
 Before doing any research, create a task-specific checklist at
 `/tmp/loop-research-<safe-task-slug>.md`, replacing the placeholder with a
