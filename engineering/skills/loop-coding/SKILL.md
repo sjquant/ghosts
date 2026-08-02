@@ -8,10 +8,9 @@ Before doing any work, create a task-specific checklist at
 unique short slug or timestamp. Keep it updated after every completed item; do
 not mark future items in advance. Use `[x]` only after the item is actually
 complete and `[-]` only with a reason. Do not move to the next required item
-while the current one is unchecked. Keep the checklist internal unless the
-user asks to see it. Record a short outcome beside each item. If a fix could
-invalidate a completed review or validation item, reset that item to `[ ]` and
-process it again.
+while the current one is unchecked. Record a short outcome beside each item.
+If a fix could invalidate a completed review or validation item, reset the item
+to `[ ]` and process it again.
 
 Use a checklist with at least these items:
 
@@ -42,7 +41,8 @@ time.
 
 Whenever the answer is yes, make the smallest useful fix, run the relevant
 checks again, and continue the questions from the beginning if the fix could
-introduce another issue or side effect. Keep this loop internal; do not make
+introduce another issue or side effect. Keep the checklist updated and show
+its current state and concise outcomes when useful or requested; do not make
 the user prompt each review pass. Stop when the answers are no, the relevant
 checks pass, and the diff remains within the approved scope. If the scope or
 design must change materially, stop and present a revised plan for approval.

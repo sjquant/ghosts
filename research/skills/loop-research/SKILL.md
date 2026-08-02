@@ -7,8 +7,8 @@ description: Evidence-backed explanations and research for current, contested, c
 
 Turn a short request into a bounded research-and-explanation loop. In the final
 response, lead with the answer, followed by traceable references and explicit
-uncertainty when needed. Keep the research process invisible unless the user
-asks about it.
+uncertainty when needed. Use the checklist as the execution state and show its
+current state and concise outcomes when useful or requested.
 
 Before doing any research, create a task-specific checklist at
 `/tmp/loop-research-<safe-task-slug>.md`, replacing the placeholder with a
@@ -18,8 +18,8 @@ complete and `[-]` only with a reason. Do not move to the next required item
 while the current one is unchecked. Add new material leads or unresolved
 dependencies to the checklist as they appear, and process them before
 finishing. For Quick effort, mark inapplicable research steps `[-]` with a
-reason rather than forcing unnecessary work. Keep the checklist internal unless
-the user asks to see it. Record a short outcome beside each item. When a new
+reason rather than forcing unnecessary work. Record a short outcome beside
+each item. When a new
 material lead or repair appears, reset any affected verification, explanation,
 or finalization item to `[ ]` and process it before finishing.
 
@@ -124,8 +124,8 @@ Draft internally, then run one open-ended pressure-test:
 Any material issue—including an overlooked driver, dependency, or contradiction—
 that could change the conclusion, evidence, or usefulness?
 What new lead, contradiction, or dependency needs checking?
-If yes, search or repair the smallest material issue and re-check it. Keep this
-process internal.
+If yes, search or repair the smallest material issue and re-check it. Record
+the result in the checklist and continue without requiring another user prompt.
 ```
 
 Re-run only the relevant search or check when evidence is missing, a credible
