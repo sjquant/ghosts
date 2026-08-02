@@ -1,15 +1,19 @@
 ---
 name: loop-coding
-description: Approval-gated coding loop for building, changing, fixing, or refactoring code. Do not activate for explanation-only, review-only, or planning-only requests.
+description: Approval-gated coding loop for building, changing, fixing, or refactoring code.
 ---
 
-# Loop Coding
+First understand the request and inspect the relevant code.
+Before editing, ask yourself:
 
-For a coding task, first understand the request and inspect the relevant code.
-Before editing, present a concise implementation plan covering the approach,
-important alternatives or tradeoffs, affected files, and validation. Wait for
-explicit approval such as `go` or `approve`, unless the user has already
-approved a specific plan. Do not implement from a bare request.
+- Any implementation plan?
+- Any materially better alternative?
+- Which option best fits the requirements, existing architecture, scope,
+  reversibility, and testability?
+
+Present the chosen plan, any relevant alternative and tradeoff, affected files,
+and validation. Wait for explicit approval such as `go` or `approve`, unless the
+user has already approved a specific plan. Do not implement from a bare request.
 
 After approval, implement the plan and run the relevant checks. Then review and
 repair the change by asking yourself these questions one at a time:
