@@ -1,166 +1,293 @@
 ---
 name: japanese-phrase
-description: Create Korean-language learning guides for translating everyday Korean phrases into natural Japanese by context, with pronunciation and word-level explanations.
+description: Create Korean-language absolute-beginner Japanese lessons for everyday Korean phrases, with complete sentence explanations, pronunciation, and useful kanji connections.
 disable-model-invocation: true
 ---
 
-Create a Korean-language learning guide that translates one everyday Korean phrase into natural spoken Japanese.
+Create a Korean-language Japanese lesson based on one everyday Korean phrase.
 
 ## Input
 
 $ARGUMENTS
 
-## Requirements
+If no phrase is provided, randomly choose one very common everyday Korean phrase.
 
-- Write all headers and explanations in Korean; keep Japanese phrases and dialogue lines in Japanese.
-- Translate one everyday Korean phrase into natural spoken Japanese.
-- Prefer common real-life Japanese expressions over literal translations.
-- Choose expressions with distinct usage differences; avoid near-duplicate variants.
-- Keep phrase sections light:
-  - `상황별로 이렇게 말해요`: use 2 short Korean context headings by default; add a third only when it represents a meaningfully different use. Give 1 expression per context.
-- For every introduced Japanese phrase, include:
-  - `읽기`: hiragana reading.
-  - `발음 참고`: Korean-style approximate pronunciation.
-  - `공손도`: 반말, 정중체, 격식체, or 메시지체.
-  - Short Korean nuance/usage explanation.
-  - A short `문장 구조` line that breaks the phrase into meaningful units in Japanese word order.
-  - `단어/문법` bullets.
-- Explain each phrase for a beginner who may not know the parts inside a compound or conjugated form:
-  - When a compound contains a part the learner may not know, break it into useful parts, such as `やること` → `やる` (하다) + `こと` (일/것).
-  - Explain the base form and the change in conjugated forms, such as what `やった` is derived from and what its past tense means.
-  - Explain particles and sentence endings by their function in this phrase, not only by a Korean gloss. Mention omitted subjects only when they affect the meaning.
-- In phrase sections, use short `단어/문법` bullets. Each bullet should cover one word, particle, ending, or fixed expression and include its `읽기/발음 참고`. Explain the components needed to understand the phrase, and avoid repeating the same explanation across phrase sections.
-- After each dialogue scenario, add `대화 문장 해설` as a beginner-level mini-lecture for all six Japanese lines.
-  - Explain every word, particle, ending, interjection, and fixed expression in each line in order. Do not skip small words such as `は`, `も`, `し`, `けど`, `ね`, or `よ`.
-  - For every line, show the sentence structure, including the omitted subject or object when it matters, and explain how the parts combine into the Korean meaning.
-  - For every vocabulary or grammar item, include `읽기/발음 참고`, a basic meaning, and its function in that sentence. For conjugated forms, give the dictionary form and explain the change.
-  - Explain the six lines in dialogue order, even when a word was introduced earlier. If an item is repeated, state its meaning in this line briefly instead of leaving it unexplained.
-- Treat Korean-style pronunciation as a learning aid, not exact pronunciation. Mention long vowels, small っ, and ん only when useful.
-- Use readable spacing and paragraph-style explanations. The dialogue lecture may use a clear per-line structure with nested bullets.
-- Dialogue examples must have at least 2 realistic scenarios. Each scenario has 6 Japanese lines in a natural A-B-A-B-A-B flow, natural and consistent speaker names, Korean translation for every line, a clear context, and a small resolution.
-- After each scenario, add `대화 문장 해설` for all 6 lines. Use the format below for each line in order:
-  - Show the sentence structure and any meaningful omitted subject or object.
-  - Explain every word, particle, ending, interjection, and fixed expression, including small items such as `は`, `も`, `し`, `けど`, `ね`, and `よ`.
-  - Include `읽기/발음 참고`, basic meaning, and sentence function for every item. For conjugated forms, give the dictionary form and explain the change.
-  - If an item repeats, explain its role briefly in that line instead of copying a long explanation.
-- In each scenario, use at least one introduced key phrase at a natural point after its context or trigger. Bold only the exact introduced phrase, with no spaces between it and nearby punctuation. Continue after it with a response, clarification, decision, or resolution; repeat it only when a new trigger appears.
+## Learner Profile
 
-## Output Format
+The learner:
+
+- Is a Korean speaker and an absolute beginner in Japanese.
+- Can read some hiragana but does not yet understand many basic words, particles, conjugations, or kanji.
+- Needs every Japanese sentence explained slowly and completely.
+- Benefits from connecting Japanese kanji with Korean 한자 훈·음, such as `木 = 나무 목`.
+- Finds long vocabulary lists and many similar expressions overwhelming.
+
+## Core Teaching Principles
+
+1. Teach one main expression thoroughly rather than introducing many expressions.
+2. Use natural spoken Japanese, not word-for-word translation.
+3. Keep every dialogue line short and beginner-friendly.
+4. Introduce no more than one or two important new grammar points per line.
+5. Do not leave unexplained Japanese words inside examples.
+6. Follow this learning order:
+
+   **전체 뜻 → 읽기와 발음 → 문장 구조 → 단어와 문법 → 한자 연결 → 대화 속 사용 → 회상 연습**
+
+7. Use simple Korean explanations. Avoid linguistic jargon unless immediately explained.
+8. Treat Korean-style pronunciation only as an approximate learning aid.
+9. Explain long vowels, small `っ`, and `ん` only when they appear and affect pronunciation.
+
+## Lesson Scope
+
+### Main expression
+
+Introduce one primary Japanese expression that best matches the Korean phrase.
+
+Add one contrasting expression only when it has a clearly different real-life use. Do not provide near-duplicate alternatives merely to increase the number of expressions.
+
+### Dialogue count
+
+Use one dialogue scenario by default. Add a second scenario only when it demonstrates a clearly different meaning or situation that cannot be taught well in the first scenario.
+
+Each scenario should contain 4–6 short Japanese lines in a natural A-B-A-B flow, ending with a small response, decision, or resolution.
+
+## Required Explanation for Each Introduced Phrase
+
+For every introduced Japanese phrase, include:
+
+- `읽기`: full hiragana reading.
+- `발음 참고`: Korean-style approximate pronunciation.
+- `공손도`: 반말, 정중체, 격식체, or 메시지체.
+- `자연스러운 뜻`: the meaning a Korean speaker would naturally use.
+- `직역`: include only when it helps reveal the Japanese structure.
+- A short Korean explanation of when and why the expression is used.
+- `문장 구조`: break the expression into meaningful units in actual Japanese word order.
+- `단어/문법`: explain every component necessary to understand the expression.
+
+For conjugated forms:
+
+- Give the dictionary form.
+- Show the change step by step.
+- Explain what the resulting form means in this sentence.
+
+Example:
+
+`痛くない`
+→ 기본형 `痛い`
+→ 마지막 `い`를 빼고 `くない`를 붙임
+→ “아프지 않다”
+
+For compounds and fixed expressions:
+
+- Break them into useful parts.
+- Explain the whole expression, not just the separate dictionary meanings.
+
+Example:
+
+`気にする`
+→ `気` + `に` + `する`
+→ 각각의 직역보다 “신경 쓰다”라는 고정 표현으로 이해
+
+For particles and sentence endings:
+
+- Explain their actual function in the sentence, not only a Korean one-word gloss.
+- Explain small items such as `は`, `も`, `に`, `を`, `けど`, `し`, `ね`, and `よ` when they appear.
+- Mention omitted subjects or objects only when they affect the interpretation.
+
+In the phrase section, keep explanations focused on the components needed for that phrase. Do not repeat a long explanation across phrase entries.
+
+## Phrase Section Format
 
 ```markdown
-## 💬 상황별로 이렇게 말해요
+## 💬 오늘의 표현
 
-### **[짧은 한국어 문맥]**
+한국어: **[Korean phrase]**
 
-**「[Japanese Phrase]」**
+### **[짧은 한국어 상황]**
+
+**「[Japanese phrase]」**
+
 읽기: [ひらがな]
 발음 참고: [한국어식 근사 발음]
 공손도: [반말/정중체/격식체/메시지체]
+자연스러운 뜻: [한국어 뜻]
+직역: [구조 이해에 도움이 될 때만]
 
-[짧은 한국어 설명]
+[이 표현을 언제 사용하는지 쉬운 한국어로 설명]
 
-문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 이 상황에서의 의미를 짧게 설명]
-
-단어/문법:
-- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-- [단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-
-### **[짧은 한국어 문맥]**
-
-**「[Japanese Phrase]」**
-읽기: [ひらがな]
-발음 참고: [한국어식 근사 발음]
-공손도: [반말/정중체/격식체/메시지체]
-
-[짧은 한국어 설명]
-
-문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 앞 표현과 다른 점을 짧게 설명]
+문장 구조: [일본어 실제 어순대로 의미 단위 분해]
 
 단어/문법:
-- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
 
-### **[짧은 한국어 문맥]** <!-- 세 번째로 의미가 확실히 다른 쓰임이 있을 때만 추가 -->
+- **[구성 요소]**
+  읽기/발음: [ひらがな] / [근사 발음]
+  기본 뜻: [뜻]
+  이 문장에서의 역할: [기능]
+  형태 변화: [활용형일 때 기본형부터 설명]
 
-**「[Japanese Phrase]」**
-읽기: [ひらがな]
-발음 참고: [한국어식 근사 발음]
-공손도: [반말/정중체/격식체/메시지체]
-
-[짧은 한국어 설명]
-
-문장 구조: [일본어 구성 요소를 실제 어순대로 나누고, 앞 표현과 다른 점을 짧게 설명]
-
-단어/문법:
-- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-- [앞에서 설명하지 않은 단어/조사/어미/고정 표현 하나] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [초보자용 짧은 풀이]
-
-## 🎭 대화 예시
-
-### **상황 1: [문맥 설명]**
-
-> **[이름 A]:** [Japanese opening line]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 B]:** [Japanese response or context-setting line]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese line that continues the conversation]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese response]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese follow-up]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese closing response]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
-
-#### 대화 문장 해설
-
-각 대화 문장을 1번부터 6번까지 아래 형식으로 모두 설명합니다.
-
-1. **[Japanese line]**
-   - 문장 구조: [어순, 구성, 생략된 주어/목적어, 전체 뜻]
-   - 단어/문법:
-     - [문장에 나온 모든 단어/조사/어미/추임새/고정 표현을 순서대로 필요한 만큼 나열하고, 각각의 읽기·발음·뜻·기능을 설명]
-
-2-6. 위 형식을 반복해 각 문장을 빠짐없이 해설합니다.
-
-### **상황 2: [다른 문맥 설명]**
-
-> **[이름 A]:** [Japanese opening line]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 B]:** [Japanese response or context-setting line]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese follow-up or clarification]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese response]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese follow-up]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
->
-> **[이름 A 또는 이름 B]:** [Japanese closing response]
-> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
-> ([Korean translation])
-
-#### 대화 문장 해설
-
-상황 1과 동일한 형식으로 1번부터 6번까지 모든 문장을 해설합니다.
+- **[다음 구성 요소]**
+  읽기/발음: [ひらがな] / [근사 발음]
+  기본 뜻: [뜻]
+  이 문장에서의 역할: [기능]
 ```
+
+If a genuinely different contrasting expression is useful, add it after the main expression:
+
+```markdown
+### **비슷해 보이지만 다른 상황**
+
+**「[Contrasting Japanese phrase]」**
+
+[같은 형식으로 설명하되, 앞 표현과의 차이를 명확히 설명]
+```
+
+## Dialogue Requirements
+
+Use natural Japanese names and keep them consistent.
+
+Each dialogue must:
+
+- Establish a clear context before the key expression appears.
+- Use the introduced key expression at a natural point.
+- Use 4–6 short Japanese lines in a natural A-B-A-B flow.
+- Provide a Korean translation and compact reading/pronunciation for every line.
+- Bold only the exact introduced phrase, with no internal spaces and with nearby punctuation outside the bold text.
+- Continue after the key expression with a response, clarification, decision, or resolution.
+
+Format:
+
+```markdown
+## 🎭 짧은 대화
+
+### **상황: [Korean context]**
+
+> **유키:** [Japanese line]
+> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
+> 뜻: [자연스러운 한국어 번역]
+>
+> **하루:** [Japanese line]
+> 읽기/발음: [ひらがな] / [한국어식 근사 발음]
+> 뜻: [자연스러운 한국어 번역]
+```
+
+## Full Dialogue Lecture
+
+After each dialogue scenario, add `대화 문장 강의` and explain all of its dialogue lines in order. Use the same format for every line:
+
+```markdown
+### 1. **[Japanese line]**
+
+전체 뜻: [자연스러운 한국어 뜻]
+
+문장 구조:
+[일본어 실제 어순으로 나누기]
+→ [각 부분을 합쳐 전체 뜻이 되는 과정]
+
+단어/문법:
+
+- **[첫 번째 요소]**
+  읽기/발음: [ひらがな] / [근사 발음]
+  기본 뜻: [뜻]
+  이 문장에서의 역할: [기능]
+  형태 변화: [필요할 때 기본형과 변화 설명]
+
+- **[조사·어미·추임새]**
+  읽기/발음: [ひらがな] / [근사 발음]
+  이 문장에서의 역할: [기능과 뉘앙스]
+```
+
+In the dialogue lecture:
+
+- Explain every word, particle, ending, interjection, and fixed expression in the order it appears. Do not skip small words.
+- Explain meaningful omitted subjects and objects.
+- At the first appearance of an important kanji, explain it fully in `한자 연결해서 외우기`. At later appearances, state only its reading and meaning in that sentence.
+- If an item was already explained in the phrase section or an earlier line, briefly restate its role in the current sentence rather than copying the long explanation.
+- Do not add unrelated grammar or alternative expressions.
+
+## Kanji Teaching for Korean Learners
+
+After all dialogue lectures, add `한자 연결해서 외우기` for only the important kanji actually used in the main expression or dialogue, usually 2–4 characters.
+
+For each kanji, include:
+
+- The kanji.
+- Korean 훈·음, such as `足 = 발 족`.
+- Its basic core image or meaning.
+- Its reading in the current Japanese word.
+- Whether that reading is `음독` or `훈독`.
+- The full Japanese word containing it.
+- A short memory connection.
+- One useful Korean–Japanese cognate only when it genuinely helps.
+
+Example:
+
+**足**
+
+- 한국 훈·음: 발 족
+- 기본 이미지: 발, 다리
+- 이 단어에서의 읽기: `あし`
+- 읽기 종류: 훈독
+- 현재 단어: `足（あし）`
+- 기억법: 한자 하나보다 `足は平気？`라는 문장 속에서 `あし`로 기억
+
+For Korean–Japanese sound connections, use them only as memory hints, not pronunciation rules. When a mnemonic is not the true historical origin of the character, call it an `암기용 이미지`. Do not imply that Korean 한자음 always predicts Japanese pronunciation.
+
+Teach only the reading used in the current word, plus at most one highly useful additional reading. Point out when Korean and Japanese use the same characters but have different modern meanings, such as `大丈夫`.
+
+Format:
+
+```markdown
+## 🈶 한자 연결해서 외우기
+
+### **[Kanji] — [Korean 훈·음]**
+
+- 기본 이미지: [meaning]
+- 현재 단어: [Japanese word]
+- 일본어 읽기: [reading]
+- 읽기 종류: [음독/훈독]
+- 한국어 연결: [Korean 한자어 또는 발음 연결]
+- 암기용 이미지: [짧고 구체적인 기억법]
+```
+
+## Review Section
+
+End with a short active-recall review:
+
+```markdown
+## 🧠 오늘 이것만 기억하세요
+
+**[Japanese key phrase]**
+[hiragana]
+[자연스러운 한국어 뜻]
+
+핵심 구조:
+[짧은 구조 설명]
+
+핵심 한자:
+
+- [Kanji + Korean 훈·음 + current Japanese reading]
+- [Kanji + Korean 훈·음 + current Japanese reading]
+
+### 말해 보기
+
+1. [Korean prompt to translate into Japanese]
+2. [Simple variation using the same structure]
+
+### 정답
+
+1. [Japanese answer]
+2. [Japanese answer]
+```
+
+## Length and Difficulty Control
+
+- Prefer depth over breadth.
+- Keep dialogue lines short enough that every component can be explained clearly.
+- Do not introduce difficult vocabulary merely to make the dialogue realistic.
+- Use previously explained words where possible.
+- Do not create a separate long vocabulary list.
+- Do not provide more than four important kanji in one lesson.
+- Do not provide more than two substitution-practice sentences.
+- Do not introduce multiple similar grammar patterns in the same lesson.
+- When the output becomes long, reduce the number of dialogue lines or scenarios rather than shortening necessary explanations.
+- Never assume the learner already knows a word merely because it is common.
