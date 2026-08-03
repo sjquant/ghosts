@@ -25,42 +25,25 @@ $ARGUMENTS
   - Short Korean nuance/usage explanation.
   - A short `문장 구조` line that breaks the phrase into meaningful units in Japanese word order.
   - `단어/문법` bullets.
-- Explain phrases for a beginner who may not know the parts inside a compound or conjugated form:
+- Explain each phrase for a beginner who may not know the parts inside a compound or conjugated form:
   - When a compound contains a part the learner may not know, break it into useful parts, such as `やること` → `やる` (하다) + `こと` (일/것).
   - Explain the base form and the change in conjugated forms, such as what `やった` is derived from and what its past tense means.
   - Explain particles and sentence endings by their function in this phrase, not only by a Korean gloss. Mention omitted subjects only when they affect the meaning.
-- Format `단어/문법` as short bullets, not slash-separated inline lists. Each bullet should cover one word, particle, ending, or fixed expression and include its `읽기/발음 참고`.
-- Include only the components needed to understand the phrase, usually 3-5 bullets. If understanding the phrase requires more, include those essential components rather than leaving them unexplained. Avoid repeating a word or grammar explanation across phrase sections; when it has already been explained, state only the new nuance.
+- In phrase sections, use short `단어/문법` bullets. Each bullet should cover one word, particle, ending, or fixed expression and include its `읽기/발음 참고`. Explain the components needed to understand the phrase, and avoid repeating the same explanation across phrase sections.
 - After each dialogue scenario, add `대화 문장 해설` as a beginner-level mini-lecture for all six Japanese lines.
   - Explain every word, particle, ending, interjection, and fixed expression in each line in order. Do not skip small words such as `は`, `も`, `し`, `けど`, `ね`, or `よ`.
   - For every line, show the sentence structure, including the omitted subject or object when it matters, and explain how the parts combine into the Korean meaning.
   - For every vocabulary or grammar item, include `읽기/발음 참고`, a basic meaning, and its function in that sentence. For conjugated forms, give the dictionary form and explain the change.
   - Explain the six lines in dialogue order, even when a word was introduced earlier. If an item is repeated, state its meaning in this line briefly instead of leaving it unexplained.
-- Treat Korean-style pronunciation as a learning aid, not exact pronunciation.
-- Mention long vowels, small っ, and ん only when useful; avoid lengthy repeated pronunciation notes.
-- Use readable spacing and paragraph-style explanations; avoid workbook-like formatting and deep nesting outside the required dialogue lecture. The dialogue lecture should use a clear per-line structure even when it needs several nested bullets.
-- Do not add a separate long vocabulary section unless it adds non-repeated value.
-- Dialogue examples must include:
-  - At least 2 realistic scenarios.
-  - Replace `[이름 A]` and `[이름 B]` in the template with natural speaker names of your choice. Keep the A/B-to-name mapping consistent within each scenario.
-  - At least 6 Japanese lines per scenario.
-  - Natural A-B-A-B-A-B turn flow.
-  - Context, response, follow-up, and small resolution.
-  - Korean translation for every Japanese line.
-- In dialogues, combine reading and pronunciation compactly:
-  - `읽기/발음: [ひらがな] / [한국어식 근사 발음]`
-- Bolded key phrases in dialogues must exactly match introduced phrases.
-- Use bold markers without internal spaces: `**やることは全部やったよ**`, not `** やることは全部やったよ **`.
-- Do not add spaces between Japanese punctuation and bold markers:
-  - Good: `宿題、**やることは全部やったよ**。`
-  - Bad: `宿題、 **やることは全部やったよ** 。`
-- Bold only the introduced phrase, excluding punctuation unless punctuation is part of the phrase.
-- Dialogue examples must preserve conversational flow:
-  - Use at least one bolded key phrase per scenario.
-  - The key phrase does not have to appear in the first line. Place it wherever it fits naturally after the preceding context or trigger has been established.
-  - Do not reserve a particular turn for the key phrase; choose the most natural position among the six lines.
-  - Repeat a key phrase only when a new trigger appears in the prior turn or shared context.
-  - After the key phrase, continue with a response, clarification, decision, or resolution.
+- Treat Korean-style pronunciation as a learning aid, not exact pronunciation. Mention long vowels, small っ, and ん only when useful.
+- Use readable spacing and paragraph-style explanations. The dialogue lecture may use a clear per-line structure with nested bullets.
+- Dialogue examples must have at least 2 realistic scenarios. Each scenario has 6 Japanese lines in a natural A-B-A-B-A-B flow, natural and consistent speaker names, Korean translation for every line, a clear context, and a small resolution.
+- After each scenario, add `대화 문장 해설` for all 6 lines. Use the format below for each line in order:
+  - Show the sentence structure and any meaningful omitted subject or object.
+  - Explain every word, particle, ending, interjection, and fixed expression, including small items such as `は`, `も`, `し`, `けど`, `ね`, and `よ`.
+  - Include `읽기/발음 참고`, basic meaning, and sentence function for every item. For conjugated forms, give the dictionary form and explain the change.
+  - If an item repeats, explain its role briefly in that line instead of copying a long explanation.
+- In each scenario, use at least one introduced key phrase at a natural point after its context or trigger. Bold only the exact introduced phrase, with no spaces between it and nearby punctuation. Continue after it with a response, clarification, decision, or resolution; repeat it only when a new trigger appears.
 
 ## Output Format
 
@@ -142,37 +125,14 @@ $ARGUMENTS
 
 #### 대화 문장 해설
 
-1. **[첫 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [기본 뜻과 이 문장에서의 기능]
-     - [문장에 나온 다음 단어/조사/어미/고정 표현] (읽기/발음 참고: [ひらがな] / [한국어식 근사 발음]) - [기본 뜻과 이 문장에서의 기능]
-     - [문장의 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
+각 대화 문장을 1번부터 6번까지 아래 형식으로 모두 설명합니다.
 
-2. **[두 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
+1. **[Japanese line]**
+   - 문장 구조: [어순, 구성, 생략된 주어/목적어, 전체 뜻]
    - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
+     - [문장에 나온 모든 단어/조사/어미/추임새/고정 표현을 순서대로 필요한 만큼 나열하고, 각각의 읽기·발음·뜻·기능을 설명]
 
-3. **[세 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-4. **[네 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-5. **[다섯 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-6. **[여섯 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
+2-6. 위 형식을 반복해 각 문장을 빠짐없이 해설합니다.
 
 ### **상황 2: [다른 문맥 설명]**
 
@@ -202,33 +162,5 @@ $ARGUMENTS
 
 #### 대화 문장 해설
 
-1. **[첫 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-2. **[두 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-3. **[세 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-4. **[네 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-5. **[다섯 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
-
-6. **[여섯 번째 Japanese line]**
-   - 문장 구조: [문장의 구성과 생략된 주어/목적어를 실제 어순대로 설명]
-   - 단어/문법:
-     - [문장에 나온 첫 번째 단어/조사/어미/고정 표현을 설명하고, 모든 항목을 설명할 때까지 필요한 만큼 계속 추가]
+상황 1과 동일한 형식으로 1번부터 6번까지 모든 문장을 해설합니다.
 ```
