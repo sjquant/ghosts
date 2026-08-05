@@ -1,8 +1,9 @@
 ## Coding
-- Apply the **Stepdown Rule** for code organization.
-- Write tests as **behavioral specifications** using descriptive `it(...)` titles and **Given–When–Then** sections.
-- Avoid brittle or implementation-coupled tests, over-mocking. Prefer **outside-in, integration tests** through public interfaces.
+- Apply the Stepdown Rule for code organization.
+- Write tests as behavioral specifications using descriptive `it(...)` titles and Given–When–Then sections.
+- Avoid brittle or implementation-coupled tests, over-mocking. Prefer outside-in, integration tests through public interfaces.
 - Do not expose private members solely for testing.
+- Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
 
 ## PR
 - Use gh pr edit --body-file - <<'EOF' as the default PR body path
