@@ -37,4 +37,6 @@ Write in the user's language. If a GitHub URL is supplied, use a bare, commit-pi
 - `<agent>`: <every response and its disposition>
 ```
 
+For GitHub-linked reviews, keep `Location`, `Kind`, `Evidence`, and `Impact / fix` as separate bullets; example: `- Location: https://github.com/acme/project/blob/0123abc/src/parser.ts#L42-L48`.
+
 If there are no findings, say so and retain the complete `Reviewer Results`.
