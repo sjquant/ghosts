@@ -15,7 +15,11 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 
 Collect every response. Deduplicate only. Remove only clearly false, duplicate, or contradicted points; keep all other findings and record every response and disposition.
 
-Write in the user's language. If a GitHub URL is supplied, use a bare, commit-pinned `blob` permalink with the smallest relevant line range in each `Location`; otherwise use repository-relative paths. `P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
+Write in the user's language.
+
+- If a GitHub URL is supplied, use a bare, commit-pinned `blob` permalink with the smallest relevant line range in each `Location`.
+- Otherwise, use repository-relative paths.
+- `P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
 
 ```markdown
 ## Findings
