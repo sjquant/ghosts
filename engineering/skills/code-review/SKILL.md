@@ -15,12 +15,7 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 
 Collect every response. Deduplicate only. Remove only clearly false, duplicate, or contradicted points; keep all other findings and record every response and disposition.
 
-Write in the user's language. The invocation context determines the location format:
-
-- When the user supplies a GitHub URL, format every finding location as a bare GitHub blob permalink so the rendered review can be pasted into a GitHub comment and show the referenced code. Use the exact reviewed revision (prefer an immutable commit SHA; resolve a PR URL to its reviewed head revision), the repository-relative file path, and the smallest relevant one-based line range: `https://github.com/<owner>/<repo>/blob/<revision>/<path>#L<start>` or `#L<start>-L<end>`. Keep the `Location:` label, but do not wrap the URL in markdown.
-- When no GitHub URL is supplied, keep the local format below and use repository-relative paths only.
-
-`P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
+Write in the user's language. If a GitHub URL is supplied, use a bare, commit-pinned `blob` permalink with the smallest relevant line range in each `Location`; otherwise use repository-relative paths. `P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
 
 ```markdown
 ## Findings
@@ -40,15 +35,6 @@ Write in the user's language. The invocation context determines the location for
 ## Reviewer Results
 
 - `<agent>`: <every response and its disposition>
-```
-
-For GitHub-linked reviews, use the `Location:` label with a bare permalink, for example:
-
-```markdown
-- Location: https://github.com/acme/project/blob/0123abc/src/parser.ts#L42-L48
-- Kind: bug
-- Evidence: <why this matters>
-- Impact / fix: <impact and smallest useful action>
 ```
 
 If there are no findings, say so and retain the complete `Reviewer Results`.
