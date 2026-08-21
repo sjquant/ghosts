@@ -25,6 +25,7 @@
 
 1. If the project's commit message style is unknown, execute `git log --oneline -n 2` to identify the existing pattern and language.
 2. After finishing, always commit and push your changes. If there's no PR yet, create it first.
+- Use the `gh` CLI for GitHub-related work.
 
 ## Agent Browser CLI
 
