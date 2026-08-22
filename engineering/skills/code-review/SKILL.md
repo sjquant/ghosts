@@ -13,7 +13,7 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 - `Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?`
 - `Any test smells—such as brittle or implementation-coupled tests, over-mocking, unclear intent, missing negative-path coverage, or surviving mutants?`
 
-Collect every response. Deduplicate only. Remove only clearly false, duplicate, or contradicted points; keep all other findings and record every response and disposition.
+After all agents respond and before synthesizing the final findings, triage every candidate point through this question: `Does this feedback identify a real, evidenced, material issue, or would keeping it add unnecessary complexity, flag a nonexistent or unsupported bug, or provide little value?` Judge the feedback itself, not only whether another agent made the same point. Keep a finding only when it is worth the reader's attention and has a proportionate, actionable outcome. Skip feedback that is clearly false, unsupported, duplicate, contradicted, out of scope, or whose proposed change adds unnecessary complexity or provides little value. For every candidate, record `Include — <reason>` or `Skip — <reason>`; do not silently discard any response.
 
 - Write in the user's language.
 - If a GitHub URL is supplied, use a bare, commit-pinned `blob` permalink with the smallest relevant line range in each `Location`.
@@ -37,7 +37,7 @@ Collect every response. Deduplicate only. Remove only clearly false, duplicate, 
 
 ## Reviewer Results
 
-- `<agent>`: <every response and its disposition>
+- `<agent>`: <every response and its disposition, including the triage reason>
 ```
 
 For GitHub-linked reviews, make `Location` a bare GitHub permalink, for example: `- Location: https://github.com/acme/project/blob/0123abc/src/parser.ts#L42-L48`.
