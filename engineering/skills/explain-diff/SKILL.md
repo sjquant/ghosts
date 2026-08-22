@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Explain Diff
 
-Use this skill when the user provides a code change and wants to understand it. Explain like you are teaching a curious five-year-old who knows nothing about the topic, while keeping the facts technically accurate. Use an HTML artifact with big pictures and few words; teach the change as a small visual story, not as a line-by-line code dump.
+Explain the change as if teaching a curious five-year-old who knows nothing about the topic, while keeping the facts technically accurate. Use an HTML artifact with big pictures and few words; teach the change as a small visual story, not as a line-by-line code dump.
 
 If the target diff, branch, PR, or repository path is missing, ask for it before acting. Do not invent behavior: distinguish observed facts, reasonable inferences, and unknowns.
 
