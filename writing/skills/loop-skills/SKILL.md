@@ -65,18 +65,10 @@ make the behavior clearer or safer.
 
 ### Any checks
 
-Write review gates as answerable `Any ...?` questions. Answer each with Yes or
-No before marking it complete:
-
-```text
-Any scope or boundary issue?
-Any unnecessary rule or duplication?
-Any unclear behavior or output?
-```
-
-If any answer is Yes, make the smallest useful repair and return to `Write`.
-If all answers are No, finish. Add another `Any ...?` question only when a
-material issue is specific to the skill.
+Answer the checklist's `Any ...?` questions with Yes or No before marking them
+complete. If any answer is Yes, make the smallest useful repair and return to
+`Write`. If all answers are No, finish. Add another `Any ...?` question only
+when a material issue is specific to the skill.
 
 For a materially uncertain design, show a short plan and wait for approval. If
 the request is clear, proceed without an unnecessary gate. In review mode,
