@@ -1,81 +1,88 @@
 ---
 name: loop-skills
-description: Simple iterative workflow for creating, reviewing, or improving agent skills.
+description: Simple loop for creating, reviewing, or improving concise agent skills.
 disable-model-invocation: true
 ---
 
 # Loop Skills
 
-Create or improve an agent skill through a short loop. Keep the result small,
-clear, and useful; use judgment instead of forcing a fixed template.
+Create or improve an agent skill through a small feedback loop. The resulting
+skill should contain only behavior-changing instructions: remove repetition,
+long explanations, and optional rules. Add a reference only when it keeps the
+main skill clearer.
 
 Before starting, create a checklist at
-`/tmp/loop-skills-<safe-task-slug>.md` and update it as you work:
+`/tmp/loop-skills-<safe-task-slug>.md`. Use it as a state log, not as a linear
+form to complete once. When a repair is needed, return to the relevant earlier
+state and check it again.
 
 ```text
 - [ ] Understand the goal and inspect nearby skills
-- [ ] Sketch the trigger, input, output, and main steps
-- [ ] Choose a simple design
-- [ ] Write or revise the skill
-- [ ] Any unclear scope or missing boundary?
-- [ ] Any unnecessary complexity or constraint?
-- [ ] Any problem with the expected result or its usefulness?
-- [ ] Fix problems and make a final check
+- [ ] Draft the smallest useful contract
+- [ ] Write or revise the concise skill
+- [ ] Any scope or boundary issue?
+- [ ] Any unnecessary rule or duplication?
+- [ ] Any unclear behavior or output?
+- [ ] Repair and return to the Any checks when needed
+- [ ] Done
 ```
 
 ## Loop
 
-1. **Understand**
+Use this shape rather than a one-way checklist:
 
-   Decide whether this is a new skill, a revision, or a review. Read relevant
-   repository instructions and a few nearby skills. Ask a question only when
-   the missing answer would materially change the result; otherwise make a
-   reasonable assumption.
+```text
+[Understand] → [Draft] → [Write] → [Any ...?]
+                                      ├─ Yes → [Repair] ─┐
+                                      │                  ↓
+                                      │                [Write]
+                                      └─ No  → [Done]
+```
 
-2. **Sketch**
+### Understand
 
-   Write down just enough of the contract to guide the draft:
+Decide whether this is a new skill, a revision, or a review. Read relevant
+repository instructions and a few nearby skills. Ask a question only when the
+answer would materially change the result; otherwise make a reasonable
+assumption.
 
-   - when the skill applies, and when it does not;
-   - what it needs as input;
-   - what it should do;
-   - what the user should receive;
-   - any important boundary or failure case.
+### Draft
 
-3. **Choose**
+Capture only the core contract:
 
-   Prefer the smallest design that satisfies the goal. Reuse an existing skill,
-   convention, reference, or tool when it already fits. Add supporting files
-   only when they make the skill meaningfully clearer or more reliable.
+- when the skill applies and when it does not;
+- required input;
+- main behavior;
+- expected output;
+- important boundary or failure case.
 
-   If the scope or design is materially uncertain, show a short plan and wait
-   for approval. If the request is clear, proceed without an unnecessary gate.
+### Write
 
-4. **Write**
+Create or revise `SKILL.md` with valid frontmatter, a specific description,
+and direct instructions. Keep the file short enough to scan. Use judgment:
+examples, tools, approval gates, and supporting files are optional unless they
+make the behavior clearer or safer.
 
-   Create or revise the target `SKILL.md`. Keep its frontmatter valid, its
-   description specific, and its instructions direct. State important
-   stopping, retry, or side-effect boundaries, but do not turn every preference
-   into a hard rule. Use examples and references only when they prevent likely
-   mistakes.
+### Any checks
 
-5. **Check and repair**
+Write review gates as answerable `Any ...?` questions. Answer each with Yes or
+No before marking it complete:
 
-   Read the result once as a user and ask:
+```text
+Any scope or boundary issue?
+Any unnecessary rule or duplication?
+Any unclear behavior or output?
+```
 
-   ```text
-   Any wrong or overly broad trigger?
-   Any unclear instruction or missing input/output detail?
-   Any unnecessary complexity or duplicated guidance?
-   Any important failure or out-of-scope case left undefined?
-   ```
+If any answer is Yes, make the smallest useful repair and return to `Write`.
+If all answers are No, finish. Add another `Any ...?` question only when a
+material issue is specific to the skill.
 
-   If any answer is yes, make the smallest useful repair and check again. Stop
-   when the skill is clear enough to use and no remaining issue would materially
-   change its behavior or usefulness.
+For a materially uncertain design, show a short plan and wait for approval. If
+the request is clear, proceed without an unnecessary gate. In review mode,
+report findings without editing the skill.
 
 ## Final response
 
-Lead with the result. Mention the changed path, the skill's purpose, the check
-performed, and any meaningful uncertainty. Keep it brief and use the user's
-language.
+Lead with the result. Mention the changed path, purpose, and final check. Keep
+it brief and use the user's language.
