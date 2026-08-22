@@ -15,11 +15,11 @@ Before acting, create `/tmp/loop-coding-<safe-task-slug>.md` with a unique
 short slug or timestamp. Add `Current state: Pass 1 / Next: Understand`, a
 task-specific checklist, and an empty append-only `Repair log:`. Process the
 checklist top to bottom: finish the current item before moving on, record a
-short outcome, mark `[x]` only after completion, and use `[-]` only with a
-reason. Never erase or uncheck historical rows. After a repair, append a
-numbered `[ ]` recheck row for the earliest affected item, update `Current
-state`, and log the trigger, change, rechecked items, and result. Finish only
-after final validation.
+short outcome, update `Current state`, mark `[x]` only after completion, and
+use `[-]` only with a reason. Never erase or uncheck historical rows. After a
+repair, append a numbered `[ ]` recheck row for the earliest affected item,
+update `Current state`, and log the trigger, change, rechecked items, and
+result. Finish only after final validation.
 
 Answer every `Any ...?` row Yes or No in its outcome. On Yes, use the earliest
 affected state and append a row such as
