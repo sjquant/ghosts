@@ -15,14 +15,27 @@ can use `Start → Action → Any ...? → Done`.
 
 Before starting, create a checklist at
 `/tmp/loop-skills-<safe-task-slug>.md`. Use it as a state log, not as a linear
-form to complete once. When a repair is needed, return to the relevant earlier
-state and check it again.
+form to complete once. Process it from top to bottom: finish the current item
+before moving on, mark `[x]` only after completion, and record a short outcome
+beside each item. Use `[-]` only for an explicitly inapplicable item and give a
+reason. If a repair could invalidate a completed item, reset the earliest
+affected item to `[ ]` and process the checklist again from there.
+
+Every skill authored with this skill must include its own compact runtime
+checklist. It must tell the skill's runner to create
+`/tmp/<skill-name>-<safe-task-slug>.md` before acting, process task-specific
+items in order, finish each current item before moving on, mark `[x]` only
+after completion, record an outcome, reset the earliest affected item after a
+repair, and finish only after final validation. The checklist belongs in the
+resulting `SKILL.md`, not only in the author's state log.
 
 ```text
 - [ ] Understand the goal and inspect nearby skills
 - [ ] Draft the smallest useful contract and execution graph
+- [ ] Include the runtime checklist and `/tmp` state-log contract in the authored skill
 - [ ] Write or revise the concise skill
 - [ ] Any missing loop, branch, or `Any ...?` gate?
+- [ ] Any missing runtime checklist or state-log rule?
 - [ ] Any scope or boundary issue?
 - [ ] Any unnecessary rule or duplication?
 - [ ] Any unclear behavior or output?
@@ -67,7 +80,8 @@ Capture only the core contract:
 - required input;
 - main behavior;
 - expected output;
-- important boundary or failure case.
+- important boundary or failure case;
+- the runtime checklist steps and repair gate.
 
 Also draw the next-state shape that the authored skill will use:
 
@@ -88,7 +102,8 @@ shape in the resulting skill.
 Create or revise `SKILL.md` with valid frontmatter, a specific description,
 and direct instructions. Keep the file short enough to scan. Use judgment:
 examples, tools, approval gates, and supporting files are optional unless they
-make the behavior clearer or safer.
+make the behavior clearer or safer. Include the task-specific `/tmp` checklist
+instruction in the resulting skill.
 
 ### Any checks
 
