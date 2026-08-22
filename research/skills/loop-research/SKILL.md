@@ -13,7 +13,7 @@ answer, followed by evidence, uncertainty, and traceable references.
 [Start] → [Define] → [Gather] → [Verify] → [Explain] → [Any material issue?]
                                                         ├─ No → [Finalize] → [Done]
                                                         └─ Yes → [Repair smallest issue]
-                                                                  → [Verify or Explain]
+                                                                  → [Gather | Verify | Explain]
 ```
 
 ## Runtime checklist
@@ -115,6 +115,9 @@ Before finalizing, ask:
 
 If yes, follow the lead, repair the smallest material issue, append the required
 recheck row and repair-log entry, and rerun only the affected search or check.
+Return to **Gather** for a missing source or new lead, **Verify** for support or
+contradiction, and **Explain** for a framing or implication problem; any of
+these steps may repeat before finalization.
 If no, finalize. Stop when material claims are supported or labeled as
 inference, the core question and important uncertainty are covered, and no
 remaining lead could materially change the answer. If evidence is insufficient,
