@@ -1,13 +1,12 @@
 ---
 name: loop-research
-description: Evidence-backed research and explanations for current, contested, comparative, learning-oriented, or consequential questions; skip simple stable facts.
+description: Use for evidence-backed research or explanations of current, contested, comparative, learning-oriented, or consequential questions; skip simple stable facts.
 ---
 
 # Loop Research
 
-Use this skill when the answer needs investigation rather than recall. Turn the
-request into a bounded loop and lead the final response with the answer,
-followed by evidence, uncertainty, and traceable references.
+Turn the request into a bounded loop and lead the final response with the
+answer, followed by evidence, uncertainty, and traceable references.
 
 ```text
 [Start] → [Define] → [Gather] → [Verify] → [Explain] → [Any material issue?]
