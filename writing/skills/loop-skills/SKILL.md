@@ -17,7 +17,9 @@ Before starting, create a checklist at
 - [ ] Sketch the trigger, input, output, and main steps
 - [ ] Choose a simple design
 - [ ] Write or revise the skill
-- [ ] Any material problem with scope, clarity, or usefulness?
+- [ ] Any unclear scope or missing boundary?
+- [ ] Any unnecessary complexity or constraint?
+- [ ] Any problem with the expected result or its usefulness?
 - [ ] Fix problems and make a final check
 ```
 
