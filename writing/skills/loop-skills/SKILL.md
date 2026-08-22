@@ -9,7 +9,9 @@ disable-model-invocation: true
 Create or improve an agent skill through a small feedback loop. The resulting
 skill should contain only behavior-changing instructions: remove repetition,
 long explanations, and optional rules. Add a reference only when it keeps the
-main skill clearer.
+main skill clearer. The resulting skill must also show its own compact
+execution loop or graph, including an `Any ...?` gate. Even a one-shot skill
+can use `Start → Action → Any ...? → Done`.
 
 Before starting, create a checklist at
 `/tmp/loop-skills-<safe-task-slug>.md`. Use it as a state log, not as a linear
@@ -18,8 +20,9 @@ state and check it again.
 
 ```text
 - [ ] Understand the goal and inspect nearby skills
-- [ ] Draft the smallest useful contract
+- [ ] Draft the smallest useful contract and execution graph
 - [ ] Write or revise the concise skill
+- [ ] Any missing loop, branch, or `Any ...?` gate?
 - [ ] Any scope or boundary issue?
 - [ ] Any unnecessary rule or duplication?
 - [ ] Any unclear behavior or output?
@@ -65,6 +68,20 @@ Capture only the core contract:
 - main behavior;
 - expected output;
 - important boundary or failure case.
+
+Also draw the next-state shape that the authored skill will use:
+
+```text
+[Start] → [Action] → [Any ...?] ── No ──→ [Done]
+                         │
+                        Yes
+                         ↓
+                 [Repair or next step] ──→ [Action]
+```
+
+Use more branches when the task needs them, but keep the graph small enough to
+scan. Do not leave the loop only in the author's notes; include the relevant
+shape in the resulting skill.
 
 ### Write
 
