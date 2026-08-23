@@ -4,4 +4,4 @@ description: Assess whether a module hides implementation details behind a simpl
 disable-model-invocation: true
 ---
 
-From a deep-module perspective, does the module expose too many implementation details that callers must know?
+Any excessive implementation details that callers must know from a deep-module perspective?
