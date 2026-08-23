@@ -28,6 +28,7 @@ work:
 - [ ] Any design or API issue from outside-in, deep-module, or dependency-direction perspectives?
 - [ ] Any opportunity to simplify or clarify through naming, standard libraries, utilities, or existing abstractions?
 - [ ] Any test smell: brittleness, implementation coupling, over-mocking, unclear intent, missing negative paths, or surviving mutants?
+- [ ] Any excessive implementation details that callers must know from a deep-module perspective?
 - [ ] Final validation
 ```
 
