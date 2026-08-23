@@ -13,7 +13,7 @@ Before writing:
 1. Read relevant project notes and task entries.
 2. Sync the base branch with the latest remote state.
 3. Mark implementation tasks with merged PRs `DONE`; keep implemented but unmerged tasks `REVIEW`.
-4. Select eligible implementation tasks not marked `[DOING]`, up to the invocation's limit (default: one), and mark them `[DOING]`.
+4. Select implementation tasks not marked `[DOING]` and mark selected tasks `[DOING]`.
 5. If all tracked tasks are complete, report that instead of creating handoffs.
 
 ## Handoff Content
