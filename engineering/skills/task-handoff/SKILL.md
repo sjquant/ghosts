@@ -4,7 +4,7 @@ description: Generate concise task handoffs for independent implementation works
 disable-model-invocation: true
 ---
 
-Generate up to five concise English handoff messages for independent implementation tasks. Output each message in a code block; do not create a handoff document.
+Generate concise English handoff messages for independent implementation tasks. Generate exactly one handoff by default. If the invocation explicitly specifies a positive limit such as `max 3`, `maximum 3`, or `최대 3개`, generate up to that many handoffs; the limit is a cap, not a target. Never emit more handoffs than the requested limit. Output each message in a code block; do not create a handoff document.
 
 Use the configured project-notes and task-tracker system. If the source is unclear, ask which one to use before making updates.
 
@@ -13,7 +13,7 @@ Before writing:
 1. Read relevant project notes and task entries.
 2. Sync the base branch with the latest remote state.
 3. Mark implementation tasks with merged PRs `DONE`; keep implemented but unmerged tasks `REVIEW`.
-4. Select implementation tasks not marked `[DOING]` and mark selected tasks `[DOING]`.
+4. Select implementation tasks not marked `[DOING]` and mark selected tasks `[DOING]`. Without an explicit limit, select only one task. With an explicit limit, select at most that many tasks.
 5. If all tracked tasks are complete, report that instead of creating handoffs.
 
 ## Handoff Content
