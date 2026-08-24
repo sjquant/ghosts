@@ -33,4 +33,5 @@ Keep the problem and solution direction concise. Do not repeat commands already 
 ## Constraints
 
 - Include only tasks that can proceed fully in parallel; do not combine tasks with ordering or dependency relationships.
+- When generating multiple handoffs, choose the eligible set of up to N tasks that minimizes overlap in files or modules they are likely to modify. Use the task scopes and file/module references in project notes and task entries to estimate overlap.
 - Do not mention branch or worktree details.
