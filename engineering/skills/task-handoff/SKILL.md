@@ -4,7 +4,7 @@ description: Generate concise task handoffs for independent implementation works
 disable-model-invocation: true
 ---
 
-Generate one concise English handoff for an independent implementation task by default. If the invocation specifies a positive maximum N, generate up to N handoffs; treat N as a cap. Output each handoff in a code block; do not create a handoff document.
+Generate up to two concise English handoffs for independent implementation tasks by default. If the invocation specifies a positive maximum N, generate up to N handoffs; treat N as a cap. Output each handoff in a code block; do not create a handoff document.
 
 Use the configured project-notes and task-tracker system. If the source is unclear, ask which one to use before making updates.
 
