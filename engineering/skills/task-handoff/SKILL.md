@@ -4,7 +4,7 @@ description: Generate concise task handoffs for independent implementation works
 disable-model-invocation: true
 ---
 
-Generate one concise English handoff for an independent implementation task by default. If the invocation specifies a positive maximum N, generate up to N handoffs; treat N as a cap. Output each handoff in a code block; do not create a handoff document.
+Generate up to two concise English handoffs for independent implementation tasks by default. If the invocation specifies a positive maximum N, generate up to N handoffs; treat N as a cap. Output each handoff in a code block; do not create a handoff document.
 
 Use the configured project-notes and task-tracker system. If the source is unclear, ask which one to use before making updates.
 
@@ -33,4 +33,5 @@ Keep the problem and solution direction concise. Do not repeat commands already 
 ## Constraints
 
 - Include only tasks that can proceed fully in parallel; do not combine tasks with ordering or dependency relationships.
+- When generating multiple handoffs, choose the eligible set of up to N tasks that minimizes overlap in files or modules they are likely to modify. Use the task scopes and file/module references in project notes and task entries to estimate overlap.
 - Do not mention branch or worktree details.
