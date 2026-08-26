@@ -4,4 +4,4 @@ Engineering writing for readers without access to the private conversation behin
 
 ## Credits
 
-Shout-out to @mingi3314, who first created and shared this skill. We’ve since revised it for this repository.
+Shout-out to @mingi3314, who first created and shared this skill. I’ve since revised it for this repository.
