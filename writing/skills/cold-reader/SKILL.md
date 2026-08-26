@@ -5,39 +5,37 @@ description: Draft or revise PR descriptions, ADRs, design documents, implementa
 
 # Cold-Reader Writing
 
-Create engineering writing that its intended readers can understand without access to the private conversation that produced it.
+Draft or revise engineering artifacts so their intended readers can understand them without access to the private conversation behind them.
 
-“Context-free” means independent of preceding conversation context. It does not mean explaining every repository convention, avoiding technical language, or writing for a complete beginner.
+Use this for PR descriptions, ADRs, design documents, implementation plans, review responses, and similar artifacts. Do not use it for casual conversation, ordinary code comments, or artifacts explicitly intended to rely on linked prior context.
 
-## Conversation context
+## Context
 
-Treat the preceding conversation as private working context, not as context automatically available to the reader.
+Treat preceding conversation as private working context. Identify claims, decisions, exclusions, and shorthand that depend on it, then restore only the premises needed by the reader.
 
-Notice claims, decisions, exclusions, and shorthand whose meaning depends on that conversation. Restore only the premises materially necessary for the intended reader to understand the artifact.
+Do not expose the conversation, reproduce every considered alternative, or add irrelevant background.
 
-Do not expose the conversation itself, reproduce every considered alternative, or add background that does not serve the artifact’s purpose.
+## Audience
 
-## Intended reader
+Infer the intended readers and calibrate the explanation to their domain and repository knowledge. Follow any audience the user specifies.
 
-Infer the artifact’s intended readers and calibrate the explanation to their likely domain and repository knowledge. Follow any audience the user explicitly identifies.
+Do not assume readers participated in the design discussion or treat experienced reviewers as beginners.
 
-Do not assume readers participated in the design discussion. Also do not treat experienced project reviewers as beginners or explain familiar concepts without a reason.
+When the audience is unclear, write for a technically capable teammate who knows the repository but not the specific domain or decision.
 
-When the audience is unclear, write for a technically capable teammate who knows the repository but is unfamiliar with the specific domain or decision.
+## Language
 
-## Technical language
+Preserve technical precision and use domain terminology when useful. This does not require explaining every repository convention, avoiding technical language, or writing for a complete beginner.
 
-Preserve technical precision and use domain terminology when it helps the intended reader.
+When terminology hides an important premise, failure mode, or scope boundary, make that meaning understandable in the surrounding text.
 
-Do not use terminology as a substitute for the concrete meaning it compresses. When a term hides an important premise, failure mode, or scope boundary, make that meaning understandable in the surrounding text.
-
-Do not mechanically remove jargon, add glossaries, expand every acronym, or make the artifact longer merely to appear accessible.
+Do not mechanically remove jargon, add glossaries, expand every acronym, or lengthen the artifact merely to appear accessible.
 
 ## Cold-reader review
 
-Before delivering or publishing the artifact, reread it as if the preceding conversation were unavailable. Perform this review internally unless the user asks to see it.
+Before delivering or publishing, reread the artifact as if the preceding conversation were unavailable. Perform this review internally unless the user asks to see it.
 
-Revise anything that materially depends on missing conversation context, including:
+Revise anything that materially depends on missing context, including:
 
 - conclusions whose premises exist only in the conversation;
 - exclusions justified only as unnecessary, too complex, or not worth the cost;
@@ -45,4 +43,4 @@ Revise anything that materially depends on missing conversation context, includi
 - technical terms standing in for an unexplained situation;
 - assumptions about environment, usage, constraints, or reader knowledge that affect the conclusion.
 
-Preserve the user’s chosen structure, tone, and level of detail when they are specified. Otherwise choose the structure, length, and style that best fit the artifact. Do not add sections, follow a fixed template, or rewrite an existing artifact wholesale merely to demonstrate compliance with this skill.
+Preserve the user’s chosen structure, tone, and level of detail when specified. Otherwise choose what best fits the artifact. Do not add sections, follow a fixed template, or rewrite an existing artifact wholesale merely to demonstrate compliance.
