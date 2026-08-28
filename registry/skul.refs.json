@@ -25,6 +25,11 @@
       "target": "skills",
       "name": "sentry-cli",
       "source": "getsentry/cli"
+    },
+    {
+      "target": "skills",
+      "name": "orca-cli",
+      "source": "stablyai/orca"
     }
   ]
 }
