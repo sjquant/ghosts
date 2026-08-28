@@ -1,10 +1,10 @@
 ---
 name: github-pr
-description: Commit, push, and manage GitHub pull requests for changes after explicit invocation.
+description: Commit, push, and manage GitHub pull requests for changes once this skill is read.
 disable-model-invocation: true
 ---
 
-Use this skill only after the user explicitly invokes it. This skill is the opt-in boundary for GitHub side effects: before invocation, do not commit, push, create a pull request, or edit a pull request as part of ordinary work. After invocation, apply the workflow below to every subsequent change in the current task until the user says to stop.
+Reading or loading this skill is itself the trigger; no separate command is required. This skill is the opt-in boundary for GitHub side effects: before this skill is read, do not commit, push, create a pull request, or edit a pull request as part of ordinary work. Once it is read, apply the workflow below to every subsequent change in the current task until the user says to stop.
 
 Do not retroactively publish work completed before invocation unless the user explicitly asks for it.
 
