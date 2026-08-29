@@ -3,10 +3,6 @@ name: github-pr
 description: Publish changes to GitHub by committing and pushing each logical change, and create or update its pull request when the user asks to publish, sync, or manage GitHub work.
 ---
 
-Load this skill when the user asks to publish or sync changes, or to create or manage a GitHub pull request. Reading or loading this skill is itself the trigger; no separate command is required. This skill is the opt-in boundary for GitHub side effects: before this skill is read, do not commit, push, create a pull request, or edit a pull request as part of ordinary work. Once it is read, apply the workflow below to every subsequent change in the current task until the user says to stop.
-
-Do not retroactively publish work completed before this skill was read unless the user explicitly asks for it.
-
 ## Change publishing
 
 - Inspect the working tree, current branch, remotes, and any existing pull request before mutating repository or GitHub state.
