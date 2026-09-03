@@ -30,6 +30,12 @@
       "target": "skills",
       "name": "orca-cli",
       "source": "stablyai/orca"
+    },
+    {
+      "target": "skills",
+      "name": "cram",
+      "source": "sjquant/cram",
+      "disable-model-invocation": true
     }
   ]
 }
