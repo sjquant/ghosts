@@ -88,7 +88,7 @@ shape in the resulting skill.
 
 ### Write
 
-Create or revise `SKILL.md` with valid frontmatter, a specific description, and direct instructions. Keep the file short enough to scan. Use judgment: examples, tools, approval gates, and supporting files are optional unless they make the behavior clearer or safer. Include the task-specific `/tmp` checklist, `Current state`, and append-only `Repair log` instructions in the resulting skill.
+Create or revise `SKILL.md` with valid frontmatter, a specific description, and direct instructions. Keep the file short enough to scan. Use direct, literal wording: when a literal phrase is available, prefer it over mannered metaphor or flourish; avoid making readers decode language that mainly performs the writer or adds uncontrolled connotations. Use judgment: examples, tools, approval gates, and supporting files are optional unless they make the behavior clearer or safer. Include the task-specific `/tmp` checklist, `Current state`, and append-only `Repair log` instructions in the resulting skill.
 
 ### Any checks
 
