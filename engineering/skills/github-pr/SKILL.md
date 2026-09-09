@@ -32,7 +32,4 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 ### Gotchas
 
 - Use the same language as the commits being published for the PR title, body, and headings you add; do not default to English.
-
-### Screenshots
-
 - Upload screenshots with the relevant `gh` CLI command and `--attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images in Markdown tables with at most 4 columns.
