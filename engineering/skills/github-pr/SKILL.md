@@ -31,4 +31,4 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 
 ### Screenshots
 
-- Upload PR screenshots by dragging and dropping them into UI input `#fc-new_comment_field`. Format the uploaded URLs under `## 스크린샷` in Markdown tables with at most 4 columns per table.
+- Upload PR screenshots with `gh pr comment --body-file - --attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images under `## 스크린샷` in Markdown tables with at most 4 columns.
