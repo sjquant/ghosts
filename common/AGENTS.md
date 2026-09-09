@@ -4,8 +4,7 @@
 - Write tests as behavioral specifications using descriptive `it(...)` titles and Given–When–Then sections.
 - Avoid low-value, brittle, implementation-coupled, or over-mocked tests—including tests that merely restate literals, constants, or configuration wiring; prefer outside-in integration tests through public interfaces, and add tests only when they specify meaningful externally observable behavior or guard against a substantive regression.
 - Do not expose private members solely for testing.
-- Do not add temporary tests solely for intermediate layers when the behavior is better specified and covered by a planned integration test; add a test now only if omitting it leaves an immediate regression or safety gap.
-- Do not add regression tests for code paths or behavior that have been intentionally removed; update or remove obsolete tests instead.
+- Keep tests focused on current, externally observable behavior: do not add temporary tests solely for intermediate layers when a planned integration test better specifies the behavior, or regression tests for intentionally removed code paths; add tests only when omitting them leaves an immediate regression or safety gap, and update or remove obsolete tests instead.
 - Do not preserve backward compatibility. Remove obsolete paths instead of adding compatibility layers, fallbacks, or migrations.
 
 ## Agent Browser CLI
