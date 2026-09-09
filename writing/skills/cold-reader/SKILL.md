@@ -27,6 +27,8 @@ When the audience is unclear, write for a technically capable teammate who knows
 
 Preserve technical precision and use domain terminology when useful. This does not require explaining every repository convention, avoiding technical language, or writing for a complete beginner.
 
+Prefer direct, literal statements to mannered metaphor or flourish. When a literal phrase is available, use it instead of making readers decode language that mainly performs the writer or introduces unintended connotations.
+
 When terminology hides an important premise, failure mode, or scope boundary, make that meaning understandable in the surrounding text.
 
 Do not mechanically remove jargon, add glossaries, expand every acronym, or lengthen the artifact merely to appear accessible.
