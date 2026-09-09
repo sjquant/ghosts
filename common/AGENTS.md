@@ -1,7 +1,8 @@
 ## Coding
 
 - Order functions so each callee appears below its caller.
-- Write tests as behavioral specifications using descriptive `it(...)` titles and Given–When–Then sections.
+- Write tests as behavioral specifications with descriptive test names. Use `Given`, `When`, and `Then` comments or sections inside the test body; keep the name as a concise statement of observable behavior, not a Given–When–Then sentence.
+- When complex setup, concurrency, timing, or multi-step control flow makes a test hard to follow, add concise comments at key transitions to explain the scenario and synchronization; do not narrate obvious code.
 - Avoid low-value, brittle, implementation-coupled, or over-mocked tests—including tests that merely restate literals, constants, or configuration wiring; prefer outside-in integration tests through public interfaces, and add tests only when they specify meaningful externally observable behavior or guard against a substantive regression.
 - Do not expose private members solely for testing.
 - Keep tests focused on current, externally observable behavior: do not add temporary tests solely for intermediate layers when a planned integration test better specifies the behavior, or regression tests for intentionally removed code paths; add tests only when omitting them leaves an immediate regression or safety gap, and update or remove obsolete tests instead.
