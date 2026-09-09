@@ -18,7 +18,7 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 ### Body
 
 - Use `gh pr edit --body-file - <<'EOF'` as the default PR body path.
-- If `.github/pull_request_template.md` exists, preserve its required structure but write authored text in the commit language. Otherwise, structure the body with localized problem/impact and changes/solution sections as bullet lists.
+- If `.github/pull_request_template.md` exists, preserve its required structure. Otherwise, structure the body with problem/impact and changes/solution sections as bullet lists.
   - Explain the problem and its impact in 1–2 sentences.
   - Summarize the chosen solution direction and key behavioral changes.
 - Keep the PR body concise and easy to understand. Include changed files, code modifications, or implementation details only when essential for review.
@@ -26,9 +26,9 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 
 ### Title and scope
 
-- Use the same language as the commits being published for the PR title, body, and headings you add; do not default to English. Follow the commit message convention for the PR title.
+- Follow the commit message convention, including language, for the PR title and body. Do not default to English.
 - Do not include internal planning IDs in the PR title or body, including Waypoint IDs, Task IDs, or roadmap labels such as `W1-A3`.
 
 ### Screenshots
 
-- Upload PR screenshots with `gh pr comment --body-file - --attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images under a localized screenshots heading in Markdown tables with at most 4 columns.
+- Upload PR screenshots with `gh pr comment --body-file - --attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images in Markdown tables with at most 4 columns.
