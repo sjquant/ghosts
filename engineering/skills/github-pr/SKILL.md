@@ -26,8 +26,12 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 
 ### Title and scope
 
-- Follow the commit message convention, including language, for the PR title and body. Do not default to English.
+- Follow the commit message convention for PR titles.
 - Do not include internal planning IDs in the PR title or body, including Waypoint IDs, Task IDs, or roadmap labels such as `W1-A3`.
+
+### Language
+
+- Use the same language as the commits being published for the PR title, body, and headings you add; do not default to English.
 
 ### Screenshots
 
