@@ -31,4 +31,4 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 
 ### Screenshots
 
-- Upload PR screenshots with `gh pr comment --body-file - --attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images in Markdown tables with at most 4 columns.
+- Upload screenshots with the relevant `gh` CLI command and `--attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Put the uploaded images in Markdown tables with at most 4 columns.
