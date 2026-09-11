@@ -9,7 +9,7 @@ Review the change read-only. Use general agents; give them the change context an
 Consider every question below. Mark irrelevant questions `N/A — <reason>`. The main agent answers each applicable question. Assign applicable questions once across one, two, or three agents without overlap.
 
 - `Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?`
-- `Any design or API issues when viewed from outside-in, deep-module, and dependency-direction perspectives, including hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
+- `Any design or API issues when viewed from the intended caller's perspective and from outside-in, deep-module, and dependency-direction perspectives, including whether the module hides state, lifecycle, and ordering details, or exposes internal collaboration methods as public API; also consider hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?`
 - `Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?`
 - `Any test smells—such as brittle or implementation-coupled tests, over-mocking, unclear intent, missing negative-path coverage, or surviving mutants?`
 
