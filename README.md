@@ -19,7 +19,6 @@ Replace `codex` with the name of the agent you use, if different.
 
 - `engineering/`: implementation, planning, review, and collaboration skills
   with their reviewers.
-- `design/`: UI design and implementation skills.
 - `language/`: language-learning skills.
 - `research/`: bounded, evidence-grounded research and explanation skills.
 - `writing/`: writing, rewriting, and change-explanation skills.
