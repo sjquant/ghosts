@@ -4,37 +4,43 @@
       "target": "skills",
       "name": "insane-search",
       "source": "fivetaku/insane-search",
-      "ref": "4f336358c24b296367233abe2785379746b0d54d"
+      "ref": "c020292fedcf1213d815acceacf600402fe72332"
     },
     {
       "target": "skills",
       "name": "obsidian-cli",
-      "source": "kepano/obsidian-skills"
+      "source": "kepano/obsidian-skills",
+      "ref": "8ccef29ae8624eccc734e77ced4a6e54baf5d83a"
     },
     {
       "target": "skills",
       "name": "context7-cli",
-      "source": "upstash/context7"
+      "source": "upstash/context7",
+      "ref": "6f42b66f3b6dee20ba870dd6f70f1b565eb62e6e"
     },
     {
       "target": "skills",
       "name": "agent-browser",
-      "source": "vercel-labs/agent-browser"
+      "source": "vercel-labs/agent-browser",
+      "ref": "8c15ff9f71ae60c7e99e66afe1e2d4b9bf414fe2"
     },
     {
       "target": "skills",
       "name": "sentry-cli",
-      "source": "getsentry/cli"
+      "source": "getsentry/cli",
+      "ref": "0dbabfb407723def5cae0dc355f3f0a0c5f22bfc"
     },
     {
       "target": "skills",
       "name": "orca-cli",
-      "source": "stablyai/orca"
+      "source": "stablyai/orca",
+      "ref": "fe4237cd41e4d48793fd135640939ef8aa5418e0"
     },
     {
       "target": "skills",
       "name": "cram",
       "source": "sjquant/cram",
+      "ref": "f79db070a29e9e719b55fc9084f4a29580c6f1d4",
       "disable-model-invocation": true
     }
   ]
