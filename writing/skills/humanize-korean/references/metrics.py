@@ -7,11 +7,13 @@ comma habits, repeated AI phrases, translationese, and post-editese signals.
 CLI:
     python metrics.py --input input.txt --genre essay
     python metrics.py --text $'첫 문장입니다.\n둘째 문장입니다.' --genre essay
+    python metrics.py --before original.md --after revised.md --ignore-markup
 """
 
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import re
 import sys
@@ -19,7 +21,7 @@ from collections.abc import Sequence
 from statistics import StatisticsError, mean
 from typing import Any
 
-VERSION = "2.0-standalone"
+VERSION = "2.1-standalone"
 
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[\.!?。])\s+")
 _PARAGRAPH_SPLIT_RE = re.compile(r"\n\s*\n")
@@ -36,6 +38,12 @@ _CONCLUSION_PIVOTS = (
     "그러므로",
     "요약하면",
     "정리하면",
+    "정리하자면",
+)
+_SIGNATURE_PHRASES = (
+    "시사하는 바가 크다",
+    "주목할 만하다",
+    "간과할 수 없다",
 )
 _SAFE_BALANCES = ("양쪽 모두", "두 가지 모두", "장점도 있지만", "신중하게", "균형")
 _HANJA_SUFFIXES = ("성", "적", "화", "도", "력", "감", "원")
@@ -107,15 +115,76 @@ _HAVE_MAKE_LITERAL_TOKENS = (
     "결정을 내렸",
 )
 
+# Later upstream calibration treats these as review evidence, not automatic
+# rewrite verdicts. They are intentionally exposed separately from the
+# coarse risk score so a human can inspect their context.
+_ANTITHESIS_RE = re.compile(
+    r"(?:가|이)\s*아니라|이기\s*이전에|되기\s*이전에|이기보다|것은\s*아니다"
+)
+_CLEAR_PREDICATE_RE = re.compile(r"(?:은|는|이|가)\s*(?:명확|분명)(?:하다|합니다|하며|하고|해졌|하지만)")
+_NOT_LONGER_RE = re.compile(r"더\s*이상[^.!?。]{0,25}(?:않|아니|없|못하|불가)")
+_FOUNDATION_METAPHOR_RE = re.compile(
+    r"(?:발판|토대|초석|주춧돌|교두보)(?:을|를)\s?(?:마련|놓|다지)|"
+    r"(?:지평|활로)(?:을|를)\s?(?:열|연다|열었|열어)"
+)
+_CONCEPTUAL_METAPHORS = (
+    "잠식",
+    "청사진",
+    "적신호",
+    "경고등",
+    "신호탄",
+    "움켜쥐다",
+    "뿌리내리다",
+    "짓누르다",
+    "청구서",
+    "과실",
+    "짊어지다",
+    "쥐다",
+)
+
+_MARKUP_ONLY_LINE_RE = re.compile(
+    r"^\s*(?:```.*|~~~.*|-{3,}|\*{3,}|={3,}|\|[\s:\-|]*)\s*$"
+)
+_MARKUP_PREFIX_RE = re.compile(
+    r"^\s*(?:#{1,6}\s+|>\s?|[-*+]\s+|\d{1,3}[.)]\s+)"
+)
+
+CHANGE_RATE_WARN = 0.30
+CHANGE_RATE_ABORT = 0.50
+_CHANGE_RATE_EXACT_LIMIT = 2_000
+_CHANGE_RATE_CHUNK_SIZE = 64
+
 
 def _main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Humanize Korean metric runner")
-    input_group = parser.add_mutually_exclusive_group(required=True)
+    input_group = parser.add_mutually_exclusive_group(required=False)
     input_group.add_argument("--input", help="Input text file path")
     input_group.add_argument("--text", help="Raw input text; newlines are allowed")
+    parser.add_argument("--before", help="Original text file for change-rate comparison")
+    parser.add_argument("--after", help="Rewritten text file for change-rate comparison")
+    parser.add_argument(
+        "--ignore-markup",
+        action="store_true",
+        help="Ignore Markdown-only lines and prefixes during comparison",
+    )
     parser.add_argument("--genre", default="essay", help="essay/report/blog/formal")
     parser.add_argument("--output", default=None, help="Optional JSON output path")
     args = parser.parse_args(argv)
+
+    if args.before is not None or args.after is not None:
+        if args.before is None or args.after is None:
+            parser.error("--before and --after must be supplied together")
+        if args.input is not None or args.text is not None:
+            parser.error("comparison mode cannot be combined with --input or --text")
+        if args.output is not None:
+            parser.error("--output is only available for metric mode")
+        before = read_text_file(args.before)
+        after = read_text_file(args.after)
+        print(f"{change_rate(before, after, ignore_markup=args.ignore_markup):.6f}")
+        return 0
+
+    if args.input is None and args.text is None:
+        parser.error("one of --input, --text, or --before/--after is required")
 
     text = read_cli_text(args)
     result = compute_all(text, genre=args.genre)
@@ -133,7 +202,12 @@ def read_cli_text(args: argparse.Namespace) -> str:
     if args.text is not None:
         return args.text
 
-    with open(args.input, "r", encoding="utf-8") as input_file:
+    return read_text_file(args.input)
+
+
+def read_text_file(path: str) -> str:
+    """Read UTF-8 text from a path supplied to the CLI."""
+    with open(path, "r", encoding="utf-8") as input_file:
         return input_file.read()
 
 
@@ -145,6 +219,7 @@ def compute_all(text: str, genre: str = "essay") -> dict[str, Any]:
         "ending_comma_rate": ending_comma_rate(text),
         "comma_segment_length": comma_segment_length(text),
         "conclusion_pivot_count": conclusion_pivot_count(text),
+        "signature_phrase_count": signature_phrase_count(text),
         "safe_balance_count": safe_balance_count(text),
         "hanja_nominalizer_density": hanja_nominalizer_density(text),
         "lexical_diversity": lexical_diversity(text),
@@ -161,6 +236,11 @@ def compute_all(text: str, genre: str = "essay") -> dict[str, Any]:
         "have_make_literal_count": have_make_literal_count(text),
         "double_particle_count": double_particle_count(text),
         "progressive_aspect_rate": progressive_aspect_rate(text),
+        "antithesis_count": antithesis_count(text),
+        "clear_predicate_count": clear_predicate_count(text),
+        "not_longer_count": not_longer_count(text),
+        "foundation_metaphor_count": foundation_metaphor_count(text),
+        "conceptual_metaphor_count": conceptual_metaphor_count(text),
     }
     interference = interference_index(text, metrics)
     risk_band, risk_score = classify_risk(metrics, interference)
@@ -176,6 +256,57 @@ def compute_all(text: str, genre: str = "essay") -> dict[str, Any]:
         "risk_score": risk_score,
         "evidence": evidence(text),
     }
+
+
+def change_rate(before: str, after: str, ignore_markup: bool = False) -> float:
+    """Return deterministic changed-content rate between two texts.
+
+    Short inputs use a character-level diff whose denominator is the longer
+    input, so one-sided deletions are not diluted by a similarity-ratio
+    denominator. Long inputs use fixed-size chunks to keep pathological,
+    repetitive comparisons bounded and deterministic. This is a comparison
+    helper, not a quality verdict. The skill uses 30% as a warning threshold
+    and 50% as a rollback threshold. Markup can be ignored when heading/list
+    changes would otherwise dominate the reading.
+    """
+    if ignore_markup:
+        before = _strip_markup(before)
+        after = _strip_markup(after)
+    if not before and not after:
+        return 0.0
+    if max(len(before), len(after)) <= _CHANGE_RATE_EXACT_LIMIT:
+        opcodes = difflib.SequenceMatcher(
+            None, before, after, autojunk=False
+        ).get_opcodes()
+        changed = sum(
+            max(i2 - i1, j2 - j1)
+            for tag, i1, i2, j1, j2 in opcodes
+            if tag != "equal"
+        )
+        return changed / max(len(before), len(after))
+    return _chunked_change_rate(before, after)
+
+
+def _chunked_change_rate(before: str, after: str) -> float:
+    """Return a bounded, conservative rate for long inputs."""
+    total = max(len(before), len(after))
+    changed = 0
+    for start in range(0, total, _CHANGE_RATE_CHUNK_SIZE):
+        before_chunk = before[start : start + _CHANGE_RATE_CHUNK_SIZE]
+        after_chunk = after[start : start + _CHANGE_RATE_CHUNK_SIZE]
+        if before_chunk != after_chunk:
+            changed += max(len(before_chunk), len(after_chunk))
+    return changed / total
+
+
+def _strip_markup(text: str) -> str:
+    """Remove common Markdown decoration while preserving visible text."""
+    kept: list[str] = []
+    for line in text.splitlines():
+        if _MARKUP_ONLY_LINE_RE.match(line):
+            continue
+        kept.append(_MARKUP_PREFIX_RE.sub("", line))
+    return "\n".join(kept)
 
 
 def comma_inclusion_rate(text: str) -> float:
@@ -219,6 +350,11 @@ def comma_segment_length(text: str) -> float:
 def conclusion_pivot_count(text: str) -> int:
     """Count conclusion-pivot phrases."""
     return count_lexicon(text, _CONCLUSION_PIVOTS)
+
+
+def signature_phrase_count(text: str) -> int:
+    """Count signature phrases that need contextual review."""
+    return count_lexicon(text, _SIGNATURE_PHRASES)
 
 
 def safe_balance_count(text: str) -> int:
@@ -439,6 +575,53 @@ def progressive_aspect_rate(text: str) -> float:
     )
 
 
+def antithesis_count(text: str) -> int:
+    """Count common negative-positive parallel constructions for review.
+
+    C-8 is not a verdict by itself: a writer may use this rhetoric naturally.
+    The value only helps the model inspect repeated or tightly clustered use.
+    """
+    return len(_ANTITHESIS_RE.findall(text))
+
+
+def clear_predicate_count(text: str) -> int:
+    """Count ``명확하다/분명하다`` predicate overlays, excluding adverbs."""
+    return len(_CLEAR_PREDICATE_RE.findall(text))
+
+
+def not_longer_count(text: str) -> int:
+    """Count likely ``더 이상 ... 않다/아니다`` change constructions."""
+    return len(_NOT_LONGER_RE.findall(text))
+
+
+def foundation_metaphor_count(text: str) -> int:
+    """Count foundation/opening metaphors that need contextual review."""
+    return len(_FOUNDATION_METAPHOR_RE.findall(text))
+
+
+def conceptual_metaphor_count(text: str) -> int:
+    """Count a conservative family of conceptual-metaphor surface forms."""
+    return len(conceptual_metaphor_hits(text))
+
+
+def conceptual_metaphor_hits(text: str) -> list[str]:
+    """Return longest-first, non-overlapping conceptual-metaphor matches."""
+    occupied: list[tuple[int, int]] = []
+    matches: list[tuple[int, str]] = []
+    for term in sorted(_CONCEPTUAL_METAPHORS, key=len, reverse=True):
+        for match in re.finditer(re.escape(term), text):
+            start, end = match.span()
+            overlaps = any(
+                start < occupied_end and end > occupied_start
+                for occupied_start, occupied_end in occupied
+            )
+            if overlaps:
+                continue
+            occupied.append((start, end))
+            matches.append((start, term))
+    return [term for _, term in sorted(matches)]
+
+
 def interference_index(
     text: str, metrics: dict[str, float | int] | None = None
 ) -> dict[str, Any]:
@@ -470,7 +653,9 @@ def interference_index(
         "T1_inanimate_subject_rate": 1.0,
         "T2a_by_passive_per_1k": 0.2,
         "T2b_double_passive_per_1k": 0.2,
-        "T3_pronoun_density": 4.0,
+        # Upstream calibration found raw pronoun density is higher in some
+        # human Korean prose. Keep it observable, but never let it drive risk.
+        "T3_pronoun_density": 0.0,
         "T4_deul_overuse_rate": 4.0,
         "T5_nested_clause_count": 0.05,
         "T6_have_make_per_1k": 0.2,
@@ -480,32 +665,53 @@ def interference_index(
     total = sum(
         min(1.0, max(0.0, components[key] * weights[key])) for key in components
     )
-    return {"components": components, "weighted_total": total}
+    return {
+        "components": components,
+        "weighted_total": total,
+        "diagnostic_only": ["T3_pronoun_density"],
+    }
 
 
 def classify_risk(
     metrics: dict[str, float | int], interference: dict[str, Any]
 ) -> tuple[str, int]:
-    """Classify metric output into a coarse low/medium/high risk band."""
-    score = 0
-    if metrics["ending_comma_rate"] > 0.35:
-        score += 2
-    if metrics["comma_inclusion_rate"] > 0.55:
-        score += 1
-    if metrics["conclusion_pivot_count"] >= 3:
-        score += 2
-    if metrics["safe_balance_count"] >= 3:
-        score += 1
-    if metrics["hanja_nominalizer_density"] > 0.12:
-        score += 1
-    if metrics["normalisation_score"] > 0.7 or metrics["da_streak_count"] >= 1:
-        score += 1
-    if interference["weighted_total"] >= 2.0:
-        score += 2
-    elif interference["weighted_total"] >= 1.0:
-        score += 1
+    """Classify metrics while requiring more than one independent signal.
 
-    if score >= 6:
+    Comma-related signals share one family because a writer's punctuation
+    habit can be highly individual. A high band therefore needs both a high
+    score and at least two families, rather than one unusually high metric.
+    """
+    punctuation = 0
+    if metrics["ending_comma_rate"] > 0.35:
+        punctuation += 2
+    if metrics["comma_inclusion_rate"] > 0.55:
+        punctuation += 1
+    punctuation = min(punctuation, 3)
+
+    rhetoric = 0
+    if metrics["conclusion_pivot_count"] >= 3:
+        rhetoric += 2
+    if metrics["safe_balance_count"] >= 3:
+        rhetoric += 1
+
+    lexical = 0
+    if metrics["hanja_nominalizer_density"] > 0.12:
+        lexical += 1
+    if metrics["normalisation_score"] > 0.7 or metrics["da_streak_count"] >= 1:
+        lexical += 1
+
+    translation = 0
+    if interference["weighted_total"] >= 2.0:
+        translation += 2
+    elif interference["weighted_total"] >= 1.0:
+        translation += 1
+
+    score = punctuation + rhetoric + lexical + translation
+    families = sum(
+        family > 0 for family in (punctuation, rhetoric, lexical, translation)
+    )
+
+    if score >= 6 and families >= 2:
         return "high", score
     if score >= 3:
         return "medium", score
@@ -516,9 +722,12 @@ def evidence(text: str) -> dict[str, list[str]]:
     """Return matched lexicon evidence that can be shown in summaries."""
     return {
         "conclusion_pivots": lexicon_hits(text, _CONCLUSION_PIVOTS),
+        "signature_phrases": lexicon_hits(text, _SIGNATURE_PHRASES),
         "safe_balances": lexicon_hits(text, _SAFE_BALANCES),
         "double_passives": lexicon_hits(text, _DOUBLE_PASSIVE_TOKENS),
         "have_make_literals": lexicon_hits(text, _HAVE_MAKE_LITERAL_TOKENS),
+        "conceptual_metaphors": conceptual_metaphor_hits(text),
+        "foundation_metaphors": _FOUNDATION_METAPHOR_RE.findall(text),
     }
 
 
