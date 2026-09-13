@@ -28,7 +28,7 @@
       "target": "skills",
       "name": "sentry-cli",
       "source": "getsentry/cli",
-      "ref": "0dbabfb407723def5cae0dc355f3f0a0c5f22bfc"
+      "ref": "0b43edad47386844ece1f9f288310e2683afce49"
     },
     {
       "target": "skills",
