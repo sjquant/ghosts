@@ -32,7 +32,7 @@ work:
 - [ ] Final validation
 ```
 
-For the plan, state the chosen direction, relevant alternative and tradeoff, affected files, and validation. Wait for explicit approval such as `go` or `approve`; a bare request is not approval unless it already specifies the plan. If requirements or a material scope/design choice remain unresolved, stop and ask the user rather than guessing.
+For the plan, state the chosen direction, relevant alternative and tradeoff, affected files, and validation. Present it as a structured, execution-oriented implementation plan in Markdown format. Wait for explicit approval such as `go` or `approve`; a bare request is not approval unless it already specifies the plan. If requirements or a material scope/design choice remain unresolved, stop and ask the user rather than guessing.
 
 After implementation and checks, answer each review question in order. For a Yes, make the smallest useful repair, rerun relevant checks, append the required recheck row and repair-log entry, then resume from the earliest affected state. A material scope or design change requires a revised plan and approval. Stop when every answer is No, checks pass, and the diff stays within the approved scope.
 
