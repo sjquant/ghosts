@@ -21,8 +21,9 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 - If `.github/pull_request_template.md` exists, preserve its required structure. Otherwise, structure the body with problem/impact and changes/solution sections as bullet lists.
   - Explain the problem and its impact in 1–2 sentences.
   - Summarize the chosen solution direction and key behavioral changes.
-- Keep the PR body concise and easy to understand. Include changed files, code modifications, or implementation details only when essential for review.
-- Describe only the final state and its user-visible impact. Do not mention intermediate iterations, removed scope, review history, or abandoned approaches.
+- Write for a reviewer who may not know the repository or the work's prior context. Use direct language, preserve precise domain terms, and make essential premises explicit.
+- Treat length as a cost. Group related points with headings or lists, and include files or implementation details only when essential for review. For complex flows or relationships, use a compact diagram or table abstracted to the level needed to understand the overall change.
+- Base the body on the final diff against the base branch. Recheck that diff before publishing, then remove intermediate iterations, reverted or removed work, review history, and abandoned approaches.
 
 ### Title and scope
 
