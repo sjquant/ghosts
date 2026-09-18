@@ -43,6 +43,13 @@
       "source": "sjquant/cram",
       "ref": "f79db070a29e9e719b55fc9084f4a29580c6f1d4",
       "disable-model-invocation": true
+    },
+    {
+      "target": "skills",
+      "name": "pr-tour",
+      "source": "YunSinLee/pr-tour",
+      "ref": "cccd6577ac462e0194c4c8a024b295ea1541514a",
+      "disable-model-invocation": true
     }
   ]
 }
