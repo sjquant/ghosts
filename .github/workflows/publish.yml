@@ -1,0 +1,132 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version in package.json to publish (e.g. 0.1.0)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: npm-publish
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      # Trusted publishing requires npm >= 11.5.1
+      - name: Set up npm for trusted publishing
+        run: npm install --global npm@11
+
+      - name: Resolve version and tags
+        id: meta
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          VERSION="$(node -p "require('./package.json').version")"
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            EXPECTED="${INPUT_VERSION#v}"
+            if [[ "$VERSION" != "$EXPECTED" ]]; then
+              echo "Error: package.json version ($VERSION) does not match input ($EXPECTED)" >&2
+              exit 1
+            fi
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v${VERSION}" >> "$GITHUB_OUTPUT"
+          if [[ "${VERSION%%+*}" == *-* ]]; then
+            echo "dist_tag=next" >> "$GITHUB_OUTPUT"
+            echo "prerelease=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dist_tag=latest" >> "$GITHUB_OUTPUT"
+            echo "prerelease=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check whether version is already published on npm
+        id: published
+        env:
+          VERSION: ${{ steps.meta.outputs.version }}
+          REGISTRY_METADATA: ${{ runner.temp }}/npm-version.json
+        run: |
+          PACKAGE_NAME="$(node -p "encodeURIComponent(require('./package.json').name)")"
+          HTTP_STATUS="$(curl --silent --show-error --location \
+            --retry 3 --connect-timeout 10 --max-time 30 \
+            --output "$REGISTRY_METADATA" --write-out '%{http_code}' \
+            "https://registry.npmjs.org/${PACKAGE_NAME}/${VERSION}")"
+          if [[ "$HTTP_STATUS" == "200" ]]; then
+            PUBLISHED_SHA="$(node -p "require(process.env.REGISTRY_METADATA).gitHead || ''")"
+            if [[ ! "$PUBLISHED_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+              echo "Error: published version has no valid gitHead; cannot determine release commit" >&2
+              exit 1
+            fi
+            echo "result=true" >> "$GITHUB_OUTPUT"
+            echo "release_sha=$PUBLISHED_SHA" >> "$GITHUB_OUTPUT"
+          elif [[ "$HTTP_STATUS" == "404" ]]; then
+            echo "result=false" >> "$GITHUB_OUTPUT"
+            echo "release_sha=$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+          else
+            echo "Error: unexpected registry response $HTTP_STATUS" >&2
+            exit 1
+          fi
+
+      - name: Validate package contents
+        if: steps.published.outputs.result != 'true'
+        run: npm pack --dry-run --ignore-scripts
+
+      - name: Publish to npm
+        if: steps.published.outputs.result != 'true'
+        env:
+          NPM_DIST_TAG: ${{ steps.meta.outputs.dist_tag }}
+        run: npm publish --ignore-scripts --provenance --tag "$NPM_DIST_TAG"
+
+      # A retry must recover the release even when npm publishing already succeeded.
+      - name: Ensure GitHub release exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.meta.outputs.tag }}
+          RELEASE_SHA: ${{ steps.published.outputs.release_sha }}
+          PRERELEASE: ${{ steps.meta.outputs.prerelease }}
+        run: |
+          HTTP_STATUS="$(curl --silent --show-error --location \
+            --retry 3 --connect-timeout 10 --max-time 30 \
+            --header "Authorization: Bearer $GH_TOKEN" \
+            --header 'Accept: application/vnd.github+json' \
+            --output /dev/null --write-out '%{http_code}' \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/releases/tags/${RELEASE_TAG}")"
+          if [[ "$HTTP_STATUS" == "200" ]]; then
+            echo "Release $RELEASE_TAG already exists"
+          elif [[ "$HTTP_STATUS" == "404" ]]; then
+            ARGS=(--title "$RELEASE_TAG" --generate-notes --target "$RELEASE_SHA")
+            if [[ "$PRERELEASE" == "true" ]]; then
+              ARGS+=(--prerelease --latest=false)
+            fi
+            gh release create "$RELEASE_TAG" "${ARGS[@]}"
+          else
+            echo "Error: unexpected GitHub release response $HTTP_STATUS" >&2
+            exit 1
+          fi
