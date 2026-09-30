@@ -7,13 +7,21 @@ safe instruction that preserves the behavior.
 
 ## Install
 
-Install all skills globally for your agent:
+### GitHub source
 
 ```sh
 npx @solaqua/skul@latest add --global --agent codex sjquant/ghosts --all
 ```
 
-Replace `codex` with the name of the agent you use, if different.
+### npm package
+
+This repository is also published as [`@solaqua/ghosts`](https://www.npmjs.com/package/@solaqua/ghosts). Install it through [`@solaqua/skul`](https://www.npmjs.com/package/@solaqua/skul):
+
+```sh
+npx @solaqua/skul@latest add --global --agent codex npm:@solaqua/ghosts
+```
+
+Replace `codex` with the name of the agent you use, if different. The `--global` flag controls where Skul materializes the skills; it does not install `@solaqua/ghosts` as a Node.js dependency. Requires Node.js >=20 and git.
 
 ## Bundles
 
