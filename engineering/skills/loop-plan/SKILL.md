@@ -11,6 +11,8 @@ implementation or invoking an execution skill. Scale depth to uncertainty and
 the cost of a wrong decision, not the number of tasks or document length. For
 other domains, replace files, interfaces, and tests with the relevant
 deliverables, dependencies, and verification; omit software-only checks.
+Write responses and the plan in plain, natural English, or in Korean when the
+user writes in Korean, including template headings.
 
 ## Runtime loop
 
@@ -99,7 +101,7 @@ When a finding changes a material decision, scope, or acceptance criterion,
 send the revised delta to the relevant completed reviewer for one confirmation
 pass. Ask whether the original concern is resolved, what new consequence the
 revision creates, and whether a material objection remains. Record the response
-and any objection in the question record and Review manifest. Skip the pass
+and any objection in the question record and decision ledger. Skip the pass
 when no material change occurred; when used, it counts against the single
 follow-up budget and is review evidence, not user approval.
 Preserve blind independence for reviews that have not run. If confirmation is
@@ -204,21 +206,9 @@ in a risk list. Recheck affected decisions and packages after each repair.
 Save the plan to the user-specified path if one is given; otherwise use
 `/tmp/loop-plan-<safe-task-slug>-result.md` (append a timestamp when a collision
 is possible). Keep the runtime log separate. Make the plan understandable
-without the preceding conversation and include only what the task needs:
-
-- Outcome, success criteria, scope, constraints, and evidence or assumptions.
-- Decision principles, ranked drivers, alternatives, chosen direction, and
-  accepted consequences or conditions that would change the decision.
-- Decision ledger with material uncertainties, review evidence, revisions, and
-  explicit gates.
-- Review manifest mapping each material decision to question or call IDs,
-  initial and follow-up evidence, confirmation status, affected plan section,
-  verification criterion, and unresolved disagreement.
-- Ordered work packages, dependencies, affected files or interfaces, and
-  completion checks.
-- Premortem findings, mitigations, early signals, and revision or stop criteria.
-- Unresolved questions or prerequisite investigations, material review changes,
-  and readiness: `ready for approval`, `conditional`, or `blocked`, with reasons.
+without the preceding conversation. Follow
+[templates/plan.md](templates/plan.md), replacing each placeholder or omitting
+the section as it directs.
 
 Before delivery, verify references are accurate, critical assumptions are
 validated or explicitly gated, acceptance checks cover intended behavior, and

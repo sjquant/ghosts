@@ -8,6 +8,8 @@ disable-model-invocation: true
 
 Use this skill when the user asks for an implementation change. Do not use it for read-only review, explanation, specification, or design-only work.
 
+Write responses and the plan in plain, natural English, or in Korean when the user writes in Korean, including template headings.
+
 ## Runtime loop
 
 Before acting, create `/tmp/loop-coding-<safe-task-slug>.md` with a unique short slug or timestamp. Add `Current state: Pass 1 / Next: Understand`, a task-specific checklist, and an empty append-only `Repair log:`. Process the checklist top to bottom: finish the current item before moving on, record a short outcome, update `Current state`, mark `[x]` only after completion, and use `[-]` only with a reason. Never erase or uncheck historical rows. After a repair, append a numbered `[ ]` recheck row for the earliest affected item, update `Current state`, and log the trigger, change, rechecked items, and result. Finish only after final validation.
@@ -32,7 +34,7 @@ work:
 - [ ] Final validation
 ```
 
-For the plan, state the chosen direction, relevant alternative and tradeoff, affected files, and validation. Present it as a structured, execution-oriented implementation plan in Markdown format. Wait for explicit approval such as `go` or `approve`; a bare request is not approval unless it already specifies the plan. If requirements or a material scope/design choice remain unresolved, stop and ask the user rather than guessing.
+Write the plan following [templates/plan.md](templates/plan.md), replacing each placeholder or omitting the section as it directs. Save it to the user-specified path if one is given; otherwise use `/tmp/loop-coding-<safe-task-slug>-plan.md`, separate from the runtime log, and update it on every revision. Present only the plan path and chosen direction instead of repeating the plan in the response. Wait for explicit approval such as `go` or `approve`; a bare request is not approval unless it already specifies the plan. Resolve open requirements and material scope/design choices before presenting the plan: ask the user one question at a time, with options and a recommendation, instead of guessing or listing them in the plan.
 
 After implementation and checks, answer each review question in order. For a Yes, make the smallest useful repair, rerun relevant checks, append the required recheck row and repair-log entry, then resume from the earliest affected state. A material scope or design change requires a revised plan and approval. Stop when every answer is No, checks pass, and the diff stays within the approved scope.
 
