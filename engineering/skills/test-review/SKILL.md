@@ -10,31 +10,11 @@ Review the tests read-only. If no target is given, review the tests in the curre
 
 Always apply [references/common.md](references/common.md). Add [references/frontend.md](references/frontend.md) for UI or browser tests and [references/backend.md](references/backend.md) for server, worker, or data tests; use both when the change spans them. For another stack, apply only `common.md`.
 
-```text
-[Scope] → [Map behavior → tests] → [Review each test] → [Any gap or unsupported finding?]
-                                                          ├─ No → [Write review] → [Done]
-                                                          └─ Yes → [Repair earliest affected step] ↺
-```
+1. Map each changed behavior to the existing and new tests that protect it. Flag behavior no test would catch if it broke, and removed tests whose protection is not covered elsewhere.
+2. Review each added, changed, or removed test against the guides' review checklists.
+3. Keep only findings with a location, a concrete failure scenario, and a guide rule behind them. Running existing tests to confirm a finding is allowed; editing code or tests is not.
 
-## Runtime checklist
-
-Before acting, create `/tmp/test-review-<safe-task-slug>.md` with `Current state: Pass 1 / Next: Scope`, the checklist below, and an empty append-only `Repair log:`. Process items in order, finish each before moving on, record a short outcome, and mark `[x]` only after completion; use `[-]` only with a reason. After a repair, append a numbered `[ ] Recheck Pn: ...` row for the earliest affected item and log the trigger, change, rechecked items, and result. Finish only after final validation.
-
-```text
-- [ ] Scope: identify the target tests, the production change, and the guides that apply
-- [ ] Map each changed behavior to the existing and new tests that protect it
-- [ ] Review each added, changed, or removed test against the guides' review checklists
-- [ ] Any changed behavior left unprotected, or a removed test whose protection is not covered elsewhere?
-- [ ] Any test that would keep passing if its behavior broke, or that only duplicates existing protection?
-- [ ] Any finding without a location, a concrete failure scenario, and a guide rule behind it?
-- [ ] Final validation and review
-```
-
-Answer each `Any ...?` row Yes or No. On Yes, repair the smallest issue, append the recheck row and repair-log entry, and return to the earliest affected step. Running existing tests is allowed to confirm a finding; editing code or tests is not.
-
-## Findings
-
-Report only findings tied to a guide rule and a concrete consequence. Prioritize:
+Prioritize findings:
 
 - `P1`: a changed behavior has no test that would fail if it broke, or a test cannot fail for the regression it claims to catch.
 - `P2`: implementation coupling, test doubles replacing the behavior under test, nondeterminism, leaking state, or redundant protection.
