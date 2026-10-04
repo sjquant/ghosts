@@ -17,11 +17,11 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 ### Body
 
 - Use `gh pr edit --body-file - <<'EOF'` as the default PR body path.
-- If `.github/pull_request_template.md` exists, preserve its required structure. Otherwise, structure the body with problem and changes sections as bullet lists.
-  - Explain the problem and its impact in 1–2 sentences.
-  - Summarize the chosen solution direction and key behavioral changes.
+- If the repository has a pull request template that GitHub recognizes, preserve its required structure. Otherwise, follow [templates/pull_request_template.md](templates/pull_request_template.md) and replace each placeholder or omit the section as it directs.
 - Write for a reviewer who may not know the repository or the work's prior context. Use direct language, preserve precise domain terms, and make essential premises explicit.
-- Treat length as a cost. Group related points with headings or lists, and include files or implementation details only when essential for review. For complex flows or relationships, use a compact diagram or table abstracted to the level needed to understand the overall change.
+- Keep the body readable in one screen without scrolling. Include files or implementation details only when essential for review.
+- Always group related points under subheadings or nested lists instead of one flat list.
+- When the change alters a flow or relationship between components, summarize it with a compact diagram; when it compares behavior across several cases, use a table. Abstract either to the level needed to understand the overall change.
 - Base the body on the final diff against the base branch. Recheck that diff before publishing, then remove intermediate iterations, reverted or removed work, review history, and abandoned approaches.
 
 ### Title and scope
