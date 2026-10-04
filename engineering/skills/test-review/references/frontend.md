@@ -1,20 +1,41 @@
 # Frontend Testing Guide
 
-Frontend-specific standards. Apply them together with `common.md`.
+This guide defines the frontend testing standards our team uses when deciding what to test, how to structure tests, and which tradeoffs to make in this codebase.
 
-## 1. Priority Targets
+## 1. Testing Philosophy And Value
+
+### 1.1 Meaningful Failure
+
+Tests are not written just to see `Pass`. They should fail when the behavior they protect is broken.
+
+- A test that can keep passing after a meaningful regression does not improve safety. It only increases maintenance cost.
+- When requirements change or a bug is introduced, the test must fail and provide a signal.
+- Regression tests and snapshot tests are still valuable when they protect behavior that would fail after an unintended change.
+- If a test does not meaningfully fail for any realistic change, reconsider whether it should exist at all. In many cases, deleting it is the better choice.
+
+### 1.2 Value-Driven Target Selection
+
+Apply [Test Target Value](common.md#test-target-value), and:
+
+- When an integration test already protects a behavior, do not automatically repeat it in unit tests for every participating component or composable. Add focused tests where they provide additional protection or clearer checks of important edge cases.
+
+Prioritize behaviors that matter most to users and the business:
 
 - Core business logic
   Example: payment, authentication
 - Complex data transformation logic
 - Utility functions with frequent edge cases
 
-## 2. Testing Trophy
+## 2. Testing Strategy: Testing Trophy
 
-We follow Kent C. Dodds' `Testing Trophy` model, with the strongest emphasis on integration tests. A test can exercise components, composables, and state management together while protecting one clearly defined behavior.
+We follow Kent C. Dodds' `Testing Trophy` model, with the strongest emphasis on integration tests.
+
+Prefer tests that keep the real collaboration needed to deliver a feature intact. A test can exercise components, composables, and state management together while protecting one clearly defined behavior. The number of participating components and the number of concerns being tested are separate choices.
+
+Apply [Focused Scenarios](common.md#focused-scenarios).
 
 1. `Static (Lint/Type)`
-   Use TypeScript and ESLint to catch typos, type mismatches, and other basic mistakes.
+   Use TypeScript and ESLint to catch typos, type mismatches, and other basic mistakes. Do not duplicate test coverage for things that static analysis already verifies well.
 2. `Unit`
    Verify highly complex calculations or isolated pure functions.
 3. `Integration`
@@ -24,7 +45,7 @@ We follow Kent C. Dodds' `Testing Trophy` model, with the strongest emphasis on 
    Example: sign in -> search -> purchase
    This is the safest level, but also the most expensive, so apply it only to critical paths.
 
-## 3. File Structure
+## 3. File Structure And Naming Conventions
 
 - Place specs for simple modules or component-local behavior next to the source file.
 - If a feature spans multiple components, place the spec under the feature's `tests/` directory or next to the representative entry component.
@@ -49,7 +70,7 @@ src/
         └── date.spec.ts
 ```
 
-## 4. `describe` Block Structure
+### `describe` Block Structure
 
 Use `describe` to show the shared subject of the tests, not the internal implementation structure. Keep it flat by default instead of nesting it.
 
@@ -86,10 +107,41 @@ describe('applyDiscount', () => {
 - Name each `describe` block after the test target. Example: component name, hook name, public function name
 - Write each `it` or `test` block as a sentence that describes the expected outcome in that context.
 - Do not nest child `describe` blocks. If you need another context, split it into another top-level `describe` block instead.
+- Make test names specific enough to reveal both the situation and the expected result.
+- Prefer capability-oriented names over implementation-shaped names.
+  Example: `user can checkout with a valid cart` is better than `calls submitOrder with transformed payload`.
+- Describe what the test actually exercises and observes. Do not claim to verify behavior that has been replaced by a test double.
+- Use parameterized tests with readable case names for cases of the same behavior that share an execution flow. Split cases when combining them introduces branches that obscure their different scenarios.
 
-## 5. Given / When / Then In Specs
+## 4. Test Writing Principles
 
-Mark each section with `// Given`, `// When`, and `// Then`. `Then` covers rendered UI, user-visible state, and outgoing requests or events.
+### 4.1 Black-box Tests
+
+Test externally observable behavior, not internal implementation details.
+
+- Do not read private properties or component-internal state directly.
+- Write tests from a black-box perspective. If input A is applied, does the user observe result B?
+- If a refactor breaks the test without changing behavior, the test was too coupled to the implementation.
+
+### 4.2 Avoid Designing Only For Tests
+
+Be careful not to damage production code readability or introduce unnecessary abstractions just to make tests easier to write.
+
+- First check whether the behavior can be verified through an existing public entrypoint before changing production code for testability.
+- Change the design only when the testing value clearly outweighs the design cost.
+- In most cases, improving a function interface is better than making the design more complex for testability.
+
+## 5. Practical Guide
+
+### 5.1 AAA Pattern
+
+For consistency, every test follows the `AAA (Given-When-Then)` pattern, and each section is marked with comments.
+
+- `Given`: Initial state, dependencies, test doubles, and fixed inputs required for the scenario
+- `When`: The behavior under test
+- `Then`: Observable results of `When`, such as rendered UI, user-visible state, and outgoing requests or events
+
+One test may verify multiple results, but they should all come from the same behavior.
 
 ```tsx
 it('상품 수량을 변경하면 장바구니 총액이 재계산된다', async () => {
@@ -111,7 +163,7 @@ it('상품 수량을 변경하면 장바구니 총액이 재계산된다', async
 });
 ```
 
-Supporting comments can explain the scenario:
+Add supporting comments when they improve readability.
 
 ```tsx
 it('쿠폰을 적용하면 최소 주문 금액 조건을 만족할 때만 할인 금액이 반영된다', async () => {
@@ -124,25 +176,37 @@ it('쿠폰을 적용하면 최소 주문 금액 조건을 만족할 때만 할�
 });
 ```
 
-## 6. Mocking
+### 5.2 Mocking Policy
+
+Limit mocking to the external world that we do not control. Compared with unit tests that heavily mock internal collaborators, integration tests with real collaboration boundaries are more resilient to refactoring and more trustworthy from the user's perspective.
 
 - Mock API calls at the network boundary with `MSW (Mock Service Worker)` instead of mocking server logic directly.
 - Prefer testing the integrated state where parent and child components actually collaborate.
-- In black-box component tests, keep real rendering whenever possible. Consider stubs, spies, or mocks only when unrelated side effects make the test unstable or too noisy.
 
-### 6.1 Shared MSW Setup
+#### 5.2.1 Shared MSW Testing Standard
 
-Do not repeat the same MSW setup in every spec. Build tests on top of a shared test environment, then override only the conditions required for the scenario with `server.use(...)`.
+For MSW-based tests, do not repeat the same setup in every spec. Build tests on top of a shared test environment, then override only the conditions required for the scenario with `server.use(...)`.
 
+- Control behavior at the network boundary.
 - Do not default to fine-grained `vi.mock()` calls against internal composables or API modules.
 - Write overrides so that they reveal only the condition the test is trying to validate.
 - Prefer helpers with obvious intent over large and noisy fixture payloads.
 
-### 6.2 Shared Component Test Environment
+#### 5.2.2 Shared Assumptions For Component Tests
 
-Query client, store, injectables, and browser storage are usually better provided by the default test environment than recreated in each spec.
+Reuse established setup helpers for dependencies outside the test's concern. For example, query client, store, injectables, and browser storage are usually better provided by the default test environment than recreated in each spec.
 
-## 7. Async UI Waiting
+Keep scenario-specific conditions and the execution flow visible in the test body. Extract helpers to make scenarios easier to understand, not just to remove repeated lines. A little duplication is preferable to an abstraction that hides those details.
+
+#### 5.2.3 Test Double Usage Standard
+
+In black-box component tests, keep real rendering whenever possible.
+
+- Do not increase test double usage just to make the test easier to write.
+- Consider stubs, spies, or mocks only when unrelated side effects make the test unstable or too noisy.
+- If a test double is necessary, its reason should be easy to explain.
+
+### 5.3 Async UI Waiting Principles
 
 In component tests, the synchronization point should not be "has the request finished?" It should be "has the DOM reached the state the user is supposed to see?"
 
@@ -153,9 +217,9 @@ In component tests, the synchronization point should not be "has the request fin
 
 `findBy*`, `waitFor`, and `waitForElementToBeRemoved` do not wait forever. They fail if the condition is not satisfied within the default timeout. Increase the timeout only when the specific test needs it.
 
-## 8. Non-Deterministic Inputs
+### 5.4 Handling Non-Deterministic Inputs
 
-Inject time or randomness as a parameter so the test can fix it.
+Move unstable values such as current time or randomness to the test boundary.
 
 ```ts
 // Before
@@ -175,9 +239,13 @@ it('마감일은 기준일로부터 7일 후다', () => {
 });
 ```
 
-## 9. UI Verification And Accessibility
+## 6. UI Verification And Accessibility
 
-We avoid pixel-perfect visual regression tests by default. Screen structure and styles change often, and their maintenance cost is high. Instead, write tests against attributes that users actually perceive and interact with.
+We avoid pixel-perfect visual regression tests by default. Screen structure and styles change often, and their maintenance cost is high. Instead, prioritize stable properties that users actually perceive and interact with.
+
+### What To Validate
+
+Write tests against attributes that are relatively stable from a user perspective, rather than against volatile implementation details.
 
 ### Query Priority
 
@@ -189,7 +257,7 @@ We avoid pixel-perfect visual regression tests by default. Screen structure and 
 | 4 | `getByText` | When visible text is the most meaningful query |
 | 5 | `getByTestId` | Only when the other options are not practical |
 
-### `data-testid` Usage
+### `data-testid` Usage Standard
 
 Use `data-testid` only for elements that cannot be identified well through accessibility roles or similar user-facing semantics. Do not add `aria-label` only to make tests easier to query.
 
@@ -226,10 +294,8 @@ expect(within(row).getByText('72,000')).toBeInTheDocument();
 - Text that is likely to change often
 - Broad snapshot comparisons
 
-## 10. Review Checklist
+## 7. Review Checklist
 
-In addition to the common checklist:
+Apply the [Review Checklist](common.md#review-checklist), and check:
 
-- Does the test wait for the user-visible DOM state instead of request completion?
-- Do queries follow the priority order, using `data-testid` only when user-facing semantics are impractical?
-- Are API calls replaced at the network boundary with MSW rather than with `vi.mock()` on internal modules?
+- Do the name and description accurately reflect what the test exercises and observes?
