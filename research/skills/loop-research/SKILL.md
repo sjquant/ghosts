@@ -89,27 +89,21 @@ date, or definition instead of averaging it into false certainty.
 
 ### Explain
 
-Match depth and structure to the goal and stakes. For current, uncertain, or
-consequential questions, include more than a conclusion unless brevity is
-explicitly requested. A concise research memo usually covers the judgment,
-current facts, sustaining or weakening drivers, counterforces, observable
-triggers, uncertainty, and references; for each material driver, show evidence,
-implication, and limitation.
+Match depth to the goal and stakes. For current, uncertain, or consequential
+questions, include more than a conclusion unless brevity is explicitly
+requested. Explain at the user's level and define necessary terms on first use.
 
-Use scenarios or triggers for decisions and predictions; a problem-first mental
-model, example, misconception, and practice for learning; and criteria,
-evidence, tradeoffs, and a verdict for comparisons. Keep a briefing compact
-when that is the user's goal, explain at the user's level, and define necessary
-terms on first use.
+Follow the template in [templates/](templates/) whose file name matches the
+goal (`forecast`, `comparison`, `learning`, or `decision`), replacing each
+placeholder or omitting the section as it directs. Answer quick questions and
+briefings without a template, keeping briefings compact.
 
-For a design decision grounded in standards or reference material, rank
-sources as standards or regulations, official documentation, reference
-implementations, then commentary, and record each source's version and relevant
-section. Classify each material recommendation by obligation (`MUST`, `SHOULD`,
-or `MAY` only for normative sources; otherwise `recommendation`), expected
-value, omission risk, and adoption cost. Write the memo following
-[templates/decision-memo.md](templates/decision-memo.md), replacing each
-placeholder or omitting the section as it directs.
+For a decision grounded in standards or reference material, rank sources as
+standards or regulations, official documentation, reference implementations,
+then commentary, and record each source's version and relevant section.
+Classify each material recommendation by obligation (`MUST`, `SHOULD`, or
+`MAY` only for normative sources; otherwise `recommendation`), expected value,
+omission risk, and adoption cost.
 
 ### Review and repair
 
