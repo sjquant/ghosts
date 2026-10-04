@@ -21,7 +21,7 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 - Write for a reviewer who may not know the repository or the work's prior context. Use direct language, preserve precise domain terms, and make essential premises explicit.
 - Keep the body readable in one screen without scrolling. Include files or implementation details only when essential for review.
 - Always group related points under subheadings or nested lists instead of one flat list.
-- Always summarize the overall change with a compact diagram for flows or relationships, or a table for comparisons, abstracted to the level needed to understand it.
+- When the change alters a flow or relationship between components, summarize it with a compact diagram; when it compares behavior across several cases, use a table. Abstract either to the level needed to understand the overall change.
 - Base the body on the final diff against the base branch. Recheck that diff before publishing, then remove intermediate iterations, reverted or removed work, review history, and abandoned approaches.
 
 ### Title and scope
