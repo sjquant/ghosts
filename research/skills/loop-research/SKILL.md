@@ -102,6 +102,15 @@ evidence, tradeoffs, and a verdict for comparisons. Keep a briefing compact
 when that is the user's goal, explain at the user's level, and define necessary
 terms on first use.
 
+For a design decision grounded in standards or reference material, rank
+sources as standards or regulations, official documentation, reference
+implementations, then commentary, and record each source's version and relevant
+section. Classify each material recommendation by obligation (`MUST`, `SHOULD`,
+or `MAY` only for normative sources; otherwise `recommendation`), expected
+value, omission risk, and adoption cost. Write the memo following
+[templates/decision-memo.md](templates/decision-memo.md), replacing each
+placeholder or omitting the section as it directs.
+
 ### Review and repair
 
 Before finalizing, ask:
