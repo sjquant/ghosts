@@ -36,4 +36,4 @@ Supporting context for reviewers; omit any subsection with nothing material to a
 - **<Plausible failure>** — <Early signal>; <mitigation>; <stop or revise trigger>
 
 ### Decision ledger
-- **<ID> <Decision>** — <Status>; <evidence and review call IDs>; <unresolved disagreement, if any>
+- **<ID> <Decision>** (<status>) — <Evidence and review call IDs>; <unresolved disagreement, only if any>
