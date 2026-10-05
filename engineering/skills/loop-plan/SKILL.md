@@ -58,7 +58,7 @@ fixed ceremony.
 ```text
 [Understand] → [Route unknowns]
                   ├─ evidence → [$loop-research] ┐
-                  ├─ user decision → [$socratic-interview] ├→ [Frame + ledger] → [Draft]
+                  ├─ user decision → [$grill-me] ├→ [Frame + ledger] → [Draft]
                   └─ known →─────────────────────┘              ↓
                                                      [Any high-impact uncertainty?]
                                                        ├─ No → [Self challenge]
@@ -136,20 +136,20 @@ Route unresolved inputs before making design decisions. Use `$loop-research` for
 repository or document investigation, current or contested evidence,
 comparisons, feasibility checks, or source citations; it returns verified
 claims, provenance, uncertainty, and leads that could change the plan. Use
-`$socratic-interview` for choices only the user can make, such as outcome,
-scope, priority, risk tolerance, or external action; it asks one focused
-question at a time and returns an execution brief, but does not plan or edit.
-Do not ask the user for facts inspection or research can establish, and do not
-replace a user decision with an inferred preference. Carry both outputs into
-the decision ledger.
+`$grill-me` for choices only the user can make, such as outcome, scope, priority,
+risk tolerance, or external action. It asks the whole ready frontier in each
+round and returns a short, grouped decision summary. Wait for the user to confirm
+the shared understanding before carrying its decisions into the plan. Do not
+ask the user for facts that inspection or research can establish, or infer a
+material preference. Carry both outputs into the decision ledger.
 
-Ask the smallest question when an unknown could change scope, success, or a
-costly decision; continue independent inspection while waiting. State ordinary
-assumptions and proceed. If feasibility remains unestablished, put the cheapest
-useful investigation first with a decision criterion and keep dependent work
-conditional rather than inventing certainty. State task-specific principles,
-rank decision drivers, resolve conflicts explicitly, and define observable
-success before choosing.
+Resolve material user choices through the interview's dependency-aware rounds;
+continue independent inspection while waiting. State ordinary assumptions only
+when they do not replace a material user decision. If feasibility remains
+unestablished, put the cheapest useful investigation first with a decision
+criterion and keep dependent work conditional rather than inventing certainty.
+State task-specific principles, rank decision drivers, resolve conflicts
+explicitly, and define observable success before choosing.
 
 ## Compare and draft
 
