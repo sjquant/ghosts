@@ -1,6 +1,7 @@
 ---
 name: write-adr
 description: Create or revise Architecture Decision Records (ADRs) that explain a decision, its context, and its rationale. Use when the user asks to document a decision about architecture, technology, infrastructure, security, engineering practices, or domain design.
+disable-model-invocation: true
 ---
 
 # Write ADR

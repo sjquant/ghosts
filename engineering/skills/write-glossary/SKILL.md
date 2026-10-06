@@ -1,6 +1,7 @@
 ---
 name: write-glossary
 description: Create or update a project's GLOSSARY.md with precise definitions and canonical terminology. Use when the user asks to write a glossary, document project vocabulary, or revise existing definitions.
+disable-model-invocation: true
 ---
 
 # Write Glossary
