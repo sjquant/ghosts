@@ -24,7 +24,7 @@ Start with the test's purpose and contribution to the suite:
 
 Then check:
 
-- Would this test actually fail if that behavior broke?
+- Would this test actually fail if that behavior broke, or is it tautological—recomputing expected values with the implementation's logic or asserting only mock setup?
 - Does it preserve useful collaboration between real components while keeping its concern focused?
 - Does the test verify externally observable behavior instead of internal implementation?
 - Do test doubles replace external or unstable dependencies without replacing the behavior under test?

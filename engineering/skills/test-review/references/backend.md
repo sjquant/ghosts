@@ -235,7 +235,6 @@ Avoid:
 - Assertions that provide little signal, such as `assert response.json() is not None`
 - Overly broad snapshots that fail on unrelated field changes
 - Tests that only assert mock call counts without verifying actual state changes
-- Recomputing the expected value with the same logic as the implementation under test
 
 ## 10. Snapshot Usage
 
