@@ -1,16 +1,8 @@
 # Frontend Testing Guide
 
-This guide defines the frontend testing standards our team uses when deciding what to test, how to structure tests, and which tradeoffs to make in this codebase.
+This guide adds frontend-specific rules and examples to the shared standards in `common.md`.
 
-## 1. Testing Philosophy And Value
-
-### 1.1 Meaningful Failure
-
-Apply [Meaningful Failure](common.md#meaningful-failure).
-
-### 1.2 Value-Driven Target Selection
-
-Apply [Test Target Value](common.md#test-target-value).
+## 1. Test Targets
 
 Prioritize behaviors that matter most to users and the business:
 
@@ -23,7 +15,7 @@ Prioritize behaviors that matter most to users and the business:
 
 We follow Kent C. Dodds' `Testing Trophy` model, with the strongest emphasis on integration tests.
 
-Apply [Test Scope](common.md#test-scope) and [Focused Scenarios](common.md#focused-scenarios). Component integration tests can exercise rendering, composables, and state management together.
+Component integration tests can exercise rendering, composables, and state management together.
 
 1. `Static (Lint/Type)`
    Use TypeScript and ESLint to catch typos, type mismatches, and other basic mistakes.
@@ -96,22 +88,14 @@ describe('applyDiscount', () => {
 ```
 
 - Name each `describe` block after the test target. Example: component name, hook name, public function name
-- Write each `it` or `test` block as a scenario and observable outcome, following [Focused Scenarios](common.md#focused-scenarios).
+- Write each `it` or `test` block as a scenario and observable outcome.
 - Do not nest child `describe` blocks. If you need another context, split it into another top-level `describe` block instead.
 - Use `it.each` or `test.each` for cases that share an execution flow.
 
-## 4. Test Writing Principles
-
-### 4.1 Black-box Tests
-
-Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
+## 4. Black-box Component Tests
 
 - Do not read private properties or component-internal state directly.
 - Write tests from a black-box perspective. If input A is applied, does the user observe result B?
-
-### 4.2 Avoid Designing Only For Tests
-
-Apply [Test Scope](common.md#test-scope) before changing component or composable interfaces for testability.
 
 ## 5. Practical Guide
 
@@ -122,8 +106,6 @@ For consistency, every test follows the `AAA (Given-When-Then)` pattern, and eac
 - `Given`: Initial state, dependencies, test doubles, and fixed inputs required for the scenario
 - `When`: The behavior under test
 - `Then`: Observable results of `When`, such as rendered UI, user-visible state, and outgoing requests or events
-
-Apply [Focused Scenarios](common.md#focused-scenarios).
 
 ```tsx
 it('상품 수량을 변경하면 장바구니 총액이 재계산된다', async () => {
@@ -160,8 +142,6 @@ it('쿠폰을 적용하면 최소 주문 금액 조건을 만족할 때만 할�
 
 ### 5.2 Mocking Policy
 
-Apply [Test Scope](common.md#test-scope) when choosing test doubles.
-
 - Mock API calls at the network boundary with `MSW (Mock Service Worker)` instead of mocking server logic directly.
 - Prefer testing the integrated state where parent and child components actually collaborate.
 
@@ -177,7 +157,7 @@ For MSW-based tests, do not repeat the same setup in every spec. Build tests on 
 
 Reuse established setup helpers for dependencies outside the test's concern. For example, query client, store, injectables, and browser storage are usually better provided by the default test environment than recreated in each spec.
 
-Apply [Fixtures And Isolation](common.md#fixtures-and-isolation). Isolate or reset query caches, stores, and browser storage, and restore MSW handlers, mocks, and environment overrides between tests.
+Isolate or reset query caches, stores, and browser storage, and restore MSW handlers, mocks, and environment overrides between tests.
 
 #### 5.2.3 Test Double Usage Standard
 
@@ -199,7 +179,7 @@ In component tests, the synchronization point should not be "has the request fin
 
 ### 5.4 Handling Non-Deterministic Inputs
 
-Apply [Deterministic Inputs](common.md#deterministic-inputs). For date-dependent UI, pass a fixed base date when the interface supports it:
+For date-dependent UI, pass a fixed base date when the interface supports it:
 
 ```ts
 // Before
@@ -221,14 +201,12 @@ it('마감일은 기준일로부터 7일 후다', () => {
 
 ### 5.5 Assertions And Failure Cases
 
-Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
-
 - Verify rendered results, user-visible state, and outgoing request or event payloads that form the frontend contract.
 - Verify failures through error feedback, restricted actions, and sign-in flows as appropriate to the changed behavior.
 
-### 5.6 Snapshot Usage And Coverage
+### 5.6 Snapshot Targets
 
-Apply [Snapshots](common.md#snapshots) and [Coverage](common.md#coverage). Use rendered-structure or payload snapshots when their full shape is a stable frontend contract.
+Use rendered-structure or payload snapshots when their full shape is a stable frontend contract.
 
 ## 6. UI Verification And Accessibility
 
@@ -286,7 +264,7 @@ expect(within(row).getByText('72,000')).toBeInTheDocument();
 
 ## 7. Review Checklist
 
-Apply the [Review Checklist](common.md#review-checklist), and check:
+Check these frontend-specific concerns:
 
 - Do queries identify UI through accessible roles, labels, or meaningful user-visible context?
 - Does async synchronization wait for the intended DOM state?

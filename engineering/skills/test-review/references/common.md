@@ -1,6 +1,6 @@
 # Common Testing Standards
 
-Sections shared by [frontend.md](frontend.md) and [backend.md](backend.md).
+Apply these standards to every test review. Frontend and backend guides add stack-specific rules and examples.
 
 ## Meaningful Failure
 

@@ -1,18 +1,10 @@
 # Backend Testing Guide
 
-This document defines the shared testing standards for backend teams. Tests are not written just to see `Pass`. They are written to fail quickly and clearly when important behavior is broken.
+This guide adds backend-specific rules and examples to the shared standards in `common.md`.
 
 Repository structure, fixture names, and test commands may differ by repository. This guide focuses on shared judgment criteria for writing and reviewing backend tests, rather than repository-specific usage.
 
-## 1. Testing Philosophy
-
-### 1.1 Meaningful Failure
-
-Apply [Meaningful Failure](common.md#meaningful-failure).
-
-### 1.2 Choose Test Targets By Value
-
-Apply [Test Target Value](common.md#test-target-value).
+## 1. Test Targets
 
 High-priority targets:
 
@@ -24,11 +16,9 @@ High-priority targets:
 
 ## 2. Test Scope Strategy
 
-Apply [Test Scope](common.md#test-scope) and [Focused Scenarios](common.md#focused-scenarios). API, service, repository, DB, and cache integration tests can catch wiring, transaction, serialization, and dependency override issues.
+API, service, repository, DB, and cache integration tests can catch wiring, transaction, serialization, and dependency override issues.
 
 ## 3. Test Naming And Grouping
-
-Apply [Focused Scenarios](common.md#focused-scenarios).
 
 Basic rules:
 
@@ -80,8 +70,6 @@ async def test_expired_subscription_removes_user_role(...) -> None:
     assert not user_has_role(subscription.user_id, "premium")
 ```
 
-Apply [Focused Scenarios](common.md#focused-scenarios).
-
 ## 5. Layer-Specific Guidelines
 
 Use the largest layer that still gives a clear signal.
@@ -94,7 +82,7 @@ Use the largest layer that still gives a clear signal.
 
 ## 6. Fixture And Test Data
 
-Apply [Fixtures And Isolation](common.md#fixtures-and-isolation). Backend fixtures commonly provide DB sessions, clients, caches, repositories, and services; scenario factories can use names such as `create_expired_subscription` or `create_verified_user`.
+Backend fixtures commonly provide DB sessions, clients, caches, repositories, and services; scenario factories can use names such as `create_expired_subscription` or `create_verified_user`.
 
 ### 6.1 DB Setup
 
@@ -110,8 +98,6 @@ Apply [Fixtures And Isolation](common.md#fixtures-and-isolation). Backend fixtur
 - Verify cache keys, TTLs, and session values directly when they are part of the contract.
 
 ## 7. Test Double Policy
-
-Apply [Test Scope](common.md#test-scope) and [Deterministic Inputs](common.md#deterministic-inputs).
 
 Good targets for test doubles:
 
@@ -137,11 +123,9 @@ Partial replacement can be better than replacing the whole object. For example, 
 
 ## 8. Time, Randomness, And Determinism
 
-Apply [Deterministic Inputs](common.md#deterministic-inputs). For ordering-sensitive queries and pagination, make `created_at`, IDs, and cursor values explicit. Verify timezone conversion or epoch values when they form the storage or response contract.
+For ordering-sensitive queries and pagination, make `created_at`, IDs, and cursor values explicit. Verify timezone conversion or epoch values when they form the storage or response contract.
 
 ## 9. Assertions
-
-Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
 
 - In API tests, assert `status_code` first.
 - Verify DB side effects by reading them back through a repository or query.
@@ -150,15 +134,11 @@ Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
 
 ## 10. Snapshot Usage
 
-Apply [Snapshots](common.md#snapshots). Response JSON and event payloads can be snapshot targets when their full shape is a stable backend contract.
+Response JSON and event payloads can be snapshot targets when their full shape is a stable backend contract.
 
-## 11. Coverage
+## 11. Review Checklist
 
-Apply [Coverage](common.md#coverage).
-
-## 12. Review Checklist
-
-Apply the [Review Checklist](common.md#review-checklist), and check the implementation and remaining risks:
+Check these backend-specific concerns:
 
 - Can DB, cache, and dependency overrides leak between tests?
 - Are server authentication and authorization enforced, including rejected requests and unauthorized side effects?
