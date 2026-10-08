@@ -1,5 +1,5 @@
 ---
-name: github-pr
+name: ghosts:github-pr
 description: When the user asks to publish, sync, or manage GitHub work, commit and push each change and create or update its pull request.
 ---
 ## Git workflow

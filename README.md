@@ -23,6 +23,21 @@ npx @solaqua/skul@latest add --global --agent codex npm:@solaqua/ghosts
 
 Replace `codex` with the name of the agent you use, if different. The `--global` flag controls where Skul materializes the skills; it does not install `@solaqua/ghosts` as a Node.js dependency. Requires Node.js >=20 and git.
 
+## Skill names
+
+Skills maintained in this repository use the `ghosts:` namespace to distinguish
+them from built-in skills and skills from other sources. Skul uses each
+`SKILL.md`'s `name` to create the installed skill directory.
+
+| Agent | Invocation example |
+| --- | --- |
+| Claude Code | `/ghosts:code-review` |
+| Codex | `$ghosts:code-review` |
+
+Source directories keep their short names, so Skul item selectors still use
+paths such as `--include skills/code-review`. External skills installed through
+`registry/skul.refs.json` retain their upstream names.
+
 ## Bundles
 
 - `engineering/`: implementation, planning, review, and collaboration skills

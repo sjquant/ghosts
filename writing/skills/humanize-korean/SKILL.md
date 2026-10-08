@@ -1,5 +1,5 @@
 ---
-name: humanize-korean
+name: ghosts:humanize-korean
 description: 한국어 원문의 의미·사실·장르를 보존하면서 번역투, AI 관용구, 기계적인 구조와 리듬만 필요한 범위에서 국소적으로 줄인다.
 disable-model-invocation: true
 ---

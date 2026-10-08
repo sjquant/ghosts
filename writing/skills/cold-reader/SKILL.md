@@ -1,5 +1,5 @@
 ---
-name: cold-reader
+name: ghosts:cold-reader
 description: Draft or revise PR descriptions, ADRs, design documents, implementation plans, review responses, and other engineering artifacts for readers who did not participate in the preceding conversation. Do not use for casual conversation, ordinary code comments, or documents explicitly intended to rely on linked prior context.
 ---
 

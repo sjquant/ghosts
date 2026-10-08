@@ -1,5 +1,5 @@
 ---
-name: explain-diff
+name: ghosts:explain-diff
 description: Explain a complete code change, diff, branch, or PR as a visual, novice-first HTML lesson with large diagrams, few words, concrete examples, and an interactive quiz.
 disable-model-invocation: true
 ---

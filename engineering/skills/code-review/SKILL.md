@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: ghosts:code-review
 description: Broad, read-only code review using general agents and complete result synthesis.
 disable-model-invocation: true
 ---

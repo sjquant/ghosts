@@ -1,5 +1,5 @@
 ---
-name: vibe-notion
+name: ghosts:vibe-notion
 description: Manage Notion pages, databases, blocks, users, and comments with the Vibe Notion CLI.
 version: 1.10.0
 allowed-tools: Bash(vibe-notion:*)

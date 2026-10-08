@@ -1,5 +1,5 @@
 ---
-name: test-review
+name: ghosts:test-review
 description: Read-only review of tests in a change, PR, or path against shared, frontend, and backend testing standards.
 disable-model-invocation: true
 ---

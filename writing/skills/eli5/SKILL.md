@@ -1,5 +1,5 @@
 ---
-name: eli5
+name: ghosts:eli5
 description: Explain any supplied topic to a complete beginner as a self-contained HTML artifact with big visuals, few words, and simple examples.
 disable-model-invocation: true
 ---
