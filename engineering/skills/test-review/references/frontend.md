@@ -6,18 +6,11 @@ This guide defines the frontend testing standards our team uses when deciding wh
 
 ### 1.1 Meaningful Failure
 
-Tests are not written just to see `Pass`. They should fail when the behavior they protect is broken.
-
-- A test that can keep passing after a meaningful regression does not improve safety. It only increases maintenance cost.
-- When requirements change or a bug is introduced, the test must fail and provide a signal.
-- Regression tests and snapshot tests are still valuable when they protect behavior that would fail after an unintended change.
-- If a test does not meaningfully fail for any realistic change, reconsider whether it should exist at all. In many cases, deleting it is the better choice.
+Apply [Meaningful Failure](common.md#meaningful-failure).
 
 ### 1.2 Value-Driven Target Selection
 
-Apply [Test Target Value](common.md#test-target-value), and:
-
-- When an integration test already protects a behavior, do not automatically repeat it in unit tests for every participating component or composable. Add focused tests where they provide additional protection or clearer checks of important edge cases.
+Apply [Test Target Value](common.md#test-target-value).
 
 Prioritize behaviors that matter most to users and the business:
 
@@ -30,14 +23,12 @@ Prioritize behaviors that matter most to users and the business:
 
 We follow Kent C. Dodds' `Testing Trophy` model, with the strongest emphasis on integration tests.
 
-Prefer tests that keep the real collaboration needed to deliver a feature intact. A test can exercise components, composables, and state management together while protecting one clearly defined behavior. The number of participating components and the number of concerns being tested are separate choices.
-
-Apply [Focused Scenarios](common.md#focused-scenarios).
+Apply [Test Scope](common.md#test-scope) and [Focused Scenarios](common.md#focused-scenarios). Component integration tests can exercise rendering, composables, and state management together.
 
 1. `Static (Lint/Type)`
-   Use TypeScript and ESLint to catch typos, type mismatches, and other basic mistakes. Do not duplicate test coverage for things that static analysis already verifies well.
+   Use TypeScript and ESLint to catch typos, type mismatches, and other basic mistakes.
 2. `Unit`
-   Verify highly complex calculations or isolated pure functions.
+   Verify calculations or naturally small units such as pure functions, parsers, and validators.
 3. `Integration`
    This is our primary tactic. Verify whether multiple components work together to deliver a feature. Prefer sociable tests with minimal mocking.
 4. `E2E`
@@ -105,31 +96,22 @@ describe('applyDiscount', () => {
 ```
 
 - Name each `describe` block after the test target. Example: component name, hook name, public function name
-- Write each `it` or `test` block as a sentence that describes the expected outcome in that context.
+- Write each `it` or `test` block as a scenario and observable outcome, following [Focused Scenarios](common.md#focused-scenarios).
 - Do not nest child `describe` blocks. If you need another context, split it into another top-level `describe` block instead.
-- Make test names specific enough to reveal both the situation and the expected result.
-- Prefer capability-oriented names over implementation-shaped names.
-  Example: `user can checkout with a valid cart` is better than `calls submitOrder with transformed payload`.
-- Describe what the test actually exercises and observes. Do not claim to verify behavior that has been replaced by a test double.
-- Use parameterized tests with readable case names for cases of the same behavior that share an execution flow. Split cases when combining them introduces branches that obscure their different scenarios.
+- Use `it.each` or `test.each` for cases that share an execution flow.
 
 ## 4. Test Writing Principles
 
 ### 4.1 Black-box Tests
 
-Test externally observable behavior, not internal implementation details.
+Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
 
 - Do not read private properties or component-internal state directly.
 - Write tests from a black-box perspective. If input A is applied, does the user observe result B?
-- If a refactor breaks the test without changing behavior, the test was too coupled to the implementation.
 
 ### 4.2 Avoid Designing Only For Tests
 
-Be careful not to damage production code readability or introduce unnecessary abstractions just to make tests easier to write.
-
-- First check whether the behavior can be verified through an existing public entrypoint before changing production code for testability.
-- Change the design only when the testing value clearly outweighs the design cost.
-- In most cases, improving a function interface is better than making the design more complex for testability.
+Apply [Test Scope](common.md#test-scope) before changing component or composable interfaces for testability.
 
 ## 5. Practical Guide
 
@@ -141,7 +123,7 @@ For consistency, every test follows the `AAA (Given-When-Then)` pattern, and eac
 - `When`: The behavior under test
 - `Then`: Observable results of `When`, such as rendered UI, user-visible state, and outgoing requests or events
 
-One test may verify multiple results, but they should all come from the same behavior.
+Apply [Focused Scenarios](common.md#focused-scenarios).
 
 ```tsx
 it('상품 수량을 변경하면 장바구니 총액이 재계산된다', async () => {
@@ -178,7 +160,7 @@ it('쿠폰을 적용하면 최소 주문 금액 조건을 만족할 때만 할�
 
 ### 5.2 Mocking Policy
 
-Limit mocking to the external world that we do not control. Compared with unit tests that heavily mock internal collaborators, integration tests with real collaboration boundaries are more resilient to refactoring and more trustworthy from the user's perspective.
+Apply [Test Scope](common.md#test-scope) when choosing test doubles.
 
 - Mock API calls at the network boundary with `MSW (Mock Service Worker)` instead of mocking server logic directly.
 - Prefer testing the integrated state where parent and child components actually collaborate.
@@ -187,7 +169,6 @@ Limit mocking to the external world that we do not control. Compared with unit t
 
 For MSW-based tests, do not repeat the same setup in every spec. Build tests on top of a shared test environment, then override only the conditions required for the scenario with `server.use(...)`.
 
-- Control behavior at the network boundary.
 - Do not default to fine-grained `vi.mock()` calls against internal composables or API modules.
 - Write overrides so that they reveal only the condition the test is trying to validate.
 - Prefer helpers with obvious intent over large and noisy fixture payloads.
@@ -196,13 +177,12 @@ For MSW-based tests, do not repeat the same setup in every spec. Build tests on 
 
 Reuse established setup helpers for dependencies outside the test's concern. For example, query client, store, injectables, and browser storage are usually better provided by the default test environment than recreated in each spec.
 
-Keep scenario-specific conditions and the execution flow visible in the test body. Extract helpers to make scenarios easier to understand, not just to remove repeated lines. A little duplication is preferable to an abstraction that hides those details.
+Apply [Fixtures And Isolation](common.md#fixtures-and-isolation). Isolate or reset query caches, stores, and browser storage, and restore MSW handlers, mocks, and environment overrides between tests.
 
 #### 5.2.3 Test Double Usage Standard
 
 In black-box component tests, keep real rendering whenever possible.
 
-- Do not increase test double usage just to make the test easier to write.
 - Consider stubs, spies, or mocks only when unrelated side effects make the test unstable or too noisy.
 - If a test double is necessary, its reason should be easy to explain.
 
@@ -219,7 +199,7 @@ In component tests, the synchronization point should not be "has the request fin
 
 ### 5.4 Handling Non-Deterministic Inputs
 
-Move unstable values such as current time or randomness to the test boundary.
+Apply [Deterministic Inputs](common.md#deterministic-inputs). For date-dependent UI, pass a fixed base date when the interface supports it:
 
 ```ts
 // Before
@@ -238,6 +218,17 @@ it('마감일은 기준일로부터 7일 후다', () => {
   expect(getDeadline(fixedDate)).toEqual(new Date('2024-01-08'));
 });
 ```
+
+### 5.5 Assertions And Failure Cases
+
+Apply [Assertions And Failure Cases](common.md#assertions-and-failure-cases).
+
+- Verify rendered results, user-visible state, and outgoing request or event payloads that form the frontend contract.
+- Verify failures through error feedback, restricted actions, and sign-in flows as appropriate to the changed behavior.
+
+### 5.6 Snapshot Usage And Coverage
+
+Apply [Snapshots](common.md#snapshots) and [Coverage](common.md#coverage). Use rendered-structure or payload snapshots when their full shape is a stable frontend contract.
 
 ## 6. UI Verification And Accessibility
 
@@ -292,10 +283,12 @@ expect(within(row).getByText('72,000')).toBeInTheDocument();
 - Positional selectors such as `nth-child`
 - Auto-generated or meaningless `id` values
 - Text that is likely to change often
-- Broad snapshot comparisons
 
 ## 7. Review Checklist
 
 Apply the [Review Checklist](common.md#review-checklist), and check:
 
-- Do the name and description accurately reflect what the test exercises and observes?
+- Do queries identify UI through accessible roles, labels, or meaningful user-visible context?
+- Does async synchronization wait for the intended DOM state?
+- Can query caches, stores, browser storage, or MSW overrides leak between tests?
+- Are relevant errors, restricted actions, and sign-in flows verified through observable frontend behavior?
