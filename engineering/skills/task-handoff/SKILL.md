@@ -1,5 +1,5 @@
 ---
-name: task-handoff
+name: ghosts:task-handoff
 description: Generate concise task handoffs for independent implementation workstreams.
 disable-model-invocation: true
 ---

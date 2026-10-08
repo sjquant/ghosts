@@ -1,5 +1,5 @@
 ---
-name: rewrite
+name: ghosts:rewrite
 description: Rewrite a prompt for maximum signal-to-noise without changing its intended behavior.
 disable-model-invocation: true
 ---

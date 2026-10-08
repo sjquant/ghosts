@@ -1,5 +1,5 @@
 ---
-name: grill-me
+name: ghosts:grill-me
 description: Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking or asks to be grilled.
 ---
 

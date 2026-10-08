@@ -1,5 +1,5 @@
 ---
-name: loop-coding
+name: ghosts:loop-coding
 description: Approval-gated loop for building, changing, fixing, or refactoring code.
 disable-model-invocation: true
 ---

@@ -1,5 +1,5 @@
 ---
-name: loop-research
+name: ghosts:loop-research
 description: Use for evidence-backed research or explanations of current, contested, comparative, learning-oriented, or consequential questions; skip simple stable facts.
 ---
 

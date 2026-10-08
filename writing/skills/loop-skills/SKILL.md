@@ -1,5 +1,5 @@
 ---
-name: loop-skills
+name: ghosts:loop-skills
 description: Simple loop for creating, reviewing, or improving concise agent skills.
 disable-model-invocation: true
 ---

@@ -1,5 +1,5 @@
 ---
-name: loop-plan
+name: ghosts:loop-plan
 description: Planning-only loop for complex development and design problems, adaptable to other domains; uses evidence, alternatives, counterarguments, and premortems to resolve material uncertainty or costly tradeoffs. Skip routine implementation planning.
 disable-model-invocation: true
 ---
@@ -57,9 +57,9 @@ fixed ceremony.
 
 ```text
 [Understand] → [Route unknowns]
-                  ├─ evidence → [$loop-research] ┐
-                  ├─ user decision → [$grill-me] ├→ [Frame + ledger] → [Draft]
-                  └─ known →─────────────────────┘              ↓
+                  ├─ evidence → [$ghosts:loop-research]┐
+                  ├─ user decision → [$ghosts:grill-me] ├→ [Frame + ledger] → [Draft]
+                  └─ known →──────────────────────────┘              ↓
                                                      [Any high-impact uncertainty?]
                                                        ├─ No → [Self challenge]
                                                        └─ Yes → [Targeted subagent questions]
@@ -132,14 +132,15 @@ questions that inspection can answer. Distinguish observed facts, inferences,
 and assumptions; cite supporting files or sources. Identify the observable
 outcome, non-goals, affected users or systems, and material constraints.
 
-Route unresolved inputs before making design decisions. Use `$loop-research` for
-repository or document investigation, current or contested evidence,
+Route unresolved inputs before making design decisions. Use `$ghosts:loop-research`
+for repository or document investigation, current or contested evidence,
 comparisons, feasibility checks, or source citations; it returns verified
 claims, provenance, uncertainty, and leads that could change the plan. Use
-`$grill-me` for choices only the user can make, such as outcome, scope, priority,
-risk tolerance, or external action. It asks the whole ready frontier in each
-round and returns a short, grouped decision summary. Wait for the user to confirm
-the shared understanding before carrying its decisions into the plan. Do not
+`$ghosts:grill-me` for choices only the user can make, such as outcome, scope,
+priority, risk tolerance, or external action. It asks the whole ready frontier
+in each round and returns a short, grouped decision summary. Wait for the user
+to confirm the shared understanding before carrying its decisions into the plan.
+Do not
 ask the user for facts that inspection or research can establish, or infer a
 material preference. Carry both outputs into the decision ledger.
 
@@ -214,6 +215,6 @@ Before delivery, verify references are accurate, critical assumptions are
 validated or explicitly gated, acceptance checks cover intended behavior, and
 another implementer can proceed without hidden design decisions.
 Readiness describes the plan; it is not user approval or evidence that planned
-checks passed. If handing the document to `loop-coding`, preserve explicit
+checks passed. If handing the document to `ghosts:loop-coding`, preserve explicit
 approval of that plan and let its implementation workflow own execution. End
 with the plan path, chosen direction, and remaining decisions.

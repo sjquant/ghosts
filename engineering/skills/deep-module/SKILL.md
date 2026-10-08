@@ -1,5 +1,5 @@
 ---
-name: deep-module
+name: ghosts:deep-module
 description: Assess whether a module hides implementation details behind a simple interface for its callers.
 disable-model-invocation: true
 ---
