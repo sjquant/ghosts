@@ -10,7 +10,7 @@ safe instruction that preserves the behavior.
 ### GitHub source
 
 ```sh
-npx @solaqua/skul@latest add --global --agent codex sjquant/ghosts --all
+npx @solaqua/skul@latest add --global sjquant/ghosts --all
 ```
 
 ### npm package
@@ -18,21 +18,25 @@ npx @solaqua/skul@latest add --global --agent codex sjquant/ghosts --all
 This repository is also published as [`@solaqua/ghosts`](https://www.npmjs.com/package/@solaqua/ghosts). Install it through [`@solaqua/skul`](https://www.npmjs.com/package/@solaqua/skul):
 
 ```sh
-npx @solaqua/skul@latest add --global --agent codex npm:@solaqua/ghosts
+npx @solaqua/skul@latest add --global npm:@solaqua/ghosts --all
 ```
 
-Replace `codex` with the name of the agent you use, if different. The `--global` flag controls where Skul materializes the skills; it does not install `@solaqua/ghosts` as a Node.js dependency. Requires Node.js >=20 and git.
+Both examples use `--all` to install every bundle in the repository. Skul installs skills for every supported agent by default. Add `--agent <name>` to target one agent, or repeat the option to target several. The `--global` flag controls where Skul materializes the skills; it does not install `@solaqua/ghosts` as a Node.js dependency. Requires Node.js >=20 and git.
 
 ## Skill names
 
 Skills maintained in this repository use the `ghosts:` namespace to distinguish
 them from built-in skills and skills from other sources. Skul uses each
-`SKILL.md`'s `name` to create the installed skill directory.
+`SKILL.md`'s `name` to create the installed skill directory. Skills are
+materialized in each supported agent's native location; invocation syntax
+depends on the agent.
 
 | Agent | Invocation example |
 | --- | --- |
 | Claude Code | `/ghosts:code-review` |
 | Codex | `$ghosts:code-review` |
+
+These are examples; installation is not limited to Claude Code and Codex.
 
 Source directories keep their short names, so Skul item selectors still use
 paths such as `--include skills/code-review`. External skills installed through
