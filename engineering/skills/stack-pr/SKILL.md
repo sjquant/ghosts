@@ -1,5 +1,5 @@
 ---
-name: ghosts:stacked-pr
+name: ghosts:stack-pr
 description: Use when the user asks to implement GitHub issues in parallel and build stacked pull requests in dependency order.
 ---
 
