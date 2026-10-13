@@ -22,10 +22,12 @@ Search existing issues before creating duplicates. Before updating, read the iss
 - <Material tradeoff or open question; omit when unnecessary>
 ```
 
-Omit Proposed direction when the problem needs investigation before a useful approach can be proposed. Add completion criteria, supporting evidence, or dependencies only when they clarify the issue; do not force a task plan into every issue.
+Omit Proposed direction when the problem needs investigation before a useful approach can be proposed. Add completion criteria, supporting evidence, or dependencies when they clarify the issue.
 
 Use sub-issues when the request calls for a hierarchy, and dependency links for actual prerequisites. Use `--parent` for hierarchy and `--blocked-by` on creation or `--add-blocked-by` on edit for prerequisites. Parent membership is not a dependency; keep independent issues independent.
 
+When publishing an agreed work breakdown, map meaningful groups to parent issues and leaf tasks to sub-issues, preserving scope, agreed direction, and completion criteria. Map each DAG edge `A → B` to B blocked by A. Track task IDs against issue URLs and summarize linked tasks in their parent issue.
+
 Pass multiline bodies through `--body-file`. When publishing several related issues, create prerequisites before dependent issues and connect relationships using real issue numbers or URLs. Verify saved bodies and relationships before reporting success. If a write partially succeeds, inspect what exists and continue from it rather than creating duplicates.
 
-Return created or updated issue links, grouped when useful, and any unresolved publication problem. Issue creation does not authorize implementation or PR submission.
+Return created or updated issue links, grouped when useful, and any unresolved publication problem.
