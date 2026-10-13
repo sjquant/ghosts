@@ -5,7 +5,7 @@ description: Use when the user asks for deep research or an evidence-backed answ
 
 Identify the question, scope, audience, freshness, and stakes. Ask only when a missing choice materially changes the work; otherwise state a reasonable assumption and proceed.
 
-AI can overcomplicate simple questions. Scale investigation to uncertainty and consequences; do not force research phases, logs, exhaustive searches, or a fixed report structure.
+Research thoroughly across relevant sources and competing explanations. Follow material leads, investigate contradictions, and verify the strongest counterarguments before settling on a conclusion.
 
 Read important sources beyond snippets. Prefer authoritative, primary or first-party evidence for each claim; use weaker sources as leads. Check dates, scope, definitions, and methods, retaining enough provenance to support citations. For high-stakes or contested claims, seek counter-evidence and independent corroboration where useful.
 
@@ -15,12 +15,12 @@ If a public source is blocked, use the installed `insane-search` skill for acces
 
 - Any material claim unsupported, contradicted, stale, or dependent on an unchecked assumption?
 - Any overlooked source, alternative, driver, or dependency that could change the answer?
-- Any unnecessary investigation or explanation that adds cost without improving the answer?
+- Any conclusion accepted without testing the strongest counterargument or alternative explanation?
 
 Repair the smallest material issue and recheck only what it affects. Stop when important claims are supported or qualified and no unresolved lead could materially change the answer. If evidence is insufficient, narrow the claim and explain the remaining uncertainty.
 
 ## Output
 
-Lead with the answer, then evidence and uncertainty, with direct citations near material claims. Match depth and structure to the user's goal: criteria and tradeoffs for comparisons, mechanisms and useful examples for learning, and conditions or observable triggers for decisions and forecasts. Explain necessary terms at the user's level.
+Explain the findings clearly in Markdown, using headings, short paragraphs, and lists or tables where useful. Lead with the answer, then evidence and uncertainty, with direct citations near material claims. Match depth and structure to the user's goal: criteria and tradeoffs for comparisons, mechanisms and useful examples for learning, and conditions or observable triggers for decisions and forecasts. Use plain language and explain necessary terms at the user's level without losing precision.
 
 For recommendations grounded in standards, distinguish normative obligations from advice; use `MUST`, `SHOULD`, or `MAY` only as supported by the normative source. Cite its version and relevant section, and explain material value, omission risk, adoption cost, and conditions. Prefer standards or regulations, official documentation, and reference implementations over commentary.
