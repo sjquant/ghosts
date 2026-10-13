@@ -32,7 +32,7 @@ Use `ghosts:github-pr` to create or update each reviewed issue's PR, explicitly 
 
 Once every branch in the active stack has a reviewed PR, run `gh stack submit --auto` to publish its stack relationship and verify the resulting PR bases, bodies, and issue references. This command pushes all stack branches and can create missing PRs: never include unfinished branches. Serialize stack mutations and publication within a clone, since linked worktrees share stack metadata; keep affected workers idle during history rewrites.
 
-When an earlier layer changes or merges, inspect the stack and run `gh stack rebase` locally. Resolve conflicts, recheck affected diffs, repeat necessary review, cleanup, and checks, then push the validated commits and update their PRs through `ghosts:github-pr` and `gh stack submit --auto`. Keep `gh stack sync` out of this path: it rebases and pushes before the resulting changes can be reviewed and checked. Closing keywords take effect when a PR targets the default branch; verify issue links after retargeting. Leave review and merging to the user.
+When an earlier layer changes or merges, inspect the stack and use `gh stack sync` to rebase, push, and synchronize existing PRs. If conflicts stop sync, resolve them with `gh stack rebase`, then retry sync. Recheck affected diffs and repeat necessary review, cleanup, and checks after synchronization; commit any resulting fixes and update the PRs through `ghosts:github-pr`, then sync again. Recheck any changes introduced by that sync before treating a layer as ready for successors or reporting it ready for review. Closing keywords take effect when a PR targets the default branch; verify issue links after retargeting. Leave review and merging to the user.
 
 ## Output
 
