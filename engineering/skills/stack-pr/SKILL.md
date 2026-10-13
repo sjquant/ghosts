@@ -5,7 +5,9 @@ description: Use when the user asks to implement GitHub issues in parallel and b
 
 Read the requested issues, sub-issues, dependencies, relevant comments, and existing PRs with `gh`. Resolve each task's repository, scope, completion criteria, and actual prerequisites. Parent membership is not a dependency. Reuse existing work rather than starting duplicate branches or PRs.
 
-Run independent, ready issues in parallel, with one implementation agent per issue in an isolated worktree. Give each agent the issue, agreed direction, prerequisites, exact base commit, and completion criteria. Use `ghosts:coding` while implementing. The main agent owns scheduling, branch topology, and publication; workers return their change, review results, and checks.
+Run independent, ready issues in parallel, with one implementation agent per issue in an isolated worktree. Give each agent the issue, agreed direction, prerequisites, exact base commit, and completion criteria. The main agent owns scheduling, branch topology, and publication; workers return their change, review results, and checks.
+
+In Orca, use `orca-cli` to create and supervise worktrees with `worktree create --agent codex --prompt <task-brief> --json`. Use `--no-parent` for independent work, and `--parent-worktree <predecessor>` with `--base-branch <reviewed-ref>` for successors; lineage alone does not select the Git base. Verify each checkout's base and use the returned agent handle to track results. Keep coordinator ownership through completion rather than making a full handoff.
 
 Any missing decision, dependency cycle, or overlapping ownership that makes parallel work unsafe? Resolve it before starting the affected tasks; continue unrelated work. Use `ghosts:grill-me` for material decisions and `ghosts:work-breakdown` when an issue still needs decomposition.
 
@@ -22,7 +24,7 @@ A prerequisite is ready for downstream implementation once its review, cleanup, 
 
 ## Stack and publish
 
-Check the installed `gh stack --help` and relevant subcommand help before use. Start a chain with `gh stack init <branch>`. After a predecessor is ready, extend its stack with `gh stack add <next-branch>` and start the successor from that reviewed commit. When adopting existing branches, `gh stack init <bottom-branch> <next-branch> ...` lists them bottom to top; verify their ancestry first.
+Check the installed `gh stack --help` and relevant subcommand help before use. Start a chain with `gh stack init <branch>`. After a predecessor is ready, extend its stack with `gh stack add <next-branch>` and start the successor from that reviewed commit. For branches already created by Orca, adopt them instead of creating duplicates: `gh stack init <bottom-branch> <next-branch> ...` lists them bottom to top; verify their ancestry first.
 
 Stacks are linear. Keep independent tasks in separate stacks; a fork can start a separate stack with `--base <predecessor-branch>`. For a task requiring multiple branches, wait until all required changes are available on one reviewed base, usually after their merges; do not silently introduce dependencies between independent tasks. Across repositories, use separate stacks and check that required interfaces or artifacts are actually available to the consumer.
 
