@@ -1,6 +1,6 @@
 ---
 name: ghosts:slop-shaking
-description: Use when the user asks to remove slop, mentions $slop-shaking or $ghosts:slop-shaking, or asks whether anything in a change is unnecessary.
+description: Use when the user asks to remove slop, mentions $slop-shaking, or asks whether anything in a change is unnecessary.
 ---
 
 Review the code, PR, or diff specified by the user; otherwise use the change being discussed. Inspect its callers and tests.
