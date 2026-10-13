@@ -10,7 +10,7 @@ Given a destination, recursively decompose it into independently reviewable work
 - Define the upper-layer interface before decomposing its children.
 - Prefer end-to-end slices that can be tested and merged independently.
 - Stop when every leaf is reviewable, testable, and mergeable.
-- Use `ghosts:grill-me` to resolve material design or decomposition trade-offs with the user. Investigate facts yourself and preserve decisions already agreed.
+- Use `ghosts:grill-me` to resolve requirements and material implementation direction before committing to task boundaries: architecture, technology choices, responsibility boundaries, interfaces, and trade-offs that would belong in an ADR. Investigate facts yourself, explain viable options and their consequences, and preserve decisions already agreed.
 
 For each package, capture its scope, rough LOC estimate, dependencies, and status:
 
@@ -21,16 +21,18 @@ For each package, capture its scope, rough LOC estimate, dependencies, and statu
 
 ## Output
 
-After confirmation, use this template in the user's language. Repeat group headings to show the work hierarchy. Use the same package IDs in the tables, DAG, and execution stages. Replace the sample nodes and edge with the actual packages and dependencies.
+After confirmation, use this template in the user's language. Repeat group and package headings to show the work hierarchy, explaining each task in 2–3 plain-language bullets. Use the same package IDs throughout; replace sample nodes and edges with actual packages and dependencies.
 
 ````markdown
 ## Work packages
 
 ### <Group or outcome>
 
-| ID | Package and scope | Est. LOC | Depends on | Status |
-| --- | --- | --- | --- | --- |
-| A | <Package and scope> | <Estimate> | — | TODO |
+#### A — <Package name>
+
+- <What this task achieves and what it includes>
+- <Agreed implementation direction and why; omit when no material choice exists>
+- <Required earlier tasks and why, or none>; <rough LOC estimate>; <status>
 
 ## Dependency DAG
 
