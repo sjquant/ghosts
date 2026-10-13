@@ -16,7 +16,7 @@ Implement → relevant checks → code-review → fix findings
           → slop-shaking → checks on the final change → commit → github-pr
 ```
 
-Use `ghosts:code-review` on the issue's diff against its immediate base, apply actionable findings, then use `ghosts:slop-shaking`. Resolve outstanding findings before publishing; repeat review where subsequent changes alter correctness or design. Keep meaningful behavioral coverage without adding tests merely to document intermediate work.
+Use `ghosts:code-review` with exactly one review subagent covering all applicable questions on the issue's diff against its immediate base, apply actionable findings, then use `ghosts:slop-shaking`. Resolve outstanding findings before publishing; repeat review where subsequent changes alter correctness or design. Keep meaningful behavioral coverage without adding tests merely to document intermediate work.
 
 A prerequisite is ready for downstream implementation once its review, cleanup, and checks pass and its final change is committed. Its PR need not be merged. Start newly ready issues as workers finish, rather than waiting for an entire batch. A PR being open does not mean the issue is complete; completion requires its intended change to land on the default branch.
 
