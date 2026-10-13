@@ -1,26 +1,20 @@
 ---
 name: ghosts:work-breakdown
-description: Design-only recursive work breakdown of a destination into independently reviewable work packages with interfaces, dependencies, and execution order.
-disable-model-invocation: true
+description: Use when the user asks to plan work, agree on an approach, or break a problem into reviewable tasks with dependencies and execution order.
 ---
 
-Given a destination, recursively decompose it into independently reviewable work packages. Do not implement; the only deliverable is the confirmed work breakdown.
+Inspect code and context without modifying code, implementing tasks, or creating issues and PRs. Define the concrete problem, observable outcome, scope, and constraints.
 
-- Keep each leaf within the review budget, normally `<= 1000 LOC`.
-- Define the upper-layer interface before decomposing its children.
-- Prefer end-to-end slices that can be tested and merged independently.
-- Stop when every leaf is reviewable, testable, and mergeable.
-- Use Socratic questioning only for material design or decomposition trade-offs.
+For large work, start with a rough breakdown to expose uncertain decisions; do not require a detailed plan for the whole problem first. Investigate facts yourself. Use `ghosts:grill-me` for unresolved material user decisions about outcome, scope, or tradeoffs, preserving decisions already agreed. Compare simpler approaches or omission when useful, then refine the affected work.
 
-For each package, capture its scope, rough LOC estimate, dependencies, and status:
+Give each package an outcome, scope, prerequisites, and completion evidence. Prefer reviewable end-to-end slices and split only when needed. Keep small, clear work as one package without a separate planning exercise. Build a dependency DAG from actual prerequisites; keep independent work independent.
 
-- `TODO`: not started
-- `DOING`: in progress
-- `REVIEW`: pull request open
-- `DONE`: pull request merged into the base branch
+- Any unresolved decision that could change the outcome or scope?
+- Any unnecessary work, premature detail, or simpler approach?
+- Any missing dependency, circular prerequisite, or unverifiable completion criterion?
 
-After confirmation, output:
+Resolve material gaps and revise affected packages. Do not treat a proposed direction as approved.
 
-1. The hierarchical work-breakdown tree.
-2. The dependency and parallel-execution graph.
-3. The dependency-ordered execution list.
+## Output
+
+Present the direction in the user's language as 2–3 bullets readable without scrolling: problem and approach, work order, and validation or the key tradeoff. Show supporting work packages and dependencies concisely, using a table or DAG when useful. Reflect the user's corrections and obtain confirmation before handing the agreed breakdown to issue creation or implementation; this skill does not execute those steps.
