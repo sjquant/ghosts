@@ -1,6 +1,6 @@
 ---
 name: ghosts:code-review
-description: Broad, read-only code review using general agents and complete result synthesis.
+description: Use only when the user explicitly requests a code review or invokes this skill. Do not trigger for implementation, debugging, refactoring, or routine verification requests. Performs a broad, read-only code review using general agents and complete result synthesis.
 ---
 
 Review the change read-only. Use general agents; give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
