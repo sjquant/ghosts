@@ -11,10 +11,12 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 ```text
 Review the change read-only:
 
+AI-generated changes can overcomplicate simple problems; question whether added code or tests are needed at all, and consider omission before adding another layer.
+
 - Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?
 - Any design or API issues when viewed from the intended caller's perspective and from outside-in, deep-module, and dependency-direction perspectives, including whether the module hides state, lifecycle, and ordering details, or exposes internal collaboration methods as public API; also consider hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?
-- Any opportunities to simplify or clarify the code through better naming, standard libraries, utilities, or existing abstractions?
-- Any test smells or test-suite bloat—such as brittle or implementation-coupled tests, tautological tests that repeat the implementation or assert only mock setup, over-mocking, unclear intent, missing negative-path coverage, surviving mutants, or redundant, overlapping, or low-signal tests whose maintenance, execution, and review costs outweigh the independent behavioral confidence they add?
+- Any unnecessary variables, intermediate state, interfaces, or abstractions that can be omitted? Could standard features, existing code reuse, a different design, or clearer naming solve the problem more simply?
+- Any test smells or test-suite bloat—such as brittle or implementation-coupled tests, tautological tests that repeat the implementation or assert only mock setup, over-mocking, unclear intent, missing negative-path coverage, surviving mutants, or redundant, overlapping, or low-signal tests whose maintenance, execution, and review costs outweigh the independent behavioral confidence they add? Any one-off checks retained as permanent regression tests, or hypothetical concurrency/timing tests without a credible execution path or meaningful failure impact? Could removal or consolidation preserve meaningful behavior, edge-case, and risk coverage?
 
 Report findings with locations, evidence, and the smallest useful fix. Say when no actionable issue is found.
 ```
