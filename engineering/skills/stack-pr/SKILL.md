@@ -7,7 +7,7 @@ Read the requested issues, sub-issues, dependencies, relevant comments, and exis
 
 Run independent, ready issues in parallel, with one implementation agent per issue in an isolated worktree. Give each agent the issue, agreed direction, prerequisites, exact base commit, and completion criteria. The main agent owns scheduling, branch topology, and publication; workers return their change, review results, and checks.
 
-In Orca, use `orca-cli` to create and supervise worktrees with `worktree create --agent codex --prompt <task-brief> --json`. Use `--no-parent` for independent work, and `--parent-worktree <predecessor>` with `--base-branch <reviewed-ref>` for successors; lineage alone does not select the Git base. Verify each checkout's base and use the returned agent handle to track results. Keep coordinator ownership through completion rather than making a full handoff.
+In Orca, use `orca-cli` to create and supervise worktrees with `worktree create --agent <current-agent-id> --prompt <task-brief> --json`, using the current agent's Orca launcher unless the user specifies another agent. Use `--no-parent` for independent work, and `--parent-worktree <predecessor>` with `--base-branch <reviewed-ref>` for successors; lineage alone does not select the Git base. Verify each checkout's base and use the returned agent handle to track results. Keep coordinator ownership through completion rather than making a full handoff.
 
 Any missing decision, dependency cycle, or overlapping ownership that makes parallel work unsafe? Resolve it before starting the affected tasks; continue unrelated work. Use `ghosts:grill-me` for material decisions and `ghosts:work-breakdown` when an issue still needs decomposition.
 
