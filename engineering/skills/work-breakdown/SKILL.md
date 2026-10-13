@@ -1,20 +1,36 @@
 ---
 name: ghosts:work-breakdown
-description: Use when the user asks to plan work, agree on an approach, or break a problem into reviewable tasks with dependencies and execution order.
+description: Design-only recursive work breakdown of a destination into independently reviewable work packages with interfaces, dependencies, and execution order.
+disable-model-invocation: true
 ---
 
-Inspect code and context without modifying code, implementing tasks, or creating issues and PRs. Define the concrete problem, observable outcome, scope, and constraints.
+Given a destination, recursively decompose it into independently reviewable work packages. Do not implement; the only deliverable is the confirmed work breakdown.
 
-For large work, start with a rough breakdown to expose uncertain decisions; do not require a detailed plan for the whole problem first. Investigate facts yourself. Use `ghosts:grill-me` for unresolved material user decisions about outcome, scope, or tradeoffs, preserving decisions already agreed. Compare simpler approaches or omission when useful, then refine the affected work.
+- Keep each leaf within the review budget, normally `<= 1000 LOC`.
+- Define the upper-layer interface before decomposing its children.
+- Prefer end-to-end slices that can be tested and merged independently.
+- Stop when every leaf is reviewable, testable, and mergeable.
+- Use `ghosts:grill-me` to resolve material design or decomposition trade-offs with the user. Investigate facts yourself and preserve decisions already agreed.
 
-Give each package an outcome, scope, prerequisites, and completion evidence. Prefer reviewable end-to-end slices and split only when needed. Keep small, clear work as one package without a separate planning exercise. Build a dependency DAG from actual prerequisites; keep independent work independent.
+For each package, capture its scope, rough LOC estimate, dependencies, and status:
 
-- Any unresolved decision that could change the outcome or scope?
-- Any unnecessary work, premature detail, or simpler approach?
-- Any missing dependency, circular prerequisite, or unverifiable completion criterion?
-
-Resolve material gaps and revise affected packages. Do not treat a proposed direction as approved.
+- `TODO`: not started
+- `DOING`: in progress
+- `REVIEW`: pull request open
+- `DONE`: pull request merged into the base branch
 
 ## Output
 
-Present the direction in the user's language as 2–3 bullets readable without scrolling: problem and approach, work order, and validation or the key tradeoff. Show supporting work packages and dependencies concisely, using a table or DAG when useful. Reflect the user's corrections and obtain confirmation before handing the agreed breakdown to issue creation or implementation; this skill does not execute those steps.
+After confirmation, write in the user's language using these sections:
+
+### Work packages
+
+Group packages under meaningful outcomes or components and show their hierarchy. Within each group, use a table with stable package IDs, scope, rough LOC estimate, dependencies, and status. Use the same IDs throughout the output.
+
+### Dependency DAG
+
+Draw a Mermaid DAG with a node for every leaf package and subgraphs for the groups. An arrow `A → B` means B requires A; show dependencies across groups explicitly. Group membership is not a dependency. Keep independent nodes unconnected and explain what each non-obvious dependency provides. Resolve cycles before presenting the graph.
+
+### Execution order
+
+List dependency-ordered stages, grouping packages that can proceed in parallel. Reference the same package IDs and identify prerequisites that prevent a stage from starting. Keep this order consistent with the DAG.
