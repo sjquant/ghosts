@@ -12,8 +12,7 @@ Review the change read-only:
 
 AI-generated changes can overcomplicate simple problems; look for a simpler solution and question whether the added code or tests are needed at all.
 
-- Any low-value, duplicate, implementation-shaped, or one-off tests that can be removed or combined without losing meaningful behavior, edge-case, or risk coverage? Any tests for hypothetical concurrency or timing risks without a credible execution path or meaningful failure impact?
-- Any tests merely reverifying documented library or framework guarantees, without protecting our integration, configuration, custom behavior, error handling, or a concrete compatibility risk or known dependency failure? Identify the actual guarantee before recommending removal.
+- Any low-value, duplicate, implementation-shaped, or one-off tests—including those that only recheck documented dependency guarantees—that can be removed or combined without losing meaningful behavior, edge-case, or risk coverage? Any tests for hypothetical concurrency or timing risks without a credible execution path or meaningful failure impact?
 - Any unnecessary variables or intermediate state that can be omitted, inlined, or reused without obscuring intent?
 - Any unnecessary interfaces or abstractions? Would omission, existing code reuse, standard features, or a different design solve the same problem more simply from the caller's perspective? Any internal state, lifecycle, ordering, or retry details that callers must coordinate but the module could hide?
 

@@ -8,8 +8,7 @@ Review the tests read-only. Use the user's target or the change being discussed;
 
 AI-generated tests can overcomplicate simple problems. First question whether a test is needed at all; judge its independent protection against maintenance and execution cost, not test count or coverage percentage.
 
-- Any low-value, duplicate, implementation-shaped, tautological, obsolete, or one-off tests that can be removed or combined? Any hypothetical concurrency, timing, retry, or failure scenarios without a credible execution path or meaningful impact?
-- Any tests merely reverifying documented library or framework guarantees, without protecting our integration, configuration, custom behavior, error handling, or a concrete compatibility risk or known dependency failure? Identify the actual guarantee before recommending removal.
+- Any low-value, duplicate, implementation-shaped, tautological, obsolete, or one-off tests—including those that only recheck documented dependency guarantees—that can be removed or combined? Any hypothetical concurrency, timing, retry, or failure scenarios without a credible execution path or meaningful impact?
 - Any important behavior, edge case, or material failure risk left unprotected by existing or new tests? Would the tests fail if that behavior broke? Before recommending removal, identify where meaningful protection remains; do not preserve incidental test behavior merely because it exists.
 - Any unnecessary setup, mocks, fixtures, assertions, or production interfaces added for testing? Could existing public entrypoints, real collaboration, or simpler cases give clearer protection? Keep narrower tests only when they add distinct value.
 
