@@ -1,7 +1,6 @@
 ---
 name: ghosts:work-breakdown
 description: Design-only recursive work breakdown of a destination into independently reviewable work packages with interfaces, dependencies, and execution order.
-disable-model-invocation: true
 ---
 
 Given a destination, recursively decompose it into independently reviewable work packages. Do not implement; the only deliverable is the confirmed work breakdown.

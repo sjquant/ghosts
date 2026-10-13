@@ -1,7 +1,6 @@
 ---
 name: ghosts:code-review
 description: Broad, read-only code review using general agents and complete result synthesis.
-disable-model-invocation: true
 ---
 
 Review the change read-only. Use general agents; give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
