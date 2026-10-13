@@ -1,23 +1,37 @@
 ---
 name: ghosts:test-review
-description: Read-only review of tests in a change, PR, or path against shared, frontend, and backend testing standards.
+description: Read-only review of test value, meaningful protection, and unnecessary complexity in a change, PR, or path.
 disable-model-invocation: true
 ---
 
-# Test Review
+Review the tests read-only. Use the user's target or the change being discussed; otherwise review the current branch's diff against its base. Running existing tests to confirm findings is allowed; editing code or tests is not.
 
-Review the tests read-only. If no target is given, review the tests in the current branch's diff against the base branch. Write in the user's language.
+AI-generated tests can overcomplicate simple problems. First question whether a test is needed at all; judge its independent protection against maintenance and execution cost, not test count or coverage percentage.
 
-Read and apply [references/common.md](references/common.md) for every review. Read [references/frontend.md](references/frontend.md) for UI or browser tests and [references/backend.md](references/backend.md) for server, worker, or data tests as supplements; use both when the change spans them. For another stack, apply only the common standards.
+- Any low-value, duplicate, implementation-shaped, tautological, obsolete, or one-off tests that can be removed or combined? Any hypothetical concurrency, timing, retry, or failure scenarios without a credible execution path or meaningful impact?
+- Any important behavior, edge case, or material failure risk left unprotected by existing or new tests? Would the tests fail if that behavior broke? Before recommending removal, identify where meaningful protection remains; do not preserve incidental test behavior merely because it exists.
+- Any unnecessary setup, mocks, fixtures, assertions, or production interfaces added for testing? Could existing public entrypoints, real collaboration, or simpler cases give clearer protection? Keep narrower tests only when they add distinct value.
 
-1. Map each changed behavior to the existing and new tests that protect it. Flag behavior no test would catch if it broke, and removed tests whose protection is not covered elsewhere.
-2. Review each added, changed, or removed test against the guides' review checklists.
-3. Keep only findings with a location, a concrete failure scenario, and a guide rule behind them. Running existing tests to confirm a finding is allowed; editing code or tests is not.
+Apply these criteria where relevant:
 
-Prioritize findings:
+- Assert observable outcomes and contractual side effects, with expected results derived from requirements rather than production logic. Verify relevant permissions and failures, including absence of unauthorized effects. Counts, ordering, exact payloads, and snapshots need a meaningful contract; snapshots must be focused, stable, and readable.
+- Prefer integration through public entrypoints when it gives a clear signal; use focused tests for small rules. Replace external or unstable dependencies at the boundary without mocking away the behavior under test. Do not expose private members or add production abstractions solely for testing convenience.
+- Keep scenario data minimal and visible, reuse established setup, and isolate mutable state and overrides. Control time, randomness, identifiers, and ordering when they affect results. Transaction setup must preserve the visibility the behavior requires.
+- Make descriptions standalone and behavior-based, with Given / When / Then sections and concise explanations of non-obvious synchronization. Combine related cases when clearer, without bundling unrelated scenarios. Do not flag harmless style differences.
+- For UI, query through accessible or user-visible context and wait for the intended rendered state. For servers, verify responses, persisted changes, and outgoing effects at the appropriate boundary. Reuse existing tools; do not expand a simple test into every testing layer.
 
-- `P1`: a changed behavior has no test that would fail if it broke, or a test cannot fail for the regression it claims to catch.
-- `P2`: implementation coupling, test doubles replacing the behavior under test, nondeterminism, leaking state, or redundant protection.
-- `P3`: naming, structure, or readability.
+Keep only evidenced, material findings. Recommend the smallest useful change, including removal or consolidation. Use `P1` for ineffective protection of important behavior or material risks, `P2` for unnecessary complexity, coupling, over-mocking, nondeterminism, or state leaks, and `P3` for readability that obscures the scenario or failure.
 
-Write the review following [templates/review.md](templates/review.md), replacing each placeholder or omitting the section as it directs.
+## Output
+
+Write in the user's language. Omit empty sections and state when no actionable findings were found.
+
+```markdown
+## Findings
+
+### <P1|P2|P3> - <title>
+
+- Location: <file and line; commit-pinned permalink for GitHub targets>
+- Evidence / criterion: <credible failure and impact, or unnecessary cost>
+- Recommendation: <smallest useful change; meaningful protection retained if removing tests>
+```
