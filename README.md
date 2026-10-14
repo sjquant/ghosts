@@ -1,57 +1,103 @@
 # ghosts
 
-Reusable agent skills and reviewers.
+The agent skills I use for engineering, research, writing, and everyday tools.
 
-Default bias: delete needless layers, reuse what exists, and keep the smallest
-safe instruction that preserves the behavior.
+## How I use them
+
+A typical engineering path, with skills chosen as needed. I clarify the goal
+and break down larger tasks before implementing, reviewing, simplifying, and
+publishing. Dashed arrows show optional paths; I fix findings and rerun relevant
+checks before publishing.
+
+```mermaid
+flowchart TD
+    G["grill-me · clarify the goal"] -.-> W["work-breakdown · split the work"]
+    W -.-> C["coding · implement and test"]
+    W -. "Multiple issues" .-> S["stack-pr · coordinate parallel work"]
+    S --> C
+    C --> R["code-review · review the change"]
+    R --> L["slop-shaking · simplify"]
+    R -. "Closer review" .-> D["deep-module · check the interface"]
+    D -.-> T["test-review · check test value"]
+    D --> L
+    T --> L
+    L --> P["github-pr · commit, push, and open a PR"]
+```
+
+When I want to understand a change, I use `pr-tour` to follow the real diff or
+`explain-diff` for a visual lesson. `eli5` explains unfamiliar topics, and
+`cram` turns study material into a quiz.
 
 ## Install
-
-### GitHub source
 
 ```sh
 npx @solaqua/skul@latest add --global sjquant/ghosts --all
 ```
 
-### npm package
-
-This repository is also published as [`@solaqua/ghosts`](https://www.npmjs.com/package/@solaqua/ghosts). Install it through [`@solaqua/skul`](https://www.npmjs.com/package/@solaqua/skul):
+Or install the published [`@solaqua/ghosts`](https://www.npmjs.com/package/@solaqua/ghosts) package:
 
 ```sh
 npx @solaqua/skul@latest add --global npm:@solaqua/ghosts --all
 ```
 
-Both examples use `--all` to install every bundle in the repository. Skul installs skills for every supported agent by default. Add `--agent <name>` to target one agent, or repeat the option to target several. The `--global` flag controls where Skul materializes the skills; it does not install `@solaqua/ghosts` as a Node.js dependency. Requires Node.js >=20 and git.
+Requires Node.js >=20 and git. `--all` installs every bundle; `--global` installs skills at the user level. Skul targets all supported agents by default. Use `--agent <name>` to choose an agent, or repeat it to choose several.
 
-## Skill names
+## Skills
 
-Skills maintained in this repository use the `ghosts:` namespace to distinguish
-them from built-in skills and skills from other sources. Skul uses each
-`SKILL.md`'s `name` to create the installed skill directory. Skills are
-materialized in each supported agent's native location; invocation syntax
-depends on the agent.
+Skills maintained here use the `ghosts:` prefix. For example, invoke
+`$ghosts:code-review` in Codex or `/ghosts:code-review` in Claude Code.
+For installation selectors, use the source path, such as `--include skills/code-review`.
 
-| Agent | Invocation example |
+### Engineering
+
+| Skill | What it helps with |
 | --- | --- |
-| Claude Code | `/ghosts:code-review` |
-| Codex | `$ghosts:code-review` |
+| [coding](engineering/skills/coding/SKILL.md) | Keep implementation simple and tests focused on meaningful behavior. |
+| [code-review](engineering/skills/code-review/SKILL.md) | Review a change for bugs, design problems, and unnecessary complexity without editing it. |
+| [test-review](engineering/skills/test-review/SKILL.md) | Find missing test protection and tests that cost more than they protect. |
+| [deep-module](engineering/skills/deep-module/SKILL.md) | Check whether a module hides complexity behind a simple interface. |
+| [slop-shaking](engineering/skills/slop-shaking/SKILL.md) | Remove unnecessary code, content, structure, and UI elements. |
+| [grill-me](engineering/skills/grill-me/SKILL.md) | Stress-test a plan or idea through focused questions. |
+| [work-breakdown](engineering/skills/work-breakdown/SKILL.md) | Break a goal into reviewable work packages with dependencies and execution order. |
+| [task-handoff](engineering/skills/task-handoff/SKILL.md) | Prepare concise handoffs for independent implementation tasks. |
+| [github-issue](engineering/skills/github-issue/SKILL.md) | Create or update GitHub issues, sub-issues, and dependencies. |
+| [github-pr](engineering/skills/github-pr/SKILL.md) | Commit and push changes, then create or update their pull request. |
+| [stack-pr](engineering/skills/stack-pr/SKILL.md) | Implement GitHub issues in parallel and build stacked PRs in dependency order. |
+| [explain-diff](engineering/skills/explain-diff/SKILL.md) | Turn a complete code change into a visual HTML lesson with examples and a quiz. |
+| [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
+| [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
 
-These are examples; installation is not limited to Claude Code and Codex.
+### Research and writing
 
-Source directories keep their short names, so Skul item selectors still use
-paths such as `--include skills/code-review`. External skills installed through
-`registry/skul.refs.json` retain their upstream names.
+| Skill | What it helps with |
+| --- | --- |
+| [deep-research](research/skills/deep-research/SKILL.md) | Investigate a question, test competing explanations, and support conclusions with sources. |
+| [cold-reader](writing/skills/cold-reader/SKILL.md) | Write engineering documents that make sense without the preceding conversation. |
+| [rewrite](writing/skills/rewrite/SKILL.md) | Shorten and clarify a prompt while preserving every instruction that affects the result. |
+| [make-skill](writing/skills/make-skill/SKILL.md) | Create or revise a skill with only the instructions needed for its intended behavior. |
+| [eli5](writing/skills/eli5/SKILL.md) | Explain a topic to a beginner through a self-contained visual HTML lesson. |
+| [humanize-korean](writing/skills/humanize-korean/SKILL.md) | Smooth mechanical Korean phrasing while preserving meaning, facts, and tone. |
 
-## Bundles
+### Tools
 
-- `engineering/`: implementation, planning, review, and collaboration skills
-  with their reviewers.
-- `research/`: bounded, evidence-grounded research and explanation skills.
-- `writing/`: writing, rewriting, and change-explanation skills.
-- `tools/skills/`: directly maintained tool-integration skills, including
-  `vibe-notion`.
-- `registry/`: external skill references that are not maintained in this
-  repository.
+| Skill | What it helps with |
+| --- | --- |
+| [vibe-notion](tools/skills/vibe-notion/SKILL.md) | Manage Notion pages, databases, blocks, users, and comments through the CLI. |
+
+### External skills
+
+These are installed from pinned upstream sources in [the registry](registry/skul.refs.json) and keep their upstream names, without `ghosts:`.
+
+| Skill | What it helps with |
+| --- | --- |
+| [agent-browser](https://github.com/vercel-labs/agent-browser) | Automate browser navigation, forms, screenshots, and web app checks. |
+| [context7-cli](https://github.com/upstash/context7) | Fetch current library documentation and manage Context7 skills and configuration. |
+| [insane-search](https://github.com/fivetaku/insane-search) | Retrieve public web content through alternative access methods when ordinary fetching fails. |
+| [obsidian-cli](https://github.com/kepano/obsidian-skills) | Search and manage Obsidian notes, tasks, properties, and plugins. |
+| [sentry-cli](https://github.com/getsentry/cli) | Inspect Sentry issues, events, projects, and organizations through the CLI. |
+| [orca-cli](https://github.com/stablyai/orca) | Manage Orca worktrees, agent terminals, artifacts, and the embedded browser. |
+| [cram](https://github.com/sjquant/cram/tree/f79db070a29e9e719b55fc9084f4a29580c6f1d4) | Turn study material into flashcards and quizzes in a standalone HTML file. |
+| [pr-tour](https://github.com/YunSinLee/pr-tour/tree/669d12e4eae18084e1a2554a8d4e2631ac1e9eee) | Create an HTML reading guide that follows a PR's code flow and real diff. |
 
 ## Upstream sources
 
@@ -59,10 +105,3 @@ paths such as `--include skills/code-review`. External skills installed through
 | --- | --- | --- | --- |
 | `writing/skills/humanize-korean/references` | [`epoko77-ai/im-not-ai`](https://github.com/epoko77-ai/im-not-ai), `skills/humanize-korean/references` | [`9747f03`](https://github.com/epoko77-ai/im-not-ai/tree/9747f036cdc28a1a8aea4dc71fef1f7846eb96f7) | MIT |
 | `tools/skills/vibe-notion` | [`devxoul/vibe-notion`](https://github.com/devxoul/vibe-notion), `skills/vibe-notion` | [`89c6643`](https://github.com/devxoul/vibe-notion/tree/89c6643cebb4e4c56bbde826b6557da77f9d9d2f) | MIT, declared in the upstream README |
-
-The vendored Vibe Notion skill includes an `UPSTREAM.md` file with its source
-path and maintenance notes.
-
-The standalone `humanize-korean` skill selectively syncs applicable rules from
-the upstream revision above. Upstream orchestrator, plugin, and agent-runtime
-paths are intentionally excluded.
