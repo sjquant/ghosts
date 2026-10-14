@@ -16,6 +16,7 @@ AI-generated work can overcomplicate simple problems and overfill documents and 
 
 For code:
 - Any low-value, duplicate, implementation-shaped, or one-off tests—including those that only recheck documented dependency guarantees—that can be removed or combined without losing meaningful behavior, edge-case, or risk coverage? Any tests for hypothetical concurrency or timing risks without a credible execution path or meaningful failure impact?
+- Any behavior already protected by existing tests beyond the diff, including through public entrypoints? Search and compare scenarios and assertions, not names alone; cite the tests and assertions that retain protection when recommending removal or consolidation. Could an existing case or suite be extended instead of adding a separate test, while preserving distinct behavior or regression coverage?
 - Any unnecessary variables or intermediate state that can be omitted, inlined, or reused without obscuring intent?
 - Any unnecessary interfaces or abstractions? Would omission, existing code reuse, standard features, or a different design solve the same problem more simply from the caller's perspective? Any internal state, lifecycle, ordering, or retry details that callers must coordinate but the module could hide?
 
