@@ -5,6 +5,8 @@ description: Use when writing, modifying, or refactoring code, including tests. 
 
 AI-generated code can overcomplicate simple problems. First consider omission, existing code reuse, and language or standard-library features; question whether added variables, interfaces, abstractions, or tests are needed at all.
 
+Design outside-in from caller usage and domain invariants. Repeated workarounds or type escape hatches are evidence to revisit the abstraction. If successive fixes fail under the same premise, challenge that premise before patching again. Prefer a rerunnable tool when it reduces execution or verification cost.
+
 - Order functions so each callee appears below its caller.
 - Write tests as behavioral specifications: each test docstring or doc comment must stand alone, describe the scenario and observable outcome, and avoid relying on surrounding context, implementation details, or comparative wording. Keep names concise and behavior-based (JS/TS `it(...)` / `test(...)` descriptions suffice), and use `Given` / `When` / `Then` sections in the body.
 - When complex setup, concurrency, timing, or multi-step control flow makes a test hard to follow, add concise comments at key transitions to explain the scenario and synchronization; do not narrate obvious code.
