@@ -6,8 +6,8 @@ disable-model-invocation: true
 
 Given a destination, recursively decompose it into independently reviewable work packages. Do not implement; the only deliverable is the confirmed work breakdown.
 
-- Keep each leaf within the review budget, normally `<= 1000 LOC`.
-- Define the upper-layer interface before decomposing its children.
+- Keep each leaf within the review budget, normally `<= 500 LOC`.
+- Design outside-in: sketch caller usage, derive contracts and ownership, then decompose their implementation.
 - Prefer end-to-end slices that can be tested and merged independently.
 - Stop when every leaf is reviewable, testable, and mergeable.
 - Use `ghosts:grill-me` to resolve requirements and material implementation direction before committing to task boundaries: architecture, technology choices, responsibility boundaries, interfaces, and trade-offs that would belong in an ADR. Investigate facts yourself, explain viable options and their consequences, and preserve decisions already agreed.

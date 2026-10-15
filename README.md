@@ -53,9 +53,11 @@ For installation selectors, use the source path, such as `--include skills/code-
 | Skill | What it helps with |
 | --- | --- |
 | [coding](engineering/skills/coding/SKILL.md) | Keep implementation simple and tests focused on meaningful behavior. |
-| [code-review](engineering/skills/code-review/SKILL.md) | Review a change for bugs, design problems, and unnecessary complexity without editing it. |
+| [code-review](engineering/skills/code-review/SKILL.md) | Review correctness, downstream contracts, design, and complexity; verify material safety assumptions without editing the change. |
 | [test-review](engineering/skills/test-review/SKILL.md) | Find missing test protection and tests that cost more than they protect. |
 | [deep-module](engineering/skills/deep-module/SKILL.md) | Check whether a module hides complexity behind a simple interface. |
+| [create-verification-skill](engineering/skills/create-verification-skill/SKILL.md) | Create and exercise a project-local skill for real user journeys. |
+| [benchmark-checklist](engineering/skills/benchmark-checklist/SKILL.md) | Check performance claims for equivalent work, experimental control, and repeatability. |
 | [slop-shaking](engineering/skills/slop-shaking/SKILL.md) | Remove unnecessary code, content, structure, and UI elements. |
 | [grill-me](engineering/skills/grill-me/SKILL.md) | Stress-test a plan or idea through focused questions. |
 | [work-breakdown](engineering/skills/work-breakdown/SKILL.md) | Break a goal into reviewable work packages with dependencies and execution order. |
