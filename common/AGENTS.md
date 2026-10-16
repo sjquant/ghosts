@@ -1,7 +1,7 @@
-## Simplicity
+## Avoid unnecessary complexity
 
-- Judge code, documents, and UI by whether each element helps the user understand, decide, or act. Remove or combine unnecessary or duplicate content, structure, tests, state, and abstractions.
-- Reduce total reading, reasoning, and interaction burden; fewer elements alone are not the goal. Preserve necessary behavior, information, navigation, accessibility, and meaningful risk coverage.
+- AI-generated work tends to overcomplicate simple problems and overfill documents and interfaces. Keep the solution proportionate to the actual need; question added abstractions, tests, structure, explanations, and controls that do not help the intended audience understand, decide, or act.
+- Simplify when it reduces the audience's total reading, reasoning, or interaction burden. Brevity alone is not the goal: preserve necessary behavior, context, navigation, accessibility, and meaningful risk coverage, and do not force cleanup when no useful improvement is evident.
 
 ## Agent Browser CLI
 
