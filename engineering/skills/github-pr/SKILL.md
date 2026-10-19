@@ -18,7 +18,7 @@ description: When the user asks to publish, sync, or manage GitHub work, commit 
 
 - Use `gh pr edit --body-file - <<'EOF'` as the default PR body path.
 - If the repository has a pull request template that GitHub recognizes, preserve its required structure. Otherwise, follow [templates/pull_request_template.md](templates/pull_request_template.md) and replace each placeholder or omit the section as it directs.
-- For each linked issue the PR fully resolves, include `Closes #N` in the body (`Closes OWNER/REPO#N` for another repository) so it closes automatically when merged into the default branch. Use ordinary links for partial work and parent issues the PR does not fully resolve.
+- Use closing keywords for linked issues the PR fully resolves.
 - Write for a reviewer who may not know the repository or the work's prior context. Use direct language, preserve precise domain terms, and make essential premises explicit.
 - Keep the body readable in one screen without scrolling. Include files or implementation details only when essential for review.
 - Always group related points under subheadings or nested lists instead of one flat list.
