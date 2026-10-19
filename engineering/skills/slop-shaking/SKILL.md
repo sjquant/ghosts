@@ -33,7 +33,9 @@ For HTML and UI:
 Report findings with locations, evidence, and the smallest useful cleanup. Say when no useful cleanup is found.
 ```
 
-After the subagent responds, judge each suggestion: does it reduce the user's burden, or merely remove useful context or shift complexity elsewhere? Apply supported cleanups within the requested scope and run relevant checks. For code, verify affected behavior; for documents and presentations, check meaning and layout; for HTML and UI, check affected flows and rendered states when available. If asked for review only, report without editing. Leave the artifact unchanged when no useful cleanup remains.
+After the subagent responds, apply useful cleanups within the requested scope by default. Do not skip a cleanup merely because its benefit is small or a hypothetical risk exists. Reject suggestions that provide no useful improvement or have a concrete downside that outweighs the benefit. If a credible concern remains unresolved, investigate it or mark the cleanup `BLOCKED`.
+
+Run relevant checks. For code, verify affected behavior; for documents and presentations, check meaning and layout; for HTML and UI, check affected flows and rendered states when available. If asked for review only, report without editing. Leave the artifact unchanged when no useful cleanup remains.
 
 Report in the user's language. For a small cleanup, briefly explain what was removed or combined, why, and how it was checked. Mention rejected suggestions only when their tradeoff helps explain the outcome. If there are no findings, say so.
 
