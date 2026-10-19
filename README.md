@@ -62,6 +62,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [grill-me](engineering/skills/grill-me/SKILL.md) | Stress-test a plan or idea through focused questions. |
 | [work-breakdown](engineering/skills/work-breakdown/SKILL.md) | Break a goal into reviewable work packages with dependencies and execution order. |
 | [task-handoff](engineering/skills/task-handoff/SKILL.md) | Prepare concise handoffs for independent implementation tasks. |
+| [delegate](engineering/skills/delegate/SKILL.md) | Hand work to another Orca agent or supervise it through completion with a concise brief. |
 | [github-issue](engineering/skills/github-issue/SKILL.md) | Create or update GitHub issues, sub-issues, and dependencies. |
 | [github-pr](engineering/skills/github-pr/SKILL.md) | Commit and push changes, then create or update their pull request. |
 | [stack-pr](engineering/skills/stack-pr/SKILL.md) | Implement GitHub issues in parallel and build stacked PRs in dependency order. |

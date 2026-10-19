@@ -1,0 +1,1 @@
+- Always include a version bump in `package.json` when creating a pull request.
