@@ -13,4 +13,4 @@ Prefer Markdown with bullets for the brief. Use an ASD-STE100-inspired style: sh
 - Goals, completion criteria, confirmed decisions, constraints, and excluded scope missing from those references.
 - Skills the user requested.
 
-Do not restate referenced content, instructions to read `AGENTS.md`, general development or testing guidance, or skill-internal procedures and report formats. Do not omit important decisions or constraints for brevity.
+Do not restate referenced content, reminders to read root instructions, general development or testing guidance, or skill-internal procedures and report formats. Do not omit important decisions or constraints for brevity.
