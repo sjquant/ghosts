@@ -7,7 +7,7 @@ Delegate the user's task through Orca. Read and follow the applicable `orca-cli`
 
 Before continuing an existing thread, read the user's added instructions.
 
-Prefer Markdown with bullets for the brief. Use ASD-STE100 style: short, direct sentences, explicit actions, and consistent terms. Omit rhetorical flourishes. Include only what is needed:
+Prefer Markdown with bullets for the brief. Follow ISO 24495-1:2023 Plain Language principles so the recipient can find, understand, and use the information they need. Use direct sentences, explicit actions, and consistent terms. Omit rhetorical flourishes. Include only what is needed:
 
 - References to issues, PRs, or existing threads.
 - Goals, completion criteria, confirmed decisions, constraints, and excluded scope missing from those references.

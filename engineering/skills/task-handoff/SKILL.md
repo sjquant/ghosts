@@ -10,7 +10,7 @@ Read relevant entries in the configured project-notes and task-tracker system. I
 
 Select tasks that can proceed fully in parallel with their prerequisites satisfied. Exclude tasks already in progress, awaiting review, or complete. Treat tasks with merged PRs as complete and implemented but unmerged tasks as awaiting review. Choose the eligible set of up to N tasks that minimizes overlap in files or modules they are likely to modify. If all tracked tasks are complete, report that; if none are ready, report the blockers instead of creating handoffs.
 
-Prefer Markdown with bullets inside each code block. Use ASD-STE100 style: short, direct sentences, explicit actions, and consistent terms. Omit rhetorical flourishes. Include only what the recipient needs:
+Prefer Markdown with bullets inside each code block. Follow ISO 24495-1:2023 Plain Language principles so the recipient can find, understand, and use the information they need. Use direct sentences, explicit actions, and consistent terms. Omit rhetorical flourishes. Include only what the recipient needs:
 
 - References to issues, PRs, or existing threads.
 - Goals, completion criteria, confirmed decisions, constraints, and excluded scope missing from those references.
