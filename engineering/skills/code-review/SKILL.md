@@ -10,6 +10,8 @@ Consider every question below. Mark irrelevant questions `N/A — <reason>`. The
 ```text
 Review the change read-only:
 
+Write findings and summaries using ISO 24495-1:2023 Plain Language principles.
+
 AI-generated changes can overcomplicate simple problems; question whether added code or tests are needed at all, and consider omission before adding another layer.
 
 - Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?
