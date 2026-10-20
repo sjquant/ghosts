@@ -3,18 +3,11 @@ name: ghosts:delegate
 description: Use when the user asks to hand work to another agent or supervise delegated work through completion. Pass only the context the recipient needs.
 ---
 
-Default to Orca for new delegations unless the user specifies another tool. When continuing an existing session, use the tool managing that session. A request for Claude Code or Codex as the receiving agent does not by itself change the delegation tool; use their standalone CLIs when the user requests direct CLI delegation.
+Default to Orca for new delegations unless the user specifies another tool. When continuing an existing session, use the tool managing that session. A request for Claude Code or Codex as the receiving agent does not by itself change the delegation tool.
 
-Read the selected tool's applicable skill when available; otherwise inspect its official documentation or CLI help before launching agents or sending instructions. Check installed CLI help for version-specific options.
+For Orca, follow the applicable `orca-cli` or `orchestration` skill. For Paseo, Claude Code, Codex, or another tool, use the session controls available in the current environment. Read the applicable skill or tool instructions; consult official documentation or CLI help when needed to determine how to launch an agent, inspect its result, and send follow-up instructions.
 
-| Tool | Follow-up mechanism |
-| --- | --- |
-| Orca (default) | Follow `orca-cli` or `orchestration` for launch, result inspection, and follow-up delivery. |
-| [Paseo](https://paseo.sh/docs/cli) | Launch with `paseo run`; inspect results with `paseo logs <agent-id>`; send the next stage with `paseo send <agent-id> "<instruction>"`. |
-| [Claude Code CLI](https://code.claude.com/docs/en/cli-reference) | Start with `claude -p "<instruction>" --output-format json`; continue with `claude -p --resume <session-id> "<instruction>" --output-format json`. |
-| Codex CLI | Start with `codex exec --json "<instruction>"`; continue with `codex exec resume <session-id> "<instruction>" --json`. |
-
-Keep the recipient's exact agent or session ID from the tool output and reuse it for each stage. For standalone CLIs, run in the intended working directory and inspect each completed command's output before resuming. Avoid “latest session” shortcuts when coordinating multiple agents. For other delegation tools, discover the equivalent launch, result inspection, and follow-up controls.
+Keep the recipient's agent or session identifier and reuse it to continue the same conversation for each stage.
 
 Before continuing an existing thread, read the user's added instructions.
 
