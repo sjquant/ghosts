@@ -19,11 +19,11 @@ Prefer Markdown with bullets for the brief. Follow ISO 24495-1:2023 Plain Langua
 
 Do not restate referenced content, reminders to read root instructions, general development or testing guidance, or skill-internal procedures and report formats. Do not omit important decisions or constraints for brevity.
 
-Supervise delegated implementation by default unless the user explicitly requests a handoff without supervision. Send implementation first, then wait for and inspect each stage's result before instructing the same agent to continue. Code review and fixes for applicable findings are part of supervised implementation unless the user explicitly excludes them:
+Supervise delegated implementation by default unless the user explicitly requests a handoff without supervision. Send implementation first, then wait for and inspect each stage's result before instructing the same agent to continue. Code review, fixes for applicable findings, and slop-shaking are part of supervised implementation unless the user explicitly excludes them:
 
 1. Inspect the implementation result, then request code review.
 2. Inspect the review findings, then request fixes for applicable findings.
-3. If the user requested slop-shaking, inspect the completed review or fixes, then request it in a separate message.
+3. Inspect the completed review or fixes, then request slop-shaking in a separate message.
 
 Skip fixes when there are no applicable findings. Continue supervising until all included stages finish or a blocker requires user input. Base each instruction on the preceding result. Do not combine code review or review fixes with slop-shaking, or bundle later stages into the initial prompt, unless the user explicitly requests it.
 
