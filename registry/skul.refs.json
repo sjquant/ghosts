@@ -20,9 +20,9 @@
     },
     {
       "target": "skills",
-      "name": "agent-browser",
-      "source": "vercel-labs/agent-browser",
-      "ref": "8c15ff9f71ae60c7e99e66afe1e2d4b9bf414fe2"
+      "name": "ego-browser",
+      "source": "citrolabs/ego-lite",
+      "ref": "d392204d1ea1a8027a591ab2b0129c2e11d85f26"
     },
     {
       "target": "skills",

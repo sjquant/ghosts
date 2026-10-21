@@ -93,7 +93,7 @@ These are installed from pinned upstream sources in [the registry](registry/skul
 
 | Skill | What it helps with |
 | --- | --- |
-| [agent-browser](https://github.com/vercel-labs/agent-browser) | Automate browser navigation, forms, screenshots, and web app checks. |
+| [ego-browser](https://github.com/citrolabs/ego-lite) | Automate browser tasks and web app checks in ego lite using your existing logins. |
 | [context7-cli](https://github.com/upstash/context7) | Fetch current library documentation and manage Context7 skills and configuration. |
 | [insane-search](https://github.com/fivetaku/insane-search) | Retrieve public web content through alternative access methods when ordinary fetching fails. |
 | [obsidian-cli](https://github.com/kepano/obsidian-skills) | Search and manage Obsidian notes, tasks, properties, and plugins. |
