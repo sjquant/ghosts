@@ -11,15 +11,16 @@ Find and inspect references matching the product and mood. Use supplied referenc
 
 Download reference images, using the available browser skill to visit pages and retrieve them when needed. Build and open a local HTML gallery with the images grouped by theme, numbered candidates, source links, and brief notes on qualities to adapt. Verify that the images display; use accessible previews or screenshots when downloads are unavailable. Ask the user to choose a theme or combine qualities from several references before generating mockups. Wait for their choice unless they already supplied a settled theme or delegated the decision.
 
-Use Codex's built-in `imagegen` skill to create four directions based on the selected theme by default; increase or decrease the count only when the user requests it. Generate each separately using the same screen, realistic content, and viewport. If the tool is unavailable, continue with the selected reference images without extra approval or a CLI/API fallback; label them as references and explain their application to the target screen.
+Use Codex's built-in `imagegen` skill to create four directions based on the selected theme by default; increase or decrease the count only when the user requests it. Generate each separately using the same screen, realistic content, and viewport. Pass the selected reference images as actual image inputs to every generation call using the tool's supported reference mechanism; viewing them beforehand or describing them in text is not sufficient. Identify each image's role and specify which visual qualities to preserve and which elements to adapt. If the tool is unavailable or cannot receive the references, continue with the selected reference images without extra approval or a CLI/API fallback; label them as references and explain their application to the target screen.
 
 Judge each direction before presenting it:
 
 - Does it support the primary task and preserve required content and behavior?
+- Does it preserve the selected references' specified visual qualities? Compare the images directly and correct unexplained drift before presenting them.
 - Does it offer a meaningful choice in layout, typography, or density, rather than just a palette swap?
 - Can its responsive behavior, interaction states, and accessibility work beyond the image?
 
-Show numbered images, explain each direction's tradeoff, recommend one, and ask what to keep or change. Wait for the user's choice, then refine until they confirm the direction. Preserve accepted elements; without image generation, refine the references and proposed adaptations. Honor requests to choose autonomously or build directly.
+Show numbered images, explain each direction's tradeoff, recommend one, and ask what to keep or change. Wait for the user's choice, then refine until they confirm the direction. Pass the selected mockup as the edit target when refining it and preserve accepted elements; without image generation, refine the references and proposed adaptations. Skip theme or mockup selection only when the user explicitly delegates that choice or asks to skip it. A general request to make an app authorizes implementation after selection, not bypassing selection.
 
 Record the agreed design in `DESIGN.md`. When creating it, use [the template](references/design-template.md); when updating it, preserve the existing structure. Fold confirmed feedback into the relevant rules as work continues, keeping the document current rather than appending a feedback log. Distinguish unresolved decisions. Save project-referenced generated images in the workspace under the `imagegen` save policy.
 
