@@ -18,7 +18,7 @@
 | Typography | <Display, heading, body, caption: family, size, weight, line height> | <Where each role applies> |
 | Color | <Background, surface, primary text, muted text, accent, feedback: color values> | <Where each role applies and valid combinations> |
 | Spacing | <Scale and units> | <Gaps and padding> |
-| Layout | <Widths, grid, alignment, density> | <Screen structure> |
+| Layout | <Base widths, grid, alignment, density> | <Default screen structure> |
 | Shape and elevation | <Radii, borders, shadows> | <Grouping and emphasis> |
 
 ## Flow and components
@@ -27,7 +27,9 @@
 
 ## Responsive behavior and accessibility
 
-<How layout, navigation, and content adapt across target viewports. Record keyboard and focus behavior, contrast requirements, reduced-motion behavior where relevant, and other accessibility decisions specific to this interface.>
+Responsive behavior: <How layout, navigation, and content adapt across target viewports; for each needed viewport or container breakpoint, give its threshold with units, the change, and why.>
+
+Accessibility: <Keyboard and focus behavior, contrast requirements, reduced-motion behavior where relevant, and other decisions specific to this interface.>
 
 ## Open decisions
 
