@@ -8,7 +8,7 @@
 
 ## References
 
-- [<Reference>](<source-url>) — <Qualities to adapt and elements to leave out.>
+- [<Reference>](<source-url>) — <Comparable UI pattern and decision it informed; qualities to adapt and elements to leave out.>
 - [Selected preview](<workspace-relative-image-path>)
 
 ## Visual rules
