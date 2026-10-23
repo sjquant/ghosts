@@ -6,10 +6,7 @@
 
 <Audience, primary task, target screens, and chosen visual direction. Explain why it fits this product, the principles that guide further choices, and constraints to preserve.>
 
-## References
-
-- <Reference name> — <Comparable UI pattern and decision it informed; qualities to adapt and elements to leave out.>
-- [Selected preview](<workspace-relative-image-path>)
+[Selected preview](<workspace-relative-image-path>)
 
 ## Visual rules
 
