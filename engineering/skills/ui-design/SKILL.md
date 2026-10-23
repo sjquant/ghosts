@@ -9,7 +9,7 @@ Read the request and existing interface, design documentation, tokens, and compo
 
 ## Choose a theme
 
-Find and inspect references matching the product and mood. Use supplied references first; otherwise search Pinterest, Lapa Ninja, Behance, or relevant live products, preferring freely viewable examples. Gather many varied, relevant candidates; the four-mockup default does not limit reference collection. Favor breadth without padding the selection with duplicates. Use accessible alternatives when blocked; reference assets are not automatically licensed for reuse.
+Find and inspect references matching the product and mood. Use supplied references first; otherwise search Pinterest, Lapa Ninja, Behance, or relevant live products, preferring freely viewable examples. For an app, prefer screenshots of the actual interface over marketing pages. Gather many varied, relevant candidates; the four-mockup default does not limit reference collection. Favor breadth without padding the selection with duplicates. Use accessible alternatives when blocked; reference assets are not automatically licensed for reuse.
 
 Download reference images, using the available browser skill to visit pages and retrieve them when needed. Build and open a local HTML gallery with the images grouped by theme, numbered candidates, source links, and brief notes on qualities to adapt. Verify that the images display; use accessible previews or screenshots when downloads are unavailable. Ask the user to choose a theme or combine qualities from several references before generating mockups. Wait for their choice unless they already supplied a settled theme or delegated the decision.
 
