@@ -7,7 +7,7 @@ Explore visual directions with the user, refine their choice, and record it in `
 
 Read the request and existing interface, design documentation, tokens, and components. Identify the primary user flow, target screens, and constraints. Ask only for missing decisions that would change the design.
 
-## Choose a theme
+## Choose reference themes
 
 Find and inspect references matching the product and mood. Use supplied references first; otherwise search Pinterest, Lapa Ninja, Behance, or relevant live products, preferring freely viewable examples. For an app, prefer screenshots of the actual interface over marketing pages. Gather many varied, relevant candidates; the four-mockup default does not limit reference collection. Favor breadth without padding the selection with duplicates. Use accessible alternatives when blocked; reference assets are not automatically licensed for reuse.
 
