@@ -28,7 +28,7 @@ Show numbered images, explain each direction's tradeoff, recommend one, and ask 
 
 ## Document and implement
 
-Record the agreed design in `DESIGN.md`. When creating it, use [the template](references/design-template.md); when updating it, preserve the existing structure. Record any viewport or container breakpoints where layout, navigation, or content changes, including the threshold and change. Fold confirmed feedback into the relevant rules as work continues, keeping the document current rather than appending a feedback log. Distinguish unresolved decisions. Save project-referenced generated images in the workspace under the `imagegen` save policy.
+Record the agreed design in `DESIGN.md`. When creating it, use [the template](references/design-template.md); when updating it, preserve the existing structure. Keep reference website URLs in the HTML gallery, not in new or updated `DESIGN.md` files. Record any viewport or container breakpoints where layout, navigation, or content changes, including the threshold and change. Fold confirmed feedback into the relevant rules as work continues, keeping the document current rather than appending a feedback log. Distinguish unresolved decisions. Save project-referenced generated images in the workspace under the `imagegen` save policy.
 
 After writing `DESIGN.md`, ask whether to build the interface with its tokens and components. Wait unless implementation was already requested. Tokens and components support the working interface; they are not a separate default deliverable.
 
