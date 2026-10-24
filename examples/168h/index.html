@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f2ec">
+    <title>168h — Plan your week</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">168h</span><span class="brand-note">Make room for what matters</span></div>
+      <div class="week-controls">
+        <button id="previous-week" class="icon-button" aria-label="Previous week">←</button>
+        <h1 id="week-label"></h1>
+        <button id="next-week" class="icon-button" aria-label="Next week">→</button>
+        <button id="this-week" class="text-button">This week</button>
+      </div>
+      <button id="add-task" class="primary-button">+ Add task</button>
+    </header>
+
+    <main class="layout">
+      <section class="calendar-panel" aria-labelledby="calendar-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">Your 168 hours</p><h2 id="calendar-title">The week at a glance</h2></div>
+          <p class="section-hint">Select a block to edit · Empty gaps are available time</p>
+        </div>
+        <p class="mobile-hint">Scroll sideways to see all seven days →</p>
+        <div class="calendar-scroll"><div id="calendar" class="calendar"></div></div>
+      </section>
+
+      <aside class="side-panel">
+        <section class="card ledger" aria-labelledby="ledger-title">
+          <div class="card-heading"><p class="eyebrow">Time ledger</p><h2 id="ledger-title">One week, 168 hours</h2></div>
+          <div class="ledger-total"><strong>168h</strong><span>accounted for</span></div>
+          <div id="ledger-bar" class="ledger-bar" aria-hidden="true"></div>
+          <div id="ledger-rows" class="ledger-rows"></div>
+          <p class="ledger-note">Scheduled categories plus available time always total 168h.</p>
+        </section>
+        <section class="card backlog" aria-labelledby="backlog-title">
+          <div class="card-heading backlog-heading"><div><p class="eyebrow">Not placed yet</p><h2 id="backlog-title">Backlog <span id="backlog-count"></span></h2></div><button id="add-backlog" class="icon-button" aria-label="Add unscheduled task">+</button></div>
+          <div id="backlog-items" class="backlog-items"></div>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="task-dialog" aria-labelledby="dialog-title">
+      <form id="task-form" novalidate>
+        <div class="dialog-heading"><div><p class="eyebrow">Your week</p><h2 id="dialog-title">Add task</h2></div><button type="button" id="close-dialog" class="icon-button" aria-label="Close dialog">×</button></div>
+        <label>Task name<input id="task-title" name="title" required maxlength="70" autocomplete="off" placeholder="e.g. Review project plan"></label>
+        <div class="form-row"><label>Category<select id="task-category" name="category"><option value="focus">Focus</option><option value="work">Work</option><option value="life">Life</option><option value="sleep">Sleep</option></select></label><label>Duration (hours)<input id="task-duration" name="duration" type="number" min="0.5" max="24" step="0.5" value="1" required></label></div>
+        <label>Place on<select id="task-day" name="day"><option value="">Backlog — schedule later</option></select></label>
+        <label id="time-field">Start time<select id="task-start" name="start"></select></label>
+        <label class="check-label"><input id="task-completed" name="completed" type="checkbox"> Mark complete</label>
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <div class="dialog-actions"><button type="button" id="delete-task" class="danger-button" hidden>Delete</button><button type="button" id="cancel-task" class="text-button">Cancel</button><button type="submit" class="primary-button">Save task</button></div>
+      </form>
+    </dialog>
+  </body>
+</html>
