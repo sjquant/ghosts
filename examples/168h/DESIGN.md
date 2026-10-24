@@ -2,9 +2,10 @@
 
 ## Direction
 
-A personal weekly planner for people who need to place tasks within a finite 168-hour week. The main screen keeps all seven 24-hour days visible alongside a computed allocation ledger and unscheduled tasks. Use warm paper and terracotta to make repeated planning comfortable, with the colored blocks and explicit totals needed to judge capacity. The generated preview establishes mood and composition; its depicted times are illustrative.
+A personal weekly planner for people who need to place tasks within a finite 168-hour week. The desktop screen keeps all seven 24-hour days visible alongside a computed allocation ledger and unscheduled tasks. Mobile keeps a seven-day capacity overview visible while showing one selected day's timeline. Use warm paper and terracotta to make repeated planning comfortable, with colored blocks and explicit totals needed to judge capacity. The selected generated desktop preview establishes mood; its depicted times are illustrative. The mobile previews show the verified working flow.
 
 [Selected preview](assets/selected-direction-v2.png)
+[Mobile week](assets/mobile-week-verified.png) · [Task scheduling](assets/mobile-schedule-verified.png) · [Conflict recovery](assets/mobile-conflict-verified.png) · [Scheduled result](assets/mobile-recovered-verified.png)
 
 ## Visual rules
 
@@ -18,11 +19,11 @@ A personal weekly planner for people who need to place tasks within a finite 168
 
 ## Flow and components
 
-The user scans the 168-hour ledger, finds free slots across seven days, then adds a scheduled task or places an unscheduled task. The ledger derives category totals and free hours from the schedule. Each day is exactly 24 hours; the week is exactly 168. A scheduled block cannot overlap another block or cross midnight. Native form controls and a native dialog handle task creation, editing, and completion. An invalid slot stays in the form with a clear error. A task may remain in the backlog until scheduled. Clicking a block or backlog row opens editing and deletion; changes persist locally per week. Completed tasks keep their allocated hours.
+The user scans weekly capacity, selects a day, then taps a free slot or a backlog task. A bottom sheet on mobile offers computed open slots; a conflict names the overlapping block and offers alternatives plus a direct "Keep in backlog" action. The user can schedule the task or leave it in the backlog. The ledger derives category totals and free hours from the schedule. Each day is exactly 24 hours; the week is exactly 168. A scheduled block cannot overlap another block or cross midnight. Native form controls and a native dialog handle task creation, editing, and completion. Clicking a block or backlog row opens editing and deletion; changes persist locally per week. Completed tasks keep their allocated hours.
 
 ## Responsive behavior and accessibility
 
-Responsive behavior: At widths below 1180px, the ledger and backlog move below the calendar. Below 760px, the seven-day calendar scrolls horizontally with day columns at least 154px wide; the time ruler remains at its start. The full 24-hour scale and all seven days remain available.
+Responsive behavior: At widths below 1180px, the ledger and backlog move below the desktop calendar. At 800px and below, replace seven dense columns with a seven-day capacity strip and one selected day's task timeline; the compact 168-hour summary stays above them and the backlog follows below. Tapping a day changes the timeline without losing week context. The task dialog becomes a bottom sheet. All seven days remain directly selectable.
 
 Accessibility: All actions are buttons or labeled native form controls. The dialog supports Escape and focus return. Blocks show category text as well as color. Focus rings remain visible. Motion is minimal and reduced-motion preference is respected.
 

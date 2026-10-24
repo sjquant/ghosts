@@ -7,6 +7,7 @@
 <Audience, primary task, target screens, and chosen visual direction. Explain why it fits this product, the principles that guide further choices, and constraints to preserve.>
 
 [Selected preview](<workspace-relative-image-path>)
+<!-- Link approved viewport and interaction-state previews here when they inform implementation. -->
 
 ## Visual rules
 
@@ -20,7 +21,7 @@
 
 ## Flow and components
 
-<Primary user flow and information hierarchy. Describe the components needed by these screens, their variants, and relevant interaction, loading, empty, and error states. Link to existing component files and token definitions; identify headless components to use where decided.>
+<Primary user flow, required screens and viewports, transitions between them, and information hierarchy. Describe the components and relevant interaction, loading, empty, and error states. Link to existing component files and token definitions; identify headless components to use where decided.>
 
 ## Responsive behavior and accessibility
 
