@@ -13,7 +13,9 @@ Use the supplied PR, diff, branch, or code target; otherwise use the current bra
 ## Explanation
 
 - Lead with what changes for callers or users through the public interface: API, CLI, UI, configuration, file format, or protocol. Group by capability or contract rather than changed files or commit history. Include relevant defaults, errors, side effects, and compatibility changes.
-- Use concise before/after code snippets or concrete usage examples showing inputs or actions and observable outcomes. Use real interface names and supported syntax from the relevant revision; label illustrative data, pseudocode, and unexecuted examples. Do not invent prior capabilities or imply examples were run.
+- Show a minimal before/after usage example for each materially changed public interface, including concrete inputs or actions and observable results. For additions or removals, show the supported usage and explain what became available or is no longer supported.
+- Put code and text-based requests and responses in fenced code blocks, not inline fragments. For UI changes, show the interaction and resulting state.
+- Use real interface names and supported syntax from the relevant revision. Label illustrative data, pseudocode, and unexecuted examples; do not invent prior capabilities or imply examples were run.
 - Explain who is affected, why the change matters, and any required caller changes. Include implementation details only to explain an observable guarantee, limitation, or tradeoff. For internal-only changes, state their purpose and whether observable behavior changes; do not invent user benefits or deployment status.
 - Use a table or compact diagram only when clearer than prose or a usage example. Keep it understandable through public interfaces without knowledge of internal collaboration.
 - Link substantive claims and snippets to code or test evidence with file/line references; use commit-pinned permalinks for GitHub targets. Separate established behavior from inference and unknowns; state material limits of the supplied diff or available evidence.
