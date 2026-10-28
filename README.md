@@ -25,7 +25,7 @@ flowchart TD
 ```
 
 When I want to understand a change, I use `pr-tour` to follow the real diff or
-`explain-diff` for a visual lesson. `eli5` explains unfamiliar topics, and
+`explain-diff` for public-interface changes and usage examples, optionally as a visual lesson. `eli5` explains unfamiliar topics, and
 `cram` turns study material into a quiz.
 
 ## Install
@@ -57,7 +57,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [code-review](engineering/skills/code-review/SKILL.md) | Review correctness, downstream contracts, design, and complexity; verify material safety assumptions without editing the change. |
 | [test-review](engineering/skills/test-review/SKILL.md) | Find missing test protection and tests that cost more than they protect. |
 | [deep-module](engineering/skills/deep-module/SKILL.md) | Check whether a module hides complexity behind a simple interface. |
-| [create-verification-skill](engineering/skills/create-verification-skill/SKILL.md) | Create and exercise a project-local skill for real user journeys. |
+| [verify-journeys](engineering/skills/verify-journeys/SKILL.md) | Verify real user journeys and report observable outcomes, evidence, and coverage gaps. |
 | [benchmark-checklist](engineering/skills/benchmark-checklist/SKILL.md) | Check performance claims for equivalent work, experimental control, and repeatability. |
 | [slop-shaking](engineering/skills/slop-shaking/SKILL.md) | Remove unnecessary code, content, structure, and UI elements. |
 | [grill-me](engineering/skills/grill-me/SKILL.md) | Stress-test a plan or idea through focused questions. |
@@ -67,7 +67,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [github-issue](engineering/skills/github-issue/SKILL.md) | Create or update GitHub issues, sub-issues, and dependencies. |
 | [github-pr](engineering/skills/github-pr/SKILL.md) | Commit and push changes, then create or update their pull request. |
 | [stack-pr](engineering/skills/stack-pr/SKILL.md) | Implement GitHub issues in parallel and build stacked PRs in dependency order. |
-| [explain-diff](engineering/skills/explain-diff/SKILL.md) | Turn a complete code change into a visual HTML lesson with examples and a quiz. |
+| [explain-diff](engineering/skills/explain-diff/SKILL.md) | Explain public-interface changes read-only with before/after usage examples, compatibility impact, and optional visual HTML lessons. |
 | [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
 | [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
 

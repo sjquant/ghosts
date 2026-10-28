@@ -3,9 +3,11 @@ name: ghosts:code-review
 description: Use only when the user explicitly requests a code review or invokes this skill. Do not trigger for implementation, debugging, refactoring, or routine verification requests. Performs a broad, read-only code review using general agents and complete result synthesis.
 ---
 
-Review the change read-only. Use general agents; give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
+Review the change read-only. Use two general subagents by default. Give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
 
-Consider every question below. Mark irrelevant questions `N/A — <reason>`. The main agent answers each applicable question. Assign applicable questions once across one, two, or three agents without overlap.
+Before assigning questions, the main agent identifies the key assumptions the change depends on and the affected boundaries, then uses them to guide its own verification in proportion to risk.
+
+Consider every question below. Mark irrelevant questions `N/A — <reason>`. The main agent answers each applicable question. Assign applicable questions once across the selected subagents without overlap.
 
 ```text
 Review the change read-only:
@@ -26,6 +28,7 @@ Report findings with locations, evidence, and the smallest useful fix. Say when 
 After all agents respond and before synthesizing the final findings, triage every candidate point through this question: `Does this feedback identify a real, evidenced, material issue, or would addressing it add unnecessary complexity, flag a nonexistent or unsupported bug, or provide little value?` Judge the feedback itself, not only whether another agent made the same point. Do not omit any candidate point. Assign `P0`, `P1`, `P2`, or `P3` when it is actionable; assign `SKIP` only as a priority label when it is false, unsupported, duplicate, contradicted, out of scope, or not worth acting on. `SKIP` never means remove the item: every candidate must remain in `Findings` with its priority and the reason for that judgment. Do not leave skipped candidates only in `Reviewer Results`.
 
 - Write in the user's language.
+- The main agent assesses finding validity and review coverage separately; close material coverage gaps before concluding, or state what remains unverified and why. Absence of findings is not evidence of sufficient coverage.
 - If a GitHub URL is supplied, use a bare, commit-pinned `blob` permalink with the smallest relevant line range in each `Location`.
 - Otherwise, use repository-relative paths.
 - `P0` is release-blocking, `P1` major, `P2` actionable, and `P3` low-priority.
@@ -45,6 +48,7 @@ After all agents respond and before synthesizing the final findings, triage ever
 
 - Agents used: `<n>`
 - Verdict: `no blocking findings|findings require attention|manual review still required`
+- Coverage: <key assumptions and affected boundaries checked, evidence, and material gaps or limitations>
 
 ## Reviewer Results
 
