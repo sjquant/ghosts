@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 Verify the user's target through real public interfaces. Ground commands, selectors, and prerequisites in the repository. Ask only for prerequisites the repository cannot establish.
 
+Write scenarios and reports in the user's language; preserve Gherkin keywords, YAML keys, identifiers, and commands.
+
 ## Scope
 
 Map the requested journeys before execution; default to the primary 3–5 features, or all if fewer. Identify the primary runtime, existing harnesses, entry points, material sub-features, prerequisites, actions, expected outcomes, contractual side effects, isolation constraints, and auth, platform, or harness limitations. Name omitted surfaces; one entry point does not prove others. Keep unrelated product fixes out of scope.
