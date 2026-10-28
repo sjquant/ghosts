@@ -68,6 +68,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [github-pr](engineering/skills/github-pr/SKILL.md) | Commit and push changes, then create or update their pull request. |
 | [stack-pr](engineering/skills/stack-pr/SKILL.md) | Implement GitHub issues in parallel and build stacked PRs in dependency order. |
 | [explain-diff](engineering/skills/explain-diff/SKILL.md) | Turn a complete code change into a visual HTML lesson with examples and a quiz. |
+| [explain-change](engineering/skills/explain-change/SKILL.md) | Explain public-interface changes read-only with before/after usage examples and compatibility impact. |
 | [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
 | [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
 
