@@ -22,6 +22,8 @@ Cover every material contract change, including removals and breaking changes. K
 
 ## Visual lesson
 
+After the Markdown explanation, ask whether the user wants a visual HTML version, unless visualization was already requested or declined.
+
 When requested, explain for a reader unfamiliar with the domain using a self-contained visual story: takeaway, before/after usage, how it works, and why it matters. Use public-interface diagrams with concrete inputs and outcomes, brief captions, and optional technical depth in `details`. If a quiz is requested, include five medium-difficulty interactive multiple-choice questions with concise feedback about behavior and tradeoffs.
 
 - Write one responsive HTML file outside the repository as `/tmp/YYYY-MM-DD-explanation-<slug>.html`; return its absolute path. Use semantic headings, a table of contents, inline CSS/JavaScript, and no network assets.
