@@ -3,7 +3,7 @@ name: ghosts:code-review
 description: Use only when the user explicitly requests a code review or invokes this skill. Do not trigger for implementation, debugging, refactoring, or routine verification requests. Performs a broad, read-only code review using general agents and complete result synthesis.
 ---
 
-Review the change read-only. Use two general subagents by default; honor a different count specified in the invocation or follow-up instructions. Give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
+Review the change read-only. Use two general subagents by default. Give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
 
 Before assigning questions, the main agent identifies the key assumptions the change depends on and the affected boundaries, then uses them to guide its own verification in proportion to risk.
 
