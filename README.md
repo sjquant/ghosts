@@ -1,6 +1,6 @@
 # ghosts
 
-The agent skills I use for engineering, research, writing, and everyday tools.
+The agent skills I use for engineering, product, research, writing, and everyday tools.
 
 ## How I use them
 
@@ -53,7 +53,6 @@ For installation selectors, use the source path, such as `--include skills/code-
 | Skill | What it helps with |
 | --- | --- |
 | [coding](engineering/skills/coding/SKILL.md) | Keep implementation simple and tests focused on meaningful behavior. |
-| [ui-design](engineering/skills/ui-design/SKILL.md) | Explore visual references and image mockups, refine a direction, and deliver design documentation or UI implementation. |
 | [code-review](engineering/skills/code-review/SKILL.md) | Review correctness, downstream contracts, design, and complexity; verify material safety assumptions without editing the change. |
 | [test-review](engineering/skills/test-review/SKILL.md) | Find missing test protection and tests that cost more than they protect. |
 | [deep-module](engineering/skills/deep-module/SKILL.md) | Check whether a module hides complexity behind a simple interface. |
@@ -70,6 +69,13 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [explain-diff](engineering/skills/explain-diff/SKILL.md) | Explain public-interface changes read-only with before/after usage examples, compatibility impact, and optional visual HTML lessons. |
 | [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
 | [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
+
+### Product
+
+| Skill | What it helps with |
+| --- | --- |
+| [ui-design](product/skills/ui-design/SKILL.md) | Explore visual references and image mockups, refine a direction, and deliver design documentation or UI implementation. |
+| [value-first](product/skills/value-first/SKILL.md) | Review websites, UX, and READMEs for clear value, brand appeal, trust, and low cognitive load. |
 
 ### Research and writing
 
