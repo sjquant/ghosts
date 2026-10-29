@@ -1,6 +1,6 @@
 ---
 name: ghosts:value-first
-description: Review websites, product UX, READMEs, and promotional materials for compelling value, brand appeal, trust, and low cognitive load. Use when the user asks for value-first or a review of value proposition, hooks, branding, or product communication.
+description: Review websites, product UX, READMEs, and promotional materials for compelling value, positioning, brand appeal, trust, low cognitive load, and activation. Use when the user asks for value-first or a review of value proposition, Jobs to Be Done, product positioning, persuasive UX, aha moments, hooks, branding, or product communication.
 ---
 
 Review the artifact without editing it. Maximize perceived value and trust. Minimize the effort to understand, decide, and succeed.
@@ -8,6 +8,10 @@ Review the artifact without editing it. Maximize perceived value and trust. Mini
 Identify the audience, desired outcome, supported product advantage, and next useful action from the artifact and available context. Ask only when missing information would materially change the review.
 
 ## Value proposition and hook
+
+Apply Jobs to Be Done: in what situation does the audience seek progress, what outcome matters, and what current workaround or alternative falls short? Ground the job in available evidence; distinguish observed needs from assumptions.
+
+Check product positioning: is the product's category understandable, who benefits most, and why choose it over relevant alternatives, including doing nothing? Connect supported differentiators to outcomes this audience values. Flag interchangeable promises and unsupported comparisons; do not invent customer or competitor facts.
 
 Does the opening make clear who this is for, what they can achieve, and why they should care? Does a memorable hook retain enough literal clarity to understand the offer?
 
@@ -44,9 +48,13 @@ AI tends to fill space, show everything, and explain every choice. Judge informa
 
 For a website, check the promise, product or result demonstration, and next step. For a README, check purpose, fit, a short reliable path to first success, discoverable prerequisites, and links to deeper reference. Judge the audience's journey rather than section count.
 
-## Trust and first success
+Apply persuasive UX: identify the audience's likely hesitation, objection, perceived risk, or switching cost and check whether relevant evidence, expectations, and assistance address it at the decision point. Distinguish inferred objections from observed ones. Recommend persuasion that supports informed choice; preserve clear refusal and exit paths rather than optimizing clicks through pressure or obstruction.
+
+## Trust, activation, and aha moment
 
 Are claims supported nearby by working examples, product views, verifiable results, or attributable testimonials? Flag inflated superlatives, artificial urgency, misleading ease, and promises stronger than their evidence. State material uncertainty; never invent metrics, endorsements, customers, guarantees, or capabilities, including in suggested copy.
+
+Check activation against the promised outcome. What action lets the user first experience the core value, and what makes that value apparent—the aha moment? Signup, setup, and tutorial completion alone do not establish value realization. Flag avoidable forms, permissions, configuration, and empty states before that moment; retain prerequisites needed for reliable success. Review time to value and whether the next useful step is clear. Treat proposed activation events and aha moments as hypotheses unless supported by user evidence; do not infer retention or conversion gains from task completion.
 
 Inspect the rendered surface and relevant journey when available; check README first-use instructions against the product. Can the audience understand the benefit, believe it, choose confidently, and reach first success without unnecessary reading or steps? Does the presentation remain distinctive and appealing?
 
