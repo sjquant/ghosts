@@ -4,51 +4,51 @@
       "target": "skills",
       "name": "insane-search",
       "source": "fivetaku/insane-search",
-      "ref": "c020292fedcf1213d815acceacf600402fe72332"
+      "ref": "ead12c51633fa1e00ca8a048203da2439feb950e"
     },
     {
       "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills",
-      "ref": "8ccef29ae8624eccc734e77ced4a6e54baf5d83a"
+      "ref": "3ccff5338ea700537839b21900aa5358a0402c98"
     },
     {
       "target": "skills",
       "name": "context7-cli",
       "source": "upstash/context7",
-      "ref": "6f42b66f3b6dee20ba870dd6f70f1b565eb62e6e"
+      "ref": "eabe36965ec69b2f3487c4eb329c448dd60b817c"
     },
     {
       "target": "skills",
       "name": "ego-browser",
       "source": "citrolabs/ego-lite",
-      "ref": "d392204d1ea1a8027a591ab2b0129c2e11d85f26"
+      "ref": "aecc5831fc5a9ea01a078b632185992a3a7ac448"
     },
     {
       "target": "skills",
       "name": "sentry-cli",
       "source": "getsentry/cli",
       "bundle": "sentry-cli",
-      "ref": "0b43edad47386844ece1f9f288310e2683afce49"
+      "ref": "3567c3c937b5cc06667d5b023bda0b2d3f472c54"
     },
     {
       "target": "skills",
       "name": "orca-cli",
       "source": "stablyai/orca",
-      "ref": "fe4237cd41e4d48793fd135640939ef8aa5418e0"
+      "ref": "17828c78f1b5e524e9b6a935cf8d434b703b195a"
     },
     {
       "target": "skills",
       "name": "cram",
       "source": "sjquant/cram",
-      "ref": "f79db070a29e9e719b55fc9084f4a29580c6f1d4",
+      "ref": "7d6c596732a18348529351399014d17ba29544b2",
       "disable-model-invocation": true
     },
     {
       "target": "skills",
       "name": "pr-tour",
       "source": "YunSinLee/pr-tour",
-      "ref": "669d12e4eae18084e1a2554a8d4e2631ac1e9eee",
+      "ref": "95a634f42fc655bcb89f652d2a734c32a61952ae",
       "disable-model-invocation": true
     }
   ]

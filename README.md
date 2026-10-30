@@ -106,12 +106,12 @@ These are installed from pinned upstream sources in [the registry](registry/skul
 | [obsidian-cli](https://github.com/kepano/obsidian-skills) | Search and manage Obsidian notes, tasks, properties, and plugins. |
 | [sentry-cli](https://github.com/getsentry/cli) | Inspect Sentry issues, events, projects, and organizations through the CLI. |
 | [orca-cli](https://github.com/stablyai/orca) | Manage Orca worktrees, agent terminals, artifacts, and the embedded browser. |
-| [cram](https://github.com/sjquant/cram/tree/f79db070a29e9e719b55fc9084f4a29580c6f1d4) | Turn study material into flashcards and quizzes in a standalone HTML file. |
-| [pr-tour](https://github.com/YunSinLee/pr-tour/tree/669d12e4eae18084e1a2554a8d4e2631ac1e9eee) | Create an HTML reading guide that follows a PR's code flow and real diff. |
+| [cram](https://github.com/sjquant/cram/tree/7d6c596732a18348529351399014d17ba29544b2) | Turn study material into flashcards and quizzes in a standalone HTML file. |
+| [pr-tour](https://github.com/YunSinLee/pr-tour/tree/95a634f42fc655bcb89f652d2a734c32a61952ae) | Create an HTML reading guide that follows a PR's code flow and real diff. |
 
 ## Upstream sources
 
 | Local component | Upstream | Pinned revision | License |
 | --- | --- | --- | --- |
-| `writing/skills/humanize-korean/references` | [`epoko77-ai/im-not-ai`](https://github.com/epoko77-ai/im-not-ai), `skills/humanize-korean/references` | [`9747f03`](https://github.com/epoko77-ai/im-not-ai/tree/9747f036cdc28a1a8aea4dc71fef1f7846eb96f7) | MIT |
+| `writing/skills/humanize-korean/references` | [`epoko77-ai/im-not-ai`](https://github.com/epoko77-ai/im-not-ai), `skills/humanize-korean/references` | [`9747f03`](https://github.com/epoko77-ai/im-not-ai/tree/9747f036cdc28a1a8aea4dc71fef1f7846eb96f7); selected rule and comma-metric fixes from [`b37e020`](https://github.com/epoko77-ai/im-not-ai/tree/b37e0206d31fffd9149bf57168d4d62eb2086bee) | MIT |
 | `tools/skills/vibe-notion` | [`devxoul/vibe-notion`](https://github.com/devxoul/vibe-notion), `skills/vibe-notion` | [`89c6643`](https://github.com/devxoul/vibe-notion/tree/89c6643cebb4e4c56bbde826b6557da77f9d9d2f) | MIT, declared in the upstream README |
