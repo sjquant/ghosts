@@ -21,12 +21,13 @@ from collections.abc import Sequence
 from statistics import StatisticsError, mean
 from typing import Any
 
-VERSION = "2.1-standalone"
+VERSION = "2.2-standalone"
 
 _SENTENCE_SPLIT_RE = re.compile(r"(?<=[\.!?。])\s+")
 _PARAGRAPH_SPLIT_RE = re.compile(r"\n\s*\n")
 _EOJEOL_SPLIT_RE = re.compile(r"\s+")
 _PUNCT_STRIP_RE = re.compile(r"[\.,!?;:\(\)\[\]\{\}\"'`~、。“”‘’\-]+")
+_DIGIT_COMMA_RE = re.compile(r"(?<=\d),(?=\d)")
 _ENDING_COMMA_RE = re.compile(r"(?:고|며|지만|면서|아서|어서)\s*,")
 _ENDING_BOUNDARY_RE = re.compile(r"(?:고|며|지만|면서|아서|어서)(?=[\s,\.!?、。]|$)")
 _ENDING_FINAL_RE = re.compile(r"([가-힣]{1,3})[\.!?。]?\s*$")
@@ -311,6 +312,7 @@ def _strip_markup(text: str) -> str:
 
 def comma_inclusion_rate(text: str) -> float:
     """Return the ratio of sentences containing at least one comma."""
+    text = strip_digit_commas(text)
     sentences = split_sentences(text)
     if not sentences:
         return 0.0
@@ -319,6 +321,7 @@ def comma_inclusion_rate(text: str) -> float:
 
 def comma_usage_rate(text: str) -> float:
     """Return average comma count per sentence."""
+    text = strip_digit_commas(text)
     sentences = split_sentences(text)
     if not sentences:
         return 0.0
@@ -327,6 +330,7 @@ def comma_usage_rate(text: str) -> float:
 
 def ending_comma_rate(text: str) -> float:
     """Return the ratio of connective endings immediately followed by a comma."""
+    text = strip_digit_commas(text)
     endings = _ENDING_BOUNDARY_RE.findall(text)
     if not endings:
         return 0.0
@@ -334,7 +338,8 @@ def ending_comma_rate(text: str) -> float:
 
 
 def comma_segment_length(text: str) -> float:
-    """Return average eojeol count in comma-delimited segments."""
+    """Return raw segment length; fewer than three commas is a sparse sample."""
+    text = strip_digit_commas(text)
     segment_lengths: list[int] = []
     for sentence in split_sentences(text):
         segments = sentence.split(",") if "," in sentence else [sentence]
@@ -345,6 +350,11 @@ def comma_segment_length(text: str) -> float:
     if not segment_lengths:
         return 0.0
     return sum(segment_lengths) / len(segment_lengths)
+
+
+def strip_digit_commas(text: str) -> str:
+    """Exclude commas inside numbers from punctuation-style metrics."""
+    return _DIGIT_COMMA_RE.sub("", text)
 
 
 def conclusion_pivot_count(text: str) -> int:
@@ -691,8 +701,6 @@ def classify_risk(
     rhetoric = 0
     if metrics["conclusion_pivot_count"] >= 3:
         rhetoric += 2
-    if metrics["safe_balance_count"] >= 3:
-        rhetoric += 1
 
     lexical = 0
     if metrics["hanja_nominalizer_density"] > 0.12:

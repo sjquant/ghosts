@@ -14,6 +14,57 @@ SPEC.loader.exec_module(metrics)
 
 
 class MetricsBehaviorTests(unittest.TestCase):
+    def test_numeric_commas_do_not_change_punctuation_metrics_or_risk(self):
+        """Numeric separators leave punctuation metrics and risk unchanged."""
+        # Given: numeric separators alongside genuine connective commas.
+        cases = (
+            (
+                "방문자는 1,200명이다. 매출은 12,000원이다.",
+                "방문자는 1200명이다. 매출은 12000원이다.",
+            ),
+            (
+                "방문자는 1,200명이고, 매출은 12,000원이며, 비용은 3,000원이다.",
+                "방문자는 1200명이고, 매출은 12000원이며, 비용은 3000원이다.",
+            ),
+        )
+
+        for formatted, plain in cases:
+            with self.subTest(text=formatted):
+                # When: reports are computed with and without number formatting.
+                actual = metrics.compute_all(formatted)
+                expected = metrics.compute_all(plain)
+
+                # Then: number formatting contributes no punctuation or risk signal.
+                for key in (
+                    "comma_inclusion_rate",
+                    "comma_usage_rate",
+                    "ending_comma_rate",
+                    "comma_segment_length",
+                ):
+                    self.assertEqual(actual["metrics"][key], expected["metrics"][key])
+                self.assertEqual(actual["risk_score"], expected["risk_score"])
+                self.assertEqual(actual["risk_band"], expected["risk_band"])
+
+        # Then: real commas still produce punctuation evidence.
+        self.assertEqual(metrics.comma_usage_rate(cases[0][0]), 0.0)
+        self.assertEqual(metrics.comma_usage_rate(cases[1][0]), 2.0)
+        self.assertEqual(metrics.ending_comma_rate(cases[1][0]), 1.0)
+
+    def test_balance_phrases_remain_observable_without_increasing_risk(self):
+        """Repeated balance phrases are counted without increasing risk."""
+        # Given: a neutral report and a report containing only balance phrases.
+        neutral = "조건을 검토합니다."
+        balanced = "양쪽 모두 신중하게 균형을 검토합니다."
+
+        # When: both reports are assessed through the public reporting API.
+        baseline = metrics.compute_all(neutral)
+        result = metrics.compute_all(balanced)
+
+        # Then: the phrase count is visible but adds no risk score.
+        self.assertEqual(result["metrics"]["safe_balance_count"], 3)
+        self.assertEqual(result["risk_score"], baseline["risk_score"])
+        self.assertEqual(result["risk_band"], baseline["risk_band"])
+
     def test_change_rate_reports_deleted_content_against_longer_input(self):
         """Given content is deleted, change_rate measures the deleted share."""
         # Given: a source whose final 40% is removed.
@@ -139,12 +190,11 @@ class MetricsBehaviorTests(unittest.TestCase):
         # Then: a single family cannot yield a high verdict.
         self.assertNotEqual(risk_band, "high")
 
-        # Given: two independent high-signal families are present.
+        # Given: rhetoric and translation signals accompany punctuation.
         base_metrics["conclusion_pivot_count"] = 3
-        base_metrics["safe_balance_count"] = 3
 
         # When: the same score gate is evaluated again.
-        risk_band, _ = metrics.classify_risk(base_metrics, {"weighted_total": 0.0})
+        risk_band, _ = metrics.classify_risk(base_metrics, {"weighted_total": 1.0})
 
         # Then: the high band remains available when the independent-family gate is met.
         self.assertEqual(risk_band, "high")
