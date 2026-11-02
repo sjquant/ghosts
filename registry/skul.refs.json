@@ -35,7 +35,7 @@
       "target": "skills",
       "name": "orca-cli",
       "source": "stablyai/orca",
-      "ref": "17828c78f1b5e524e9b6a935cf8d434b703b195a"
+      "ref": "81ec82b3651703f6ab3ba1a74b729453919e69e5"
     },
     {
       "target": "skills",
