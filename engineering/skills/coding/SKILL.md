@@ -9,6 +9,7 @@ Design outside-in from caller usage and domain invariants. Repeated workarounds 
 
 - Before writing, briefly inspect existing code with a similar role in the repository and follow its conventions where applicable.
 - Order functions so each callee appears below its caller.
+- Write function and method docstring and TSDoc summaries as concise statements of purpose in domain terms. Describe what the function accomplishes without narrating internal steps or enumerating permissions, side effects, and error handling. Add contract details separately only when callers need them to use the function correctly. Prefer one sentence; expand only when necessary.
 - Write tests as behavioral specifications: each test docstring or doc comment must stand alone, describe the scenario and observable outcome, and avoid relying on surrounding context, implementation details, or comparative wording. Keep names concise and behavior-based (JS/TS `it(...)` / `test(...)` descriptions suffice), and use `Given` / `When` / `Then` sections in the body.
 - Never use `if` statements or conditional expressions in test code, including setup, helpers, and assertions. Define each case's inputs and expected outcomes before execution; use separate cases or parameterization instead of branching.
 - When complex setup, concurrency, timing, or multi-step control flow makes a test hard to follow, add concise comments at key transitions to explain the scenario and synchronization; do not narrate obvious code.
