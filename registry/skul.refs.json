@@ -28,7 +28,7 @@
       "target": "skills",
       "name": "sentry-cli",
       "source": "getsentry/cli",
-      "bundle": "sentry-cli",
+      "sourcePath": "packages/cli/plugins/sentry-cli",
       "ref": "3567c3c937b5cc06667d5b023bda0b2d3f472c54"
     },
     {
