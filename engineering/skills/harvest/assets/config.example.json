@@ -1,0 +1,19 @@
+{
+  "vault": null,
+  "notes_directory": "agent-notes",
+  "library": null,
+  "accepted_branch": "main",
+  "remote": null,
+  "github_login": null,
+  "github_repositories": [],
+  "github_organizations": [],
+  "sources": ["codex", "claude", "agy"],
+  "session_roots": {
+    "codex": ["~/.codex/sessions", "~/.codex/archived_sessions"],
+    "claude": ["~/.claude/projects"],
+    "agy": ["~/.gemini/antigravity"]
+  },
+  "default_days": 7,
+  "automation_enabled": false,
+  "create_pr": false
+}

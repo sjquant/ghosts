@@ -44,7 +44,7 @@ Requires Node.js >=20 and git. `--all` installs every bundle; `--global` install
 
 ## Skills
 
-Skills maintained here use the `ghosts:` prefix. For example, invoke
+Most skills maintained here use the `ghosts:` prefix. For example, invoke
 `$ghosts:code-review` in Codex or `/ghosts:code-review` in Claude Code.
 For installation selectors, use the source path, such as `--include skills/code-review`.
 
@@ -70,6 +70,14 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [explain-diff](engineering/skills/explain-diff/SKILL.md) | Explain public-interface changes read-only with before/after usage examples, compatibility impact, and optional visual HTML lessons. |
 | [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
 | [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
+| [harvest](engineering/skills/harvest/SKILL.md) | Extract reusable session and GitHub review experience into Obsidian candidates. |
+| [curate](engineering/skills/curate/SKILL.md) | Verify candidates and propose Markdown knowledge and INDEX changes. |
+| [recall](engineering/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current engineering decision. |
+
+The experience trio uses portable `harvest`, `curate`, `recall` names. See
+[setup and usage](engineering/skills/harvest/README.md) for its shared-source installer,
+configuration, source support and tests; install it with that installer to retain
+the common resources.
 
 ### Product
 
