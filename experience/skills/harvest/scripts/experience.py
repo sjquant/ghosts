@@ -19,33 +19,31 @@ from urllib.parse import unquote, urlsplit
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--config", default=os.environ.get("EXPERIENCE_CONFIG"))
+    parser.add_argument("--config", default=None)
     sub = parser.add_subparsers(dest="command", required=True)
     collect_parser = sub.add_parser("collect")
+    collect_parser.add_argument("--config", dest="sub_config", default=None)
     collect_parser.add_argument("--days", type=int, choices=[7, 30])
     collect_parser.add_argument("--start")
     collect_parser.add_argument("--end")
     collect_parser.add_argument("--sources", nargs="+")
     collect_parser.add_argument("--dry-run", action="store_true")
     save_parser = sub.add_parser("save")
+    save_parser.add_argument("--config", dest="sub_config", default=None)
     save_parser.add_argument("--packet", required=True)
     save_parser.add_argument("--decisions", required=True)
     save_parser.add_argument("--dry-run", action="store_true")
     validate_parser = sub.add_parser("validate")
     validate_parser.add_argument("paths", nargs="+")
-    install_parser = sub.add_parser("install")
-    install_parser.add_argument("--skills-dir", required=True)
-    install_parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
     try:
         if args.command == "validate":
             result = validate([Path(p).expanduser() for p in args.paths])
-        elif args.command == "install":
-            result = install(Path(args.skills_dir).expanduser(), args.dry_run)
         else:
-            if not args.config:
+            config_path = args.config or getattr(args, "sub_config", None) or os.environ.get("EXPERIENCE_CONFIG")
+            if not config_path:
                 raise ValueError("Supply --config or EXPERIENCE_CONFIG")
-            config = json.loads(Path(args.config).expanduser().read_text())
+            config = json.loads(Path(config_path).expanduser().read_text())
             if args.command == "collect":
                 end = timestamp(args.end) if args.end else dt.datetime.now(dt.timezone.utc)
                 start = timestamp(args.start) if args.start else end - dt.timedelta(
@@ -456,26 +454,6 @@ def parse_note(text):
 def format_note(meta, body):
     return "---\n" + "\n".join(f"{key}: {json.dumps(value, ensure_ascii=False)}"
                                 for key, value in meta.items()) + "\n---\n" + body.strip() + "\n"
-
-
-def install(destination, dry_run=False):
-    """Link the three skills to their shared source without replacing existing skills."""
-    result = {"links": [], "errors": []}
-    source = Path(__file__).resolve().parents[2]
-    # Preflight every target before creating any links.
-    for name in ["harvest", "curate", "recall"]:
-        target = destination / name
-        original = source / name
-        if target.is_symlink() and target.resolve() == original:
-            continue
-        if target.exists() or target.is_symlink():
-            raise ValueError(f"Existing skill left untouched: {target}")
-        result["links"].append({"source": str(original), "target": str(target)})
-    if not dry_run:
-        destination.mkdir(parents=True, exist_ok=True)
-        for link in result["links"]:
-            Path(link["target"]).symlink_to(link["source"], target_is_directory=True)
-    return result
 
 
 def notes_root(config):

@@ -172,25 +172,6 @@ class ExperienceTests(unittest.TestCase):
         note.write_text(note.read_text().replace('status: "candidate"', 'status: "promoted"'))
         self.assertIn("requires targets", exp.validate([vault])["errors"][0])
 
-    def test_installation_is_shared_and_non_destructive(self):
-        """Installation links all skills to the common source and refuses to replace an existing skill."""
-        destination = self.root / "skills"
-        exp.install(destination, dry_run=True)
-        self.assertFalse(destination.exists())
-        exp.install(destination)
-        self.assertEqual(len(list(destination.iterdir())), 3)
-        self.assertEqual(exp.install(destination)["links"], [])
-        self.assertTrue((destination / "harvest/SKILL.md").is_file())
-        resolved = (destination / "harvest/SKILL.md").resolve()
-        self.assertTrue((resolved.parent / "references/candidate-contract.md").is_file())
-        self.assertEqual(exp.validate([destination / "harvest/SKILL.md",
-                                       destination / "curate/SKILL.md",
-                                       destination / "recall/SKILL.md"])["errors"], [])
-        (destination / "recall").unlink()
-        (destination / "recall").mkdir()
-        with self.assertRaisesRegex(ValueError, "left untouched"):
-            exp.install(destination)
-
     def test_cli_reports_partial_results_as_json(self):
         """The command-line collector returns valid JSON and a failing exit code for partial collection."""
         config = self.root / "config.json"
