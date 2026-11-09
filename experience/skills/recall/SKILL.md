@@ -1,6 +1,6 @@
 ---
 name: recall
-description: Consult the shared engineering knowledge repository only when explicitly requested by the user, or when verifying team conventions, architecture decisions, or known pitfalls for the current task.
+description: Consult the shared engineering knowledge repository when the current task involves team conventions, architecture decisions, or known pitfalls. Select automatically when relevant guidance may improve the work; no separate user invocation is required.
 ---
 
 # Recall
@@ -11,8 +11,7 @@ This skill is strictly read-only; do not read unverified Obsidian candidates as 
 ## 1. Locate the library
 
 - Use the configured knowledge repository path (e.g. from `EXPERIENCE_CONFIG` or user config).
-- If the location is unknown, ask for it only when recall was explicitly requested.
-- During other tasks, if the library is not configured or unavailable, briefly report that recall is unavailable and proceed with the task without blocking.
+- If the library is not configured or unavailable, briefly report that recall is unavailable and proceed with the task without blocking or asking for configuration interactively.
 
 ## 2. Follow relevant topics (Progressive Loading)
 

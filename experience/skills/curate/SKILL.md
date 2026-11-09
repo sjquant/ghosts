@@ -1,6 +1,6 @@
 ---
 name: curate
-description: Refine Obsidian engineering candidate notes into verified Markdown knowledge and INDEX updates in the knowledge repository. Use ONLY when explicitly requested by the user to curate pending candidates or selected notes.
+description: Refine Obsidian engineering candidate notes into verified Markdown knowledge and INDEX updates in the knowledge repository. Run unattended after harvest or on a schedule to process pending candidates.
 ---
 
 # Curate
@@ -12,6 +12,7 @@ a reviewable Git diff; create a PR only when requested or enabled in config.
 
 Read [the candidate contract](references/candidate-contract.md).
 Use the configured inbox and knowledge repository; do not invent destinations.
+If required configuration or access is missing, report failure and stop dependent work without waiting for user input.
 Read selected candidates, or pending candidates when none are selected.
 
 - Start at the repository's root `INDEX.md`, then inspect related topics and source evidence.
@@ -47,9 +48,8 @@ If the user repeatedly asks about or corrects a topic that already exists in the
 
 Choose `add`, `update`, `merge`, `supersede`, `skip`, or `review` for each candidate:
 - Improve an existing document when it already covers the lesson.
-- **Interactive Decision Gate**: If a candidate contradicts an existing rule, has ambiguous scope, or introduces a consequential team trade-off:
-  - Do not silently park it in `review` if the user is present.
-  - Ask the user directly to decide on the standard, then apply that decision immediately.
+- If a candidate contradicts an existing rule, has ambiguous scope, or introduces an unresolved consequential trade-off, mark it `review` with the conflicting evidence and the decision needed.
+- Report deferred candidates and continue independent candidates. Do not invent agreement, wait for an interactive response, or settle an unsupported standard automatically.
 
 ## 6. Validate, propose, and record
 
@@ -66,5 +66,5 @@ Choose `add`, `update`, `merge`, `supersede`, `skip`, or `review` for each candi
 | --- | --- |
 | Write 1-2 line principles with Before / After snippets | Write lengthy background narratives or generic tutorials |
 | Update existing docs or improve `INDEX.md` search terms on repeated feedback | Leave existing knowledge untouched and accumulate duplicate docs |
-| Ask the user directly when rules conflict | Silently stash unresolved conflicts in `review` |
+| Report conflicting evidence and defer the candidate as `review` | Block an unattended run on a question or invent a resolution |
 | Keep documents compact (15-30 lines preferred) | Create bloated 50+ line explanatory documents |
