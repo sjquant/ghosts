@@ -195,6 +195,17 @@ class ExperienceTests(unittest.TestCase):
         result = exp.save(self.config, packet, [self.decision(packet, [candidate])])
         self.assertIn("requires owner/repo", result["errors"][0])
 
+    def test_codex_forks_have_separate_source_ids(self):
+        """Codex rollouts inheriting parent metadata retain independent checkpoint identities."""
+        parent_id = "11111111-1111-1111-1111-111111111111"
+        fork_id = "22222222-2222-2222-2222-222222222222"
+        parent = self.codex.with_name(f"rollout-2026-11-02T00-00-00-{parent_id}.jsonl")
+        child = self.codex.with_name(f"rollout-2026-11-02T00-01-00-{parent_id}_{fork_id}.jsonl")
+        self.codex.rename(parent)
+        child.write_bytes(parent.read_bytes())
+        packet = exp.collect(self.config, START, END, ["codex"])
+        self.assertEqual({r["id"] for r in packet["records"]}, {f"codex:{parent_id}", f"codex:{fork_id}"})
+
     def test_subagents_have_separate_source_ids(self):
         """Claude subagent logs sharing the parent session ID remain independently processable."""
         self.write_rows(self.root / "claude/session-b/subagents/agent-child.jsonl", [

@@ -135,7 +135,10 @@ def session_records(config, source, start, end, report):
                 if path.stat().st_size and not recognized:
                     raise ValueError("Unsupported session schema")
                 if messages:
-                    if source == "agy":
+                    rollout_id = re.search(r"([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})$", path.stem)
+                    if source == "codex" and path.name.startswith("rollout-") and rollout_id:
+                        session = rollout_id[1]
+                    elif source == "agy":
                         session = path.parents[2].name
                     elif source == "claude" and "subagents" in path.parts:
                         session = f"{session}:{path.stem}"

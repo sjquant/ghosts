@@ -17,7 +17,8 @@ Do not infer repository scope from a folder name; inspect the session's actual
 work context and use the real `owner/repo` when assigning a candidate's scope.
 
 Each record preserves role, timestamp and line locator; AGY's path supplies its
-session ID. Messages outside the interval are omitted, so fetch surrounding
+session ID. Codex rollout filenames identify forks separately even when their
+copied session metadata retains the parent's ID. Messages outside the interval are omitted, so fetch surrounding
 context directly from the local file when necessary. A shifted interval may
 re-evaluate overlap; stable candidate keys prevent duplicate notes. Acknowledging
 an unchanged revision suppresses repeated processing. A changed revision is
