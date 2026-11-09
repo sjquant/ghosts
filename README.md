@@ -53,6 +53,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | Skill | What it helps with |
 | --- | --- |
 | [coding](engineering/skills/coding/SKILL.md) | Keep implementation simple and tests focused on meaningful behavior. |
+| [yamato](engineering/skills/yamato/SKILL.md) | Implement, review and fix, then simplify the change in one workflow. |
 | [code-review](engineering/skills/code-review/SKILL.md) | Review correctness, downstream contracts, design, and complexity; verify material safety assumptions without editing the change. |
 | [test-review](engineering/skills/test-review/SKILL.md) | Find missing test protection and tests that cost more than they protect. |
 | [docstring-review](engineering/skills/docstring-review/SKILL.md) | Find function summaries that obscure their domain purpose with implementation details. |
