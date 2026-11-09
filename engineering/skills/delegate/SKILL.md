@@ -7,7 +7,7 @@ Default to Orca for new delegations unless the user specifies another tool. When
 
 For Orca, follow the applicable `orca-cli` or `orchestration` skill. For Paseo, Claude Code, Codex, or another tool, use the session controls available in the current environment. Read the applicable skill or tool instructions; consult official documentation or CLI help when needed to determine how to launch an agent, inspect its result, and send follow-up instructions.
 
-Keep the recipient's agent or session identifier and reuse it to continue the same conversation for each stage.
+Keep the recipient's agent or session identifier and reuse it for follow-ups.
 
 Before continuing an existing thread, read the user's added instructions.
 
@@ -15,16 +15,20 @@ Prefer Markdown with bullets for the brief. Follow ISO 24495-1:2023 Plain Langua
 
 - References to issues, PRs, or existing threads.
 - Goals, completion criteria, confirmed decisions, constraints, and excluded scope missing from those references.
-- Skills the user requested for the current stage.
+- Skills the user requested and when to apply them.
 
 Do not restate referenced content, reminders to read root instructions, general development or testing guidance, or skill-internal procedures and report formats. Do not omit important decisions or constraints for brevity.
 
-Supervise delegated implementation by default unless the user explicitly requests a handoff without supervision. Send implementation first, then wait for and inspect each stage's result before instructing the same agent to continue. Code review, fixes for applicable findings, and slop-shaking are part of supervised implementation unless the user explicitly excludes them:
+For delegated implementation, send the task and the complete workflow in one prompt. Unless the user excludes a stage, include these instructions for the recipient:
 
-1. Inspect the implementation result, then request code review.
-2. Inspect the review findings, then request fixes for applicable findings.
-3. Inspect the completed review or fixes, then request slop-shaking in a separate message.
+```text
+1. Implement the task.
+2. After implementation, invoke ghosts:code-review. When the read-only review is complete, fix applicable findings. Skip fixes if there are none.
+3. After review and any fixes, invoke ghosts:slop-shaking and apply useful cleanups.
 
-Skip fixes when there are no applicable findings. Continue supervising until all included stages finish or a blocker requires user input. Base each instruction on the preceding result. Do not combine code review or review fixes with slop-shaking, or bundle later stages into the initial prompt, unless the user explicitly requests it.
+Apply each skill at its stage. Complete the workflow and report results, or explain what blocks completion.
+```
 
-For a full handoff without supervision, deliver the current stage and leave later instructions to the user.
+Supervise through completion by default: wait for and inspect the recipient's final result, then follow up on incomplete work or blockers. The recipient owns transitions between stages; do not send separate stage-triggering messages unless the user requests stage-by-stage supervision.
+
+For a full handoff without supervision, send the complete requested workflow and leave execution with the recipient.
