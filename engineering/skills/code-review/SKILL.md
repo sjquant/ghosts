@@ -40,6 +40,7 @@ Question blocks:
 - Any design or API issues from the intended caller’s perspective, using outside-in and deep-module perspectives?
 - Does the module expose internal collaboration methods or make callers manage state, lifecycle, ordering, or other hidden obligations?
 - Any awkward call sites, leaky abstractions, circular dependencies, or dependency-direction issues?
+- Any unjustified departures from patterns used by nearby code or code serving similar purposes, including naming, structure, error handling, or abstraction level? Prefer established conventions unless the task provides a concrete reason to differ.
 ```
 
 ```text
