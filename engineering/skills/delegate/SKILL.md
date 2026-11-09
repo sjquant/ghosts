@@ -23,8 +23,8 @@ For delegated implementation, send the task and the complete workflow in one pro
 
 ```text
 1. Implement the task.
-2. After implementation, invoke ghosts:code-review. When the read-only review is complete, fix applicable findings. Skip fixes if there are none.
-3. After review and any fixes, invoke ghosts:slop-shaking and apply useful cleanups.
+2. After implementation, invoke $ghosts:code-review. When the read-only review is complete, fix applicable findings. Skip fixes if there are none.
+3. After review and any fixes, invoke $ghosts:slop-shaking and apply useful cleanups.
 
 Apply each skill at its stage. Complete the workflow and report results, or explain what blocks completion.
 ```
