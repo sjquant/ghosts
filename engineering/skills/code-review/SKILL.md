@@ -3,11 +3,13 @@ name: ghosts:code-review
 description: Use only when the user explicitly requests a code review or invokes this skill. Do not trigger for implementation, debugging, refactoring, or routine verification requests. Performs a broad, read-only code review using general agents and complete result synthesis.
 ---
 
-Review the change read-only. Use two general subagents by default. Give each the change context and the prompt below, keeping only its assigned questions. Do not add roles, review commands, or extra prompts.
+Review the change read-only. Use two general subagents by default. Give each the change context, the common instructions below, and its assigned question blocks. Do not add roles, review commands, or extra prompts.
 
 Before assigning questions, the main agent identifies the key assumptions the change depends on and the affected boundaries, then uses them to guide its own verification in proportion to risk.
 
 Consider every question below. Mark irrelevant questions `N/A — <reason>`. The main agent answers each applicable question. Assign applicable questions once across the selected subagents without overlap.
+
+Common instructions:
 
 ```text
 Review the change read-only:
@@ -16,14 +18,31 @@ Write findings and summaries using ISO 24495-1:2023 Plain Language principles.
 
 AI-generated changes can overcomplicate simple problems; question whether added code or tests are needed at all, and consider omission before adding another layer.
 
+Report findings with locations, evidence, and the smallest useful fix. Say when no actionable issue is found.
+```
+
+Question blocks:
+
+```text
 - Any correctness or operational risks, including bugs, edge cases, race conditions, resource leaks, performance bottlenecks, scalability concerns, or security issues?
+```
+
+```text
 - Any downstream contract breaks beyond the diff: callers, persisted data, wire formats, cross-language consumers, feature flags, or lifecycle ordering? Trace concrete failure paths, including transitive dependencies; check pinned dependency versions and local patches where behavior depends on them.
+```
+
+```text
 - Any design or API issues when viewed from the intended caller's perspective and from outside-in, deep-module, and dependency-direction perspectives, including whether the module hides state, lifecycle, and ordering details, or exposes internal collaboration methods as public API; also consider hidden obligations, awkward call sites, leaky abstractions, or circular dependencies?
+```
+
+```text
 - Any unnecessary variables, intermediate state, interfaces, or abstractions that can be omitted? Could standard features, existing code reuse, a different design, or clearer naming solve the problem more simply?
+```
+
+```text
 - Any test smells or test-suite bloat—such as brittle or implementation-coupled tests, tautological tests that repeat the implementation or assert only mock setup, tests that only recheck documented dependency guarantees, over-mocking, conditional tests that bypass required assertions or choose expectations from actual results, unclear intent, missing negative-path coverage, surviving mutants, or redundant, overlapping, or low-signal tests whose maintenance, execution, and review costs outweigh the independent behavioral confidence they add? Any one-off checks retained as permanent regression tests, or hypothetical concurrency/timing tests without a credible execution path or meaningful failure impact? Could removal or consolidation preserve meaningful behavior, edge-case, and risk coverage? Any behavior already protected by existing tests beyond the diff, including through public entrypoints, judged by comparing scenarios and assertions rather than names alone? Could an existing case or suite be extended instead of adding a separate test, while preserving distinct behavior or regression coverage?
   Flag every `if` statement or conditional expression in test code, including setup, helpers, and assertions. Require separate cases or parameterization with inputs and expected outcomes defined before execution instead of branching.
   Do not request or retain tests that only recheck declared configuration or documented dependency behavior (for example, FastAPI/Pydantic's default 422 for an invalid field). Require a credible application-specific regression and an observable outcome.
-Report findings with locations, evidence, and the smallest useful fix. Say when no actionable issue is found.
 ```
 
 After all agents respond and before synthesizing the final findings, triage every candidate point through this question: `Does this feedback identify a real, evidenced, material issue, or would addressing it add unnecessary complexity, flag a nonexistent or unsupported bug, or provide little value?` Judge the feedback itself, not only whether another agent made the same point. Do not omit any candidate point. Assign `P0`, `P1`, `P2`, or `P3` when it is actionable; assign `SKIP` only as a priority label when it is false, unsupported, duplicate, contradicted, out of scope, or not worth acting on. `SKIP` never means remove the item: every candidate must remain in `Findings` with its priority and the reason for that judgment. Do not leave skipped candidates only in `Reviewer Results`.
