@@ -4,7 +4,7 @@
       "target": "skills",
       "name": "insane-search",
       "source": "fivetaku/insane-search",
-      "ref": "ead12c51633fa1e00ca8a048203da2439feb950e"
+      "ref": "82211894339e45e7e848c54d47ef4743460bd5df"
     },
     {
       "target": "skills",
@@ -16,13 +16,13 @@
       "target": "skills",
       "name": "context7-cli",
       "source": "upstash/context7",
-      "ref": "eabe36965ec69b2f3487c4eb329c448dd60b817c"
+      "ref": "6e68ffcbad0e23cf4fa8c11795ce9e551aeef19b"
     },
     {
       "target": "skills",
       "name": "ego-browser",
       "source": "citrolabs/ego-lite",
-      "ref": "aecc5831fc5a9ea01a078b632185992a3a7ac448"
+      "ref": "bacaece43900e8ca68eea3b6f1663835ea38df9e"
     },
     {
       "target": "skills",
@@ -35,7 +35,7 @@
       "target": "skills",
       "name": "orca-cli",
       "source": "stablyai/orca",
-      "ref": "81ec82b3651703f6ab3ba1a74b729453919e69e5"
+      "ref": "7777f352d83180e447495d5e69bd9f8840dd628b"
     },
     {
       "target": "skills",
