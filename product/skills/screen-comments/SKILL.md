@@ -29,7 +29,13 @@ For an unreproducible condition, capture a useful related entry screen. Leave a 
 
 ## Write and publish
 
-Write each comment entirely in concise Korean, including labels and image alt text. Include its screenshot, user navigation, changed visible behavior, and only prerequisites needed to understand or reproduce that behavior. Quote visible wording exactly. Do not include capture-environment or verification reports: checkout SHAs, localhost ports, proxies, mock-data setup, annotation or masking procedures, or lists of untested scenarios. Keep claims within what was observed; qualify a code-based expectation briefly only when needed to explain the change. Do not imply an action succeeded merely because its entry screen or cancellation was observed.
+Write each comment entirely in concise Korean, including labels and image alt text. Use a short behavior-focused title and its screenshot, followed by:
+
+- **진입 경로**: one line of visible menu and button labels separated by `→`.
+- **화면 동작**: short numbered steps, each connecting a user action to its visible result. Describe what users can do rather than narrating clicks performed during capture. Bold key controls and quote visible wording exactly.
+- **조건별 차이**: include a comparison table only when conditions such as permissions, payment methods, or processing states change the screen or available actions. Compare the relevant conditions using understandable labels; include technical identifiers only when needed. Omit the section when there is no difference, and do not invent conditions to fill a table.
+
+Add only prerequisites needed to understand or reproduce the behavior. Do not repeat table content in the steps. Do not include capture-environment or verification reports: checkout SHAs, localhost ports, proxies, mock-data setup, annotation or masking procedures, or lists of untested scenarios. Keep claims within what was observed; qualify a code-based expectation briefly only when needed to explain the change. Do not imply an action succeeded merely because its entry screen or cancellation was observed.
 
 Upload screenshots with the relevant `gh` CLI command and `--attach <file>#<alt text>`. If `--attach` is unavailable, upgrade `gh` first. Do not publish placeholder comments or change the PR body to host images. Post file-level review comments (`subject_type: file`), not line or general comments. Before publishing, recheck the PR's base/head and existing coverage; reassess changed code or captures and avoid duplicate explanations. If a posting result is uncertain, check remote comments; defer that file without resending if success remains unknown. Verify each comment's file location and rendered screenshot in GitHub. Keep blocked files as local drafts and report any published comments whose verification remains incomplete.
 
