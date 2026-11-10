@@ -78,7 +78,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | --- | --- |
 | [ui-design](product/skills/ui-design/SKILL.md) | Explore visual references and image mockups, refine a direction, and deliver design documentation or UI implementation. |
 | [value-first](product/skills/value-first/SKILL.md) | Review websites, UX, and READMEs for clear value, brand appeal, trust, and low cognitive load. |
-| [screen-comments](product/skills/screen-comments/SKILL.md) | Document changed PR screens with real screenshots and Korean user-flow comments on UI files. |
+| [screen-comments](product/skills/screen-comments/SKILL.md) | Document changed PR screens with real screenshots and user-flow comments in the user's language on UI files. |
 
 ### Research and writing
 
