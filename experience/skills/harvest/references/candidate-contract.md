@@ -33,6 +33,14 @@ Evidence identifies exact messages/comments and what supports the claim.
 Session references include agent, session ID, file URI and record/message
 locator. File URIs are local to the source machine, not portable evidence.
 
+Recurring criteria require at least two independent situations, not two copies of
+one instruction. In `Evidence`, identify each task/PR, source ID and exact user
+passage/locator, then state the choice it demonstrates. Count forked logs, review
+reposts, handoffs and injected instructions once. Keep contrary choices and mark
+the shared criterion as an interpretation; user role/login alone is not authorship.
+Multi-source candidates preserve every original source ID/reference. Never advance
+checkpoints for records merely searched or used as historical context.
+
 `candidate → review | proposed | skipped`; `review → candidate | proposed | skipped`;
 `proposed → promoted | review`; `promoted → review` when contradicted later.
 Revisit skipped notes explicitly. Changed sources do not reset promotion.

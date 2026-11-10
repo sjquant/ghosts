@@ -24,8 +24,8 @@ An unchanged shape can hide changed consistency or concurrency guarantees.
 ## Limits
 Specify the observed constraints; do not claim universal applicability.
 ## Evidence
-Identify the source and the actual verification.
+List at least two independent situations: task/PR, source ID, exact user passage/locator, rejected option and chosen option. Copies and handoffs count once.
 ## Observation
-Describe what was directly demonstrated.
+Describe the user choices directly observed across those situations.
 ## Inference
-Separate the proposed generalization from the observation.
+State the recurring decision criterion as an interpretation; include contrary choices and unresolved scope.

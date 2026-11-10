@@ -1,60 +1,46 @@
-# Evaluation record
+# Validation
 
-Evaluated during implementation on 2026-11-06. The unit suite exercises the
-deterministic helper, not an automatic semantic extractor. The calling agent
-also followed the three skill bodies in a temporary Vault and Git repository.
-There was no previous version to compare and no independent model evaluation.
+## Deterministic helper
 
-## Automated checks
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s experience/skills/harvest/tests -v
+```
 
-`PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s engineering/skills/harvest/tests -v`
+The suite covers source readers and time intervals, fork/subagent identities,
+GitHub authorship and pagination, changed revisions, repeat execution, dry-run,
+partial failures, edit conflicts, redaction, path safety and Markdown navigation.
+GitHub responses are fixtures. These tests verify collection and persistence,
+not the agent's extraction quality. Single-correction fixtures exercise storage;
+they do not justify extracting a recurring judgment from one situation.
 
-14 tests passed. Coverage includes all three log readers, exact message intervals,
-subagent attribution, changed revisions, repeat execution, empty extraction,
-dry-run, partial failures, human edit conflicts, unsupported formats, redaction,
-symlink escape, GitHub reviewer identity/own-PR exclusion, pagination/rate limits,
-relative links, unreachable documents, oversized indexes and shared installation.
-GitHub API responses are fixtures; pagination tests verify the `gh` invocation
-and returned pages, not live GitHub access.
+## Semantic checks
 
-## Agent walkthrough
+A targeted pass over real sessions and GitHub feedback produced four patterns:
+return-value meaning, responsibility boundaries, test readability and test-file
+placement. Original passages and independent contexts are retained in private
+Obsidian candidates. One pattern includes a contrary choice limiting its scope.
 
-Input: a synthetic Codex session containing an explicit user correction that an
-API replacement must preserve atomic writes, followed by a model's report that
-a test passed. The existing library already had one API contract document.
+The first search missed file-placement corrections because it started with a few
+anticipated themes. Discovery now inventories direct corrections before grouping.
+This addresses the known omission; it does not establish exhaustive coverage or
+independent model evaluation.
 
-1. Harvest: read the normalized record, extract one medium-confidence candidate
-   and save it through the helper. The note distinguishes the explicit correction
-   from the unverified model test report. No test-output verification was invented.
-2. Curate: read the candidate, root INDEX and existing API contract document.
-   Choose `update`, retain one knowledge document, add the partial-visibility
-   example and source qualification, and improve the existing INDEX description.
-   The candidate becomes `proposed`, with a target path. It is not promoted merely
-   because a local diff exists.
-3. Recall: for an API replacement task, read root INDEX and that one linked
-   document. Return the caller-guarantee check, with its atomicity limitation.
-   No evidence file or unrelated topic was needed.
+Check these cases when evaluating future extraction runs:
 
-Observed result: one saved candidate, two changed Git files, one knowledge
-document, clean `git diff --check`, and zero note/link/line validation errors.
-Additional curator input: a low-confidence candidate proposing a global lock,
-with an explicit rejection due to deadlocks and no implementing patch. Compared
-it with the existing caller-specific guidance, set `review` and recorded the
-missing evidence. The library diff remained byte-for-byte unchanged.
+- One isolated fix produces no recurring-pattern candidate.
+- A correction copied to several agents still counts as one situation.
+- Independent choices sharing a trade-off retain their original passages.
+- Contrary choices qualify or defer an interpretation.
+- Naming and placement corrections are compared before being dismissed as cosmetic.
 
-Additional recall task: adjust CSS spacing. Read the root INDEX containing only
-API contract guidance; found no relevant topic and opened no knowledge document.
-These are implementation-agent smoke checks, not independent or cross-model
-behavior guarantees. Extraction quality still needs evaluation on real usage.
+For recall, a matching question should open only the relevant document; a near
+miss should open none. Keep the original evidence in candidates and the reusable
+criterion, conditions and examples in the library.
 
-## Local source probes and limits
+## Limits
 
-One real local file per adapter was read successfully: Codex 17 messages,
-Claude Code 3 messages, and AGY 678 messages. AGY used a May 2026 transcript;
-this does not establish that recent AGY records exist. Source contents were
-not copied into this repository. Opaque AGY conversations remain unsupported.
-
-`gh auth status` returned nonzero; live review collection was not run. No personal
-Vault/library destination or GitHub allowlist was supplied. Native skill discovery
-in all three agent applications, real remote PR creation and an unattended runner
-remain unverified. No personal skills were installed or scheduler enabled.
+Local sessions and selected live GitHub comments were read, but source access
+alone does not prove complete collection. Opaque AGY conversations remain
+unsupported; see [source limits](../references/sources.md).
+Native skill discovery across all agents, remote PR creation and an unattended
+scheduler run remain unverified. No scheduler was enabled by these checks.

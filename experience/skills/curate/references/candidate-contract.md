@@ -1,15 +1,15 @@
 # Shared experience contract
 
 Markdown is authoritative. Config is a user-owned JSON file, passed with
-`--config` or `EXPERIENCE_CONFIG`; see [config](../assets/config.example.json). Null destinations
-must be supplied before writing. Paths are absolute or `~` paths, not relative
+`--config` or `EXPERIENCE_CONFIG`. Set `vault` and `library` before writing.
+Paths are absolute or `~` paths, not relative
 to whichever repository an agent happens to be using.
 
 ## Candidate
 
 Frontmatter uses YAML with JSON values (a YAML subset, no parser dependency).
 Each field occupies one line; lists use JSON arrays. Preserve this format when
-editing in Obsidian. Unknown fields are preserved. See the [template](../templates/candidate.md).
+editing in Obsidian. Unknown fields are preserved.
 
 | Field | Contract |
 | --- | --- |
@@ -32,6 +32,14 @@ Body sections: `When`, `Principle`, `Why`, `Limits`, `Evidence`, `Observation`,
 Evidence identifies exact messages/comments and what supports the claim.
 Session references include agent, session ID, file URI and record/message
 locator. File URIs are local to the source machine, not portable evidence.
+
+Recurring criteria require at least two independent situations, not two copies of
+one instruction. In `Evidence`, identify each task/PR, source ID and exact user
+passage/locator, then state the choice it demonstrates. Count forked logs, review
+reposts, handoffs and injected instructions once. Keep contrary choices and mark
+the shared criterion as an interpretation; user role/login alone is not authorship.
+Multi-source candidates preserve every original source ID/reference. Never advance
+checkpoints for records merely searched or used as historical context.
 
 `candidate → review | proposed | skipped`; `review → candidate | proposed | skipped`;
 `proposed → promoted | review`; `promoted → review` when contradicted later.

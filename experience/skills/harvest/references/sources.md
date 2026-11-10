@@ -42,6 +42,20 @@ Inline source timestamps are `updated_at`; review bodies use the available
 `updated_at` or `submitted_at`. Edits to an old review body without an edit
 timestamp may fall outside the window. Deleted/undisclosed edits cannot be reconstructed.
 
+The login identifies the poster, not who produced the reasoning. Exclude forwarded
+AI reviews by default, including text marked `AI리뷰`/`AI review` and structured
+bug reports with severity headings and Kind/Triage/Evidence/Impact/fix fields.
+Formatting is a clue; inspect attribution and context rather than treating a regex
+match as proof. When origin is uncertain, do not attribute it to the user.
+For mixed comments, retain only a separately identifiable user judgment,
+correction, constraint or design decision, and cite that specific passage.
+A fix, author agreement or merge verifies an outcome, not personal authorship.
+Apply the same distinction when sessions quote or generate reviews. Acknowledge
+excluded records with no candidates; do not create a backlog of AI bug findings.
+Likewise, a session's user role can contain coordinator messages, approval-review
+transcript deltas or tool-result wrappers. Do not count those as personal corrections
+or independent repetitions; locate the original user turn instead.
+
 Every harvested review starts with `adoption: unverified`. Before promoting:
 
 - Fetch the PR and original comment/review using its URL/ID.
