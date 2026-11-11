@@ -33,9 +33,17 @@ Check these cases when evaluating future extraction runs:
 - Contrary choices qualify or defer an interpretation.
 - Naming and placement corrections are compared before being dismissed as cosmetic.
 
-For recall, a matching question should open only the relevant document; a near
-miss should open none. Keep the original evidence in candidates and the reusable
-criterion, conditions and examples in the library.
+Evaluate recall selection with ordinary task requests that do not name the skill:
+
+- A substantive implementation, refactoring, test-writing, code-review, or document task should trigger an index check even when the approach seems straightforward.
+- A version-only bump or exact replacement specified by the user should skip recall.
+- A matching topic should open only the relevant knowledge document; a near miss should stop at the indexes without opening knowledge documents.
+- Repeating the same decision within a task should reuse guidance; a material scope or context change should prompt another check.
+- A reference to previous feedback should trigger recall.
+
+These are evaluation cases, not evidence that automatic selection has been
+verified. Keep the original evidence in candidates and the reusable criterion,
+conditions and examples in the library.
 
 ## Limits
 
