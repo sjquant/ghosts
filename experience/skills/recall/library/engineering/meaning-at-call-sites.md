@@ -12,7 +12,7 @@ When callers must remember positions or internal implementation details to inter
 
 ## Pydantic result model
 
-A call-site excerpt from an asynchronous service using Pydantic DTOs.
+A deidentified call-site fragment from an asynchronous service using Pydantic DTOs. Requires Pydantic. The host service supplies `validate_recipients` and changes its return type with the caller.
 
 ### Before
 
@@ -37,12 +37,12 @@ errors = validation.errors
 
 ## Dataclass for internal context
 
-A dataclass can group a domain object and a role for internal use. `orm.Organization` and `AccessRoleEnum` are domain types supplied by the service.
+A deidentified internal-context fragment. `Team` and `Role` are domain types supplied by the host service.
 
 ### Before
 
 ```python
-organization, actor_role = await self._get_member_management_context(organization_id)
+team, actor_role = await self._get_member_context(team_id)
 ```
 
 ### After
@@ -51,12 +51,14 @@ organization, actor_role = await self._get_member_management_context(organizatio
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
-class _MemberManagementContext:
-    organization: orm.Organization
-    actor_role: AccessRoleEnum
+class _MemberContext:
+    team: Team
+    actor_role: Role
 
-# Change the method to return _MemberManagementContext as well.
-context = await self._get_member_management_context(organization_id)
-organization = context.organization
+# Change the method to return _MemberContext as well.
+context = await self._get_member_context(team_id)
+team = context.team
 actor_role = context.actor_role
 ```
+
+Use Pydantic when runtime validation is needed; a lightweight dataclass can group internal data without adding that validation. A local tuple can remain suitable when its order directly matches the visible SQL select.

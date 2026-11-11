@@ -78,7 +78,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | --- | --- |
 | [harvest](experience/skills/harvest/SKILL.md) | Extract reusable session and GitHub review experience into Obsidian candidates. |
 | [curate](experience/skills/curate/SKILL.md) | Verify candidates and propose Markdown knowledge and INDEX changes. |
-| [recall](experience/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current engineering decision. |
+| [recall](experience/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current task. |
 
 The experience trio uses portable `harvest`, `curate`, `recall` names. See
 [setup and usage](experience/README.md) for configuration, source support,

@@ -8,33 +8,35 @@ candidate_ids: ["candidate-f12222dbee13b32d56d14d81"]
 
 # Place tests alongside their target module structure
 
-Start with the test file corresponding to the target module. A new feature, result or scenario alone does not call for another file.
+When adding or renaming tests, start with the file corresponding to the target module. A new feature, result or scenario alone does not call for another file.
 
-## File layout
+These generalized paths illustrate placement; they do not describe a particular checkout.
 
 ### Before
 
-Separate files accumulate for features and results.
-
 ```text
-app/account/views/channel.py
-tests/account/views/test_channel_search.py
-tests/account/views/test_channel_invitation.py
+app/accounts/views/team.py
+tests/accounts/views/test_team_search.py
+tests/accounts/views/test_team_invitation.py
 
 app/mail/services/delivery.py
 tests/mail/test_delivery.py
+
+src/use-quotes.ts
+tests/use-prices.spec.ts
 ```
 
 ### After
 
-Match the target module’s path and filename, then organize scenarios within that file.
-
 ```text
-app/account/views/channel.py
-tests/account/views/test_channel.py
+app/accounts/views/team.py
+tests/accounts/views/test_team.py
 
 app/mail/services/delivery.py
 tests/mail/services/test_delivery.py
+
+src/use-quotes.ts
+tests/use-quotes.spec.ts
 ```
 
-Use test classes where grouping is needed. Check for duplicate coverage when the existing file already verifies the same behavior.
+Group scenarios within the matching file; pytest test classes can provide that grouping. Check for duplicate coverage when the existing file already verifies the same behavior.

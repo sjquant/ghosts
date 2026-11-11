@@ -8,6 +8,11 @@
 | Claude Code | `projects/**/*.jsonl`, including subagents | Reads user/assistant text and tool results, not hidden reasoning |
 | AGY | `brain/*/.system_generated/logs/transcript.jsonl` | User/model content only; opaque `.pb`/`.db` without transcript reported unsupported |
 
+The Codex reader currently discovers plain `.jsonl` files only. Compressed
+`.jsonl.zst` files are not discovered or decoded; a successful collection can
+therefore omit available compressed history. Check for those files before
+claiming complete Codex coverage.
+
 Readers use message timestamps, not file modification times. Intervals are
 start-inclusive/end-exclusive and require timezones. Missing roots, malformed
 JSONL and unsupported conversation stores are explicit errors. A malformed file

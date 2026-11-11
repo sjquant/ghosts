@@ -12,7 +12,7 @@ Make the conditions and expected results clear without requiring readers to trac
 
 ## Example
 
-Setup excerpts from asynchronous coupon-reservation tests.
+Deidentified setup fragments from asynchronous coupon-reservation tests. The host project supplies the models, async creation helper and database session.
 
 ### Before
 
@@ -63,3 +63,5 @@ usage = await create_coupon_usage(
 Explicit call-site values can still leave branching inside the helper. To remove that branch too, change the helper to accept an explicit `subscription_id` instead of `link_subscription`.
 
 Do not select inputs or expectations through conditionals in test setup, actions or assertions.
+
+Keep small scenario data beside the test. Move data elsewhere when its size obstructs reading the test itself. Put test cases before supporting fixtures and helpers.

@@ -73,7 +73,7 @@ python3 experience/skills/harvest/scripts/experience.py validate /path/to/vault/
 ```
 
 ### 3. Recall (Consult Prior Experience)
-Read-only skill, selected automatically during relevant engineering work:
+Read-only skill, selected automatically during relevant engineering or document work:
 - Opens its bundled `library/INDEX.md` → work-domain index → relevant document. A presentation task does not read engineering topics; domains without curated guidance return no match.
 - Injects only relevant constraints into context without loading the entire library.
 - Proceeds without recall when the library is unavailable or no topic matches.
