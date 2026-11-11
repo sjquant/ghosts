@@ -44,7 +44,7 @@ Requires Node.js >=20 and git. `--all` installs every bundle; `--global` install
 
 ## Skills
 
-Skills maintained here use the `ghosts:` prefix. For example, invoke
+Most skills maintained here use the `ghosts:` prefix. For example, invoke
 `$ghosts:code-review` in Codex or `/ghosts:code-review` in Claude Code.
 For installation selectors, use the source path, such as `--include skills/code-review`.
 
@@ -71,6 +71,18 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [explain-diff](engineering/skills/explain-diff/SKILL.md) | Explain public-interface changes read-only with before/after usage examples, compatibility impact, and optional visual HTML lessons. |
 | [write-adr](engineering/skills/write-adr/SKILL.md) | Record an engineering decision, its context, and its rationale. |
 | [write-glossary](engineering/skills/write-glossary/SKILL.md) | Define project terms and establish a shared vocabulary in `GLOSSARY.md`. |
+
+### Experience
+
+| Skill | What it helps with |
+| --- | --- |
+| [harvest](experience/skills/harvest/SKILL.md) | Extract reusable session and GitHub review experience into Obsidian candidates. |
+| [curate](experience/skills/curate/SKILL.md) | Verify candidates and propose Markdown knowledge and INDEX changes. |
+| [recall](experience/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current task. |
+
+The experience skills use `harvest`, `curate`, and `ghosts:recall` as their names. See
+[setup and usage](experience/README.md) for configuration, source support,
+and tests. [Recall's library](experience/skills/recall/library/INDEX.md) holds curated judgments for selective recall.
 
 ### Product
 

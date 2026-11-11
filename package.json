@@ -1,6 +1,6 @@
 {
   "name": "@solaqua/ghosts",
-  "version": "0.4.32",
+  "version": "0.4.34",
   "description": "Reusable agent skills and reviewers.",
   "license": "MIT",
   "repository": {
@@ -10,6 +10,7 @@
   "files": [
     "common",
     "engineering",
+    "experience",
     "product",
     "registry",
     "research",
