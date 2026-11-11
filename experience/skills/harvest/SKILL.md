@@ -1,6 +1,7 @@
 ---
 name: harvest
 description: Find recurring user engineering judgments across independent Codex, Claude Code, Antigravity sessions and GitHub reviews; save evidence-backed patterns to Obsidian. Run as a scheduled or event-driven collection job for 7 days, 30 days, or a configured interval.
+disable-model-invocation: true
 ---
 
 # Harvest

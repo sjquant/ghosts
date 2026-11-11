@@ -80,7 +80,7 @@ For installation selectors, use the source path, such as `--include skills/code-
 | [curate](experience/skills/curate/SKILL.md) | Verify candidates and propose Markdown knowledge and INDEX changes. |
 | [recall](experience/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current task. |
 
-The experience trio uses portable `harvest`, `curate`, `recall` names. See
+The experience skills use `harvest`, `curate`, and `ghosts:recall` as their names. See
 [setup and usage](experience/README.md) for configuration, source support,
 and tests. [Recall's library](experience/skills/recall/library/INDEX.md) holds curated judgments for selective recall.
 

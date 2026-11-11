@@ -1,6 +1,7 @@
 ---
 name: curate
 description: Verify recurring user judgments across independent Obsidian evidence, merge related cases, and preserve decision criteria and exceptions in the Markdown library. Run unattended after harvest or on a schedule.
+disable-model-invocation: true
 ---
 
 # Curate
