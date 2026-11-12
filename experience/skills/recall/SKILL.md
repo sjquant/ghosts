@@ -1,6 +1,6 @@
 ---
 name: ghosts:recall
-description: Use when a concrete choice remains open after checking the user's instructions and nearby examples, or when the user refers to previous feedback. Skip mechanical changes and decisions already checked in the current task.
+description: Consult prior user feedback before substantive code implementation, refactoring, test writing, code review, or document drafting and revision, and whenever the user refers to previous feedback. Check the relevant library index even when the approach seems straightforward. Skip mechanical edits and decisions already checked in the current task.
 ---
 
 # Recall
@@ -8,11 +8,11 @@ description: Use when a concrete choice remains open after checking the user's i
 Find the smallest set of verified knowledge relevant to the current task.
 This skill is strictly read-only; do not read unverified Obsidian candidates as behavioral rules.
 
-## 1. Identify the needed decision
+## 1. Identify the task context
 
-- From the current task, identify the work domain, project or artifact, and unresolved decision before searching the library.
-- Form a question such as "Should these return values be named?" or "Does this new behavior belong in the existing module?" A broad label like implementation, review or testing is insufficient.
-- If the task context is unclear, inspect the relevant code, document or presentation first. Do not browse knowledge documents to invent a need for them.
+- Before substantive work, identify the work domain, project or artifact, and intended change or review scope. Inspect the relevant code, document or presentation first if that context is unclear.
+- Check the relevant library index even if the approach seems obvious or nearby examples appear sufficient; an unresolved decision is not required.
+- Skip purely mechanical edits, such as a version-only bump or an exact replacement specified by the user. Reuse guidance already checked in the current task unless the scope or context materially changes.
 
 ## 2. Locate the library
 
@@ -22,7 +22,8 @@ This skill is strictly read-only; do not read unverified Obsidian candidates as 
 
 ## 3. Match the situation before opening documents
 
-- Read root `INDEX.md` to choose the work domain. Open only its matching index (such as `engineering/INDEX.md`), then match the specific decision to a topic. A document or presentation task must not load engineering guidance merely because it is available.
+- Read root `INDEX.md` to choose the work domain. Open only its matching index (such as `engineering/INDEX.md`), then match its topic conditions against the actual task. A document or presentation task must not load engineering guidance merely because it is available.
+- For each matching topic, identify the concrete question its document would answer, such as "Should these return values be named?" or "Does this new behavior belong in the existing module?" A broad label like implementation, review or testing is insufficient to open a knowledge document.
 - Follow further subindexes only when they match the situation, then read the smallest set of matching documents. Each opened file must answer an identified question.
 - Do not open documents merely to determine whether they are relevant. If index conditions do not match, stop; a targeted filename/index search is appropriate only for a specific unanswered question the index failed to route.
 - Stop once the decision has enough guidance; do not follow neighboring topics or evidence links out of curiosity.
