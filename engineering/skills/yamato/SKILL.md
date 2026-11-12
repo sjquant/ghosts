@@ -1,12 +1,12 @@
 ---
 name: ghosts:yamato
-description: Implement a task, then run independent review, fixes, and cleanup for a configurable number of cycles (default two).
+description: Implement a task, then run independent review, fixes, and cleanup for a configurable number of cycles (default one).
 disable-model-invocation: true
 ---
 
 Run these stages in order in the current session. Read and follow each skill when its stage begins:
 
-Default to two cycles. If the user specifies a positive integer cycle count, such as `x1` or `x3`, use that count instead.
+Default to one cycle. If the user specifies a positive integer cycle count, such as `x2` or `x3`, use that count instead.
 
 1. Apply $ghosts:coding to implement the task and verify its checklist.
 2. Run the following cycle for the selected number of cycles:
