@@ -7,6 +7,12 @@ Interview the user relentlessly until you reach a shared understanding. Map
 this as a design tree: every decision branches into the decisions that depend
 on it.
 
+Treat the why as a prerequisite: when the purpose of the goal or the reason for
+a choice is missing or unclear, ask why it matters, what problem it solves, or
+why this choice serves that purpose. Do not infer the user's motivation or
+treat your recommended answer as their reason. Settle the why before asking
+questions that depend on it.
+
 Work the tree in rounds. The frontier is every decision whose prerequisites
 are already settled: questions you can ask now without guessing at answers you
 have not heard yet. Ask the whole frontier in one round, number each question,

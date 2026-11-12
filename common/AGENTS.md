@@ -5,3 +5,4 @@
 - In Korean, Chinese, and other text without spaces between words, avoid placing a closing `**` directly between punctuation and a following letter, since Markdown renderers may leave the emphasis markers visible. For example, prefer `**"중요"한 내용**` over `**"중요"**한 내용`.
 - Include the attached particle, ending, or surrounding phrase in the bold span when needed. Preserve natural spacing; do not insert unnatural spaces or invisible characters just to make bold render.
 - If the obsidian CLI is unavailable, start the Obsidian desktop app first and retry.
+- Use the `maestro` CLI when native mobile UI interaction or verification is needed; consult `--help` for usage.

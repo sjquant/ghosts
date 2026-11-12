@@ -18,7 +18,7 @@ Write findings and summaries using ISO 24495-1:2023 Plain Language principles.
 
 AI-generated changes can overcomplicate simple problems; question whether added code or tests are needed at all, and consider omission before adding another layer.
 
-Report findings with locations, evidence, and the smallest useful fix. Say when no actionable issue is found.
+Report findings with locations, evidence, and impact. Do not include proposed fixes, patches, or remediation steps. Say when no actionable issue is found.
 ```
 
 Question blocks:
@@ -75,7 +75,7 @@ After all agents respond and before synthesizing the final findings, triage ever
 - Kind: bug|performance|security|design|test|simplification|other
 - Triage: <priority> — <why this feedback received this priority, including why it is low-value or unsupported when priority is `SKIP`>
 - Evidence: <why this matters>
-- Impact / fix: <impact and smallest useful action>
+- Impact: <concrete consequence of the issue>
 
 ## Review Summary
 
