@@ -1,5 +1,5 @@
 ---
-name: ghosts:yamato
+name: ghosts:raze
 description: Implement a task, then run independent review, fixes, and cleanup for a configurable number of cycles (default one).
 disable-model-invocation: true
 ---
