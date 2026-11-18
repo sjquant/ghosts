@@ -40,10 +40,9 @@ def main():
         if args.command == "validate":
             result = validate([Path(p).expanduser() for p in args.paths])
         else:
-            config_path = args.config or getattr(args, "sub_config", None) or os.environ.get("EXPERIENCE_CONFIG")
-            if not config_path:
-                raise ValueError("Supply --config or EXPERIENCE_CONFIG")
-            config = json.loads(Path(config_path).expanduser().read_text())
+            config = load_config(
+                args.config or getattr(args, "sub_config", None) or os.environ.get("EXPERIENCE_CONFIG")
+            )
             if args.command == "collect":
                 end = timestamp(args.end) if args.end else dt.datetime.now(dt.timezone.utc)
                 start = timestamp(args.start) if args.start else end - dt.timedelta(
@@ -507,6 +506,56 @@ def scrub(value):
     if isinstance(value, dict):
         return {key: scrub(item) for key, item in value.items()}
     return value
+
+
+def vault_config_path(vault):
+    for rel in ("agent-notes/config.json", ".experience.json"):
+        candidate = vault / rel
+        if candidate.is_file():
+            return candidate
+    return None
+
+
+def obsidian_registry_paths():
+    candidates = [
+        Path("~/Library/Application Support/obsidian/obsidian.json").expanduser(),
+        Path("~/.config/obsidian/obsidian.json").expanduser(),
+    ]
+    if os.environ.get("APPDATA"):
+        candidates.append(Path(os.environ["APPDATA"]) / "obsidian/obsidian.json")
+    return candidates
+
+
+def load_config(config_path=None):
+    """Load config from --config/EXPERIENCE_CONFIG or a single registered Obsidian vault."""
+    if config_path:
+        return json.loads(Path(config_path).expanduser().read_text())
+    matches = []
+    seen = set()
+    for reg in obsidian_registry_paths():
+        if not reg.is_file():
+            continue
+        data = json.loads(reg.read_text())
+        for entry in (data.get("vaults") or {}).values():
+            raw = entry.get("path") if isinstance(entry, dict) else None
+            if not raw:
+                continue
+            vault = Path(raw).expanduser().resolve()
+            if vault in seen or not vault.is_dir():
+                continue
+            seen.add(vault)
+            found = vault_config_path(vault)
+            if found:
+                matches.append((vault, found))
+    if len(matches) == 1:
+        vault, found = matches[0]
+        config = json.loads(found.read_text())
+        if not config.get("vault"):
+            config["vault"] = str(vault)
+        return config
+    if len(matches) > 1:
+        raise ValueError("Multiple Obsidian vaults contain experience config; pass --config or set EXPERIENCE_CONFIG")
+    raise ValueError("Supply --config, EXPERIENCE_CONFIG, or place agent-notes/config.json in your Obsidian vault")
 
 
 def load_state(path):

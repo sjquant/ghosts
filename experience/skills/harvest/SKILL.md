@@ -1,5 +1,5 @@
 ---
-name: harvest
+name: ghosts:harvest
 description: Find recurring user engineering judgments across independent Codex, Claude Code, Antigravity sessions and GitHub reviews; save evidence-backed patterns to Obsidian. Run as a scheduled or event-driven collection job for 7 days, 30 days, or a configured interval.
 disable-model-invocation: true
 ---
@@ -11,7 +11,7 @@ notes to the configured Obsidian inbox; do not modify the knowledge repository.
 
 ## 1. Gather sources
 
-- Read [the candidate contract](references/candidate-contract.md) and load configuration from `EXPERIENCE_CONFIG` or `--config`.
+- Read [the candidate contract](references/candidate-contract.md) and load configuration from `EXPERIENCE_CONFIG`, `--config`, or a single registered Obsidian vault containing `agent-notes/config.json` (or `.experience.json`).
 - Run unattended with configured destinations, source identity and interval; never guess missing values.
 - If required configuration is missing, report a configuration failure without waiting for user input or advancing checkpoints. Continue independent configured sources when possible.
 - Run `experience.py collect` with `--days` (7 or 30) or explicit `--start`/`--end`.
@@ -26,7 +26,7 @@ Extract recurring user judgments, not one note per task or fix:
 - Require at least two independent situations supporting the same decision criterion. Repeated wording alone is insufficient: identify what the user rejected, preferred and preserved in each situation.
 - Count a copied review, a forked transcript, subagent handoff, several comments on one issue, or injected skill instructions as one situation, not independent repetition.
 - Group by the underlying judgment rather than identical terminology. Repeated naming, file placement or movement corrections can reveal a discoverability or ownership criterion; do not discard them as cosmetic before comparison. Search for counterexamples and retain conditions that explain a different choice.
-- In `Evidence`, list each independent context, the exact user passage/locator and the decision it supports. Separate observed choices from the inferred shared criterion in `Inference`.
+- In `Evidence`, list each independent context, the exact user passage/locator and the decision it supports. When a code or wording contrast clarifies the judgment for curation, preserve a minimal `Before`/`After` fragment (or exact diff/line locator) in `Evidence` or `Observation` without copying sensitive private code or secrets. Separate observed choices from the inferred shared criterion in `Inference`.
 - Revisit relevant earlier evidence even when its source was checkpointed; checkpoints prevent duplicate writes, not cross-session reasoning. Preserve all original source IDs and references in a multi-source candidate.
 
 Omit:

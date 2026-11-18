@@ -1,5 +1,5 @@
 ---
-name: curate
+name: ghosts:curate
 description: Verify recurring user judgments across independent Obsidian evidence, merge related cases, and preserve decision criteria and exceptions in the Markdown library. Run unattended after harvest or on a schedule.
 disable-model-invocation: true
 ---
@@ -12,7 +12,7 @@ a reviewable Git diff; create a PR only when requested or enabled in config.
 ## 1. Select and verify candidates
 
 Read [the candidate contract](references/candidate-contract.md).
-Use the configured inbox and library; do not invent destinations. To update
+Load configuration from `EXPERIENCE_CONFIG`, `--config`, or a single registered Obsidian vault containing `agent-notes/config.json` (or `.experience.json`). Use the configured inbox and library; do not invent destinations. To update
 recall's bundled knowledge, set `library` to that installation's `library/` path.
 Do not infer the destination from another skill's location or a ghosts checkout.
 If required configuration or access is missing, report failure and stop dependent work without waiting for user input.

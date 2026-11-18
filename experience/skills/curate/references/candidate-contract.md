@@ -1,7 +1,7 @@
 # Shared experience contract
 
 Markdown is authoritative. Config is a user-owned JSON file, passed with
-`--config` or `EXPERIENCE_CONFIG`. Set `vault` and `library` before writing.
+`--config`, `EXPERIENCE_CONFIG`, or `<vault>/agent-notes/config.json`. Set `vault` and `library` before writing.
 Paths are absolute or `~` paths, not relative
 to whichever repository an agent happens to be using.
 

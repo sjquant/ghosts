@@ -7,15 +7,16 @@ never calls an LLM or decides whether a lesson is true. Routine operation is una
 
 ## Setup
 
-1. Copy `skills/harvest/assets/config.example.json` to a personal location (e.g. `~/.config/experience.json`).
-2. Fill in `vault` (path to Obsidian vault) and `library` (absolute path to the knowledge directory).
+1. Copy `skills/harvest/assets/config.example.json` either into your Obsidian vault at `<vault>/agent-notes/config.json` (or `<vault>/.experience.json`) or to a personal path such as `~/.config/experience.json`.
+2. Fill in `vault` (path to Obsidian vault; optional when stored inside the vault) and `library` (absolute path to the knowledge directory).
    - Recall includes its own [library](skills/recall/library/INDEX.md). For curate, set `library` to the absolute path of the copy you want to update, such as an installed recall skill's `library/` directory.
    - If using GitHub reviews, set `github_login` and add repositories or organizations to the allowlist.
    - Run `gh auth login` for GitHub access (no tokens in config).
-3. Set the environment variable:
+3. If stored outside the Obsidian vault (or when multiple vaults have configs), set the environment variable:
    ```sh
    export EXPERIENCE_CONFIG=~/.config/experience.json
    ```
+   When stored inside a single registered Obsidian vault at `<vault>/agent-notes/config.json`, `experience.py` discovers it automatically.
 
 ### Installation
 
@@ -26,9 +27,9 @@ npx @solaqua/skul@latest add --global sjquant/ghosts --include experience/skills
 
 Or link directly to your agent's skills directory:
 ```sh
-ln -s "$(pwd)/experience/skills/harvest" ~/.agents/skills/
-ln -s "$(pwd)/experience/skills/curate" ~/.agents/skills/
-ln -s "$(pwd)/experience/skills/recall" ~/.agents/skills/
+ln -s "$(pwd)/experience/skills/harvest" ~/.agents/skills/ghosts:harvest
+ln -s "$(pwd)/experience/skills/curate" ~/.agents/skills/ghosts:curate
+ln -s "$(pwd)/experience/skills/recall" ~/.agents/skills/ghosts:recall
 ```
 
 ## Automated operation
@@ -36,7 +37,7 @@ ln -s "$(pwd)/experience/skills/recall" ~/.agents/skills/
 An external scheduler or event-driven runner invokes the installed skills through
 the chosen agent. Set the config path, source interval and credentials in that
 runner's environment. Configure the schedule separately; installing a skill does
-not register a job. Run harvest, then curate after a successful or partially
+not register a job. Run `ghosts:harvest`, then `ghosts:curate` after a successful or partially
 successful harvest. The runner must invoke an agent: the Python helper alone
 does not extract or curate knowledge. Serialize jobs that share a Vault or Git
 working tree. Missing configuration, access failures and deferred candidates go
