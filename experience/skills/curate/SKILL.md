@@ -13,7 +13,7 @@ a reviewable Git diff; create a PR only when requested or enabled in config.
 
 Read [the candidate contract](references/candidate-contract.md).
 Load configuration from `EXPERIENCE_CONFIG`, `--config`, or a single registered Obsidian vault containing `agent-notes/config.json` (or `.experience.json`). Use the configured inbox and library; do not invent destinations. To update
-recall's bundled knowledge, set `library` to that installation's `library/` path.
+echo's bundled knowledge, set `library` to that installation's `library/` path.
 Do not infer the destination from another skill's location or a ghosts checkout.
 If required configuration or access is missing, report failure and stop dependent work without waiting for user input.
 Read selected candidates, or pending candidates when none are selected.

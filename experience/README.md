@@ -1,6 +1,6 @@
-# Harvest / Curate / Recall
+# Harvest / Curate / Echo
 
-Three independent agent skills for extracting, curating, and recalling experience,
+Three independent agent skills for extracting, curating, and applying experience,
 supported by a Python 3.10+ standard-library helper for mechanical collection and validation.
 An automated agent run performs extraction, evidence checks, and curation; the helper
 never calls an LLM or decides whether a lesson is true. Routine operation is unattended.
@@ -9,7 +9,7 @@ never calls an LLM or decides whether a lesson is true. Routine operation is una
 
 1. Copy `skills/harvest/assets/config.example.json` either into your Obsidian vault at `<vault>/agent-notes/config.json` (or `<vault>/.experience.json`) or to a personal path such as `~/.config/experience.json`.
 2. Fill in `vault` (path to Obsidian vault; optional when stored inside the vault) and `library` (absolute path to the knowledge directory).
-   - Recall includes its own [library](skills/recall/library/INDEX.md). For curate, set `library` to the absolute path of the copy you want to update, such as an installed recall skill's `library/` directory.
+   - Echo includes its own [library](skills/echo/library/INDEX.md). For curate, set `library` to the absolute path of the copy you want to update, such as an installed echo skill's `library/` directory.
    - If using GitHub reviews, set `github_login` and add repositories or organizations to the allowlist.
    - Run `gh auth login` for GitHub access (no tokens in config).
 3. If stored outside the Obsidian vault (or when multiple vaults have configs), set the environment variable:
@@ -22,14 +22,14 @@ never calls an LLM or decides whether a lesson is true. Routine operation is una
 
 Install via `skul` (recommended):
 ```sh
-npx @solaqua/skul@latest add --global sjquant/ghosts --include experience/skills/harvest experience/skills/curate experience/skills/recall
+npx @solaqua/skul@latest add --global sjquant/ghosts --include experience/skills/harvest experience/skills/curate experience/skills/echo
 ```
 
 Or link directly to your agent's skills directory:
 ```sh
 ln -s "$(pwd)/experience/skills/harvest" ~/.agents/skills/ghosts:harvest
 ln -s "$(pwd)/experience/skills/curate" ~/.agents/skills/ghosts:curate
-ln -s "$(pwd)/experience/skills/recall" ~/.agents/skills/ghosts:recall
+ln -s "$(pwd)/experience/skills/echo" ~/.agents/skills/ghosts:echo
 ```
 
 ## Automated operation
@@ -65,7 +65,7 @@ The job processes pending candidates:
 
 Recall's bundled library contains generalized judgments, not private project records.
 Candidate IDs refer back to the private Obsidian Vault for original evidence.
-Local proposals remain `proposed` until accepted-branch verification; recall must
+Local proposals remain `proposed` until accepted-branch verification; echo must
 distinguish those proposals from accepted knowledge.
 
 The job validates the inbox and library before recording its outcome:
@@ -73,17 +73,16 @@ The job validates the inbox and library before recording its outcome:
 python3 experience/skills/harvest/scripts/experience.py validate /path/to/vault/inbox /path/to/library
 ```
 
-### 3. Recall (Consult Prior Experience)
-Read-only skill intended to trigger before substantive implementation, refactoring,
-test writing, code review, or document drafting and revision, even when the
-approach seems straightforward, and when the user refers to previous feedback:
+### 3. Echo (Apply Prior Experience)
+Read-only skill intended to check the root index at the start of any non-trivial task,
+gating deeper document reads on index match and applying matched conventions while working:
 
-- Checks the relevant index without requiring an unresolved decision. Skips mechanical edits and reuses guidance already checked in the current task.
+- Checks root `INDEX.md` without requiring an unresolved decision. Skips purely mechanical edits and reuses guidance already checked in the current task.
 - Opens its bundled `library/INDEX.md` → work-domain index → relevant document. A presentation task does not read engineering topics; domains without curated guidance return no match.
-- Injects only relevant constraints into context without loading the entire library.
-- Proceeds without recall when the library is unavailable or no topic matches.
+- Injects and applies only relevant constraints without loading the entire library.
+- Proceeds without echo when the library is unavailable or no topic matches.
 
-The library travels with the recall skill. It does not depend on a ghosts checkout
+The library travels with the echo skill. It does not depend on a ghosts checkout
 or other installed skills. Curate creates a domain folder and index when relevant
 knowledge is ready; empty writing/presentation folders are not required.
 
