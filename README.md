@@ -78,11 +78,11 @@ For installation selectors, use the source path, such as `--include skills/code-
 | --- | --- |
 | [harvest](experience/skills/harvest/SKILL.md) | Extract reusable session and GitHub review experience into Obsidian candidates. |
 | [curate](experience/skills/curate/SKILL.md) | Verify candidates and propose Markdown knowledge and INDEX changes. |
-| [recall](experience/skills/recall/SKILL.md) | Read only the shared knowledge relevant to the current task. |
+| [echo](experience/skills/echo/SKILL.md) | Check the experience index, open only matching guidance, and apply it while working. |
 
-The experience skills use `harvest`, `curate`, and `ghosts:recall` as their names. See
+The experience skills use `ghosts:harvest`, `ghosts:curate`, and `ghosts:echo` as their names. See
 [setup and usage](experience/README.md) for configuration, source support,
-and tests. [Recall's library](experience/skills/recall/library/INDEX.md) holds curated judgments for selective recall.
+and tests. [Echo's library](experience/skills/echo/library/INDEX.md) holds curated judgments for selective application.
 
 ### Product
 

@@ -272,3 +272,24 @@ class GitHubTests(unittest.TestCase):
         with patch.object(exp.subprocess, "run", return_value=limited), patch.object(exp.time, "sleep"):
             with self.assertRaisesRegex(ValueError, "429"):
                 exp.gh_pages("repos/org/repo/pulls/1/comments")
+
+    def test_load_config_from_obsidian_registry(self):
+        """Config loads from a single registered Obsidian vault and rejects multiple ambiguous vaults."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            vault1 = root / "vault1"
+            (vault1 / "agent-notes").mkdir(parents=True)
+            (vault1 / "agent-notes/config.json").write_text(json.dumps({"notes_directory": "agent-notes"}))
+
+            registry = root / "obsidian.json"
+            registry.write_text(json.dumps({"vaults": {"a": {"path": str(vault1)}}}))
+            with patch.object(exp, "obsidian_registry_paths", return_value=[registry]):
+                self.assertEqual(exp.load_config()["vault"], str(vault1.resolve()))
+
+            vault2 = root / "vault2"
+            vault2.mkdir()
+            (vault2 / ".experience.json").write_text(json.dumps({"notes_directory": "agent-notes"}))
+            registry.write_text(json.dumps({"vaults": {"a": {"path": str(vault1)}, "b": {"path": str(vault2)}}}))
+            with patch.object(exp, "obsidian_registry_paths", return_value=[registry]):
+                with self.assertRaisesRegex(ValueError, "Multiple Obsidian vaults"):
+                    exp.load_config()
