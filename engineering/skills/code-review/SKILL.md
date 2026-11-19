@@ -18,7 +18,7 @@ Write findings and summaries using ISO 24495-1:2023 Plain Language principles.
 
 AI-generated changes can overcomplicate simple problems; question whether added code or tests are needed at all, and consider omission before adding another layer.
 
-Report findings with locations, evidence, and impact. Do not include proposed fixes, patches, or remediation steps. Say when no actionable issue is found.
+Report findings with locations, evidence, and impact. For each actionable finding, briefly suggest what to change and how it would address the issue. Say when no actionable issue is found.
 ```
 
 Question blocks:
@@ -76,6 +76,7 @@ After all agents respond and before synthesizing the final findings, triage ever
 - Triage: <priority> — <why this feedback received this priority, including why it is low-value or unsupported when priority is `SKIP`>
 - Evidence: <why this matters>
 - Impact: <concrete consequence of the issue>
+- Suggested fix: <what to change and how it addresses the issue>
 
 ## Review Summary
 
@@ -91,3 +92,4 @@ After all agents respond and before synthesizing the final findings, triage ever
 For GitHub-linked reviews, make `Location` a bare GitHub permalink, for example: `- Location: https://github.com/acme/project/blob/0123abc/src/parser.ts#L42-L48`.
 
 If there are no actionable findings, say so while retaining every candidate in `Findings` with `SKIP` priority and its reason.
+Omit `Suggested fix` for `SKIP` items.
