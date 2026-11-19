@@ -1,6 +1,6 @@
 ---
 name: ghosts:echo
-description: Use before starting any non-trivial task across any domain, even when the task looks routine or no prior feedback is mentioned.
+description: Curated knowledge library of past decisions and user preferences. Use before starting any non-trivial task across any domain, even when it looks routine.
 ---
 
 # Echo
