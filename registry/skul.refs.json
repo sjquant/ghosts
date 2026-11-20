@@ -10,19 +10,13 @@
       "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills",
-      "ref": "caf3e98cd22d810db164f26c9a442f0a280daa43"
+      "ref": "462a27fa456e43a68bd645fef457217326bfd369"
     },
     {
       "target": "skills",
       "name": "context7-cli",
       "source": "upstash/context7",
-      "ref": "c36522f3d4446288a272aedd727d665f7b8175f2"
-    },
-    {
-      "target": "skills",
-      "name": "ego-browser",
-      "source": "citrolabs/ego-lite",
-      "ref": "f499162d1b911ba9b320ed31b741dba7ebc2e4d6"
+      "ref": "f1872ebb2f3d943b293bb86fdc0c2905988820d9"
     },
     {
       "target": "skills",
@@ -30,12 +24,6 @@
       "source": "getsentry/cli",
       "sourcePath": "packages/cli/plugins/sentry-cli",
       "ref": "3567c3c937b5cc06667d5b023bda0b2d3f472c54"
-    },
-    {
-      "target": "skills",
-      "name": "orca-cli",
-      "source": "stablyai/orca",
-      "ref": "8d1dca16a8fff54ce9f9013a9153a6940de4adb1"
     },
     {
       "target": "skills",
