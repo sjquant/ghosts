@@ -10,13 +10,13 @@
       "target": "skills",
       "name": "obsidian-cli",
       "source": "kepano/obsidian-skills",
-      "ref": "caf3e98cd22d810db164f26c9a442f0a280daa43"
+      "ref": "462a27fa456e43a68bd645fef457217326bfd369"
     },
     {
       "target": "skills",
       "name": "context7-cli",
       "source": "upstash/context7",
-      "ref": "c36522f3d4446288a272aedd727d665f7b8175f2"
+      "ref": "f1872ebb2f3d943b293bb86fdc0c2905988820d9"
     },
     {
       "target": "skills",
@@ -35,7 +35,7 @@
       "target": "skills",
       "name": "orca-cli",
       "source": "stablyai/orca",
-      "ref": "8d1dca16a8fff54ce9f9013a9153a6940de4adb1"
+      "ref": "b45a49e941b5b2fd368b92ee3bd16753c4f563c1"
     },
     {
       "target": "skills",
