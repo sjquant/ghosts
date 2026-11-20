@@ -115,12 +115,10 @@ These are installed from pinned upstream sources in [the registry](registry/skul
 
 | Skill | What it helps with |
 | --- | --- |
-| [ego-browser](https://github.com/citrolabs/ego-lite) | Automate browser tasks and web app checks in ego lite using your existing logins. |
 | [context7-cli](https://github.com/upstash/context7) | Fetch current library documentation and manage Context7 skills and configuration. |
 | [insane-search](https://github.com/fivetaku/insane-search) | Retrieve public web content through alternative access methods when ordinary fetching fails. |
 | [obsidian-cli](https://github.com/kepano/obsidian-skills) | Search and manage Obsidian notes, tasks, properties, and plugins. |
 | [sentry-cli](https://github.com/getsentry/cli) | Inspect Sentry issues, events, projects, and organizations through the CLI. |
-| [orca-cli](https://github.com/stablyai/orca) | Manage Orca worktrees, agent terminals, artifacts, and the embedded browser. |
 | [cram](https://github.com/sjquant/cram/tree/7d6c596732a18348529351399014d17ba29544b2) | Turn study material into flashcards and quizzes in a standalone HTML file. |
 | [pr-tour](https://github.com/YunSinLee/pr-tour/tree/95a634f42fc655bcb89f652d2a734c32a61952ae) | Create an HTML reading guide that follows a PR's code flow and real diff. |
 

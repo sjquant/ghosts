@@ -20,22 +20,10 @@
     },
     {
       "target": "skills",
-      "name": "ego-browser",
-      "source": "citrolabs/ego-lite",
-      "ref": "f499162d1b911ba9b320ed31b741dba7ebc2e4d6"
-    },
-    {
-      "target": "skills",
       "name": "sentry-cli",
       "source": "getsentry/cli",
       "sourcePath": "packages/cli/plugins/sentry-cli",
       "ref": "3567c3c937b5cc06667d5b023bda0b2d3f472c54"
-    },
-    {
-      "target": "skills",
-      "name": "orca-cli",
-      "source": "stablyai/orca",
-      "ref": "b45a49e941b5b2fd368b92ee3bd16753c4f563c1"
     },
     {
       "target": "skills",
