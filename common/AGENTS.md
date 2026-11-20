@@ -6,3 +6,4 @@
 - Include the attached particle, ending, or surrounding phrase in the bold span when needed. Preserve natural spacing; do not insert unnatural spaces or invisible characters just to make bold render.
 - If the obsidian CLI is unavailable, start the Obsidian desktop app first and retry.
 - Use the `maestro` CLI when native mobile UI interaction or verification is needed; consult `--help` for usage.
+- Before starting work on a GitHub issue, assign it to the requester if unassigned, proceed if only the requester is assigned, and ask the requester before proceeding if anyone else is assigned.
