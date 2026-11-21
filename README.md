@@ -102,6 +102,7 @@ and tests. [Echo's library](experience/skills/echo/library/INDEX.md) holds curat
 | [make-skill](writing/skills/make-skill/SKILL.md) | Create or revise a skill with only the instructions needed for its intended behavior. |
 | [eli5](writing/skills/eli5/SKILL.md) | Explain a topic to a beginner through a self-contained visual HTML lesson. |
 | [humanize-korean](writing/skills/humanize-korean/SKILL.md) | Smooth mechanical Korean phrasing while preserving meaning, facts, and tone. |
+| [fluent-korean](writing/skills/fluent-korean/SKILL.md) | Write Korean responses and documents with clear actions, conditions, and outcomes. |
 
 ### Tools
 
