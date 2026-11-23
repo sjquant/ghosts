@@ -26,8 +26,14 @@ Cover every material contract change, including removals and breaking changes. K
 
 After the Markdown explanation, ask whether the user wants a visual HTML version, unless visualization was already requested or declined.
 
-When requested, explain for a reader unfamiliar with the domain using a self-contained visual story: takeaway, before/after usage, how it works, and why it matters. Use public-interface diagrams with concrete inputs and outcomes, brief captions, and optional technical depth in `details`. If a quiz is requested, include five medium-difficulty interactive multiple-choice questions with concise feedback about behavior and tradeoffs.
+When requested, create a self-contained, snippet-led HTML lesson at an ELI5 level: assume no knowledge of the domain, use everyday language and few words, and explain unfamiliar terms on first use. Lead with one sentence about what changes for the reader.
 
-- Write one responsive HTML file outside the repository as `/tmp/YYYY-MM-DD-explanation-<slug>.html`; return its absolute path. Use semantic headings, a table of contents, inline CSS/JavaScript, and no network assets.
+- For each material change, show a short plain-language takeaway, a minimal before/after usage snippet, and the observable result with the same concrete input or action. Put the snippets at the center of the page, with a brief caption explaining what to notice. For additions or removals, show the available usage and state what became possible or stopped working; do not invent a before/after example.
+- Prefer short, focused snippets, usually 3–8 lines each. Include only the context needed to understand or use the changed interface; split longer examples into small steps. For UI changes, use concrete actions and resulting states. Keep real interface names and supported syntax, label illustrative or unexecuted examples, and retain source links.
+- Keep the main reading path understandable from the takeaways, snippets, and results alone. State required caller changes, breaking changes, and important limitations plainly beside the relevant example. Put optional implementation details and deeper explanations in `details`.
+- Use a large, simple diagram only when it makes an example easier to understand. Avoid architecture tours, file inventories, dense prose, and decorative diagrams. Include a table of contents only when it helps navigate a longer lesson.
+- If a quiz is requested, include five beginner-level interactive multiple-choice questions about the shown examples, with short feedback in everyday language. Avoid unexplained terminology and implementation trivia.
+
+- Write one responsive HTML file outside the repository as `/tmp/YYYY-MM-DD-explanation-<slug>.html`; return its absolute path. Use semantic headings, inline CSS/JavaScript, and no network assets.
 - Make visuals readable without zooming, with accessible text, sufficient contrast, keyboard controls, visible focus, and feedback beyond color. Preserve code whitespace in `<pre><code>` blocks.
-- Verify links, code blocks, material-change coverage, accessibility, any quiz interactions, and artifact existence before delivery.
+- Verify links, code blocks, material-change coverage, accessibility, any quiz interactions, and artifact existence before delivery. Check that each main example makes sense to a beginner without opening technical details.
