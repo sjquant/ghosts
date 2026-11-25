@@ -3,7 +3,7 @@ name: ghosts:code-review
 description: Use only when the user explicitly requests a code review or invokes this skill. Do not trigger for implementation, debugging, refactoring, or routine verification requests. Performs a broad, read-only code review using general agents and complete result synthesis.
 ---
 
-Review the change read-only. Use two general subagents by default. Give each the change context, the common instructions below, and its assigned question blocks. Do not add roles, review commands, or extra prompts.
+Review the change read-only; the main agent may write pending PR comments only through the follow-up below. Use two general subagents by default. Give each the change context, the common instructions below, and its assigned question blocks. Do not add roles, review commands, or extra prompts.
 
 Before assigning questions, the main agent identifies the key assumptions the change depends on and the affected boundaries, then uses them to guide its own verification in proportion to risk.
 
@@ -93,3 +93,20 @@ For GitHub-linked reviews, make `Location` a bare GitHub permalink, for example:
 
 If there are no actionable findings, say so while retaining every candidate in `Findings` with `SKIP` priority and its reason.
 Omit `Suggested fix` for `SKIP` items.
+
+## Optional pending PR comments
+
+If a PR link is supplied and actionable findings remain, show the review first and ask whether to save non-`SKIP` findings as pending inline comments. Skip the question if already requested; otherwise wait for approval.
+
+Add one comment per finding at the smallest relevant diff range, checking for changed code and duplicate pending comments. Leave findings that cannot be anchored in chat. Keep the review unsubmitted and report what was saved; do not fall back to published comments.
+
+Use this format in the user's language:
+
+```markdown
+### [<P0|P1|P2|P3>] <title>
+
+- **Kind:** <bug|performance|security|design|test|simplification|other>
+- **Evidence:** <observed behavior or code evidence, including the conditions that trigger the issue>
+- **Impact:** <concrete consequence and who or what is affected>
+- **Suggested fix:** <what to change and how it addresses the issue>
+```

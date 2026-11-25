@@ -11,7 +11,7 @@ Given a destination, recursively decompose it into independently reviewable work
 - Show a minimal example of current and planned usage for each materially changed public interface, including concrete inputs or actions and observable results. For additions or removals, show the supported usage and explain what will become available or will no longer be supported.
 - Put code and text-based requests and responses in fenced code blocks, not inline fragments. For UI changes, show the interaction and resulting state.
 - Prefer end-to-end slices that can be tested and merged independently.
-- Stop when every leaf is reviewable, testable, and mergeable.
+- Stop when every leaf is reviewable, testable, and mergeable. Finer decomposition is not inherently better; weigh its benefit against coordination and review overhead.
 - Use `ghosts:grill-me` to resolve requirements and material implementation direction before committing to task boundaries: architecture, technology choices, responsibility boundaries, interfaces, and trade-offs that would belong in an ADR. Investigate facts yourself, explain viable options and their consequences, and preserve decisions already agreed.
 
 For each package, lead with its intended observable outcome and scope; for internal-only work, state its purpose and the contract it provides to dependent packages without inventing user-visible benefits. Capture its rough LOC estimate, dependencies, and status:
