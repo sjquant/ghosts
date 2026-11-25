@@ -100,10 +100,10 @@ If a PR link is supplied and actionable findings remain, show the review first a
 
 Add one comment per finding at the smallest relevant diff range, checking for changed code and duplicate pending comments. Leave findings that cannot be anchored in chat. Keep the review unsubmitted and report what was saved; do not fall back to published comments.
 
-Use this format in the user's language:
+Use this format in the user's language, including `AI Review` in every comment heading (for example, `AI 리뷰` in Korean):
 
 ```markdown
-### [<P0|P1|P2|P3>] <title>
+### AI Review · <P0|P1|P2|P3> · <title>
 
 - **Kind:** <bug|performance|security|design|test|simplification|other>
 - **Evidence:** <observed behavior or code evidence, including the conditions that trigger the issue>
