@@ -41,6 +41,7 @@ Question blocks:
 - Does the module expose internal collaboration methods or make callers manage state, lifecycle, ordering, or other hidden obligations?
 - Any awkward call sites, leaky abstractions, circular dependencies, or dependency-direction issues?
 - Any unjustified departures from patterns used by nearby code or code serving similar purposes, including naming, structure, error handling, or abstraction level? Prefer established conventions unless the task provides a concrete reason to differ.
+- Does the change patch a symptom (such as swallowing errors, defensive null checks, or retry/timing workarounds) instead of addressing the root cause, leave identical bugs or inconsistencies in sibling code paths, or introduce hidden ordering, shared-state, or external assumptions that increase future change risk?
 ```
 
 ```text

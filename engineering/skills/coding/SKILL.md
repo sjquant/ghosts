@@ -10,7 +10,7 @@ After implementation, verify every applicable item against the final diff, relev
 - [ ] Prefer omission, existing code reuse, and language or standard-library features over unnecessary variables, interfaces, abstractions, or tests.
 - [ ] Design outside-in from caller usage and domain invariants.
 - [ ] Hide internal state, lifecycle, ordering, and retry details that callers need not manage.
-- [ ] Revisit abstractions that require repeated workarounds or type escape hatches. If successive fixes fail under the same premise, challenge that premise before patching again.
+- [ ] Check for root-cause and long-term risks before and during implementation: flag symptom patches (swallowing errors, defensive null checks, retry/timing workarounds), sibling code paths with the same bug or inconsistency, hidden ordering/shared-state/external assumptions that make future changes brittle, and abstraction mismatches requiring workarounds, extra flags, or type escape hatches. If the root fix exceeds the requested scope, stop and present the tradeoff (local patch vs. root fix, blast radius, and remaining risk) for user decision before proceeding; if successive fixes fail under the same premise, challenge that premise before patching again.
 - [ ] Prefer a rerunnable tool when it reduces execution or verification cost.
 - [ ] Follow naming, structure, error-handling, and abstraction conventions from nearby code or code with a similar role, unless there is a concrete reason to differ.
 - [ ] Order functions so each callee appears below its caller.

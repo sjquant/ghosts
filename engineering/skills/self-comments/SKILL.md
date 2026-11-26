@@ -30,4 +30,6 @@ Write in the user's language (using `변경점` and `이유` in Korean). Keep ea
 
 Add comments as **draft pending review comments** anchored to the relevant diff lines. Do not submit the pending review unless explicitly asked, and do not modify code, commit, push, edit the PR body or title, or resolve existing threads.
 
-Report the PR link, the number of pending comments added with their file and symbol locations, and any major skipped areas.
+When re-running on an updated PR, sync your existing **pending** comments—keep valid ones, update or replace outdated ones, delete obsolete ones, and add only for newly uncovered changes—without modifying **published** or other reviewers' comments (report outdated published self-comments instead).
+
+Report the PR link, synced pending comments with their file and symbol locations, any outdated published comments, and major skipped areas.
