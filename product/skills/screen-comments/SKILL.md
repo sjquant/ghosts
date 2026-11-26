@@ -15,7 +15,7 @@ Comment on changed files whose diff changes rendered UI or user interaction. Dec
 
 Trace eligible changes through routes, parents, consumers, visible entry points, and required authentication, permissions, data, and flags. Do not infer a menu path from a filename or URL. Check affected applications and screens for shared components and logic; one consumer does not establish coverage for all. Reuse screenshots where appropriate, but explain each file's own change.
 
-Compare existing explanations and images by meaning, including unmarked comments. Reuse sufficient coverage; report stale coverage for update without editing, deleting, or duplicating it unless requested. If no files qualify, report the exclusions without opening a browser or uploading.
+Compare existing explanations and images by meaning, including unmarked comments. Reuse sufficient coverage; update or delete stale **pending** comments, and report stale **published** coverage without editing, deleting, or duplicating it unless requested. If no files qualify, report the exclusions without opening a browser or uploading.
 
 ## Observe and capture
 
