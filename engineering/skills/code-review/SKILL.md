@@ -47,6 +47,7 @@ Question blocks:
 - Any unnecessary variables or intermediate state?
 - Any unnecessary interfaces or abstractions?
 - Could omission, standard features, existing code reuse, a different design, or clearer naming solve the problem more simply?
+- Any docstrings, comments, or descriptions coupled to implementation details (`how`) or implicit context (such as caller assumptions, prior changes, or internal collaborators) that will break when the implementation changes?
 ```
 
 ```text
