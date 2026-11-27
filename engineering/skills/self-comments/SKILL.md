@@ -14,11 +14,11 @@ Comment only on non-trivial changes where the diff alone does not make the inten
 
 ## Comment format
 
-Write in the user's language (using `변경점` and `이유` in Korean). Keep each comment concise so it reads cleanly in GitHub's narrow diff view:
+Write in the user's language (using `변경점` and `이유` in Korean). Keep each comment focused without sacrificing necessary context:
 
 - **Heading**: `### <concise purpose> (\`<symbol>\`)` — omit the symbol if there is no single symbol.
-- **`변경점` (What changed)**: Summarize the change at the level of intent rather than narrating the diff line by line. Put a single point inline; use nested bullets only for multiple distinct points.
-- **`이유` (Why)**: State the constraint, failure mode, race condition, or tradeoff the change addresses.
+- **`변경점` (What changed)**: Explain the surrounding flow before the mechanism—state what data or action this code handles and where it applies so a reader can follow without reading surrounding files—then summarize the change at the level of intent rather than narrating the diff line by line. Put a single point inline; use nested bullets only for multiple distinct points.
+- **`이유` (Why)**: State both the problem, constraint, or tradeoff the change addresses and the higher-level design reason behind the approach.
 
 ```markdown
 ### 리셋 도중 게임 전환 방어 (`resetDrawingTools`)
